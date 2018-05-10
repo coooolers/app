@@ -81,9 +81,10 @@ export default StackNavigator({
     }, {
         tabBarOptions: {
             style: {
-                backgroundColor: color.brandPrimary
+                backgroundColor: color.white,
             },
-            activeTintColor: color.white
+            activeTintColor: color.brandPrimary,
+            inactiveTintColor: color.grey
         },
         navigationOptions: ({navigation}) => ({
             tabBarOnPress: ({previousScene, scene, jumpToIndex}) => {
