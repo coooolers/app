@@ -24,6 +24,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		31E16A368B2872B2D1558542 /* Pods_Pursoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D50A7A81DF72FF47B40F35 /* Pods_Pursoo.framework */; };
 		37BFC746FDC943129A2A909C /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 019690C89F3C4452B8EA331C /* fontawesome-webfont.ttf */; };
 		3B13165418F94ED795E4A3CE /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 627F22DB9B364880905D6165 /* Zocial.ttf */; };
 		4B7AC8A0367E48B2B7B597FB /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B096671245C74117944C56A2 /* Roboto-Italic.ttf */; };
@@ -36,6 +37,7 @@
 		7FA650D5BC364BC4B4BA8EA1 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8917EFE6DE9E4187B52AEA74 /* Roboto-MediumItalic.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		87265C9B14A742A493C9C53A /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F530341E4764685AAAEFEC7 /* MaterialCommunityIcons.ttf */; };
+		8CD3569A1895EA52B19AE899 /* Pods_PursooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7623AC2A2A1F2FFDBE88D18E /* Pods_PursooTests.framework */; };
 		92C69E904E0C445186170D7F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDF8AE14E0A3483DBD7B46F8 /* Roboto-Bold.ttf */; };
 		987199135A584C9B85A9C76C /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C91051243ED4ECAAD0E9815 /* Entypo.ttf */; };
 		A5400FF3BA0A48A586D0F568 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58B82AC2A077465C9908A7B4 /* Roboto-BlackItalic.ttf */; };
@@ -45,14 +47,12 @@
 		CB5F550001E141F0AAD4FD7B /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F31EA740189F47258F16575C /* Roboto-Black.ttf */; };
 		CC28EBB9A73245A989E4FB12 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3B6EAF8195940E3868DBB34 /* MaterialIcons.ttf */; };
 		CF430C2046454B3392B6F453 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB838135AB349DD958DF3AA /* FontAwesome.ttf */; };
-		D0912A7CC8CC9DA193820A99 /* libPods-PursooTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22042DDFF2E4471B3F247DAB /* libPods-PursooTests.a */; };
 		DB7395EF7DCF4F718962B29B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEEECECCB784BCAA65D8A47 /* Foundation.ttf */; };
 		E17CFFA520A20D09009B47A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E17CFF7E20A20D09009B47A2 /* GoogleService-Info.plist */; };
 		E18833622097B02800354ED7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E188333B2097B02800354ED7 /* GoogleService-Info.plist */; };
 		EA00D78704C443B18BCD0CBC /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E96AB4E96B5439A8018B80A /* Roboto-Regular.ttf */; };
 		ECA6CD0D24FA44719A47696B /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B9F34CAC2D14363976C77DC /* Feather.ttf */; };
 		EF3878C9D2104D8B88812382 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBC33C2AE655469BB75825A5 /* Roboto-Light.ttf */; };
-		F86B0192B22666D7B9920605 /* libPods-Pursoo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE30825A362BC75D3B0CC89 /* libPods-Pursoo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,7 +351,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Pursoo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Pursoo/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		22042DDFF2E4471B3F247DAB /* libPods-PursooTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PursooTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FE1E8C0E994DA6B72A3EE6 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		27C81181D93DE8E4377ECE6D /* Pods-PursooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PursooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PursooTests/Pods-PursooTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -366,6 +365,7 @@
 		6E96AB4E96B5439A8018B80A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../app/assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		72DB0285F9FA3E57149C2EC7 /* libPods-Pursoo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pursoo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73A0412AFC6B4CC3A1CD06AE /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../app/assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		7623AC2A2A1F2FFDBE88D18E /* Pods_PursooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PursooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7763EC2418E62FF0DDFC3249 /* Pods-Pursoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pursoo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pursoo/Pods-Pursoo.debug.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -381,7 +381,7 @@
 		B408A32877AB4855913C353B /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../app/assets/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		BBC33C2AE655469BB75825A5 /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../app/assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		CDF8AE14E0A3483DBD7B46F8 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../app/assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
-		CFE30825A362BC75D3B0CC89 /* libPods-Pursoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pursoo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6D50A7A81DF72FF47B40F35 /* Pods_Pursoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pursoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17CFF7E20A20D09009B47A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E188333B2097B02800354ED7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3B6EAF8195940E3868DBB34 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				D0912A7CC8CC9DA193820A99 /* libPods-PursooTests.a in Frameworks */,
+				8CD3569A1895EA52B19AE899 /* Pods_PursooTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +419,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				AF2563EAECC44ACEA8572B74 /* libRNFirebase.a in Frameworks */,
-				F86B0192B22666D7B9920605 /* libPods-Pursoo.a in Frameworks */,
+				31E16A368B2872B2D1558542 /* Pods_Pursoo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,9 +573,9 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				CFE30825A362BC75D3B0CC89 /* libPods-Pursoo.a */,
 				72DB0285F9FA3E57149C2EC7 /* libPods-Pursoo-tvOSTests.a */,
-				22042DDFF2E4471B3F247DAB /* libPods-PursooTests.a */,
+				D6D50A7A81DF72FF47B40F35 /* Pods_Pursoo.framework */,
+				7623AC2A2A1F2FFDBE88D18E /* Pods_PursooTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -708,6 +708,8 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				760ABF4872BD13616130CB83 /* [CP] Embed Pods Frameworks */,
+				E1F4D86A20A4E9950013F03F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1156,6 +1158,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		760ABF4872BD13616130CB83 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Pursoo/Pods-Pursoo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pursoo/Pods-Pursoo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B143D049F21DCEF63754CE3B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1173,6 +1195,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E1F4D86A20A4E9950013F03F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
