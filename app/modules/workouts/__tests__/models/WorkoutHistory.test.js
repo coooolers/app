@@ -21,6 +21,7 @@ it('create workout history', () => {
     expect(workoutHistory.xpEarned).toEqual(200);
     expect(workoutHistory.xpEarnedLabel).toEqual(workout.xpEarnedLabel);
     expect(workoutHistory.addedByUser).toEqual(user.uid);
+    expect(workoutHistory.created).toBeDefined();
 });
 
 it('create workout history and serialize to JSON', () => {
@@ -30,6 +31,7 @@ it('create workout history and serialize to JSON', () => {
         name: workout.name,
         imageUrl: workout.imageUrl,
         xpEarned: 200,
-        addedByUser: user.uid
+        addedByUser: user.uid,
+        created: workoutHistory.created
     });
 });

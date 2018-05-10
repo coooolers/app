@@ -10,6 +10,7 @@ export class Character {
         this.xp = 0;
         this.xpTotal = 0;
         this.uid = uid;
+        this.created = new Date().toISOString();
     }
 
     static addXp(character, xpToAdded) {
@@ -49,7 +50,8 @@ export class Character {
             name: this.name,
             xp: this.xp,
             xpTotal: this.xpTotal,
-            uid: this.uid
+            uid: this.uid,
+            created: this.created
         }
     }
 }

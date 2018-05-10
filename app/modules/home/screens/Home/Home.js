@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, ScrollView, View, ImageBackground, Image, StyleSheet, Button} from 'react-native';
+import {Text, ScrollView, View, ImageBackground, Image, Button} from 'react-native';
 import {connect} from 'react-redux';
 import * as Progress from 'react-native-progress';
 

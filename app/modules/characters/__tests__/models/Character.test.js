@@ -15,7 +15,8 @@ it('create character', () => {
         xpTotal: 0,
         imageUrl: "imageUrl",
         uid: "m7iwMDmgmGMqRnFfn9HJgAHPoLL*",
-        addedByUser: user.uid
+        addedByUser: user.uid,
+        created: character.created
     });
 });
 
@@ -28,7 +29,8 @@ it('create character and serializd to JSON', () => {
         xpTotal: 0,
         imageUrl: "imageUrl",
         uid: "m7iwMDmgmGMqRnFfn9HJgAHPoLL*",
-        addedByUser: user.uid
+        addedByUser: user.uid,
+        created: character.created
     });
 });
 

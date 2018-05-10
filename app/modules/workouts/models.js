@@ -85,6 +85,7 @@ export class WorkoutHistory {
         this.xpEarned = workout.xpEarned;
         this.xpEarnedLabel = workout.xpEarnedLabel;
         this.addedByUser = user.uid;
+        this.created = new Date().toISOString();
     }
 
     toJSON = () => {
@@ -93,7 +94,8 @@ export class WorkoutHistory {
             imageUrl: this.imageUrl,
             xpEarned: this.xpEarned,
             xpEarnedLabel: this.xpEarnedLabel,
-            addedByUser: this.addedByUser
+            addedByUser: this.addedByUser,
+            created: this.created
         }
     };
 }
