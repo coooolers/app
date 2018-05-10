@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import * as Progress from 'react-native-progress';
 
 import styles from "./styles";
+import {color} from "../../../../styles/theme";
 import {round} from "../../../../components/Util";
 
 export default class DurationExercise extends React.Component {
@@ -80,7 +81,14 @@ export default class DurationExercise extends React.Component {
                 <Image source={{uri: workoutExercise.imageUrl}} style={styles.image}/>
                 <Text style={styles.name}>{workoutExercise.name}</Text>
                 <Text style={styles.duration}>{workoutExercise.duration - durationCompleted}</Text>
-                <Progress.Bar progress={progress} width={250} borderRadius={0}/>
+                <Progress.Bar
+                    progress={progress}
+                    width={250}
+                    height={15}
+                    borderRadius={0}
+                    borderColor={color.black}
+                    color={color.brandPrimary}
+                />
                 <Button
                     raised
                     title={buttonText}

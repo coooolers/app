@@ -88,7 +88,28 @@ const styles = StyleSheet.create({
         marginTop: 3,
         fontSize: fontSize.regular,
         fontFamily: fontFamily.regular
-    }
+    },
+
+    emptyWorkoutsContainer: {
+        backgroundColor: color.brandPrimary,
+        width: xpBarWidth,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        padding: 20,
+        flex: 2,
+        margin: 10
+    },
+
+    emptyWorkoutsContainerTitle: {
+        color: color.white,
+        fontSize: fontSize.large
+    },
+
+    emptyWorkoutsContainerText: {
+        color: color.white,
+        fontSize: fontSize.regular,
+        marginTop: 20
+    },
 });
 
 export default styles;

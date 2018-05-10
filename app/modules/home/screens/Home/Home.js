@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, ScrollView, View, ImageBackground, Image, Button} from 'react-native';
 import {connect} from 'react-redux';
 import * as Progress from 'react-native-progress';
+import FontAwesome, {Icons} from 'react-native-fontawesome';
 
 import styles from "./styles";
 import {fetchMyCharacter} from "../../../characters/actions";
@@ -64,7 +65,23 @@ class Home extends React.Component {
                     }
                 </View>
             );
+        } else {
+            return (
+                <View style={styles.emptyWorkoutsContainer}>
+                    <Text style={styles.emptyWorkoutsContainerTitle}>
+                        <FontAwesome>{Icons.heartbeat}</FontAwesome> No Workout History
+                    </Text>
+                    <Text style={styles.emptyWorkoutsContainerText}>
+                        When you complete a workout it will show up in this box as a reminder for you.
+                    </Text>
+                    <Text style={styles.emptyWorkoutsContainerText}>
+                        Tap 'workouts' below to get started with your first workout.
+                    </Text>
+                </View>
+            )
         }
+
+
     };
 
     render() {
