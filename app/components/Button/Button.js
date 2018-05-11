@@ -10,6 +10,7 @@ export default class Button extends Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
         onPress: PropTypes.func.isRequired,
+        isFetching: PropTypes.bool,
         containerViewStyle: PropTypes.object,
     };
 
@@ -24,7 +25,9 @@ export default class Button extends Component {
                 containerViewStyle={containerViewStyle}
                 buttonStyle={[styles.button]}
                 textStyle={styles.buttonText}
-                onPress={this.props.onPress}/>
+                disabled={this.props.isFetching}
+                onPress={this.props.onPress}
+            />
         )
     }
 }

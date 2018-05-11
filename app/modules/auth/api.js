@@ -8,7 +8,8 @@ export function createUser(user) {
     return database.ref('users').child(user.uid).set({
         email: user.email,
         uid: user.uid,
-        created: new Date().toISOString()
+        created: new Date().toISOString(),
+        hasCompletedOnboarding: false
     });
 }
 

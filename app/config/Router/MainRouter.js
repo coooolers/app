@@ -3,9 +3,10 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import {StackNavigator, TabNavigator} from 'react-navigation';
 
 // Onboarding
-import OnboardingIntro from "../../modules/onboarding/screens/OnboardingIntro";
-import UpdateUsername from "../../modules/onboarding/screens/UpdateUsername";
-import CreateCharacter from "../../modules/onboarding/screens/CreateCharacter";
+import OnboardingWelcome from "../../modules/onboarding/screens/OnboardingWelcome";
+import OnboardingProfile from "../../modules/onboarding/screens/OnboardingProfile";
+import OnboardingCreateCharacter from "../../modules/onboarding/screens/OnboardingCreateCharacter";
+import OnboardingHowItWorks from "../../modules/onboarding/screens/OnboardingHowItWorks";
 
 //Character Scenes
 import HomeScreen from '../../modules/home/screens/Home';
@@ -35,11 +36,12 @@ export default StackNavigator({
         screen: MainInitScreen
     },
     Onboarding: StackNavigator({
-        OnboardingIntro: {screen: OnboardingIntro},
-        OnboardingUsername: {screen: UpdateUsername},
-        OnboardingCreateCharacter: {screen: CreateCharacter}
+        OnboardingWelcome: {screen: OnboardingWelcome},
+        OnboardingProfile: {screen: OnboardingProfile},
+        OnboardingCreateCharacter: {screen: OnboardingCreateCharacter},
+        OnboardingHowItWorks: {screen: OnboardingHowItWorks}
     }, {
-        initialRouteName: 'OnboardingIntro',
+        initialRouteName: 'OnboardingWelcome',
     }),
     Main: TabNavigator({
         Home: {

@@ -1,22 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View} from 'react-native';
-import {FormLabel, FormInput, Button} from 'react-native-elements';
+import {FormLabel, FormInput} from 'react-native-elements';
 import {NavigationActions} from "react-navigation";
 
 import {createMyCharacter} from "../../../characters/actions";
 import CharacterImageScrollView from "../../../characters/components/CharacterImageScrollView";
 import styles from "./styles";
+import Button from "../../../../components/Button/Button";
 
 const error = {
     general: "",
     name: ""
 };
 
-class CreateCharacter extends React.Component {
+class OnboardingCreateCharacter extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            title: "Create Your Character"
+            title: "Step 2 of 3"
         }
     };
 
@@ -95,15 +96,7 @@ class CreateCharacter extends React.Component {
                 <FormLabel>Image</FormLabel>
                 <CharacterImageScrollView character={character}
                                           onSelect={this.onCharacterImagePress}/>
-                <Button
-                    raised
-                    title="DONE"
-                    borderRadius={4}
-                    disabled={isFetching}
-                    containerViewStyle={styles.containerView}
-                    buttonStyle={styles.button}
-                    textStyle={styles.buttonText}
-                    onPress={this.onSubmit}/>
+                <Button title={"Learn How To Play"} onPress={this.onSubmit}/>
             </View>
         );
     }
@@ -115,4 +108,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(CreateCharacter);
+export default connect(mapStateToProps)(OnboardingCreateCharacter);

@@ -30,6 +30,8 @@ const fontFamily = {
 const padding = 8;
 const navbarHeight = (Platform.OS === 'ios') ? 64 : 54;
 const windowWidth = Dimensions.get('window').width;
+const contentPadding = 15;
+const contentWidth = windowWidth - (contentPadding * 2);
 const windowHeight = Dimensions.get('window').height;
 
 const tabColor = (Platform.OS === "ios") ? color.white : "rgba(255,255,255,.8)";
@@ -47,5 +49,7 @@ export {
     windowHeight,
     tabIconStyle,
     navTitleStyle,
+    contentWidth,
+    contentPadding,
     normalize
 }

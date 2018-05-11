@@ -7,7 +7,7 @@ import BackgroundImage from '../../../../assets/images/man-with-future-shadow.jp
 import styles from "./styles";
 import Button from "../../../../components/Button";
 
-class OnboardingIntro extends React.Component {
+class OnboardingWelcome extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
             header: null
@@ -19,7 +19,7 @@ class OnboardingIntro extends React.Component {
     };
 
     goToNext = () => {
-        this.props.navigation.push('OnboardingUsername');
+        this.props.navigation.push('OnboardingProfile');
     };
 
     render() {
@@ -48,4 +48,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(OnboardingIntro);
+export default connect(mapStateToProps)(OnboardingWelcome);

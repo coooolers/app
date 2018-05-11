@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {fontFamily, normalize, padding, windowWidth} from "../../../../styles/theme";
+import {contentWidth, fontFamily, normalize, padding} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: windowWidth - 40,
+        width: contentWidth,
         paddingTop: padding,
         paddingBottom: padding,
     },

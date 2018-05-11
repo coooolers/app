@@ -7,7 +7,7 @@ class InitialScreen extends React.Component {
 
         const {user} = props;
 
-        if (!user.username || !user.characterUid) {
+        if (!user.hasCompletedOnboarding) {
             props.navigation.navigate('Onboarding');
         } else {
             props.navigation.navigate('Main');

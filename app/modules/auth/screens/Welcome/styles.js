@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {theme} from "../../index";
+import {contentPadding, contentWidth} from "../../../../styles/theme";
 
 const {padding, color, fontSize, fontFamily, windowWidth, normalize} = theme;
 
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
 
     topContainer: {
         flex: 1,
-        paddingHorizontal: 15,
+        paddingHorizontal: contentPadding,
         paddingBottom: padding * 2,
         justifyContent: "center",
         alignItems: "center",
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     },
 
     containerView: {
-        width: windowWidth - 40
+        width: contentWidth
     },
 
     socialButton: {

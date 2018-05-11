@@ -1,9 +1,14 @@
 import {StyleSheet} from 'react-native';
-import {padding, color, fontSize, fontFamily, windowWidth, normalize, contentWidth} from "../../styles/theme";
+import {theme} from "../../index";
+const {color, padding, windowWidth, normalize, fontSize, fontFamily} = theme;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     containerView: {
-        width: contentWidth
+        marginVertical: padding * 3,
+        width: windowWidth - 40
     },
     button: {
         backgroundColor: color.brandPrimary,
@@ -13,7 +18,8 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: fontSize.regular + 2,
         fontFamily: fontFamily.medium
-    }
+    },
 });
+
 
 export default styles;
