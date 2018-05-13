@@ -1,11 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View, TouchableOpacity, Text} from 'react-native';
-import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 
 import {updateUser} from "../../actions";
-import Button from "../../../../components/Button/Button";
+import Button from "../../../../components/Button";
+import FormInput from "../../../../components/FormInput";
+import FormLabel from "../../../../components/FormLabel";
+import FormValidationMessage from "../../../../components/FormValidationMessage";
 import styles from "./styles";
 
 const GOALS = {

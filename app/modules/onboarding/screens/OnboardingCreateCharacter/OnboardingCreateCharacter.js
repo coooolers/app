@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View} from 'react-native';
-import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements';
-
+import {View, Text} from 'react-native';
 import {createMyCharacter} from "../../../characters/actions";
 import CharacterImageScrollView from "../../../characters/components/CharacterImageScrollView";
 import styles from "./styles";
 import Button from "../../../../components/Button/Button";
+import FormLabel from "../../../../components/FormLabel/FormLabel";
+import FormInput from "../../../../components/FormInput/FormInput";
+import FormValidationMessage from "../../../../components/FormValidationMessage/FormValidationMessage";
 
 class OnboardingCreateCharacter extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -71,7 +72,9 @@ class OnboardingCreateCharacter extends React.Component {
 
         return (
             <View style={styles.container}>
+                <Text style={styles.intro}>{this.props.user.name}, it's great to meet you! Take a moment to create your character below.</Text>
                 <View style={{flex: 1}}>
+                    <Text style={styles.title}>My Character</Text>
                     <FormLabel>Name</FormLabel>
                     <FormValidationMessage>{this.state.errors.name}</FormValidationMessage>
                     <FormInput

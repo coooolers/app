@@ -1,11 +1,21 @@
 import {StyleSheet} from 'react-native';
-import {theme} from "../../index";
-const {color, padding, windowWidth, normalize, fontSize, fontFamily} = theme;
+import {color, contentPadding, fontSize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: color.white
+        backgroundColor: color.white,
+        padding: contentPadding
+    },
+
+    intro: {
+        textAlign: 'center'
+    },
+
+    title: {
+        fontSize: fontSize.large,
+        textAlign: 'center',
+        marginTop: 30
     }
 });
 

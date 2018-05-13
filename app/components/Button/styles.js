@@ -3,7 +3,10 @@ import {padding, color, fontSize, fontFamily, windowWidth, normalize, contentWid
 
 const styles = StyleSheet.create({
     containerView: {
-        width: contentWidth
+        width: contentWidth,
+        padding: 0,
+        marginLeft: 0,
+        marginRight: 0,
     },
     button: {
         backgroundColor: color.brandPrimary,

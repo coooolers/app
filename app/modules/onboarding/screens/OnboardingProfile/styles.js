@@ -1,12 +1,13 @@
 import {StyleSheet} from 'react-native';
 import {theme} from "../../index";
-import {contentWidth} from "../../../../styles/theme";
-const {color, padding, windowWidth, normalize, fontSize, fontFamily} = theme;
+import {contentPadding, contentWidth} from "../../../../styles/theme";
+const {color, padding, normalize} = theme;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: color.white
+        backgroundColor: color.white,
+        padding: contentPadding
     },
 
     goal: {
@@ -15,7 +16,6 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         marginTop: 10,
-        marginLeft: 15,
         padding: padding,
         borderColor: color.grey,
         borderWidth: 1,
