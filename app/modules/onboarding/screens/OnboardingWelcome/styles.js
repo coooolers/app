@@ -1,25 +1,33 @@
 import {StyleSheet} from 'react-native';
-import {contentWidth, fontFamily, normalize, padding} from "../../../../styles/theme";
+import {contentWidth, fontFamily, normalize, padding, color} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: color.white,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
 
-    content: {
+    bottomContainer: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
         width: contentWidth,
         paddingTop: padding,
         paddingBottom: padding,
+        alignItems: 'center'
     },
 
-    background: {
+    topContainer: {
         flex: 1,
-        resizeMode: 'contain'
+        backgroundColor: color.brandPrimary,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%'
+    },
+
+    image: {
+        resizeMode: 'contain',
+        width: 200
     },
 
     title: {

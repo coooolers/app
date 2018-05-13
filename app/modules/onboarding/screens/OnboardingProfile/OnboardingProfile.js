@@ -18,6 +18,7 @@ class OnboardingProfile extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
             headerLeft: null,
+            headerBackTitle: 'Profile',
             title: "Step 1 of 3"
         }
     };

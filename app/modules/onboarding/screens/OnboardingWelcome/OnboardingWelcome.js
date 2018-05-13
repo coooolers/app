@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {View, Text, Image} from 'react-native';
 
-import BackgroundImage from '../../../../assets/images/man-with-future-shadow.jpg';
+import Logo from '../../../../assets/images/white-logo-icon-transparent.png';
 
 import styles from "./styles";
 import Button from "../../../../components/Button";
@@ -14,9 +14,7 @@ class OnboardingWelcome extends React.Component {
         }
     };
 
-    state = {
-        isFetching: false
-    };
+    state = {};
 
     goToNext = () => {
         this.props.navigation.push('OnboardingProfile');
@@ -25,14 +23,23 @@ class OnboardingWelcome extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Image source={BackgroundImage} style={styles.background}/>
-                <View style={styles.content}>
-                    <Text style={styles.title}>Welcome to Pursoo</Text>
-                    <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at leo id nibh consectetur scelerisque eget et turpis. Etiam sollicitudin mauris eget turpis rutrum commodo. Vivamus sed libero eu massa auctor venenatis.</Text>
+                <View style={styles.topContainer}>
+                    <Image source={Logo} style={styles.image}/>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <View style={{flex: 1}}>
+                        <Text style={styles.title}>Welcome to Pursoo</Text>
+                        <Text>
+                            Congratulations on taking the first step towards a better, healthier life. Tap the button
+                            below to create your profile and tell us a bit about yourself.
+                        </Text>
+                    </View>
                     <Button
-                        title={"Get Started Now"}
+                        title={"Create Profile"}
                         containerViewStyle={{
-                            marginTop: 20
+                            marginTop: 20,
+                            marginLeft: 0,
+                            marginRight: 0,
                         }}
                         onPress={this.goToNext}
                     />

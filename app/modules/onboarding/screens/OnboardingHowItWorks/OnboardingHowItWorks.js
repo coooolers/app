@@ -1,25 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 
 import styles from "./styles";
-
-const error = {
-    general: "",
-    name: ""
-};
 
 class OnboardingHowItWorks extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            title: "Create Your Character"
+            title: "Step 3 of 3"
         }
-    };
-
-    state = {
-        error,
-        isFetching: false,
-        character: {}
     };
 
     render() {

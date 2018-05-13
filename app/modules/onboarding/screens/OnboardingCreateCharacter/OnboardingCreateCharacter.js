@@ -1,37 +1,47 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View} from 'react-native';
-import {FormLabel, FormInput} from 'react-native-elements';
-import {NavigationActions} from "react-navigation";
+import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements';
 
 import {createMyCharacter} from "../../../characters/actions";
 import CharacterImageScrollView from "../../../characters/components/CharacterImageScrollView";
 import styles from "./styles";
 import Button from "../../../../components/Button/Button";
 
-const error = {
-    general: "",
-    name: ""
-};
-
 class OnboardingCreateCharacter extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            title: "Step 2 of 3"
+            headerBackTitle: 'Character',
+            title: "Step 2 of 3",
         }
     };
 
-    state = {
-        error,
-        isFetching: false,
-        character: {}
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isFetching: false,
+            character: {},
+            errors: {}
+        };
+    }
 
     onSubmit = () => {
-        this.setState({
-            error, //clear out error messages
-            isFetching: true
-        });
+        const errors = {};
+        if (!this.state.character.name) {
+            errors["name"] = "Come now, you can't be a nameless hero.";
+        }
+
+        if (!this.state.character.imageUrl) {
+            errors["imageUrl"] = "Select an image to your liking";
+        }
+
+        if (Object.keys(errors).length) {
+            this.setState({errors});
+            return;
+        }
+
+        this.setState({isFetching: true});
 
         const {user} = this.props;
         const {character} = this.state;
@@ -39,32 +49,10 @@ class OnboardingCreateCharacter extends React.Component {
         this.props.dispatch(createMyCharacter(user, character.name, character.imageUrl))
             .then(() => {
                 this.setState({isFetching: false});
-
-                const resetAction = NavigationActions.reset({
-                    index: 0,
-                    key: null,
-                    actions: [NavigationActions.navigate({routeName: 'Main'})],
-                });
-                this.props.navigation.dispatch(resetAction);
-            }, this.onError)
-    };
-
-    onError = (error) => {
-        let errObj = this.state.error;
-
-        if (error.hasOwnProperty("message")) {
-            errObj['general'] = error.message;
-        } else {
-            let keys = Object.keys(error);
-            keys.map((key, index) => {
-                errObj[key] = error[key];
-            })
-        }
-
-        this.setState({
-            error: errObj,
-            isFetching: false
-        });
+                this.props.navigation.push('OnboardingHowItWorks');
+            }, () => {
+                this.setState({isFetching: false});
+            });
     };
 
     onChangeText = (key, text) => {
@@ -83,20 +71,24 @@ class OnboardingCreateCharacter extends React.Component {
 
         return (
             <View style={styles.container}>
-                <FormLabel>Name</FormLabel>
-                <FormInput
-                    autoCapitalize='none'
-                    clearButtonMode='while-editing'
-                    underlineColorAndroid={"#fff"}
-                    placeholder="Name"
-                    autoFocus={false}
-                    onChangeText={(text) => this.onChangeText("name", text)}
-                    inputStyle={styles.inputContainer}
-                    value={character.name}/>
-                <FormLabel>Image</FormLabel>
-                <CharacterImageScrollView character={character}
-                                          onSelect={this.onCharacterImagePress}/>
-                <Button title={"Learn How To Play"} onPress={this.onSubmit}/>
+                <View style={{flex: 1}}>
+                    <FormLabel>Name</FormLabel>
+                    <FormValidationMessage>{this.state.errors.name}</FormValidationMessage>
+                    <FormInput
+                        autoCapitalize='none'
+                        clearButtonMode='while-editing'
+                        underlineColorAndroid={"#fff"}
+                        placeholder="Name"
+                        autoFocus={false}
+                        onChangeText={(text) => this.onChangeText("name", text)}
+                        inputStyle={styles.inputContainer}
+                        value={character.name}/>
+                    <FormLabel>Image</FormLabel>
+                    <FormValidationMessage>{this.state.errors.imageUrl}</FormValidationMessage>
+                    <CharacterImageScrollView character={character}
+                                              onSelect={this.onCharacterImagePress}/>
+                </View>
+                <Button title={"Learn How To Play"} onPress={this.onSubmit} isFetching={isFetching}/>
             </View>
         );
     }
@@ -104,7 +96,8 @@ class OnboardingCreateCharacter extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.authReducer.user
+        user: state.authReducer.user,
+        character: state.characterReducer.character
     }
 }
 
