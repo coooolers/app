@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {color, contentPadding, fontSize} from "../../../../styles/theme";
+import {color, contentPadding, fontSize, normalize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
     },
 
     intro: {
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: normalize(16)
     },
 
     title: {

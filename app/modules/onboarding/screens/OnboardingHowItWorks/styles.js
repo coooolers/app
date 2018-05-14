@@ -1,24 +1,57 @@
 import {StyleSheet} from 'react-native';
 import {theme} from "../../index";
-const {color, padding, windowWidth, normalize, fontSize, fontFamily} = theme;
+import {contentPadding, contentWidth, fontSize, normalize} from "../../../../styles/theme";
+const {color} = theme;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
-    },
-    containerView: {
-        marginVertical: padding * 3,
-        width: windowWidth - 40
-    },
-    button: {
-        backgroundColor: color.brandPrimary,
-        height: normalize(55)
+        flex: 1,
+        backgroundColor: color.white,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: contentPadding
     },
 
-    buttonText: {
-        fontSize: fontSize.regular + 2,
-        fontFamily: fontFamily.medium
+    intro: {
+        textAlign: 'center',
+        fontSize: normalize(16)
     },
+
+    secondaryCTA: {
+        textAlign: 'center',
+        marginTop: 10
+    },
+
+    slide: {
+        width: contentWidth,
+        marginTop: 20,
+        marginBottom: 20
+    },
+
+    slideTop: {
+        width: contentWidth,
+        height: 200,
+        marginTop: 10,
+        marginBottom: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    slideImage: {
+        width: contentWidth,
+        height: 200,
+        resizeMode: 'contain',
+    },
+
+    slideTitle: {
+        textAlign: 'center',
+        fontSize: fontSize.large
+    },
+
+    slideDescription: {
+        textAlign: 'center',
+        marginTop: 10
+    }
 });
 
 
