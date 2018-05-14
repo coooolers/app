@@ -59,7 +59,8 @@ class OnboardingProfile extends React.Component {
             return;
         }
 
-        this.setState({isFetching: true});
+        this.setState({isFetching: true, errors});
+
         const {name, goal} = this.state;
         const user = Object.assign({}, this.props.user, {name, goal});
 
@@ -119,11 +120,9 @@ class OnboardingProfile extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{flex: 1}}>
-                    <Button title={"Create Character"}
-                            onPress={this.onSubmit}
-                            isFetching={this.state.isFetching}/>
-                </View>
+                <Button title={"Create Character"}
+                        onPress={this.onSubmit}
+                        isFetching={this.state.isFetching}/>
             </View>
         );
     }

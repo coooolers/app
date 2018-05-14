@@ -9,6 +9,7 @@ import PushupImage from "../../../../assets/images/pushup.png";
 import {NavigationActions} from "react-navigation";
 import Reporting from "../../../reporting";
 import {fetchMyCharacter} from "../../../characters/actions";
+import {updateUser} from "../../actions";
 
 class OnboardingHowItWorks extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -29,24 +30,26 @@ class OnboardingHowItWorks extends React.Component {
 
     onPressStartWork = () => {
         Reporting.track("onboarding__start_workout");
-
-        const resetAction = NavigationActions.reset({
-            index: 0,
-            key: null,
-            actions: [NavigationActions.navigate({routeName: 'Main'})],
-        });
-        this.props.navigation.dispatch(resetAction);
+        this.goToNext();
     };
 
     onPressWorkoutLater = () => {
         Reporting.track("onboarding__workout_later");
+        this.goToNext();
+    };
 
-        const resetAction = NavigationActions.reset({
-            index: 0,
-            key: null,
-            actions: [NavigationActions.navigate({routeName: 'Main'})],
+    goToNext = () => {
+        const {user} = this.props;
+        user.hasCompletedOnboarding = true;
+
+        this.props.dispatch(updateUser(user)).then(() => {
+            const resetAction = NavigationActions.reset({
+                index: 0,
+                key: null,
+                actions: [NavigationActions.navigate({routeName: 'Main'})],
+            });
+            this.props.navigation.dispatch(resetAction);
         });
-        this.props.navigation.dispatch(resetAction);
     };
 
     render() {

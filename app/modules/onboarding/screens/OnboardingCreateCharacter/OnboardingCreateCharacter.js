@@ -42,7 +42,7 @@ class OnboardingCreateCharacter extends React.Component {
             return;
         }
 
-        this.setState({isFetching: true});
+        this.setState({isFetching: true, errors});
 
         const {user} = this.props;
         const {character} = this.state;
@@ -72,7 +72,8 @@ class OnboardingCreateCharacter extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.intro}>{this.props.user.name}, it's great to meet you! Take a moment to create your character below.</Text>
+                <Text style={styles.intro}>{this.props.user.name}, it's great to meet you! Take a moment to create your
+                    character below.</Text>
                 <View style={{flex: 1}}>
                     <Text style={styles.title}>My Character</Text>
                     <FormLabel>Name</FormLabel>

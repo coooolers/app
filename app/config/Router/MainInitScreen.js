@@ -11,7 +11,6 @@ class InitialScreen extends React.Component {
             props.navigation.navigate('Onboarding');
         } else {
             props.navigation.navigate('Main');
-            // props.navigation.navigate('Workouts');
         }
     }
 
