@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        padding: padding
+        padding: padding,
+        backgroundColor: color.light_grey
     },
 
     workout: {
@@ -23,13 +24,24 @@ const styles = StyleSheet.create({
     image: {
         width: 100, // 4:3
         resizeMode: 'cover',
-        marginRight: padding
+        marginRight: padding,
+        borderWidth: 1,
+        borderColor: color.grey,
     },
 
     name: {
         marginTop: padding,
         fontSize: fontSize.regular,
         fontFamily: fontFamily.regular
+    },
+
+    sectionTitle: {
+        fontSize: fontSize.large,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        backgroundColor: color.light_grey,
+        borderBottomWidth: 1,
+        borderBottomColor: color.black
     }
 });
 

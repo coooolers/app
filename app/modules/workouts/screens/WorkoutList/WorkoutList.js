@@ -1,10 +1,14 @@
 import React from 'react';
-import {Text, View, Image, FlatList, TouchableOpacity} from 'react-native';
+import {Text, View, Image, SectionList, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 
 import styles from "./styles";
 import {fetchWorkouts} from "../../actions";
 import XpLabel from "../../../../components/XpLabel";
+
+const BEGINNER_DIFFICULTY = 1;
+const INTERMEDIATE_DIFFICULTY = 2;
+const ADVANCED_DIFFICULTY = 3;
 
 class WorkoutList extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -50,12 +54,33 @@ class WorkoutList extends React.Component {
             return null;
         }
 
+        const {workouts} = this.props;
+        let sections = [];
+
+        const beginnerWorkouts = workouts.filter(wo => wo.difficulty === BEGINNER_DIFFICULTY);
+        if (beginnerWorkouts.length) {
+            sections.push({title: 'Beginner', data: beginnerWorkouts});
+        }
+
+        const intermediateWorkouts = workouts.filter(wo => wo.difficulty === INTERMEDIATE_DIFFICULTY);
+        if (intermediateWorkouts.length) {
+            sections.push({title: 'Intermediate', data: intermediateWorkouts});
+        }
+
+        const advancedWorkouts = workouts.filter(wo => wo.difficulty === ADVANCED_DIFFICULTY);
+        if (advancedWorkouts.length) {
+            sections.push({title: 'Advanced', data: advancedWorkouts});
+        }
+
         return (
             <View style={styles.container}>
-                <FlatList
-                    data={this.props.workouts}
+                <SectionList
+                    sections={sections}
                     keyExtractor={(item) => item.uid}
                     renderItem={this.renderWorkoutItem}
+                    renderSectionHeader={({section: {title}}) => (
+                        <Text style={styles.sectionTitle}>{title}</Text>
+                    )}
                 />
             </View>
         );
