@@ -47,7 +47,8 @@ export default class CharacterImageScrollView extends React.Component {
         }
 
         return (
-            <ScrollView horizontal={true} bounces={false} style={styles.container}>
+            <ScrollView bounces={false} style={styles.container} horizontal={true}
+                        showsHorizontalScrollIndicator={false}>
                 {imageUrls.map(this.renderImage)}
             </ScrollView>
         );
