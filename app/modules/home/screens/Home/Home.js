@@ -3,6 +3,7 @@ import {Text, ScrollView, View, ImageBackground, Image, Button} from 'react-nati
 import {connect} from 'react-redux';
 import * as Progress from 'react-native-progress';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
+import Moment from 'moment';
 
 import styles from "./styles";
 import {fetchMyCharacter} from "../../../characters/actions";
@@ -11,6 +12,8 @@ import MountainsBackground from '../../../../assets/images/mountains.png';
 import {Character} from "../../../characters/models";
 import XpLabel from "../../../../components/XpLabel";
 import {LEVEL_CONFIG} from "../../../../config/levels";
+
+Moment.locale("en");
 
 class Home extends React.Component {
     state = {
@@ -46,7 +49,13 @@ class Home extends React.Component {
                     <Image style={styles.workoutImage} source={{uri: item.imageUrl}}/>
                     <View style={{flex: 1, flexDirection: "column"}}>
                         <Text style={styles.workoutName}>{item.name}</Text>
-                        <XpLabel xp={item.xpEarned}/>
+                        <View style={{flex: 1, flexDirection: "row"}}>
+                            <View style={{flexDirection: "row", marginRight: 20, marginTop: 8}}>
+                                <FontAwesome style={{marginRight: 8}}>{Icons.calendar}</FontAwesome>
+                                <Text>{Moment(item.created).format('d MMM')}</Text>
+                            </View>
+                            <XpLabel xp={item.xpEarned}/>
+                        </View>
                     </View>
                 </View>
             </View>
