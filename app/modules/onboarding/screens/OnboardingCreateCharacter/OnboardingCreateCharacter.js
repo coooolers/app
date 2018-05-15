@@ -92,7 +92,9 @@ class OnboardingCreateCharacter extends React.Component {
                     <CharacterImageScrollView character={character}
                                               onSelect={this.onCharacterImagePress}/>
                 </View>
-                <Button title={"Learn How To Play"} onPress={this.onSubmit} isFetching={isFetching}/>
+                <Button title={"Learn How To Play"}
+                        icon={'trophy'}
+                        onPress={this.onSubmit} isFetching={isFetching}/>
             </View>
         );
     }

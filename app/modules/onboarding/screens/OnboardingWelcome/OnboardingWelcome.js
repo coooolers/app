@@ -36,6 +36,7 @@ class OnboardingWelcome extends React.Component {
                     </View>
                     <Button
                         title={"Create Profile"}
+                        icon={'user-circle-o'}
                         containerViewStyle={{
                             marginTop: 20,
                             marginLeft: 0,

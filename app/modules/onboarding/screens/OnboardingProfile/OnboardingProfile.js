@@ -121,6 +121,7 @@ class OnboardingProfile extends React.Component {
                     </View>
                 </View>
                 <Button title={"Create Character"}
+                        icon={'user-plus'}
                         onPress={this.onSubmit}
                         isFetching={this.state.isFetching}/>
             </View>

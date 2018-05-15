@@ -104,7 +104,9 @@ class OnboardingHowItWorks extends React.Component {
                         </View>
                     </ScrollView>
                 </View>
-                <Button title={"Start A Workout"} onPress={this.onPressStartWork}/>
+                <Button title={"Start A Workout"}
+                        icon={'heartbeat'}
+                        onPress={this.onPressStartWork}/>
                 <TouchableOpacity onPress={this.onPressWorkoutLater}>
                     <Text style={styles.secondaryCTA}>I'll workout later</Text>
                 </TouchableOpacity>
