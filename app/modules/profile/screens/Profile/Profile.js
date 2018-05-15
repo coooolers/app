@@ -11,7 +11,7 @@ import {updateUser} from "../../actions";
 
 const error = {
     general: "",
-    username: "",
+    name: "",
     email: "",
     phone: ""
 };
@@ -33,12 +33,12 @@ class Profile extends React.Component {
 
         this.fields = [
             {
-                key: 'username',
-                label: "Username",
-                placeholder: "Username",
+                key: 'name',
+                label: "Name",
+                placeholder: "Name",
                 autoFocus: false,
                 secureTextEntry: false,
-                value: props.user.username,
+                value: props.user.name,
                 type: "text"
             },
             {
