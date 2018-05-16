@@ -22,12 +22,10 @@ export const createWorkoutHistory = (workoutHistory) => {
     return childRef.set(workoutHistory).then(() => workoutHistory);
 };
 
-export const getMyWorkoutHistory = (user, limit = 5) => {
+export const getMyWorkoutHistory = (user) => {
     return new Promise((resolve, reject) => {
         const workoutHistoryRef = database.ref('workoutHistory')
-            .orderByChild("addedByUser")
-            .equalTo(user.uid)
-            .limitToLast(limit);
+            .orderByChild("addedByUser").equalTo(user.uid).limitToLast(5);
 
         workoutHistoryRef.once("value")
             .then(snapshot => {
@@ -39,7 +37,9 @@ export const getMyWorkoutHistory = (user, limit = 5) => {
 
                     const workoutHistory = keys.map(key => {
                         return workoutHistoryByUid[key];
-                    });
+                    }).reverse(); // reverse the dataset to order from most recent to oldest
+
+                    console.log(workoutHistory);
                     resolve(workoutHistory);
                 } else {
                     resolve([]);

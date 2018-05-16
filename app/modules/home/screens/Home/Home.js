@@ -54,6 +54,10 @@ class Home extends React.Component {
                                 <FontAwesome style={{marginRight: 8}}>{Icons.calendar}</FontAwesome>
                                 <Text>{Moment(item.created).format('d MMM')}</Text>
                             </View>
+                            <View style={{flexDirection: "row", marginRight: 20, marginTop: 8}}>
+                                <FontAwesome style={{marginRight: 8}}>{Icons.star}</FontAwesome>
+                                <Text>{item.grade}</Text>
+                            </View>
                             <XpLabel xp={item.xpEarned}/>
                         </View>
                     </View>
