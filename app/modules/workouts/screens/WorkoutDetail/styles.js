@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {theme} from "../../index"
+import {contentPadding} from "../../../../styles/theme";
 
 const {padding, color, fontFamily, normalize, fontSize, windowWidth} = theme;
 
@@ -9,28 +10,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        padding: padding,
+        padding: contentPadding,
         backgroundColor: color.white
     },
 
     title: {
+        textAlign: 'center',
         fontSize: fontSize.large,
         fontFamily: fontFamily.medium
     },
 
-    containerView: {
-        marginVertical: padding * 3,
-        width: windowWidth - 40 - padding
-    },
-
-    button: {
-        backgroundColor: color.brandPrimary,
-        height: normalize(55),
-    },
-
-    buttonText: {
-        fontSize: fontSize.regular + 2,
-        fontFamily: fontFamily.medium
+    exerciseImage: {
+        width: 50,
+        height: 50,
+        marginRight: 10
     },
 
     exerciseNameLabel: {
@@ -75,7 +68,8 @@ const styles = StyleSheet.create({
     },
 
     exerciseRoutineContainer: {
-        marginTop: 40
+        flex: 10,
+        marginTop: 20
     },
 
     exerciseRowHeader: {
@@ -83,12 +77,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: padding,
         borderBottomWidth: 1,
-        borderBottomColor: color.light_grey
+        borderBottomColor: color.light_grey,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
     },
 
     exerciseRow: {
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'center',
         padding: padding,
         borderBottomWidth: 1,
         borderBottomColor: color.light_grey
