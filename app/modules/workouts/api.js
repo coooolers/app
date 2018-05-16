@@ -39,7 +39,6 @@ export const getMyWorkoutHistory = (user) => {
                         return workoutHistoryByUid[key];
                     }).reverse(); // reverse the dataset to order from most recent to oldest
 
-                    console.log(workoutHistory);
                     resolve(workoutHistory);
                 } else {
                     resolve([]);
