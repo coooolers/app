@@ -1,5 +1,5 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
-export const round = (number, precision) => {
+export const round = (number, precision = 0) => {
     let shift = (number, precision, reverseShift) => {
         if (reverseShift) {
             precision = -precision;

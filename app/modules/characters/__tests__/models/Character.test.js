@@ -79,5 +79,5 @@ it("do not add xp to max level character", () => {
 
     expect(character.xp).toBe(0);
     expect(character.xpTotal).toBe(0);
-    expect(character.level).toBe(10);
+    expect(character.level).toBe(maxLevel);
 });

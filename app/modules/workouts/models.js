@@ -1,4 +1,4 @@
-import {stringifyXp} from "../../components/Util";
+import {stringifyXp, round} from "../../components/Util";
 
 export class Workout {
     constructor(workout, exercises) {
@@ -25,6 +25,23 @@ export class Workout {
         });
 
         workout.xpEarnedLabel = stringifyXp(workout.xpEarned);
+
+        workout.gradePercent = round((workout.xpEarned / workout.xp) * 100);
+
+        if (workout.gradePercent === 100) {
+            workout.grade = "S";
+        } else if (workout.gradePercent >= 90) {
+            workout.grade = "A";
+        } else if (workout.gradePercent >= 80) {
+            workout.grade = "B";
+        } else if (workout.gradePercent >= 70) {
+            workout.grade = "C";
+        } else if (workout.gradePercent >= 60) {
+            workout.grade = "D";
+        } else {
+            workout.grade = "F";
+        }
+
         return workout;
     };
 }
@@ -64,11 +81,11 @@ export class WorkoutExercise {
         workoutExercise.xpEarned = __calcWorkoutExerciseXp(workoutExercise.exercise, quantityCompleted, durationCompleted);
         workoutExercise.xpEarnedLabel = stringifyXp(workoutExercise.xpEarned);
 
-        if (quantityCompleted >= 0) {
+        if (quantityCompleted && quantityCompleted >= 0) {
             workoutExercise.quantityCompleted = quantityCompleted;
             workoutExercise.quantityCompletedLabel = `${quantityCompleted}`;
             return workoutExercise;
-        } else if (durationCompleted >= 0) {
+        } else if (durationCompleted && durationCompleted >= 0) {
             workoutExercise.durationCompleted = durationCompleted;
             workoutExercise.durationCompletedLabel = `${durationCompleted}s`;
             return workoutExercise;
@@ -86,6 +103,8 @@ export class WorkoutHistory {
         this.xpEarnedLabel = workout.xpEarnedLabel;
         this.addedByUser = user.uid;
         this.created = new Date().toISOString();
+        this.grade = workout.grade;
+        this.gradePercent = workout.gradePercent;
     }
 
     toJSON = () => {
@@ -95,7 +114,9 @@ export class WorkoutHistory {
             xpEarned: this.xpEarned,
             xpEarnedLabel: this.xpEarnedLabel,
             addedByUser: this.addedByUser,
-            created: this.created
+            created: this.created,
+            grade: this.grade,
+            gradePercent: this.gradePercent
         }
     };
 }
@@ -105,9 +126,9 @@ export class WorkoutHistory {
  */
 
 function __calcWorkoutExerciseXp(exercise, quantity, duration) {
-    if (quantity >= 0) {
+    if (quantity && quantity >= 0) {
         return exercise.xp * quantity;
-    } else if (duration >= 0) {
+    } else if (duration && duration >= 0) {
         return exercise.xp * duration;
     } else {
         throw new Error("workout exercise must have a quantity or duration value");
