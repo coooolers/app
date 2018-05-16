@@ -36,7 +36,11 @@ class WorkoutReward extends React.Component {
         const {user} = this.props;
         const {workout} = this.props.navigation.state.params;
 
-        Reporting.track("workout__end", {name: workout.name});
+        Reporting.track("workout__end", {
+            name: workout.name,
+            grade: workout.grade,
+            gradePercent: workout.gradePercent,
+        });
 
         this.props.dispatch(fetchMyCharacter(user)).then(character => {
             this.setState({
@@ -49,10 +53,8 @@ class WorkoutReward extends React.Component {
             this.props.dispatch(updateCharacter(characterWithNewXp));
             this.props.dispatch(createWorkoutHistory(user, workout));
 
-            this.setState({character: characterWithNewXp});
-
             setTimeout(() => {
-                // animate experience bar
+                this.setState({character: characterWithNewXp});
             }, 1500);
         });
     }
@@ -73,8 +75,16 @@ class WorkoutReward extends React.Component {
                 </View>
                 <View style={styles.content}>
                     <Text style={styles.title}>{workout.name}</Text>
-                    <FontAwesome style={styles.trophy}>{Icons.trophy}</FontAwesome>
-                    <Text style={styles.xp}>{workout.xpEarnedLabel}</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <View style={{marginRight: 30}}>
+                            <FontAwesome style={styles.rewardIcon}>{Icons.star}</FontAwesome>
+                            <Text style={styles.rewardText}>{workout.grade}</Text>
+                        </View>
+                        <View style={{marginLeft: 30}}>
+                            <FontAwesome style={styles.rewardIcon}>{Icons.trophy}</FontAwesome>
+                            <Text style={styles.rewardText}>{workout.xpEarnedLabel}</Text>
+                        </View>
+                    </View>
 
                     <Image source={{uri: character.imageUrl}} style={styles.image}/>
                     <View style={styles.xpContainer}>

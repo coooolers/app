@@ -3,7 +3,6 @@ import {theme} from "../../index"
 
 const {padding, color, fontFamily, fontSize, normalize} = theme;
 
-const xpBarHeight = 20;
 const xpBarWidth = 300;
 
 const styles = StyleSheet.create({
@@ -42,19 +41,20 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
 
-    xp: {
+    rewardText: {
         textAlign: 'center',
         fontSize: normalize(40),
         marginTop: 5
     },
 
-    trophy: {
+    rewardIcon: {
+        textAlign: 'center',
         fontSize: normalize(50),
     },
 
     image: {
-        width: 70,
-        height: 70,
+        width: 120,
+        height: 120,
         marginTop: 70,
         marginBottom: 10,
         resizeMode: 'contain'

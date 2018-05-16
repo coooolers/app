@@ -1,4 +1,5 @@
 import {stringifyXp, round} from "../../components/Util";
+import _ from 'lodash';
 
 export class Workout {
     constructor(workout, exercises) {
@@ -81,11 +82,11 @@ export class WorkoutExercise {
         workoutExercise.xpEarned = __calcWorkoutExerciseXp(workoutExercise.exercise, quantityCompleted, durationCompleted);
         workoutExercise.xpEarnedLabel = stringifyXp(workoutExercise.xpEarned);
 
-        if (quantityCompleted && quantityCompleted >= 0) {
+        if (_.isNumber(quantityCompleted) && quantityCompleted >= 0) {
             workoutExercise.quantityCompleted = quantityCompleted;
             workoutExercise.quantityCompletedLabel = `${quantityCompleted}`;
             return workoutExercise;
-        } else if (durationCompleted && durationCompleted >= 0) {
+        } else if (_.isNumber(durationCompleted) && durationCompleted >= 0) {
             workoutExercise.durationCompleted = durationCompleted;
             workoutExercise.durationCompletedLabel = `${durationCompleted}s`;
             return workoutExercise;
@@ -126,9 +127,9 @@ export class WorkoutHistory {
  */
 
 function __calcWorkoutExerciseXp(exercise, quantity, duration) {
-    if (quantity && quantity >= 0) {
+    if (_.isNumber(quantity) && quantity >= 0) {
         return exercise.xp * quantity;
-    } else if (duration && duration >= 0) {
+    } else if (_.isNumber(duration) && duration >= 0) {
         return exercise.xp * duration;
     } else {
         throw new Error("workout exercise must have a quantity or duration value");
