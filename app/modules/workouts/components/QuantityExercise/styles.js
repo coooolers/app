@@ -45,6 +45,18 @@ const styles = StyleSheet.create({
         fontSize: fontSize.regular + 2,
         fontFamily: fontFamily.medium
     },
+
+    inputSection: {
+        flex: 0,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+    },
+
+    icon: {
+        fontSize: fontSize.large,
+        marginBottom: 15
+    }
 });
 
 export default styles;
