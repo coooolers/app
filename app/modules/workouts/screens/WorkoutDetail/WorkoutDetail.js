@@ -33,7 +33,6 @@ class WorkoutDetail extends React.Component {
                     StyleSheet.flatten([styles.exerciseImage], {resizeMode: 'cover'})
                 }/>
                 <Text style={styles.exerciseName}>{item.name}</Text>
-                <Text style={styles.exerciseSets}>1</Text>
                 <Text style={styles.exerciseReps}>{item.quantityLabel || item.durationLabel}</Text>
                 <Text style={styles.exerciseReward}>{item.xpLabel}</Text>
             </View>
@@ -55,7 +54,6 @@ class WorkoutDetail extends React.Component {
                         <View style={styles.exerciseRowHeader}>
                             <Text style={styles.exerciseImage}/>
                             <Text style={styles.exerciseNameLabel}/>
-                            <Text style={styles.exerciseSetsLabel}>Sets</Text>
                             <Text style={styles.exerciseRepsLabel}>Reps</Text>
                             <Text style={styles.exerciseRewardLabel}>Reward</Text>
                         </View>
