@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View, FlatList, StyleSheet, ScrollView} from 'react-native';
+import {Image, View, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
 import {Text} from 'react-native-elements';
 import {connect} from 'react-redux';
 import Reporting from "../../../reporting";
@@ -9,16 +9,24 @@ import XpLabel from "../../../../components/XpLabel";
 import Button from "../../../../components/Button/Button";
 
 class WorkoutDetail extends React.Component {
+    static navigationOptions = ({ navigation }) => {
+        const { params } = navigation.state;
+
+        return {
+            title: params.workout.name
+        }
+    };
+
     constructor(props) {
         super(props);
         const {workout} = props.navigation.state.params;
-        this.state = {
-            workout: workout
-        };
+        this.state = {workout};
     }
 
     startWorkoutRoutine = (workout) => {
-        Reporting.track("workout__start", {name: workout.name});
+        Reporting.track("workout__start", {
+            name: workout.name
+        });
 
         this.props.navigation.navigate("WorkoutRoutine", {
             workout,
@@ -26,16 +34,22 @@ class WorkoutDetail extends React.Component {
         })
     };
 
-    renderWorkoutExerciseItem = (item, index) => {
+    goToExerciseHelp = (exercise) => {
+        this.props.navigation.navigate('ExerciseInfo', {exercise});
+    };
+
+    renderWorkoutExerciseItem = (workoutExercise, index) => {
         return (
-            <View key={index} style={styles.exerciseRow}>
-                <Image source={{uri: item.imageUrl}} style={
+            <TouchableOpacity key={index} style={styles.exerciseRow}
+                              onPress={() => this.goToExerciseHelp(workoutExercise.exercise)}>
+                <Image source={{uri: workoutExercise.imageUrl}} style={
                     StyleSheet.flatten([styles.exerciseImage], {resizeMode: 'cover'})
                 }/>
-                <Text style={styles.exerciseName}>{item.name}</Text>
-                <Text style={styles.exerciseReps}>{item.quantityLabel || item.durationLabel}</Text>
-                <Text style={styles.exerciseReward}>{item.xpLabel}</Text>
-            </View>
+                <Text style={styles.exerciseName}>{workoutExercise.name}</Text>
+                <Text
+                    style={styles.exerciseReps}>{workoutExercise.quantityLabel || workoutExercise.durationLabel}</Text>
+                <Text style={styles.exerciseReward}>{workoutExercise.xpLabel}</Text>
+            </TouchableOpacity>
         )
     };
 
