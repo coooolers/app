@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View, FlatList, StyleSheet} from 'react-native';
+import {Image, View, FlatList, StyleSheet, ScrollView} from 'react-native';
 import {Text} from 'react-native-elements';
 import {connect} from 'react-redux';
 import Reporting from "../../../reporting";
@@ -26,7 +26,7 @@ class WorkoutDetail extends React.Component {
         })
     };
 
-    renderWorkoutExerciseItem = ({item, index}) => {
+    renderWorkoutExerciseItem = (item, index) => {
         return (
             <View key={index} style={styles.exerciseRow}>
                 <Image source={{uri: item.imageUrl}} style={
@@ -44,12 +44,13 @@ class WorkoutDetail extends React.Component {
         const {workout} = this.state;
 
         return (
-            <View style={styles.container}>
-                <View style={{flex: 1, alignItems: 'center'}}>
-                    <Text style={styles.title}>{workout.name}</Text>
-                    <XpLabel xp={workout.xp} iconSize={21}/>
-                </View>
-                <View style={{flex: 5}}>
+            <ScrollView style={styles.container}>
+                <Image source={{uri: workout.imageUrl}} style={styles.image}/>
+                <View style={styles.content}>
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <Text style={styles.title}>{workout.name}</Text>
+                        <XpLabel xp={workout.xp} iconSize={21}/>
+                    </View>
                     <View style={styles.exerciseRoutineContainer}>
                         <View style={styles.exerciseRowHeader}>
                             <Text style={styles.exerciseImage}/>
@@ -58,21 +59,15 @@ class WorkoutDetail extends React.Component {
                             <Text style={styles.exerciseRepsLabel}>Reps</Text>
                             <Text style={styles.exerciseRewardLabel}>Reward</Text>
                         </View>
-                        <FlatList
-                            style={{flex: 1}}
-                            data={workout.exercises}
-                            keyExtractor={(item, index) => `${item.key}-${index}`}
-                            renderItem={this.renderWorkoutExerciseItem}
-
-                        />
+                        {workout.exercises.map(this.renderWorkoutExerciseItem)}
                     </View>
+                    <Button title={"Start Workout"}
+                            containerViewStyle={{
+                                marginTop: 20
+                            }}
+                            onPress={() => this.startWorkoutRoutine(workout)}/>
                 </View>
-                <Button title={"Start Workout"}
-                        containerViewStyle={{
-                            marginTop: 20
-                        }}
-                        onPress={() => this.startWorkoutRoutine(workout)}/>
-            </View>
+            </ScrollView>
         );
     }
 }

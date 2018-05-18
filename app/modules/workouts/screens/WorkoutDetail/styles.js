@@ -10,14 +10,23 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        padding: contentPadding,
         backgroundColor: color.white
+    },
+
+    content: {
+        padding: contentPadding,
     },
 
     title: {
         textAlign: 'center',
         fontSize: fontSize.large,
         fontFamily: fontFamily.medium
+    },
+
+    image: {
+      width: '100%',
+      height: 200,
+      resizeMode: 'cover'
     },
 
     exerciseImage: {
