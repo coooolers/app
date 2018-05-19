@@ -28,13 +28,15 @@ class OnboardingCreateCharacter extends React.Component {
     }
 
     onSubmit = () => {
+        const {screenConfig} = this.props;
         const errors = {};
+
         if (!this.state.character.name) {
-            errors["name"] = "Come now, you can't be a nameless hero.";
+            errors["name"] = screenConfig.nameErrorRequired;
         }
 
         if (!this.state.character.imageUrl) {
-            errors["imageUrl"] = "Select an image to your liking";
+            errors["imageUrl"] = screenConfig.imageErrorRequired;
         }
 
         if (Object.keys(errors).length) {
@@ -69,31 +71,32 @@ class OnboardingCreateCharacter extends React.Component {
 
     render() {
         const {character, isFetching} = this.state;
+        const {screenConfig} = this.props;
 
         return (
             <View style={styles.container}>
                 <Text style={styles.intro}>{this.props.user.name}, it's great to meet you! Take a moment to create your
                     character below.</Text>
                 <View style={{flex: 1}}>
-                    <Text style={styles.title}>My Character</Text>
-                    <FormLabel>Name</FormLabel>
+                    <Text style={styles.title}>{screenConfig.formLegend}</Text>
+                    <FormLabel>{screenConfig.nameLabel}</FormLabel>
                     <FormValidationMessage>{this.state.errors.name}</FormValidationMessage>
                     <FormInput
                         autoCapitalize='none'
                         clearButtonMode='while-editing'
                         underlineColorAndroid={"#fff"}
-                        placeholder="Name"
+                        placeholder={screenConfig.namePlaceholder}
                         autoFocus={false}
                         onChangeText={(text) => this.onChangeText("name", text)}
                         inputStyle={styles.inputContainer}
                         value={character.name}/>
-                    <FormLabel>Image</FormLabel>
+                    <FormLabel>{screenConfig.imageLabel}</FormLabel>
                     <FormValidationMessage>{this.state.errors.imageUrl}</FormValidationMessage>
                     <CharacterImageScrollView character={character}
                                               onSelect={this.onCharacterImagePress}/>
                 </View>
-                <Button title={"Learn How To Play"}
-                        icon={'trophy'}
+                <Button title={screenConfig.buttonText}
+                        icon={screenConfig.buttonIcon}
                         onPress={this.onSubmit} isFetching={isFetching}/>
             </View>
         );
@@ -103,7 +106,8 @@ class OnboardingCreateCharacter extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        character: state.characterReducer.character
+        character: state.characterReducer.character,
+        screenConfig: state.screensReducer.screens.OnboardingCreateCharacter
     }
 }
 

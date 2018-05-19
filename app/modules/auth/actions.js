@@ -55,26 +55,28 @@ export function signOut() {
     };
 }
 
-export function checkLoginStatus(callback) {
+export function checkLoginStatus() {
     return (dispatch) => {
-        auth.onAuthStateChanged((user) => {
-            let isLoggedIn = (user !== null);
+        return new Promise((resolve, reject) => {
+            auth.onAuthStateChanged((user) => {
+                let isLoggedIn = (user !== null);
 
-            if (isLoggedIn) {
-                //get the user object from the Async storage
-                AsyncStorage.getItem('user', (err, user) => {
-                    if (user === null) {
-                        isLoggedIn = false;
-                    } else {
-                        dispatch({type: t.LOGGED_IN, data: JSON.parse(user)})
-                    }
+                if (isLoggedIn) {
+                    //get the user object from the Async storage
+                    AsyncStorage.getItem('user', (err, user) => {
+                        if (user === null) {
+                            isLoggedIn = false;
+                        } else {
+                            dispatch({type: t.LOGGED_IN, data: JSON.parse(user)})
+                        }
 
-                    callback(isLoggedIn);
-                });
-            } else {
-                dispatch({type: t.LOGGED_OUT});
-                callback(isLoggedIn);
-            }
+                        resolve(isLoggedIn);
+                    });
+                } else {
+                    dispatch({type: t.LOGGED_OUT});
+                    resolve(isLoggedIn);
+                }
+            });
         });
     };
 }

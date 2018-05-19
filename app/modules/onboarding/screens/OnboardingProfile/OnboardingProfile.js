@@ -45,13 +45,14 @@ class OnboardingProfile extends React.Component {
     };
 
     onSubmit = () => {
+        const {screenConfig} = this.props;
         const errors = {};
         if (!this.state.name) {
-            errors["name"] = "Please enter your name";
+            errors["name"] = screenConfig.nameErrorRequired;
         }
 
         if (!this.state.goal) {
-            errors["goal"] = "By choosing a goal we can personalize content that best suits you";
+            errors["goal"] = screenConfig.goalErrorRequired;
         }
 
         if (Object.keys(errors).length) {
@@ -83,22 +84,24 @@ class OnboardingProfile extends React.Component {
     };
 
     render() {
+        const {screenConfig} = this.props;
+
         return (
             <View style={styles.container}>
                 <View style={{flex: 2}}>
                     <View>
-                        <FormLabel>What is your name?</FormLabel>
+                        <FormLabel>{screenConfig.nameLabel}</FormLabel>
                         <FormInput
                             clearButtonMode='while-editing'
                             underlineColorAndroid={"#fff"}
-                            placeholder="John Smith"
+                            placeholder={screenConfig.namePlaceholder}
                             autoFocus={false}
                             onChangeText={(text) => this.onChangeText("name", text)}
                             value={this.state.name}/>
                         <FormValidationMessage>{this.state.errors.name}</FormValidationMessage>
                     </View>
                     <View>
-                        <FormLabel>What is your goal?</FormLabel>
+                        <FormLabel>{screenConfig.goalLabel}</FormLabel>
                         <FormValidationMessage>{this.state.errors.goal}</FormValidationMessage>
                         <TouchableOpacity style={styles.goal}
                                           onPress={() => this.setGoal(GOALS.LOSE_FAT)}>
@@ -120,8 +123,8 @@ class OnboardingProfile extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <Button title={"Create Character"}
-                        icon={'user-plus'}
+                <Button title={screenConfig.buttonText}
+                        icon={screenConfig.buttonIcon}
                         onPress={this.onSubmit}
                         isFetching={this.state.isFetching}/>
             </View>
@@ -131,7 +134,8 @@ class OnboardingProfile extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.authReducer.user
+        user: state.authReducer.user,
+        screenConfig: state.screensReducer.screens.OnboardingProfile
     }
 }
 

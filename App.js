@@ -5,13 +5,6 @@ import Router from './app/config/Router';
 import store from './app/redux/store';
 
 export default class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            isReady: false
-        }
-    }
-
     render() {
         return (
             <Provider store={store}>

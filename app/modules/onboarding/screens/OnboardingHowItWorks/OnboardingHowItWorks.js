@@ -53,11 +53,12 @@ class OnboardingHowItWorks extends React.Component {
     };
 
     render() {
+        const {screenConfig} = this.props;
         if (!this.state.isReady) return null;
 
         return (
             <View style={styles.container}>
-                <Text style={styles.intro}>Swipe through a quick tutorial to learn how Pursoo works.</Text>
+                <Text style={styles.intro}>{screenConfig.introText}</Text>
                 <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                     <ScrollView
                         horizontal={true}
@@ -68,13 +69,8 @@ class OnboardingHowItWorks extends React.Component {
                             <View style={styles.slideTop}>
                                 <Image source={PushupImage} style={styles.slideImage}/>
                             </View>
-                            <Text style={styles.slideTitle}>
-                                1. Complete A Workout
-                            </Text>
-                            <Text style={styles.slideDescription}>
-                                Choose one of our hand-crafted workouts and start making your fitness goals a reality.
-                                Workouts are categorized by difficulty to help you choose one that's right for you.
-                            </Text>
+                            <Text style={styles.slideTitle}>{screenConfig.slide1.title}</Text>
+                            <Text style={styles.slideDescription}>{screenConfig.slide1.description}</Text>
                         </View>
                         <View style={styles.slide}>
                             <View style={styles.slideTop}>
@@ -82,33 +78,23 @@ class OnboardingHowItWorks extends React.Component {
                                     {Icons.trophy}
                                 </FontAwesome>
                             </View>
-                            <Text style={styles.slideTitle}>
-                                2. Earn Rewards As You Sweat
-                            </Text>
-                            <Text style={styles.slideDescription}>
-                                Each exercise you complete in a workout is counted towards your total reward. The more
-                                you burn, the more you earn.
-                            </Text>
+                            <Text style={styles.slideTitle}>{screenConfig.slide2.title}</Text>
+                            <Text style={styles.slideDescription}>{screenConfig.slide2.description}</Text>
                         </View>
                         <View style={styles.slide}>
                             <View style={styles.slideTop}>
                                 <Image source={{uri: this.props.character.imageUrl}} style={styles.slideImage}/>
                             </View>
-                            <Text style={styles.slideTitle}>
-                                3. Level Up Your Character
-                            </Text>
-                            <Text style={styles.slideDescription}>
-                                The rewards you rack up from working out are added to your hero. Improve your
-                                performance, set new records, and level up your character as you both become stronger.
-                            </Text>
+                            <Text style={styles.slideTitle}>{screenConfig.slide3.title}</Text>
+                            <Text style={styles.slideDescription}>{screenConfig.slide3.description}</Text>
                         </View>
                     </ScrollView>
                 </View>
-                <Button title={"Start A Workout"}
-                        icon={'heartbeat'}
+                <Button title={screenConfig.buttonText}
+                        icon={screenConfig.buttonIcon}
                         onPress={this.onPressStartWork}/>
                 <TouchableOpacity onPress={this.onPressWorkoutLater}>
-                    <Text style={styles.secondaryCTA}>I'll workout later</Text>
+                    <Text style={styles.secondaryCTA}>{screenConfig.buttonAltText}</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -118,7 +104,8 @@ class OnboardingHowItWorks extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        character: state.characterReducer.character
+        character: state.characterReducer.character,
+        screenConfig: state.screensReducer.screens.OnboardingHowItWorks
     }
 }
 

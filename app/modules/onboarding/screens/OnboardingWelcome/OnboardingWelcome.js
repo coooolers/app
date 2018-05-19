@@ -6,6 +6,7 @@ import Logo from '../../../../assets/images/white-logo-icon-transparent.png';
 
 import styles from "./styles";
 import Button from "../../../../components/Button";
+import {reducer as screensReducer} from "../../../screens";
 
 class OnboardingWelcome extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -14,13 +15,13 @@ class OnboardingWelcome extends React.Component {
         }
     };
 
-    state = {};
-
     goToNext = () => {
         this.props.navigation.push('OnboardingProfile');
     };
 
     render() {
+        const {screenConfig} = this.props;
+
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -28,15 +29,12 @@ class OnboardingWelcome extends React.Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <View style={{flex: 1}}>
-                        <Text style={styles.title}>Welcome to Pursoo</Text>
-                        <Text>
-                            Congratulations on taking the first step towards a better, healthier life. Tap the button
-                            below to create your profile and tell us a bit about yourself.
-                        </Text>
+                        <Text style={styles.title}>{screenConfig.title}</Text>
+                        <Text>{screenConfig.description}</Text>
                     </View>
                     <Button
-                        title={"Create Profile"}
-                        icon={'user-circle-o'}
+                        title={screenConfig.buttonText}
+                        icon={screenConfig.buttonIcon}
                         containerViewStyle={{
                             marginTop: 20,
                             marginLeft: 0,
@@ -52,7 +50,8 @@ class OnboardingWelcome extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.authReducer.user
+        user: state.authReducer.user,
+        screenConfig: state.screensReducer.screens.OnboardingWelcome
     }
 }
 
