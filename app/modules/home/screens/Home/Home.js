@@ -11,7 +11,6 @@ import {getMyWorkoutHistory} from "../../../workouts/actions";
 import MountainsBackground from '../../../../assets/images/mountains.png';
 import {Character} from "../../../characters/models";
 import XpLabel from "../../../../components/XpLabel";
-import {LEVEL_CONFIG} from "../../../../config/levels";
 
 Moment.locale("en");
 
@@ -102,9 +101,8 @@ class Home extends React.Component {
             return null;
         }
 
-        const {character} = this.props;
-
-        const xpProgress = Character.percentOfLevelComplete(character);
+        const {character, levelConfig} = this.props;
+        const xpProgress = Character.percentOfLevelComplete(character, levelConfig);
 
         return (
             <ImageBackground source={MountainsBackground} style={styles.imageBackground}>
@@ -127,7 +125,7 @@ class Home extends React.Component {
                         />
                         <View style={styles.xpTextContainer}>
                             <Text>Experience</Text>
-                            <Text>{character.xp} / {LEVEL_CONFIG[character.level].xpNeeded}</Text>
+                            <Text>{character.xp} / {levelConfig[character.level].xpNeeded}</Text>
                         </View>
                     </View>
                     {this.renderWorkoutHistory()}
@@ -141,7 +139,8 @@ function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
         character: state.characterReducer.character,
-        workoutHistory: state.workoutReducer.workoutHistory
+        workoutHistory: state.workoutReducer.workoutHistory,
+        levelConfig: state.levelConfigReducer.levelConfig
     }
 }
 

@@ -5,6 +5,7 @@ import {reducer as homeReducer} from "../modules/home";
 import {reducer as characterReducer} from "../modules/characters";
 import {reducer as workoutReducer} from "../modules/workouts";
 import {reducer as screensReducer} from "../modules/screens";
+import {reducer as levelConfigReducer} from "../modules/levelConfig";
 
 // Combine all the reducers
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     homeReducer,
     characterReducer,
     workoutReducer,
-    screensReducer
+    screensReducer,
+    levelConfigReducer
 });
 
 export default rootReducer;

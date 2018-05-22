@@ -10,6 +10,7 @@ import MainRouter from './MainRouter';
 import store from '../../redux/store';
 import {checkLoginStatus} from "../../modules/auth/actions";
 import {fetchScreens} from "../../modules/screens/actions";
+import {fetchLevelConfig} from "../../modules/levelConfig/actions";
 
 
 class Router extends React.Component {
@@ -23,7 +24,8 @@ class Router extends React.Component {
 
         Promise.all([
             store.dispatch(checkLoginStatus()),
-            store.dispatch(fetchScreens())
+            store.dispatch(fetchScreens()),
+            store.dispatch(fetchLevelConfig())
         ]).then(() => {
             _this.setState({isReady: true});
         });
