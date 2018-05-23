@@ -38,6 +38,7 @@ PODS:
 DEPENDENCIES:
   - Crashlytics (~> 3.10.1)
   - Fabric (~> 1.7.6)
+  - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - Firebase/Core
@@ -71,6 +72,6 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 4e4debd78868b1f823b21b58aacb8275ab3eab07
+PODFILE CHECKSUM: d74dcdaef22a5f015c5e2d94c6719468d08c9627
 
 COCOAPODS: 1.5.0
