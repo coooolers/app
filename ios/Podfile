@@ -13,6 +13,8 @@ target 'Pursoo' do
   pod 'FBSDKShareKit'
 
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'PursooTests' do
     inherit! :search_paths
     # Pods for testing
