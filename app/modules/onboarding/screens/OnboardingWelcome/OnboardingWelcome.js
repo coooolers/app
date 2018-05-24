@@ -6,7 +6,6 @@ import Logo from '../../../../assets/images/white-logo-icon-transparent.png';
 
 import styles from "./styles";
 import Button from "../../../../components/Button";
-import {signOut} from "../../../auth/actions";
 
 class OnboardingWelcome extends React.Component {
     static navigationOptions = ({navigation}) => {

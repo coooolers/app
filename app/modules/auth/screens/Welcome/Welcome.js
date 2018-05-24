@@ -62,27 +62,6 @@ class Welcome extends React.Component {
                             style={[styles.containerView, styles.socialButton]}
                             fontStyle={styles.buttonText}
                             onPress={this.onSignInWithFacebook}/>
-
-                        <View style={styles.orContainer}>
-                            <Divider style={styles.divider}/>
-                            <Text style={styles.orText}>Or</Text>
-                        </View>
-
-                        <Button
-                            raised
-                            borderRadius={4}
-                            title={'SIGN UP WITH E-MAIL'}
-                            containerViewStyle={[styles.containerView]}
-                            buttonStyle={[styles.button]}
-                            textStyle={styles.buttonText}
-                            onPress={() => this.props.navigation.navigate('Register')}/>
-                    </View>
-                    <View style={styles.bottom}>
-                        <Text style={styles.bottomText}>Already have an account?</Text>
-
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-                            <Text style={styles.signInText}>Sign in</Text>
-                        </TouchableOpacity>
                     </View>
                 </View>
 

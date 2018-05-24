@@ -87,10 +87,8 @@ export function signInWithFacebook(facebookToken) {
             if (data.exists) {
                 dispatch({type: t.LOGGED_IN, data: data.user});
             } else {
-                api.createUser(data.user).then(() => {
-                    api.getUser(data.user).then(data => {
-                        dispatch({type: t.LOGGED_IN, data: data.user});
-                    });
+                api.createUser(data.user).then(user => {
+                    dispatch({type: t.LOGGED_IN, data: user});
                 });
             }
         });

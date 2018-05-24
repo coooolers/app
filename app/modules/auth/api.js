@@ -5,12 +5,16 @@ export function register(email, password) {
 }
 
 export function createUser(user) {
-    return database.ref('users').child(user.uid).set({
+    const payload = {
         name: user.name || user.displayName,
-        email: user.email,
+        email: user.email || user.emailAddress,
         uid: user.uid,
         created: new Date().toISOString(),
         hasCompletedOnboarding: false
+    };
+
+    return database.ref('users').child(user.uid).set(payload).then(() => {
+        return payload;
     });
 }
 
