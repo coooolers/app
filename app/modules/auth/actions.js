@@ -81,17 +81,12 @@ export function checkLoginStatus() {
     };
 }
 
-export function signInWithFacebook(facebookToken, successCB, errorCB) {
+export function signInWithFacebook(facebookToken) {
     return (dispatch) => {
-        api.signInWithFacebook(facebookToken, function (success, data, error) {
-            if (success) {
-                if (data.exists) {
-                    dispatch({type: t.LOGGED_IN, data: data.user});
-                }
-                successCB(data);
-            } else if (error) {
-                errorCB(error);
-            }
+        return api.signInWithFacebook(facebookToken).then(user => {
+            console.log(user);
+        // .then((user) => api.createUser(user))
+            dispatch({type: t.LOGGED_IN, data: user});
         });
     };
 }

@@ -1,4 +1,4 @@
-import {auth, database, provider} from "../../config/firebase";
+import {auth, database, FacebookAuthProvider} from "../../config/firebase";
 
 export function register(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -48,13 +48,8 @@ export function signOut() {
 
 //Sign user in using Facebook
 export function signInWithFacebook(fbToken) {
-    const credential = provider.credential(fbToken);
+    const credential = FacebookAuthProvider.credential(fbToken.accessToken);
 
-    return new Promise((resolve, reject) => {
-        auth.signInWithCredential(credential)
-            .then((user) => {
-                getUser(user).then(resolve)
-            })
-            .catch(reject);
-    });
+    return auth.signInWithCredential(credential)
+        .then((user) => getUser(user));
 }

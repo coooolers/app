@@ -15,16 +15,14 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="gp1-NG-ACu">
-                    <rect key="frame" x="178" y="178" width="124" height="124"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Lf7-eF-3wc">
+                    <rect key="frame" x="115" y="115" width="250" height="250"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.90980392156862744" green="0.38039215686274508" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gp1-NG-ACu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="CTc-fL-qBy"/>
-                <constraint firstItem="gp1-NG-ACu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Uih-1E-k5C"/>
-                <constraint firstItem="gp1-NG-ACu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="d5u-Cd-GdF"/>
-                <constraint firstItem="gp1-NG-ACu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="i96-gv-Uk8"/>
+                <constraint firstItem="Lf7-eF-3wc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="CEn-oz-1AM"/>
+                <constraint firstItem="Lf7-eF-3wc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HIA-NU-tjd"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -32,6 +30,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo-icon" width="124" height="124"/>
+        <image name="logo-icon" width="250" height="250"/>
     </resources>
 </document>

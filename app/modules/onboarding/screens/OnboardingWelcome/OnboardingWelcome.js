@@ -6,7 +6,7 @@ import Logo from '../../../../assets/images/white-logo-icon-transparent.png';
 
 import styles from "./styles";
 import Button from "../../../../components/Button";
-import {reducer as screensReducer} from "../../../screens";
+import {signOut} from "../../../auth/actions";
 
 class OnboardingWelcome extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -43,6 +43,11 @@ class OnboardingWelcome extends React.Component {
                         onPress={this.goToNext}
                     />
                 </View>
+                <Button
+                    raised
+                    borderRadius={4}
+                    title={'sign out'}
+                    onPress={() => this.props.dispatch(signOut())}/>
             </View>
         );
     }

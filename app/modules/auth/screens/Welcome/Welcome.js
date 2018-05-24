@@ -1,16 +1,13 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, Image} from 'react-native';
-import {Button, Divider} from 'react-native-elements';
+import {Button, Divider, SocialIcon} from 'react-native-elements';
 import {NavigationActions} from 'react-navigation';
 import {connect} from 'react-redux';
-
+import FBSDK from 'react-native-fbsdk';
 import Logo from "../../../../assets/images/white_logo_transparent.png";
-import {actions as auth} from "../../index";
-
-const {signInWithFacebook} = auth;
+import {signInWithFacebook, signOut} from "../../actions";
 
 import styles from "./styles";
-import FBLoginButton from "../../../../components/FBLoginButton/FBLoginButton";
 
 class Welcome extends React.Component {
     state = {};
@@ -32,6 +29,21 @@ class Welcome extends React.Component {
         }
     }
 
+    onSignInWithFacebook = () => {
+        FBSDK.LoginManager.logInWithReadPermissions(['public_profile', 'email'])
+            .then(result => {
+                if (!result.isCancelled) {
+                    FBSDK.AccessToken.getCurrentAccessToken().then(token => {
+                        this.props.dispatch(signInWithFacebook(token)).catch(this.onLoginError);
+                    }).catch(this.onLoginError);
+                }
+            }, this.onLoginError);
+    };
+
+    onLoginError = (error) => {
+        alert('Login fail with error: ' + error);
+    };
+
     render() {
         return (
             <View style={styles.container}>
@@ -41,7 +53,15 @@ class Welcome extends React.Component {
 
                 <View style={styles.bottomContainer}>
                     <View style={[styles.buttonContainer]}>
-                        <FBLoginButton />
+                        <SocialIcon
+                            raised
+                            button
+                            type='facebook'
+                            title='SIGN UP WITH FACEBOOK'
+                            iconSize={19}
+                            style={[styles.containerView, styles.socialButton]}
+                            fontStyle={styles.buttonText}
+                            onPress={this.onSignInWithFacebook}/>
 
                         <View style={styles.orContainer}>
                             <Divider style={styles.divider}/>
@@ -77,4 +97,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {signInWithFacebook})(Welcome);
+export default connect(mapStateToProps)(Welcome);

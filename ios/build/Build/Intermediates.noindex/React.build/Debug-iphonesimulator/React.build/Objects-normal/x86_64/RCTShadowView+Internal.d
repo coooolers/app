@@ -11,4 +11,6 @@ dependencies: \
   /Users/johnrake/Development/pursoo/app/node_modules/react-native/React/Base/RCTBridgeModule.h \
   /Users/johnrake/Development/pursoo/app/node_modules/react-native/React/Base/RCTFrameUpdate.h \
   /Users/johnrake/Development/pursoo/app/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/johnrake/Development/pursoo/app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h
+  /Users/johnrake/Development/pursoo/app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/johnrake/Development/pursoo/app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/johnrake/Development/pursoo/app/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h
