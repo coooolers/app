@@ -6,6 +6,7 @@ export function register(email, password) {
 
 export function createUser(user) {
     return database.ref('users').child(user.uid).set({
+        name: user.name || user.displayName,
         email: user.email,
         uid: user.uid,
         created: new Date().toISOString(),

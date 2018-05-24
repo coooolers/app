@@ -43,11 +43,6 @@ class OnboardingWelcome extends React.Component {
                         onPress={this.goToNext}
                     />
                 </View>
-                <Button
-                    raised
-                    borderRadius={4}
-                    title={'sign out'}
-                    onPress={() => this.props.dispatch(signOut())}/>
             </View>
         );
     }

@@ -83,10 +83,16 @@ export function checkLoginStatus() {
 
 export function signInWithFacebook(facebookToken) {
     return (dispatch) => {
-        return api.signInWithFacebook(facebookToken).then(user => {
-            console.log(user);
-        // .then((user) => api.createUser(user))
-            dispatch({type: t.LOGGED_IN, data: user});
+        return api.signInWithFacebook(facebookToken).then(data => {
+            if (data.exists) {
+                dispatch({type: t.LOGGED_IN, data: data.user});
+            } else {
+                api.createUser(data.user).then(() => {
+                    api.getUser(data.user).then(data => {
+                        dispatch({type: t.LOGGED_IN, data: data.user});
+                    });
+                });
+            }
         });
     };
 }
