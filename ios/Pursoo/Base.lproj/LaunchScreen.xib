@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Lf7-eF-3wc">
-                    <rect key="frame" x="115" y="115" width="250" height="250"/>
+                    <rect key="frame" x="177.5" y="177.5" width="125" height="125"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.90980392156862744" green="0.38039215686274508" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -30,6 +30,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo-icon" width="250" height="250"/>
+        <image name="logo-icon" width="125" height="125"/>
     </resources>
 </document>

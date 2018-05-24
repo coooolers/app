@@ -12,16 +12,9 @@ const styles = StyleSheet.create({
         backgroundColor: color.brandPrimary
     },
 
-    wrapper:{
-        paddingHorizontal:15,
-        paddingBottom: padding * 2,
-        justifyContent:"center",
-        alignItems:"center"
-    },
-
     image:{
-        height: 300,
-        width: 300,
+        height: 125,
+        width: 125,
         backgroundColor: color.brandPrimary,
         marginBottom: padding,
         resizeMode
