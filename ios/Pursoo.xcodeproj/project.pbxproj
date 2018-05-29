@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -27,7 +28,6 @@
 		3885E6CEB38A4284AD633899 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9D666898A6478F94D4BEF5 /* libRCTFBSDK.a */; };
 		3B13165418F94ED795E4A3CE /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 627F22DB9B364880905D6165 /* Zocial.ttf */; };
 		4B7AC8A0367E48B2B7B597FB /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B096671245C74117944C56A2 /* Roboto-Italic.ttf */; };
-		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		645FC38428E14B35A1934895 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 588C7F4CA6CE4258ACFD3A04 /* Roboto-Medium.ttf */; };
 		6E5C022239404B8C8F259835 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A786AAAFE0A84EBAA6D472E3 /* Roboto-Thin.ttf */; };
 		7545D59158A0408E85A4AEDF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE167D8ABB6E4848A53D4E99 /* Octicons.ttf */; };
@@ -45,6 +45,7 @@
 		CC28EBB9A73245A989E4FB12 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3B6EAF8195940E3868DBB34 /* MaterialIcons.ttf */; };
 		CF430C2046454B3392B6F453 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB838135AB349DD958DF3AA /* FontAwesome.ttf */; };
 		DB7395EF7DCF4F718962B29B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEEECECCB784BCAA65D8A47 /* Foundation.ttf */; };
+		E118947A20BDDFE300132603 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		E16C36EE20BDCC65002CE67C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E16C36C620BDCC65002CE67C /* GoogleService-Info.plist */; };
 		E1BD0C5420B60B9000052B04 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F10F022097ACD100E503C0 /* libRNFirebase.a */; };
 		E1BD0CB120B7211300052B04 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0C8720B7210E00052B04 /* FBSDKLoginKit.framework */; };
@@ -352,7 +353,6 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Pursoo/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		22FE1E8C0E994DA6B72A3EE6 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		27C81181D93DE8E4377ECE6D /* Pods-PursooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PursooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PursooTests/Pods-PursooTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		48221532C28B4D0FAD761226 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		4F530341E4764685AAAEFEC7 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -364,7 +364,6 @@
 		6AB838135AB349DD958DF3AA /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		6E96AB4E96B5439A8018B80A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../app/assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		73A0412AFC6B4CC3A1CD06AE /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../app/assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
-		7623AC2A2A1F2FFDBE88D18E /* Pods_PursooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PursooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7763EC2418E62FF0DDFC3249 /* Pods-Pursoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pursoo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pursoo/Pods-Pursoo.debug.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -391,7 +390,6 @@
 		E3B6EAF8195940E3868DBB34 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		E6CE5C355AF3B8F1CEA3B4EE /* Pods-Pursoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pursoo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pursoo/Pods-Pursoo.release.xcconfig"; sourceTree = "<group>"; };
 		EE167D8ABB6E4848A53D4E99 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		F2960A31867C51E35ACAA4FC /* Pods-PursooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PursooTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PursooTests/Pods-PursooTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F31EA740189F47258F16575C /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../app/assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -402,9 +400,8 @@
 			files = (
 				E1BD0C5420B60B9000052B04 /* libRNFirebase.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
-				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
+				E118947A20BDDFE300132603 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
-				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
@@ -431,8 +428,6 @@
 			children = (
 				7763EC2418E62FF0DDFC3249 /* Pods-Pursoo.debug.xcconfig */,
 				E6CE5C355AF3B8F1CEA3B4EE /* Pods-Pursoo.release.xcconfig */,
-				F2960A31867C51E35ACAA4FC /* Pods-PursooTests.debug.xcconfig */,
-				27C81181D93DE8E4377ECE6D /* Pods-PursooTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -578,7 +573,6 @@
 				E1BD0CAF20B7211100052B04 /* FBSDKShareKit.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				D6D50A7A81DF72FF47B40F35 /* Pods_Pursoo.framework */,
-				7623AC2A2A1F2FFDBE88D18E /* Pods_PursooTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -718,7 +712,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 610;
+				LastUpgradeCheck = 930;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
@@ -1283,20 +1277,32 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1324,13 +1330,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1338,6 +1354,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

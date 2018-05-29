@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, TouchableOpacity, View, Text, Image, ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-import Video from "react-native-video";
+// import Video from "react-native-video";
 
 import styles from "./styles";
 
@@ -68,22 +68,22 @@ class PathStepScreen extends React.Component {
                 </ImageBackground>
                 <View style={styles.body}>
                     <View style={styles.audioPlayer}>
-                        <Video source={{uri: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/audio%2Fmpthreetest.mp3?alt=media&token=a1d1c1cf-d749-4543-8e85-6a482689661c"}}
-                               poster="https://baconmockup.com/300/200/"
-                               ref={(ref) => {
-                                   this.player = ref
-                               }}                                      // Store reference
-                               rate={1.0}
-                               volume={1.0}
-                               resizeMode="cover"                      // Fill the whole screen at aspect ratio.*
-                               onBuffer={this.onBuffer}                // Callback when remote video is buffering
-                               onEnd={this.onEnd}                      // Callback when playback finishes
-                               onError={this.videoError}               // Callback when video cannot be loaded
-                               onLoadStart={this.loadStart}            // Callback when video starts to load
-                               onLoad={this.setDuration}               // Callback when video loads
-                               onProgress={this.setTime}               // Callback every ~250ms with currentTime
-                               onTimedMetadata={this.onTimedMetadata}  // Callback when the stream receive some metadata
-                        />
+                        {/*<Video source={{uri: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/audio%2Fmpthreetest.mp3?alt=media&token=a1d1c1cf-d749-4543-8e85-6a482689661c"}}*/}
+                               {/*poster="https://baconmockup.com/300/200/"*/}
+                               {/*ref={(ref) => {*/}
+                                   {/*this.player = ref*/}
+                               {/*}}                                      // Store reference*/}
+                               {/*rate={1.0}*/}
+                               {/*volume={1.0}*/}
+                               {/*resizeMode="cover"                      // Fill the whole screen at aspect ratio.**/}
+                               {/*onBuffer={this.onBuffer}                // Callback when remote video is buffering*/}
+                               {/*onEnd={this.onEnd}                      // Callback when playback finishes*/}
+                               {/*onError={this.videoError}               // Callback when video cannot be loaded*/}
+                               {/*onLoadStart={this.loadStart}            // Callback when video starts to load*/}
+                               {/*onLoad={this.setDuration}               // Callback when video loads*/}
+                               {/*onProgress={this.setTime}               // Callback every ~250ms with currentTime*/}
+                               {/*onTimedMetadata={this.onTimedMetadata}  // Callback when the stream receive some metadata*/}
+                        {/*/>*/}
                     </View>
                     <View style={styles.audioControls}>
                         <TouchableOpacity>
