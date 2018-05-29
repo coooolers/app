@@ -22,6 +22,10 @@ import ExerciseInfoScreen from "../../modules/exercises/screens/ExerciseInfo";
 // Profile
 import ProfileScreen from "../../modules/profile/screens/Profile";
 
+// Paths
+import PathScreen from "../../modules/path/screens/Path/Path";
+import PathStepScreen from "../../modules/path/screens/PathStep/PathStep";
+
 import MainInitScreen from "./MainInitScreen";
 
 import {color, tabIconStyle} from "../../styles/theme";
@@ -44,42 +48,47 @@ export default StackNavigator({
         initialRouteName: 'OnboardingWelcome',
     }),
     Main: TabNavigator({
-        Home: {
-            screen: StackNavigator({
-                Home: {screen: HomeScreen,},
-                CharacterEdit: {screen: CharacterEditScreen}
-            }, {
-                initialRouteName: 'Home',
-            }),
+        Home: StackNavigator({
+            Home: {screen: HomeScreen,},
+            CharacterEdit: {screen: CharacterEditScreen}
+        }, {
+            initialRouteName: 'Home',
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({tintColor}) => <FontAwesome
                     style={getTabIconStyle(tintColor)}>{Icons.home}</FontAwesome>
             })
-        },
-        Workouts: {
-            screen: StackNavigator({
-                WorkoutList: {screen: WorkoutListScreen},
-                WorkoutDetail: {screen: WorkoutDetailScreen},
-                WorkoutRoutine: {screen: WorkoutRoutineScreen},
-                WorkoutReward: {screen: WorkoutRewardScreen},
-                ExerciseInfo: {screen: ExerciseInfoScreen}
-            }, {
-                initialRouteName: 'WorkoutList',
-            }),
+        }),
+        Paths: StackNavigator({
+            Path: {screen: PathScreen},
+            PathStep: {screen: PathStepScreen}
+        }, {
+            initialRouteName: 'Path',
+            navigationOptions: ({navigation}) => ({
+                tabBarIcon: ({tintColor}) => <FontAwesome
+                    style={getTabIconStyle(tintColor)}>{Icons.graduationCap}</FontAwesome>
+            })
+        }),
+        Workouts: StackNavigator({
+            WorkoutList: {screen: WorkoutListScreen},
+            WorkoutDetail: {screen: WorkoutDetailScreen},
+            WorkoutRoutine: {screen: WorkoutRoutineScreen},
+            WorkoutReward: {screen: WorkoutRewardScreen},
+            ExerciseInfo: {screen: ExerciseInfoScreen}
+        }, {
+            initialRouteName: 'WorkoutList',
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({tintColor}) => <FontAwesome
                     style={getTabIconStyle(tintColor)}>{Icons.heartbeat}</FontAwesome>
             })
-        },
-        Profile: {
-            screen: StackNavigator({
-                Profile: {screen: ProfileScreen}
-            }),
+        }),
+        Profile: StackNavigator({
+            Profile: {screen: ProfileScreen}
+        }, {
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({tintColor}) => <FontAwesome
                     style={getTabIconStyle(tintColor)}>{Icons.userCircleO}</FontAwesome>
             })
-        },
+        }),
     }, {
         tabBarOptions: {
             style: {
@@ -90,12 +99,14 @@ export default StackNavigator({
         },
         navigationOptions: ({navigation}) => ({
             tabBarOnPress: ({previousScene, scene, jumpToIndex}) => {
+                // don't leave views hanging around in memory
                 navigation.popToTop();
                 jumpToIndex(scene.index);
             }
         }),
-        animationEnabled: false,
-        swipeEnabled: false
+        animationEnabled: true,
+        swipeEnabled: false,
+        initialRouteName: 'Paths',
     })
 }, {
     initialRouteName: 'Initial',

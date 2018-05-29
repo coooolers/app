@@ -20,14 +20,12 @@ class Router extends React.Component {
     };
 
     componentDidMount() {
-        let _this = this;
-
         Promise.all([
             store.dispatch(checkLoginStatus()),
             store.dispatch(fetchScreens()),
             store.dispatch(fetchLevelConfig())
         ]).then(() => {
-            _this.setState({isReady: true});
+            this.setState({isReady: true});
         });
     }
 
