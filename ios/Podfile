@@ -10,9 +10,6 @@ target 'Pursoo' do
   pod 'Fabric', '~> 1.7.6'
   pod 'Crashlytics', '~> 3.10.1'
 
-  target 'PursooTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
 
 end

@@ -68,7 +68,7 @@ class PathStepScreen extends React.Component {
                 </ImageBackground>
                 <View style={styles.body}>
                     <View style={styles.audioPlayer}>
-                        <Video source={{uri: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/audio%2Fmpthreetest.mp3?alt=media&token=a1d1c1cf-d749-4543-8e85-6a482689661c"}}   // Can be a URL or a local file.
+                        <Video source={{uri: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/audio%2Fmpthreetest.mp3?alt=media&token=a1d1c1cf-d749-4543-8e85-6a482689661c"}}
                                poster="https://baconmockup.com/300/200/"
                                ref={(ref) => {
                                    this.player = ref

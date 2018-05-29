@@ -1,6 +1,0 @@
-framework module Pods_PursooTests {
-  umbrella header "Pods-PursooTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
