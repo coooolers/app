@@ -48,8 +48,6 @@
 		CC28EBB9A73245A989E4FB12 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3B6EAF8195940E3868DBB34 /* MaterialIcons.ttf */; };
 		CF430C2046454B3392B6F453 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB838135AB349DD958DF3AA /* FontAwesome.ttf */; };
 		DB7395EF7DCF4F718962B29B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEEECECCB784BCAA65D8A47 /* Foundation.ttf */; };
-		E17CFFA520A20D09009B47A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E17CFF7E20A20D09009B47A2 /* GoogleService-Info.plist */; };
-		E18833622097B02800354ED7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E188333B2097B02800354ED7 /* GoogleService-Info.plist */; };
 		E1BD0C5420B60B9000052B04 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F10F022097ACD100E503C0 /* libRNFirebase.a */; };
 		E1BD0CB120B7211300052B04 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0C8720B7210E00052B04 /* FBSDKLoginKit.framework */; };
 		E1BD0CB220B7211300052B04 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0CAE20B7211000052B04 /* Bolts.framework */; };
@@ -395,8 +393,6 @@
 		CDF8AE14E0A3483DBD7B46F8 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../app/assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		D6D50A7A81DF72FF47B40F35 /* Pods_Pursoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pursoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E172645920B5FD17001FD207 /* Pursoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Pursoo.entitlements; path = Pursoo/Pursoo.entitlements; sourceTree = "<group>"; };
-		E17CFF7E20A20D09009B47A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E188333B2097B02800354ED7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E1BD0C8720B7210E00052B04 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		E1BD0CAE20B7211000052B04 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		E1BD0CAF20B7211100052B04 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -556,13 +552,11 @@
 			isa = PBXGroup;
 			children = (
 				E172645920B5FD17001FD207 /* Pursoo.entitlements */,
-				E17CFF7E20A20D09009B47A2 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				E188333B2097B02800354ED7 /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -1146,7 +1140,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				E18833622097B02800354ED7 /* GoogleService-Info.plist in Resources */,
 				37BFC746FDC943129A2A909C /* fontawesome-webfont.ttf in Resources */,
 				CB5F550001E141F0AAD4FD7B /* Roboto-Black.ttf in Resources */,
 				A5400FF3BA0A48A586D0F568 /* Roboto-BlackItalic.ttf in Resources */,
@@ -1157,7 +1150,6 @@
 				0D6F03148DD44EF5A89F3468 /* Roboto-LightItalic.ttf in Resources */,
 				645FC38428E14B35A1934895 /* Roboto-Medium.ttf in Resources */,
 				7FA650D5BC364BC4B4BA8EA1 /* Roboto-MediumItalic.ttf in Resources */,
-				E17CFFA520A20D09009B47A2 /* GoogleService-Info.plist in Resources */,
 				EA00D78704C443B18BCD0CBC /* Roboto-Regular.ttf in Resources */,
 				6E5C022239404B8C8F259835 /* Roboto-Thin.ttf in Resources */,
 				7905C8A203A6405784C56ABF /* Roboto-ThinItalic.ttf in Resources */,
