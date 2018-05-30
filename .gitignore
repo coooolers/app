@@ -43,7 +43,7 @@ buck-out/
 *.keystore
 
 #ios
-ios/Pods
+ios/Pods/
 ios/StatusIm.xcworkspace
 .ruby-version
 
