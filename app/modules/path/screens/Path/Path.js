@@ -65,13 +65,15 @@ class PathScreen extends React.Component {
     };
 
     goToStep = (step) => {
-        this.props.navigation.push("PathStep", {
-            step,
-            path: {
-                name: "Beginner Bodyweight",
-                imageUrl: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Fwokouts%2Fwoman-bicycle-kick.jpg?alt=media&token=a1383899-2873-4bf6-b726-039f970daa7d"
-            }
-        });
+        if (step.type === "audio") {
+            this.props.navigation.push("PathStepAudio", {
+                step,
+                path: {
+                    name: "Beginner Bodyweight",
+                    imageUrl: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Fwokouts%2Fwoman-bicycle-kick.jpg?alt=media&token=a1383899-2873-4bf6-b726-039f970daa7d"
+                }
+            });
+        }
     };
 
     render() {

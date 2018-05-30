@@ -24,7 +24,7 @@ import ProfileScreen from "../../modules/profile/screens/Profile";
 
 // Paths
 import PathScreen from "../../modules/path/screens/Path/Path";
-import PathStepScreen from "../../modules/path/screens/PathStep/PathStep";
+import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
 
 import MainInitScreen from "./MainInitScreen";
 
@@ -60,7 +60,7 @@ export default StackNavigator({
         }),
         Paths: StackNavigator({
             Path: {screen: PathScreen},
-            PathStep: {screen: PathStepScreen}
+            PathStepAudio: {screen: PathStepAudioScreen}
         }, {
             initialRouteName: 'Path',
             navigationOptions: ({navigation}) => ({

@@ -7,7 +7,7 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
 
-class PathStepScreen extends React.Component {
+class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
             header: null
@@ -84,4 +84,4 @@ function mapStateToProps(state) {
     return {};
 }
 
-export default connect(mapStateToProps)(PathStepScreen);
+export default connect(mapStateToProps)(PathStepAudioScreen);
