@@ -6,7 +6,6 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Moment from 'moment';
 
 import styles from "./styles";
-import {fetchMyCharacter} from "../../../characters/actions";
 import {getMyWorkoutHistory} from "../../../workouts/actions";
 import MountainsBackground from '../../../../assets/images/mountains.png';
 import {Character} from "../../../characters/models";
@@ -32,12 +31,9 @@ class Home extends React.Component {
 
     componentWillMount() {
         Promise.all([
-            this.props.dispatch(fetchMyCharacter(this.props.user)),
             this.props.dispatch(getMyWorkoutHistory(this.props.user))
         ]).then(() => {
-            this.setState({
-                isReady: true
-            });
+            this.setState({isReady: true});
         });
     }
 

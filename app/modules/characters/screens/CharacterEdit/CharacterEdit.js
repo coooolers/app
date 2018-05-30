@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 
 import styles from "./styles";
-import {fetchMyCharacter, updateCharacter} from "../../actions";
+import {updateCharacter} from "../../actions";
 import CharacterImageScrollView from "../../components/CharacterImageScrollView";
 
 class CharacterEdit extends React.Component {
@@ -18,19 +18,9 @@ class CharacterEdit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isReady: false,
             isFetching: false,
-            character: {}
+            character: props.character
         };
-    }
-
-    componentWillMount() {
-        this.props.dispatch(fetchMyCharacter(this.props.user)).then(() => {
-            this.setState({
-                isReady: true,
-                character: this.props.character
-            });
-        });
     }
 
     onSubmit = () => {
@@ -59,10 +49,6 @@ class CharacterEdit extends React.Component {
 
     render() {
         const {character, isFetching} = this.state;
-
-        if (!this.state.isReady) {
-            return null;
-        }
 
         return (
             <View style={styles.container}>

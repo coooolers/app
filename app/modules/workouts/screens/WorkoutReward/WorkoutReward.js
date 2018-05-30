@@ -32,7 +32,7 @@ class WorkoutReward extends React.Component {
     }
 
     componentWillMount() {
-        const {user, levelConfig} = this.props;
+        const {user, levelConfig, character} = this.props;
         const {workout} = this.props.navigation.state.params;
 
         Reporting.track("workout__end", {
@@ -41,21 +41,14 @@ class WorkoutReward extends React.Component {
             gradePercent: workout.gradePercent,
         });
 
-        this.props.dispatch(fetchMyCharacter(user)).then(character => {
-            this.setState({
-                character,
-                isReady: true
-            });
+        const characterWithNewXp = Character.addXp(character, workout.xpEarned, levelConfig);
 
-            const characterWithNewXp = Character.addXp(character, workout.xpEarned, levelConfig);
+        this.props.dispatch(updateCharacter(characterWithNewXp));
+        this.props.dispatch(createWorkoutHistory(user, workout));
 
-            this.props.dispatch(updateCharacter(characterWithNewXp));
-            this.props.dispatch(createWorkoutHistory(user, workout));
-
-            setTimeout(() => {
-                this.setState({character: characterWithNewXp});
-            }, 1500);
-        });
+        setTimeout(() => {
+            this.setState({character: characterWithNewXp});
+        }, 1500);
     }
 
     render() {

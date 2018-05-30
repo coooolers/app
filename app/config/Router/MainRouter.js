@@ -12,13 +12,6 @@ import OnboardingHowItWorks from "../../modules/onboarding/screens/OnboardingHow
 import HomeScreen from '../../modules/home/screens/Home';
 import CharacterEditScreen from "../../modules/characters/screens/CharacterEdit";
 
-//Workout Scenes
-import WorkoutListScreen from '../../modules/workouts/screens/WorkoutList';
-import WorkoutDetailScreen from "../../modules/workouts/screens/WorkoutDetail";
-import WorkoutRoutineScreen from "../../modules/workouts/screens/WorkoutRoutine";
-import WorkoutRewardScreen from "../../modules/workouts/screens/WorkoutReward";
-import ExerciseInfoScreen from "../../modules/exercises/screens/ExerciseInfo";
-
 // Profile
 import ProfileScreen from "../../modules/profile/screens/Profile";
 
@@ -30,12 +23,14 @@ import MainInitScreen from "./MainInitScreen";
 
 import {color, tabIconStyle} from "../../styles/theme";
 import {StyleSheet} from "react-native";
+import {fetchMyCharacter} from "../../modules/characters/actions";
+import {connect} from "react-redux";
 
 function getTabIconStyle(tintColor) {
     return StyleSheet.flatten([tabIconStyle, {color: tintColor}]);
 }
 
-export default StackNavigator({
+const MainRouterStack = StackNavigator({
     Initial: {
         screen: MainInitScreen
     },
@@ -68,19 +63,6 @@ export default StackNavigator({
                     style={getTabIconStyle(tintColor)}>{Icons.graduationCap}</FontAwesome>
             })
         }),
-        // Workouts: StackNavigator({
-        //     WorkoutList: {screen: WorkoutListScreen},
-        //     WorkoutDetail: {screen: WorkoutDetailScreen},
-        //     WorkoutRoutine: {screen: WorkoutRoutineScreen},
-        //     WorkoutReward: {screen: WorkoutRewardScreen},
-        //     ExerciseInfo: {screen: ExerciseInfoScreen}
-        // }, {
-        //     initialRouteName: 'WorkoutList',
-        //     navigationOptions: ({navigation}) => ({
-        //         tabBarIcon: ({tintColor}) => <FontAwesome
-        //             style={getTabIconStyle(tintColor)}>{Icons.heartbeat}</FontAwesome>
-        //     })
-        // }),
         Profile: StackNavigator({
             Profile: {screen: ProfileScreen}
         }, {
@@ -112,3 +94,30 @@ export default StackNavigator({
     initialRouteName: 'Initial',
     headerMode: 'none'
 });
+
+class MainRouter extends React.Component {
+    state = {
+        isReady: false
+    };
+
+    componentWillMount() {
+        this.props.dispatch(fetchMyCharacter(this.props.user)).then(() => {
+            this.setState({isReady: true});
+        });
+    }
+
+    render() {
+        if (!this.state.isReady) return null;
+
+        return <MainRouterStack/>;
+    }
+}
+
+function mapStateToProps(state) {
+    return {
+        isLoggedIn: state.authReducer.isLoggedIn,
+        user: state.authReducer.user
+    }
+}
+
+export default connect(mapStateToProps)(MainRouter);
