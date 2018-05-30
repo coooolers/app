@@ -16,7 +16,7 @@ class ExerciseInfo extends React.Component {
     };
 
     constructor(props) {
-        super();
+        super(props);
 
         const {exercise} = props.navigation.state.params;
 

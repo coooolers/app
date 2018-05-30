@@ -1,6 +1,10 @@
 import React from "react";
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import {StackNavigator, TabNavigator} from 'react-navigation';
+import {color, tabIconStyle} from "../../styles/theme";
+import {StyleSheet} from "react-native";
+import {fetchMyCharacter} from "../../modules/characters/actions";
+import {connect} from "react-redux";
 
 // Onboarding
 import OnboardingWelcome from "../../modules/onboarding/screens/OnboardingWelcome";
@@ -16,15 +20,11 @@ import CharacterEditScreen from "../../modules/characters/screens/CharacterEdit"
 import ProfileScreen from "../../modules/profile/screens/Profile";
 
 // Paths
-import PathScreen from "../../modules/path/screens/Path/Path";
+import PathsScreen from "../../modules/path/screens/Paths";
+import PathScreen from "../../modules/path/screens/Path";
 import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
 
 import MainInitScreen from "./MainInitScreen";
-
-import {color, tabIconStyle} from "../../styles/theme";
-import {StyleSheet} from "react-native";
-import {fetchMyCharacter} from "../../modules/characters/actions";
-import {connect} from "react-redux";
 
 function getTabIconStyle(tintColor) {
     return StyleSheet.flatten([tabIconStyle, {color: tintColor}]);
@@ -54,10 +54,11 @@ const MainRouterStack = StackNavigator({
             })
         }),
         Paths: StackNavigator({
+            Paths: {screen: PathsScreen},
             Path: {screen: PathScreen},
             PathStepAudio: {screen: PathStepAudioScreen}
         }, {
-            initialRouteName: 'Path',
+            initialRouteName: 'Paths',
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({tintColor}) => <FontAwesome
                     style={getTabIconStyle(tintColor)}>{Icons.graduationCap}</FontAwesome>
