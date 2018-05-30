@@ -1,12 +1,21 @@
 import {StyleSheet} from 'react-native';
-import {color} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
-    container: {
+    container: {},
+
+    timerContainer: {
+        width: 250,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    bar: {
+        width: 250
     },
 
     controls: {
         flexDirection: 'row',
+        marginTop: 10,
         marginBottom: 30,
         alignItems: 'center',
         justifyContent: 'center'
@@ -17,7 +26,7 @@ const styles = StyleSheet.create({
     },
 
     play: {
-        fontSize: 50,
+        fontSize: 40,
         marginLeft: 25,
         marginRight: 25
     },

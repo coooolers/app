@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, Slider} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
@@ -16,8 +16,8 @@ export default class PathStepAudioPlayer extends React.Component {
     state = {
         isReady: false,
         isPlaying: false,
-        timeListened: secondsToMMSS(0),
-        timeRemaining: null
+        timeListened: 0,
+        timeRemaining: 0
     };
 
     componentWillMount() {
@@ -27,8 +27,8 @@ export default class PathStepAudioPlayer extends React.Component {
             }
 
             this.setState({
-                timeListened: secondsToMMSS(0),
-                timeRemaining: secondsToMMSS(round(this.audio.getDuration())),
+                timeListened: 0,
+                timeRemaining: this.audio.getDuration(),
                 isReady: true
             });
 
@@ -60,11 +60,9 @@ export default class PathStepAudioPlayer extends React.Component {
     };
 
     onAudioComplete = () => {
-        const totalSeconds = round(this.audio.getDuration());
-
         this.setState({
-            timeListened: secondsToMMSS(0),
-            timeRemaining: secondsToMMSS(totalSeconds),
+            timeListened: 0,
+            timeRemaining: this.audio.getDuration(),
             isPlaying: false
         });
 
@@ -73,12 +71,27 @@ export default class PathStepAudioPlayer extends React.Component {
     };
 
     onTimeChange = () => {
-        const totalSeconds = round(this.audio.getDuration());
         this.audio.getCurrentTime((seconds) => {
             this.setState({
-                timeListened: secondsToMMSS(round(seconds)),
-                timeRemaining: secondsToMMSS(round(totalSeconds - seconds))
+                timeListened: seconds,
+                timeRemaining: this.audio.getDuration() - seconds
             });
+        });
+    };
+
+    onSlidingComplete = (seconds) => {
+        this.audio.setCurrentTime(seconds);
+        this.play();
+    };
+
+    onSliderChange = (seconds) => {
+        const {isPlaying} = this.state;
+
+        if (isPlaying) this.pause();
+
+        this.setState({
+            timeListened: seconds,
+            timeRemaining: this.audio.getDuration() - seconds
         });
     };
 
@@ -111,9 +124,16 @@ export default class PathStepAudioPlayer extends React.Component {
 
         return (
             <View style={styles.container}>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text>{timeListened}</Text>
-                    <Text>{timeRemaining}</Text>
+                <Slider style={styles.bar}
+                        value={timeListened}
+                        onSlidingComplete={this.onSlidingComplete}
+                        onValueChange={this.onSliderChange}
+                        minimumValue={0}
+                        maximumValue={this.audio.getDuration()}
+                />
+                <View style={styles.timerContainer}>
+                    <Text>{secondsToMMSS(round(timeListened))}</Text>
+                    <Text>{secondsToMMSS(round(timeRemaining))}</Text>
                 </View>
                 {this.renderControls()}
             </View>
