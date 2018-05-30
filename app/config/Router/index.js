@@ -11,6 +11,7 @@ import store from '../../redux/store';
 import {checkLoginStatus} from "../../modules/auth/actions";
 import {fetchScreens} from "../../modules/screens/actions";
 import {fetchLevelConfig} from "../../modules/levelConfig/actions";
+import {fetchMyCharacter} from "../../modules/characters/actions";
 
 
 class Router extends React.Component {
@@ -25,7 +26,13 @@ class Router extends React.Component {
             store.dispatch(fetchScreens()),
             store.dispatch(fetchLevelConfig())
         ]).then(() => {
-            this.setState({isReady: true});
+            if (this.props.isLoggedIn) {
+                store.dispatch(fetchMyCharacter(this.props.user)).then(() => {
+                    this.setState({isReady: true});
+                });
+            } else {
+                this.setState({isReady: true});
+            }
         });
     }
 
@@ -44,7 +51,8 @@ class Router extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        isLoggedIn: state.authReducer.isLoggedIn
+        isLoggedIn: state.authReducer.isLoggedIn,
+        user: state.authReducer.user
     }
 }
 

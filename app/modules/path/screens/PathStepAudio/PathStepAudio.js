@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, TouchableOpacity, View, Text, Image, Alert, ImageBackground} from 'react-native';
+import {TouchableOpacity, Image, View, Text, ImageBackground, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 
@@ -14,34 +14,72 @@ class PathStepAudioScreen extends React.Component {
         }
     };
 
-    goBack = () => {
-        this.props.navigation.pop();
-    };
+    constructor(props) {
+        super(props);
 
-    onAudioLoad = () => {
+        this.state = {
+            hasCompleted: false,
+            didEarnRewards: false
+        };
+    }
+
+    goBack = () => {
+        const {step, onEarnedRewards} = this.props.navigation.state.params;
+
+        this.props.navigation.goBack();
+
+        if (this.state.didEarnRewards) {
+            setTimeout(() => {
+                onEarnedRewards(step)
+            }, 500);
+        }
     };
 
     onAudioComplete = () => {
-        console.log("listen done!");
+        this.setState({
+            hasCompleted: true,
+            didEarnRewards: this.state.hasCompleted === false // offer rewards the first time a user completes this
+        });
     };
 
-    renderReward = (reward, index) => {
-        if (reward.key === "xp") {
-            return (
-                <View key={index} style={styles.reward}>
-                    <FontAwesome style={styles.trophyIcon}>{Icons.trophy}</FontAwesome>
-                    <Text>{reward.value}</Text>
-                </View>
-            );
-        } else if (reward.key === "term") {
-            return (
-                <View key={index} style={styles.reward}>
-                    <FontAwesome style={styles.bookIcon}>{Icons.book}</FontAwesome>
-                    <Text>{reward.value}</Text>
-                </View>
-            );
-        }
+    renderRewards = () => {
+        const {step, path} = this.props.navigation.state.params;
+        const {hasCompleted} = this.state;
+        const rewardedIcon = hasCompleted ?
+            <FontAwesome style={styles.rewardedIcon}>{Icons.checkCircleO}</FontAwesome> : null;
+        const containerStyles = hasCompleted ?
+            StyleSheet.flatten([styles.rewardsContainer, {borderColor: '#999999'}]) : styles.rewardsContainer;
 
+        return (
+            <View style={containerStyles}>
+                {step.rewards.map((r, i) => {
+                    let icon = null;
+                    let iconStyles = null;
+                    let textStyles = styles.rewardText;
+
+                    if (r.key === "xp") {
+                        iconStyles = styles.trophyIcon;
+                        icon = Icons.trophy;
+                    } else if (r.key === "term") {
+                        iconStyles = styles.bookIcon;
+                        icon = Icons.book;
+                    }
+
+                    if (hasCompleted) {
+                        iconStyles = StyleSheet.flatten([iconStyles, {color: '#999999'}]);
+                        textStyles = StyleSheet.flatten([textStyles, {color: '#999999'}]);
+                    }
+
+                    return (
+                        <View key={i} style={styles.reward}>
+                            <FontAwesome style={iconStyles}>{icon}</FontAwesome>
+                            <Text style={textStyles}>{r.value}</Text>
+                        </View>
+                    );
+                })}
+                {rewardedIcon}
+            </View>
+        );
     };
 
     render() {
@@ -67,13 +105,10 @@ class PathStepAudioScreen extends React.Component {
                     <View style={styles.audioContainer}>
                         <PathStepAudioPlayer
                             url={step.audioUrl}
-                            onLoad={this.onAudioLoad}
                             onComplete={this.onAudioComplete}/>
                     </View>
                     <Text>REWARDS</Text>
-                    <View style={styles.rewardsContainer}>
-                        {step.rewards.map(this.renderReward)}
-                    </View>
+                    {this.renderRewards()}
                 </View>
             </View>
         );
@@ -81,7 +116,9 @@ class PathStepAudioScreen extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        user: state.authReducer.user
+    };
 }
 
 export default connect(mapStateToProps)(PathStepAudioScreen);

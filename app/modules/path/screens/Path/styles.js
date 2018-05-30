@@ -11,6 +11,11 @@ const defaultColor = color.black;
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+    },
+
+    content: {
+        flex: 1,
         padding: contentPadding,
         paddingTop: contentPadding * 3
     },
@@ -113,6 +118,36 @@ const styles = StyleSheet.create({
         fontSize: fontSize.small,
         marginTop: 5,
         marginBottom: 5
+    },
+
+    characterContainer: {
+        width: '100%'
+    },
+
+    characterBackground: {
+        padding: contentPadding,
+        paddingBottom: 0,
+        height: 70,
+        width: '100%',
+        flexDirection: 'row',
+        borderWidth: 1,
+        borderColor: color.light_black
+    },
+
+    characterImage: {
+        width: 60,
+        height: 60,
+        resizeMode: 'contain'
+    },
+
+    xpContainer: {
+        flex: 1
+    },
+
+    xpTextContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
     }
 });
 

@@ -9,7 +9,7 @@ import Sound from "react-native-sound";
 export default class PathStepAudioPlayer extends React.Component {
     static propTypes = {
         url: PropTypes.string.isRequired,
-        onLoad: PropTypes.func.isRequired,
+        onLoad: PropTypes.func,
         onComplete: PropTypes.func.isRequired,
     };
 
@@ -32,7 +32,7 @@ export default class PathStepAudioPlayer extends React.Component {
                 isReady: true
             });
 
-            this.props.onLoad();
+            if (this.props.onLoad) this.props.onLoad();
         });
     }
 

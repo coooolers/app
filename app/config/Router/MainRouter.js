@@ -68,19 +68,19 @@ export default StackNavigator({
                     style={getTabIconStyle(tintColor)}>{Icons.graduationCap}</FontAwesome>
             })
         }),
-        Workouts: StackNavigator({
-            WorkoutList: {screen: WorkoutListScreen},
-            WorkoutDetail: {screen: WorkoutDetailScreen},
-            WorkoutRoutine: {screen: WorkoutRoutineScreen},
-            WorkoutReward: {screen: WorkoutRewardScreen},
-            ExerciseInfo: {screen: ExerciseInfoScreen}
-        }, {
-            initialRouteName: 'WorkoutList',
-            navigationOptions: ({navigation}) => ({
-                tabBarIcon: ({tintColor}) => <FontAwesome
-                    style={getTabIconStyle(tintColor)}>{Icons.heartbeat}</FontAwesome>
-            })
-        }),
+        // Workouts: StackNavigator({
+        //     WorkoutList: {screen: WorkoutListScreen},
+        //     WorkoutDetail: {screen: WorkoutDetailScreen},
+        //     WorkoutRoutine: {screen: WorkoutRoutineScreen},
+        //     WorkoutReward: {screen: WorkoutRewardScreen},
+        //     ExerciseInfo: {screen: ExerciseInfoScreen}
+        // }, {
+        //     initialRouteName: 'WorkoutList',
+        //     navigationOptions: ({navigation}) => ({
+        //         tabBarIcon: ({tintColor}) => <FontAwesome
+        //             style={getTabIconStyle(tintColor)}>{Icons.heartbeat}</FontAwesome>
+        //     })
+        // }),
         Profile: StackNavigator({
             Profile: {screen: ProfileScreen}
         }, {

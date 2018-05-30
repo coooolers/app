@@ -1,9 +1,11 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, View, Image, ImageBackground, Text} from 'react-native';
 import {connect} from 'react-redux';
-
+import * as Progress from 'react-native-progress';
+import MountainImage from "../../../../assets/images/mountains.png";
 import styles from "./styles";
 import PathStep from "../../components/PathStep/PathStep";
+import {Character} from "../../../characters/models";
 
 class PathScreen extends React.Component {
     state = {
@@ -55,13 +57,17 @@ class PathScreen extends React.Component {
 
     componentDidMount() {
         // TODO remove after detail screen developing
-        this.goToStep(this.state.steps[0])
+        // this.goToStep(this.state.steps[0])
     }
 
     static navigationOptions = ({navigation}) => {
         return {
             title: "Path"
         }
+    };
+
+    onEarnedRewards = (step) => {
+        console.log("earned rewards", step);
     };
 
     goToStep = (step) => {
@@ -71,35 +77,65 @@ class PathScreen extends React.Component {
                 path: {
                     name: "Beginner Bodyweight",
                     imageUrl: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Fwokouts%2Fwoman-bicycle-kick.jpg?alt=media&token=a1383899-2873-4bf6-b726-039f970daa7d"
-                }
+                },
+                onEarnedRewards: this.onEarnedRewards.bind(this)
             });
         }
     };
 
     render() {
+        const {character, levelConfig} = this.props;
+        const xpProgress = Character.percentOfLevelComplete(character, levelConfig);
 
         return (
-            <ScrollView style={styles.container}>
-                {
-                    this.state.steps.map((step, index) => {
-                        return (
-                            <PathStep
-                                key={step.uuid}
-                                step={step}
-                                showTopStatusBorder={index > 0}
-                                showBottomStatusBorder={index < this.state.steps.length - 1}
-                                onSelect={this.goToStep}
+            <View style={styles.container}>
+                <ScrollView style={styles.content}>
+                    {
+                        this.state.steps.map((step, index) => {
+                            return (
+                                <PathStep
+                                    key={step.uuid}
+                                    step={step}
+                                    showTopStatusBorder={index > 0}
+                                    showBottomStatusBorder={index < this.state.steps.length - 1}
+                                    onSelect={this.goToStep}
+                                />
+                            );
+                        })
+                    }
+                </ScrollView>
+                <View style={styles.characterContainer}>
+                    <ImageBackground source={MountainImage} style={styles.characterBackground}>
+                        <Image style={styles.characterImage} source={{uri: character.imageUrl}}/>
+                        <View style={styles.xpContainer}>
+                            <Text>{character.name} ({character.level})</Text>
+                            <Progress.Bar
+                                progress={xpProgress}
+                                width={null}
+                                height={12}
+                                borderRadius={0}
+                                borderColor={"#000000"}
+                                borderWidth={1}
+                                unfilledColor={"#ffffff"}
+                                color={"#674ea7"}
                             />
-                        );
-                    })
-                }
-            </ScrollView>
+                            <View style={styles.xpTextContainer}>
+                                <Text style={{fontSize: 10}}>{character.xp} / {levelConfig[character.level].xpNeeded}</Text>
+                            </View>
+                        </View>
+                    </ImageBackground>
+                </View>
+            </View>
         );
     }
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        user: state.authReducer.user,
+        character: state.characterReducer.character,
+        levelConfig: state.levelConfigReducer.levelConfig
+    };
 }
 
 export default connect(mapStateToProps)(PathScreen);

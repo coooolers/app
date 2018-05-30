@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {color, contentPadding, fontSize, tabbarHeight} from "../../../../styles/theme";
+import {color, contentPadding, fontSize} from "../../../../styles/theme";
 
 const headerHeight = 250;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: color.white,
+        backgroundColor: color.light_grey,
         flex: 1
     },
 
@@ -43,10 +43,11 @@ const styles = StyleSheet.create({
     },
 
     body: {
-        flex: 1,
         alignItems: 'center',
         backgroundColor: color.white,
-        padding: contentPadding
+        padding: contentPadding,
+        borderBottomColor: color.light_black,
+        borderBottomWidth: 1
     },
 
     audioContainer: {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     },
 
     rewardsContainer: {
-        borderColor: color.black,
+        borderColor: color.light_black,
         borderWidth: 1,
         borderRadius: 5,
         padding: contentPadding,
@@ -83,6 +84,13 @@ const styles = StyleSheet.create({
         color: '#39a0ed',
         fontSize: 25,
         marginRight: 5
+    },
+
+    rewardedIcon: {
+        color: '#1b998b',
+        fontSize: 70,
+        position: 'absolute',
+        top: -10
     }
 });
 
