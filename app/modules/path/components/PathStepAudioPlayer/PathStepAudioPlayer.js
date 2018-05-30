@@ -101,16 +101,30 @@ export default class PathStepAudioPlayer extends React.Component {
         if (isPlaying) {
             return (
                 <View style={styles.controls}>
+                    <TouchableOpacity>
+                        <FontAwesome style={styles.rewind}>{Icons.backward}</FontAwesome>
+                    </TouchableOpacity>
+
                     <TouchableOpacity onPress={this.pause}>
                         <FontAwesome style={styles.play}>{Icons.pause}</FontAwesome>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <FontAwesome style={styles.forward}>{Icons.forward}</FontAwesome>
                     </TouchableOpacity>
                 </View>
             );
         } else {
             return (
                 <View style={styles.controls}>
+                    <TouchableOpacity>
+                        <FontAwesome style={styles.rewind}>{Icons.backward}</FontAwesome>
+                    </TouchableOpacity>
+
                     <TouchableOpacity onPress={this.play}>
                         <FontAwesome style={styles.play}>{Icons.play}</FontAwesome>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <FontAwesome style={styles.forward}>{Icons.forward}</FontAwesome>
                     </TouchableOpacity>
                 </View>
             );
