@@ -8,33 +8,30 @@ import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
 
 class PathStepScreen extends React.Component {
-    state = {
-        isReady: false
-    };
-
     static navigationOptions = ({navigation}) => {
         return {
             header: null
         }
     };
 
+    constructor(props) {
+        super(props);
+        const {step} = props.navigation.state.params;
+        this.state = {step};
+    }
     goBack = () => {
         this.props.navigation.pop();
     };
 
     onAudioLoad = () => {
-      this.setState({isRequired: true});
     };
+
     onAudioComplete = () => {
         console.log("listen done!");
     };
 
     render() {
-        const {step, isReady} = this.state;
-
-        if (!isReady) {
-            return null;
-        }
+        const {step} = this.state;
 
         return (
             <View style={styles.container}>

@@ -3,30 +3,32 @@ import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
-import {round} from "../../../../components/Util";
-import Sound from "react-native-sound/index";
+import {round, secondsToMMSS} from "../../../../components/Util";
+import Sound from "react-native-sound";
 
 export default class PathStepAudioPlayer extends React.Component {
     static propTypes = {
-        url: PropTypes.func.isRequired,
+        url: PropTypes.string.isRequired,
         onLoad: PropTypes.func.isRequired,
         onComplete: PropTypes.func.isRequired,
     };
 
     state = {
-        isPlaying: false
+        isReady: false,
+        isPlaying: false,
+        timeListened: secondsToMMSS(0),
+        timeRemaining: null
     };
 
     componentWillMount() {
-        const {step} = this.props.navigation.state.params;
-        const audio = new Sound(this.props.url, null, (error) => {
+        this.audio = new Sound(this.props.url, null, (error) => {
             if (error) {
                 Alert.alert("Error", error.message);
             }
 
             this.setState({
-                audio,
-                step,
+                timeListened: secondsToMMSS(0),
+                timeRemaining: secondsToMMSS(round(this.audio.getDuration())),
                 isReady: true
             });
 
@@ -35,23 +37,49 @@ export default class PathStepAudioPlayer extends React.Component {
     }
 
     componentWillUnmount() {
-        if (this.state.audio) {
-            this.state.audio.release();
-        }
+        if (this.audio) this.audio.release();
+        this.cancelTimingInterval();
     }
 
     play = () => {
         this.setState({isPlaying: true});
 
-        this.state.audio.play(() => {
-            this.setState({isPlaying: false});
-            this.props.onComplete();
-        });
+        this.timingInterval = setInterval(this.onTimeChange, 250);
+
+        this.audio.play(this.onAudioComplete);
     };
 
     pause = () => {
-        this.state.audio.pause();
+        this.audio.pause();
         this.setState({isPlaying: false});
+        this.cancelTimingInterval();
+    };
+
+    cancelTimingInterval = () => {
+        if (this.timingInterval) clearInterval(this.timingInterval);
+    };
+
+    onAudioComplete = () => {
+        const totalSeconds = round(this.audio.getDuration());
+
+        this.setState({
+            timeListened: secondsToMMSS(0),
+            timeRemaining: secondsToMMSS(totalSeconds),
+            isPlaying: false
+        });
+
+        this.cancelTimingInterval();
+        this.props.onComplete();
+    };
+
+    onTimeChange = () => {
+        const totalSeconds = round(this.audio.getDuration());
+        this.audio.getCurrentTime((seconds) => {
+            this.setState({
+                timeListened: secondsToMMSS(round(seconds)),
+                timeRemaining: secondsToMMSS(round(totalSeconds - seconds))
+            });
+        });
     };
 
     renderControls = () => {
@@ -59,7 +87,7 @@ export default class PathStepAudioPlayer extends React.Component {
 
         if (isPlaying) {
             return (
-                <View style={styles.audioControls}>
+                <View style={styles.controls}>
                     <TouchableOpacity>
                         <FontAwesome style={styles.rewind}>{Icons.backward}</FontAwesome>
                     </TouchableOpacity>
@@ -74,7 +102,7 @@ export default class PathStepAudioPlayer extends React.Component {
             );
         } else {
             return (
-                <View style={styles.audioControls}>
+                <View style={styles.controls}>
                     <TouchableOpacity>
                         <FontAwesome style={styles.rewind}>{Icons.backward}</FontAwesome>
                     </TouchableOpacity>
@@ -88,14 +116,18 @@ export default class PathStepAudioPlayer extends React.Component {
                 </View>
             );
         }
-    }
+    };
 
     render() {
+        const {isReady, timeListened, timeRemaining} = this.state;
+
+        if (!isReady) return null;
+
         return (
             <View style={styles.container}>
-                <View>
-                    <Text>{'0:00'}</Text>
-                    <Text>{round(audio.getDuration(), 2)}</Text>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <Text>{timeListened}</Text>
+                    <Text>{timeRemaining}</Text>
                 </View>
                 {this.renderControls()}
             </View>
