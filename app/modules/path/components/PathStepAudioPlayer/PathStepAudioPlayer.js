@@ -95,38 +95,20 @@ export default class PathStepAudioPlayer extends React.Component {
         });
     };
 
-    renderControls = () => {
+    renderPlayButton = () => {
         const {isPlaying} = this.state;
 
         if (isPlaying) {
             return (
-                <View style={styles.controls}>
-                    <TouchableOpacity>
-                        <FontAwesome style={styles.rewind}>{Icons.backward}</FontAwesome>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={this.pause}>
-                        <FontAwesome style={styles.play}>{Icons.pause}</FontAwesome>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <FontAwesome style={styles.forward}>{Icons.forward}</FontAwesome>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity onPress={this.pause}>
+                    <FontAwesome style={styles.play}>{Icons.pause}</FontAwesome>
+                </TouchableOpacity>
             );
         } else {
             return (
-                <View style={styles.controls}>
-                    <TouchableOpacity>
-                        <FontAwesome style={styles.rewind}>{Icons.backward}</FontAwesome>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={this.play}>
-                        <FontAwesome style={styles.play}>{Icons.play}</FontAwesome>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <FontAwesome style={styles.forward}>{Icons.forward}</FontAwesome>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity onPress={this.play}>
+                    <FontAwesome style={styles.play}>{Icons.play}</FontAwesome>
+                </TouchableOpacity>
             );
         }
     };
@@ -149,7 +131,9 @@ export default class PathStepAudioPlayer extends React.Component {
                     <Text>{secondsToMMSS(round(timeListened))}</Text>
                     <Text>{secondsToMMSS(round(timeRemaining))}</Text>
                 </View>
-                {this.renderControls()}
+                <View style={styles.controls}>
+                    {this.renderPlayButton()}
+                </View>
             </View>
         )
     };

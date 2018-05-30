@@ -1,28 +1,25 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+        width: '100%'
+    },
 
     timerContainer: {
-        width: 250,
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
 
     bar: {
-        width: 250
+        width: '100%'
     },
 
     controls: {
         flexDirection: 'row',
-        marginTop: 10,
         marginBottom: 30,
         alignItems: 'center',
         justifyContent: 'center'
-    },
-
-    rewind: {
-        fontSize: 30
     },
 
     play: {
@@ -30,10 +27,6 @@ const styles = StyleSheet.create({
         marginLeft: 25,
         marginRight: 25
     },
-
-    forward: {
-        fontSize: 30
-    }
 });
 
 export default styles;

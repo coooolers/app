@@ -1,13 +1,16 @@
 import {StyleSheet} from 'react-native';
-import {color, contentPadding, contentWidth, fontSize, navbarHeight, normalize} from "../../../../styles/theme";
+import {color, contentPadding, fontSize, tabbarHeight} from "../../../../styles/theme";
+
+const headerHeight = 250;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: color.white
+        backgroundColor: color.white,
+        flex: 1
     },
 
     header: {
-        height: 225,
+        height: headerHeight,
         backgroundColor: color.black
     },
 
@@ -15,7 +18,7 @@ const styles = StyleSheet.create({
         padding: contentPadding,
         alignItems: 'flex-start',
         justifyContent: 'flex-end',
-        height: 225,
+        height: headerHeight,
         width: '100%'
     },
 
@@ -34,37 +37,52 @@ const styles = StyleSheet.create({
         right: contentPadding
     },
 
+    closeIcon: {
+        fontSize: 22,
+        color: color.white
+    },
+
     body: {
+        flex: 1,
         alignItems: 'center',
         backgroundColor: color.white,
         padding: contentPadding
     },
 
-    audioControls: {
+    audioContainer: {
+        width: '100%',
+        marginBottom: 20
+    },
+
+    rewardsContainer: {
+        borderColor: color.black,
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: contentPadding,
+        marginTop: 5,
         flexDirection: 'row',
-        marginBottom: 30,
         alignItems: 'center',
         justifyContent: 'center'
     },
 
-    rewind: {
-        fontSize: 30
+    reward: {
+        marginLeft: 10,
+        marginRight: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
-    play: {
-        fontSize: 50,
-        marginLeft: 25,
-        marginRight: 25
+    trophyIcon: {
+        color: color.brandPrimary,
+        fontSize: 25,
+        marginRight: 5
     },
 
-    forward: {
-        fontSize: 30
-    },
-
-    footer: {
-        backgroundColor: '#eeeeee',
-        width: '100%',
-        padding: contentPadding
+    bookIcon: {
+        color: '#39a0ed',
+        fontSize: 25,
+        marginRight: 5
     }
 });
 

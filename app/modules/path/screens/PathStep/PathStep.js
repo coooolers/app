@@ -14,11 +14,6 @@ class PathStepScreen extends React.Component {
         }
     };
 
-    constructor(props) {
-        super(props);
-        const {step} = props.navigation.state.params;
-        this.state = {step};
-    }
     goBack = () => {
         this.props.navigation.pop();
     };
@@ -30,53 +25,56 @@ class PathStepScreen extends React.Component {
         console.log("listen done!");
     };
 
+    renderReward = (reward, index) => {
+        if (reward.key === "xp") {
+            return (
+                <View key={index} style={styles.reward}>
+                    <FontAwesome style={styles.trophyIcon}>{Icons.trophy}</FontAwesome>
+                    <Text>{reward.value}</Text>
+                </View>
+            );
+        } else if (reward.key === "term") {
+            return (
+                <View key={index} style={styles.reward}>
+                    <FontAwesome style={styles.bookIcon}>{Icons.book}</FontAwesome>
+                    <Text>{reward.value}</Text>
+                </View>
+            );
+        }
+
+    };
+
     render() {
-        const {step} = this.state;
+        const {step, path} = this.props.navigation.state.params;
 
         return (
             <View style={styles.container}>
                 <ImageBackground
                     style={styles.header}
-                    source={{uri: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Fwokouts%2Fwoman-bicycle-kick.jpg?alt=media&token=a1383899-2873-4bf6-b726-039f970daa7d"}}>
+                    source={{uri: path.imageUrl}}>
 
                     <View style={styles.headerContent}>
                         <Text style={styles.title}>{step.name}</Text>
                         <Text style={styles.subTitle}>
-                            <FontAwesome>{Icons.graduationCap}</FontAwesome> Beginner Bodyweight
+                            <FontAwesome>{Icons.graduationCap}</FontAwesome> {path.name}
                         </Text>
                         <TouchableOpacity style={styles.closeButton} onPress={this.goBack}>
-                            <FontAwesome style={{color: 'white'}}>{Icons.close}</FontAwesome>
+                            <FontAwesome style={styles.closeIcon}>{Icons.close}</FontAwesome>
                         </TouchableOpacity>
                     </View>
                 </ImageBackground>
                 <View style={styles.body}>
-                    <PathStepAudioPlayer
-                        url={"https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3"}
-                        onLoad={this.onAudioLoad}
-                        onComplete={this.onAudioComplete}/>
+                    <View style={styles.audioContainer}>
+                        <PathStepAudioPlayer
+                            url={step.audioUrl}
+                            onLoad={this.onAudioLoad}
+                            onComplete={this.onAudioComplete}/>
+                    </View>
                     <Text>REWARDS</Text>
                     <View style={styles.rewardsContainer}>
-                        <View><FontAwesome>{Icons.trophy}</FontAwesome> 20</View>
-                        <View><FontAwesome>{Icons.book}</FontAwesome> 1</View>
+                        {step.rewards.map(this.renderReward)}
                     </View>
                 </View>
-                <ScrollView style={styles.footer}
-                            showsVerticalScrollIndicator={false}
-                            bounces={false}>
-                    <Text>Met blandit neque accumsan ut. Mauris lobortis posuere urna et tempus. Sed hendrerit nunc
-                        massa, sit amet commodo diam posuere sed. Nullam ut quam id nulla aliquam auctor ac non libero.
-                        Donec mollis justo aliquet risus maximus dignissim vitae et tellus. In feugiat lectus in nulla
-                        tempor, nec feugiat nisi egestas. Sed quis accumsan justo. Nullam porta sem blandit imperdiet
-                        euismod. Fusce mattis lorem sed nisi convallis, at lobortis orci feugiat. Nulla molestie eu nunc
-                        sit amet congue. Nullam vel lobortis mi. Suspendisse interdum mi
-                        rutrum justo suscipit lacinia. Nullam malesuada est ante, a varius sem hendrerit nec. Aliquam
-                        erat volutpat. Proin hendrerit eget nulla porta aliquet. Mauris eu nibh et turpis aliquet
-                        elementum a
-                        at nulla. Nam pretium tellus et tellus vehicula vestibulum. Vivamus malesuada justo ac sem
-                        bibendum
-                        maximus. Vestibulum dui massa, pulvinar at euismod non, aliquam quis nisi. Pellentesque pretium
-                        a</Text>
-                </ScrollView>
             </View>
         );
     }

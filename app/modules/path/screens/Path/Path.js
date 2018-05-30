@@ -15,7 +15,8 @@ class PathScreen extends React.Component {
                 "rewards": [
                     {"key": "xp", "value": 20}
                 ],
-                "uuid": "3c5449b3-936d-4253-8b89-49286c99e9eb"
+                "uuid": "3c5449b3-936d-4253-8b89-49286c99e9eb",
+                "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3"
             },
             {
                 "name": "Strength Training",
@@ -25,7 +26,8 @@ class PathScreen extends React.Component {
                     {"key": "xp", "value": 20},
                     {"key": "term", "value": 1}
                 ],
-                "uuid": "722a2286-7498-4849-8bdd-959675bad3f6"
+                "uuid": "722a2286-7498-4849-8bdd-959675bad3f6",
+                "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3"
             },
             {
                 "name": "Introduction",
@@ -34,7 +36,8 @@ class PathScreen extends React.Component {
                 "rewards": [
                     {"key": "xp", "value": 20}
                 ],
-                "uuid": "3c5449b4-936d-4253-8b89-49286c99e9eb"
+                "uuid": "3c5449b4-936d-4253-8b89-49286c99e9eb",
+                "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3"
             },
             {
                 "name": "Strength Training",
@@ -44,7 +47,8 @@ class PathScreen extends React.Component {
                     {"key": "xp", "value": 20},
                     {"key": "term", "value": 1}
                 ],
-                "uuid": "722a2284-7498-4849-8bdd-959675bad3f6"
+                "uuid": "722a2284-7498-4849-8bdd-959675bad3f6",
+                "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3"
             }
         ]
     };
@@ -61,7 +65,13 @@ class PathScreen extends React.Component {
     };
 
     goToStep = (step) => {
-        this.props.navigation.push("PathStep", {step});
+        this.props.navigation.push("PathStep", {
+            step,
+            path: {
+                name: "Beginner Bodyweight",
+                imageUrl: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Fwokouts%2Fwoman-bicycle-kick.jpg?alt=media&token=a1383899-2873-4bf6-b726-039f970daa7d"
+            }
+        });
     };
 
     render() {
