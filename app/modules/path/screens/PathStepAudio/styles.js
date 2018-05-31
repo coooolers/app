@@ -1,69 +1,68 @@
-import {StyleSheet} from 'react-native';
-import {color, contentPadding, fontSize} from "../../../../styles/theme";
+import {StyleSheet, PixelRatio} from 'react-native';
+import {color, contentPadding, contentWidth, fontSize} from "../../../../styles/theme";
 
-const headerHeight = 250;
+const headerIconSize = 36;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: color.light_grey,
-        flex: 1
+        flex: 1,
+        backgroundColor: color.black,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: contentPadding
     },
 
-    header: {
-        height: headerHeight,
-        backgroundColor: color.black
-    },
-
-    headerContent: {
+    panel: {
+        width: contentWidth - 30,
+        backgroundColor: color.white,
         padding: contentPadding,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-end',
-        height: headerHeight,
-        width: '100%'
+        alignItems: 'center',
+        borderTopColor: color.brandPrimary,
+        borderTopWidth: 10
+    },
+
+    headerIconContainer: {
+        padding: 3,
+        position: 'absolute',
+        backgroundColor: color.brandPrimary,
+        borderColor: '#333333',
+        borderWidth: 1,
+        width: headerIconSize,
+        height: headerIconSize,
+        borderRadius: headerIconSize / PixelRatio.get(),
+        top: -(headerIconSize / 2) - 5,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    headerIcon: {
+        color: color.white,
+        fontSize: 27
     },
 
     title: {
-        fontSize: fontSize.large,
-        color: color.white
+        fontSize: fontSize.large
     },
 
     subTitle: {
-        color: color.white
-    },
-
-    closeButton: {
-        position: 'absolute',
-        top: contentPadding * 2,
-        right: contentPadding
-    },
-
-    closeIcon: {
-        fontSize: 22,
-        color: color.white
-    },
-
-    body: {
-        alignItems: 'center',
-        backgroundColor: color.white,
-        padding: contentPadding,
-        borderBottomColor: color.light_black,
-        borderBottomWidth: 1
+        fontSize: fontSize.regular - 2
     },
 
     audioContainer: {
         width: '100%',
+        marginTop: 10,
         marginBottom: 20
     },
 
     rewardsContainer: {
-        borderColor: color.light_black,
-        borderWidth: 1,
-        borderRadius: 5,
-        padding: contentPadding,
-        marginTop: 5,
+        width: contentWidth - 30,
+        backgroundColor: color.white,
+        borderTopColor: color.black,
+        borderTopWidth: 1,
+        padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'space-between'
     },
 
     reward: {

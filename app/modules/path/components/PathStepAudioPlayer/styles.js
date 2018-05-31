@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
         marginLeft: 25,
         marginRight: 25
     },
+
+    timingText: {
+        fontSize: 12
+    }
 });
 
 export default styles;

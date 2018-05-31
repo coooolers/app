@@ -12,10 +12,12 @@ export default class Button extends Component {
         isFetching: PropTypes.bool,
         icon: PropTypes.string,
         containerViewStyle: PropTypes.object,
+        buttonStyle: PropTypes.object,
     };
 
     render() {
         const containerViewStyle = StyleSheet.flatten([styles.containerView, this.props.containerViewStyle || {}]);
+        const buttonStyle = StyleSheet.flatten([styles.button, this.props.buttonStyle || {}]);
         const icon = {name: this.props.icon, type: 'font-awesome'};
 
         return (
@@ -25,7 +27,7 @@ export default class Button extends Component {
                 title={this.props.title}
                 icon={icon}
                 containerViewStyle={containerViewStyle}
-                buttonStyle={[styles.button]}
+                buttonStyle={buttonStyle}
                 textStyle={styles.buttonText}
                 disabled={this.props.isFetching}
                 onPress={this.props.onPress}

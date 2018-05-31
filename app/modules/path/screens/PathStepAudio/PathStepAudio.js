@@ -6,6 +6,8 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 
 import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
+import Button from "../../../../components/Button/Button";
+import {contentWidth} from "../../../../styles/theme";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -47,37 +49,38 @@ class PathStepAudioScreen extends React.Component {
         const {hasCompleted} = this.state;
         const rewardedIcon = hasCompleted ?
             <FontAwesome style={styles.rewardedIcon}>{Icons.checkCircleO}</FontAwesome> : null;
-        const containerStyles = hasCompleted ?
-            StyleSheet.flatten([styles.rewardsContainer, {borderColor: '#999999'}]) : styles.rewardsContainer;
 
         return (
-            <View style={containerStyles}>
-                {step.rewards.map((r, i) => {
-                    let icon = null;
-                    let iconStyles = null;
-                    let textStyles = styles.rewardText;
+            <View style={styles.rewardsContainer}>
+                <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
+                <View style={{flexDirection: 'row'}}>
+                    {step.rewards.map((r, i) => {
+                        let icon = null;
+                        let iconStyles = null;
+                        let textStyles = styles.rewardText;
 
-                    if (r.key === "xp") {
-                        iconStyles = styles.trophyIcon;
-                        icon = Icons.trophy;
-                    } else if (r.key === "term") {
-                        iconStyles = styles.bookIcon;
-                        icon = Icons.book;
-                    }
+                        if (r.key === "xp") {
+                            iconStyles = styles.trophyIcon;
+                            icon = Icons.trophy;
+                        } else if (r.key === "term") {
+                            iconStyles = styles.bookIcon;
+                            icon = Icons.book;
+                        }
 
-                    if (hasCompleted) {
-                        iconStyles = StyleSheet.flatten([iconStyles, {color: '#999999'}]);
-                        textStyles = StyleSheet.flatten([textStyles, {color: '#999999'}]);
-                    }
+                        if (hasCompleted) {
+                            iconStyles = StyleSheet.flatten([iconStyles, {color: '#999999'}]);
+                            textStyles = StyleSheet.flatten([textStyles, {color: '#999999'}]);
+                        }
 
-                    return (
-                        <View key={i} style={styles.reward}>
-                            <FontAwesome style={iconStyles}>{icon}</FontAwesome>
-                            <Text style={textStyles}>{r.value}</Text>
-                        </View>
-                    );
-                })}
-                {rewardedIcon}
+                        return (
+                            <View key={i} style={styles.reward}>
+                                <FontAwesome style={iconStyles}>{icon}</FontAwesome>
+                                <Text style={textStyles}>{r.value}</Text>
+                            </View>
+                        );
+                    })}
+                    {rewardedIcon}
+                </View>
             </View>
         );
     };
@@ -86,31 +89,36 @@ class PathStepAudioScreen extends React.Component {
         const {step, path} = this.props.navigation.state.params;
 
         return (
-            <View style={styles.container}>
-                <ImageBackground
-                    style={styles.header}
-                    source={{uri: path.imageUrl}}>
+            <ImageBackground
+                style={styles.container}
+                source={{uri: path.imageUrl}}>
 
-                    <View style={styles.headerContent}>
-                        <Text style={styles.title}>{step.name}</Text>
-                        <Text style={styles.subTitle}>
-                            <FontAwesome>{Icons.graduationCap}</FontAwesome> {path.name}
-                        </Text>
-                        <TouchableOpacity style={styles.closeButton} onPress={this.goBack}>
-                            <FontAwesome style={styles.closeIcon}>{Icons.close}</FontAwesome>
-                        </TouchableOpacity>
+                <View style={styles.panel}>
+                    <View style={styles.headerIconContainer}>
+                        <FontAwesome style={styles.headerIcon}>{Icons.headphones}</FontAwesome>
                     </View>
-                </ImageBackground>
-                <View style={styles.body}>
+                    <Text style={styles.title}>{step.name}</Text>
+                    <Text style={styles.subTitle}>
+                        <FontAwesome>{Icons.graduationCap}</FontAwesome> {path.name}
+                    </Text>
                     <View style={styles.audioContainer}>
                         <PathStepAudioPlayer
                             url={step.audioUrl}
                             onComplete={this.onAudioComplete}/>
                     </View>
-                    <Text>REWARDS</Text>
-                    {this.renderRewards()}
                 </View>
-            </View>
+                {this.renderRewards()}
+                <Button title={"CLOSE"}
+                        containerViewStyle={{
+                            marginTop: 10,
+                            width: contentWidth - 30
+                        }}
+                        buttonStyle={{
+                            borderRadius: 0,
+                            height: 45
+                        }}
+                        onPress={this.goBack}/>
+            </ImageBackground>
         );
     }
 }

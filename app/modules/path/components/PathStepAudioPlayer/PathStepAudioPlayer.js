@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styles from "./styles";
 import {round, secondsToMMSS} from "../../../../components/Util";
 import Sound from "react-native-sound";
+import {color} from "../../../../styles/theme";
 
 export default class PathStepAudioPlayer extends React.Component {
     static propTypes = {
@@ -125,11 +126,13 @@ export default class PathStepAudioPlayer extends React.Component {
                         onSlidingComplete={this.onSlidingComplete}
                         onValueChange={this.onSliderChange}
                         minimumValue={0}
+                        minimumTrackTintColor={color.brandPrimary}
                         maximumValue={this.audio.getDuration()}
+
                 />
                 <View style={styles.timerContainer}>
-                    <Text>{secondsToMMSS(round(timeListened))}</Text>
-                    <Text>{secondsToMMSS(round(timeRemaining))}</Text>
+                    <Text style={styles.timingText}>{secondsToMMSS(round(timeListened))}</Text>
+                    <Text style={styles.timingText}>{secondsToMMSS(round(timeRemaining))}</Text>
                 </View>
                 <View style={styles.controls}>
                     {this.renderPlayButton()}
