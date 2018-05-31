@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Image, View, Text, ImageBackground, StyleSheet} from 'react-native';
+import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 

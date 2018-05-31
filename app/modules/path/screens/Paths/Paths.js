@@ -1,17 +1,13 @@
 import React from 'react';
-import {ScrollView, View, TouchableOpacity, Image, ImageBackground, Text} from 'react-native';
+import {ScrollView, View, TouchableOpacity, Text} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
 import CharacterPanel from "../../components/CharacterPanel/CharacterPanel";
+import {fetchPaths} from "../../actions";
 
 class PathsScreen extends React.Component {
     state = {
-        paths: [
-            {
-                name: "Beginner Bodyweight",
-                imageUrl: "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Fwokouts%2Fwoman-bicycle-kick.jpg?alt=media&token=a1383899-2873-4bf6-b726-039f970daa7d"
-            }
-        ]
+        isReady: false
     };
 
     static navigationOptions = ({navigation}) => {
@@ -20,13 +16,21 @@ class PathsScreen extends React.Component {
         }
     };
 
+    componentWillMount() {
+        this.props.dispatch(fetchPaths()).then(() => {
+            this.setState({isReady: true});
+        });
+    }
+
     goToPath = (path) => {
         this.props.navigation.push("Path", {path});
     };
 
     render() {
-        const {paths} = this.state;
-        const {character, levelConfig} = this.props;
+        const {isReady} = this.state;
+        const {paths, character, levelConfig} = this.props;
+
+        if (!isReady) return null;
 
         return (
             <View style={styles.container}>
@@ -53,7 +57,8 @@ function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
         character: state.characterReducer.character,
-        levelConfig: state.levelConfigReducer.levelConfig
+        levelConfig: state.levelConfigReducer.levelConfig,
+        paths: state.pathsReducer.paths
     };
 }
 
