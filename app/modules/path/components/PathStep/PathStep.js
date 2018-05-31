@@ -4,6 +4,7 @@ import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
 import {REWARD_TYPES, STEP_TYPES} from "../../constants";
+import RewardIcon from "../RewardIcon/RewardIcon";
 
 export default class PathStep extends React.Component {
     static propTypes = {
@@ -21,24 +22,6 @@ export default class PathStep extends React.Component {
         }
     };
 
-    renderReward = (reward, index) => {
-        if (reward.key === REWARD_TYPES.XP) {
-            return (
-                <View key={index} style={styles.stepReward}>
-                    <FontAwesome>{Icons.trophy}</FontAwesome>
-                    <Text>{reward.value}</Text>
-                </View>
-            );
-        } else if (reward.key === REWARD_TYPES.TERM) {
-            return (
-                <View key={index} style={styles.stepReward}>
-                    <FontAwesome>{Icons.book}</FontAwesome>
-                    <Text>{reward.value}</Text>
-                </View>
-            );
-        }
-    };
-
     renderStatusIcon = () => {
         const {isCompleted, isLocked} = this.props;
 
@@ -50,7 +33,7 @@ export default class PathStep extends React.Component {
     };
 
     render = () => {
-        const {step, showTopStatusBorder, showBottomStatusBorder} = this.props;
+        const {step, showTopStatusBorder, showBottomStatusBorder, isCompleted} = this.props;
         const statusTopStyles = showTopStatusBorder === true ? styles.stepStatusTop : null;
         const statusBottomStyles = showBottomStatusBorder === true ? styles.stepStatusBottom : null;
 
@@ -76,7 +59,19 @@ export default class PathStep extends React.Component {
                         <Text style={styles.stepDescription}>{step.description}</Text>
                     </View>
                     <View style={styles.stepContentFooter}>
-                        {step.rewards.map(this.renderReward)}
+                        {
+                            step.rewards.map((r, i) => {
+                                return <RewardIcon
+                                    key={i}
+                                    type={r.key}
+                                    value={r.value}
+                                    hasEarned={isCompleted}
+                                    containerStyles={{
+                                        marginRight: 10
+                                    }}
+                                />
+                            })
+                        }
                     </View>
                 </TouchableOpacity>
             </View>

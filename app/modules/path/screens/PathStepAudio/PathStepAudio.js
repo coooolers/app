@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, Text, ImageBackground, StyleSheet} from 'react-native';
+import {View, Text, ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
 import Button from "../../../../components/Button/Button";
 import {contentWidth} from "../../../../styles/theme";
-import {REWARD_TYPES} from "../../constants";
+import RewardIcon from "../../components/RewardIcon/RewardIcon";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -50,41 +50,26 @@ class PathStepAudioScreen extends React.Component {
     };
 
     renderRewards = () => {
-        const {step, path} = this.props.navigation.state.params;
+        const {step} = this.props.navigation.state.params;
         const {hasCompleted} = this.state;
-        const rewardedIcon = hasCompleted ?
-            <FontAwesome style={styles.rewardedIcon}>{Icons.checkCircleO}</FontAwesome> : null;
 
         return (
             <View style={styles.rewardsContainer}>
                 <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
                 <View style={{flexDirection: 'row'}}>
-                    {step.rewards.map((r, i) => {
-                        let icon = null;
-                        let iconStyles = null;
-                        let textStyles = styles.rewardText;
-
-                        if (r.key === REWARD_TYPES.XP) {
-                            iconStyles = styles.trophyIcon;
-                            icon = Icons.trophy;
-                        } else if (r.key === REWARD_TYPES.TERM) {
-                            iconStyles = styles.bookIcon;
-                            icon = Icons.book;
-                        }
-
-                        if (hasCompleted) {
-                            iconStyles = StyleSheet.flatten([iconStyles, {color: '#999999'}]);
-                            textStyles = StyleSheet.flatten([textStyles, {color: '#999999'}]);
-                        }
-
-                        return (
-                            <View key={i} style={styles.reward}>
-                                <FontAwesome style={iconStyles}>{icon}</FontAwesome>
-                                <Text style={textStyles}>{r.value}</Text>
-                                {rewardedIcon}
-                            </View>
-                        );
-                    })}
+                    {
+                        step.rewards.map((r, i) => {
+                            return <RewardIcon
+                                key={i}
+                                type={r.key}
+                                value={r.value}
+                                hasEarned={hasCompleted}
+                                containerStyles={{
+                                    marginRight: 10
+                                }}
+                            />
+                        })
+                    }
                 </View>
             </View>
         );
