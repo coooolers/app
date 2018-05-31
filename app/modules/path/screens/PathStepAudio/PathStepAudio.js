@@ -18,8 +18,13 @@ class PathStepAudioScreen extends React.Component {
     constructor(props) {
         super(props);
 
+        const {pathProgress, navigation} = props;
+        const {path, step} = navigation.state.params;
+
+        const stepProgress = pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid];
+
         this.state = {
-            hasCompleted: false,
+            hasCompleted: !!stepProgress,
             didEarnRewards: false
         };
     }
@@ -125,7 +130,8 @@ class PathStepAudioScreen extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.authReducer.user
+        user: state.authReducer.user,
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
     };
 }
 

@@ -10,7 +10,9 @@ export default class PathStep extends React.Component {
         showTopStatusBorder: PropTypes.bool.isRequired,
         showBottomStatusBorder: PropTypes.bool.isRequired,
         step: PropTypes.object.isRequired,
-        onSelect: PropTypes.func.isRequired
+        onSelect: PropTypes.func.isRequired,
+        isCompleted: PropTypes.bool.isRequired,
+        isLocked: PropTypes.bool.isRequired
     };
 
     renderStepTypeIcon = (step) => {
@@ -37,6 +39,16 @@ export default class PathStep extends React.Component {
         }
     };
 
+    renderStatusIcon = () => {
+        const {isCompleted, isLocked} = this.props;
+
+        if (isCompleted) {
+            return <FontAwesome style={styles.stepStatusIcon}>{Icons.check}</FontAwesome>
+        } else if (isLocked) {
+            return <FontAwesome style={styles.stepStatusIcon}>{Icons.lock}</FontAwesome>
+        }
+    };
+
     render = () => {
         const {step, showTopStatusBorder, showBottomStatusBorder} = this.props;
         const statusTopStyles = showTopStatusBorder === true ? styles.stepStatusTop : null;
@@ -48,7 +60,7 @@ export default class PathStep extends React.Component {
                     <View style={statusTopStyles}/>
                     <View style={styles.stepStatusMiddle}>
                         <View style={styles.stepStatusIndicator}>
-                            <FontAwesome style={styles.stepStatusIcon}>{Icons.lock}</FontAwesome>
+                            {this.renderStatusIcon()}
                         </View>
                         <View style={styles.stepStatusLineRight}/>
                     </View>

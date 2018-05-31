@@ -12,3 +12,15 @@ export const fetchUserPathProgress = (user) => {
         });
     };
 };
+
+export const updateUserPathProgress = (user, pathProgress) => {
+    return (dispatch) => {
+        return api.updateUserPathProgress(user, pathProgress).then(pathProgress => {
+            dispatch({
+                type: t.PATH_PROGRESS_LOADED,
+                user,
+                pathProgress
+            });
+        });
+    };
+};
