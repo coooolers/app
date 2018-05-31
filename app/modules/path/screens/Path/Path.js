@@ -4,8 +4,10 @@ import {connect} from 'react-redux';
 import styles from "./styles";
 import PathStep from "../../components/PathStep";
 import CharacterPanel from "../../components/CharacterPanel";
-import {STEP_TYPES} from "../../constants";
+import {REWARD_TYPES, STEP_TYPES} from "../../constants";
 import {updateUserPathProgress} from "../../../userPathProgress/actions";
+import {Character} from "../../../characters/models";
+import {updateCharacter} from "../../../characters/actions";
 
 class PathScreen extends React.Component {
     state = {};
@@ -18,18 +20,42 @@ class PathScreen extends React.Component {
         };
     };
 
+    componentDidMount() {
+        // setTimeout(() => {
+        //     this.onEarnedRewards({
+        //         "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
+        //         "description": "Welcome to the introduction to the beginner bodyweight path! Take a moment to listen and learn what you should expect.",
+        //         "name": "Introduction",
+        //         "rewards": [{
+        //             "key": "xp",
+        //             "value": 20
+        //         }],
+        //         "type": "audio",
+        //         "uid": "introduction"
+        //     });
+        // }, 500);
+    }
+
     onEarnedRewards = (step) => {
         const {path} = this.props.navigation.state.params;
-        const {user, pathProgress} = this.props;
+        const {user, pathProgress, character, levelConfig} = this.props;
 
         pathProgress[path.uid] = pathProgress[path.uid] || {};
         pathProgress[path.uid][step.uid] = {
             completed: new Date().toISOString()
         };
 
+        const xpReward = step.rewards.find(r => r.key === REWARD_TYPES.XP);
+
+        if (xpReward) {
+            const characterWithNewXp = Character.addXp(character, xpReward.value, levelConfig);
+            this.props.dispatch(updateCharacter(characterWithNewXp)).then(() => {
+                this.setState({...this.state});
+            });
+        }
+
         this.props.dispatch(updateUserPathProgress(user, pathProgress)).then(() => {
-            this.setState({...this.state}); // rerender for completion events to occur
-            console.log("earned rewards", step);
+            this.setState({...this.state});
         });
     };
 
@@ -68,8 +94,6 @@ class PathScreen extends React.Component {
     render() {
         const {character, levelConfig, navigation} = this.props;
         const {path} = navigation.state.params;
-
-        console.log(this.props.pathProgress);
 
         return (
             <View style={styles.container}>
