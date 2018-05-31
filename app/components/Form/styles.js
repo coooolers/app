@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
 
     errorText: {
-        color: color.red,
+        color: color.brandDanger,
         width: (windowWidth - 45),
         marginTop: 20,
     },

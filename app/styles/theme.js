@@ -5,16 +5,14 @@ const color = {
     brandPrimary: "#E8612F",
     brandSuccess: "#1b998b",
     brandInfo: "#39a0ed",
+    brandDanger: 'red',
     brandLight: "#fcfcfc",
     brandDark: "#211a1e",
     black: "#3B3031",
     light_black: "#414141",
-    main: "rgb(99,139,250)",
     white: "#ffffff",
     light_grey: "#eaeaea",
-    grey: "#ccc",
-    red: "red",
-    underlayColor: "#ddd"
+    grey: "#ccc"
 };
 
 const fontSize = {

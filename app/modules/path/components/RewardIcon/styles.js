@@ -15,13 +15,13 @@ const styles = StyleSheet.create({
     },
 
     termIcon: {
-        color: '#39a0ed',
+        color: color.brandInfo,
         fontSize: 25,
         marginRight: 5
     },
 
     earnedIcon: {
-        color: '#1b998b',
+        color: color.brandSuccess,
         fontSize: 20,
         position: 'absolute',
         left: -5,

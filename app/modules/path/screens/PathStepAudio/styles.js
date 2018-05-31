@@ -62,36 +62,7 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-
-    reward: {
-        marginLeft: 10,
-        marginRight: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    trophyIcon: {
-        color: color.brandPrimary,
-        fontSize: 25,
-        marginRight: 5
-    },
-
-    bookIcon: {
-        color: '#39a0ed',
-        fontSize: 25,
-        marginRight: 5
-    },
-
-    rewardedIcon: {
-        color: '#1b998b',
-        fontSize: 20,
-        position: 'absolute',
-        left: -5,
-        bottom: -5
-    }
+        justifyContent: 'space-between'},
 });
 
 export default styles;
