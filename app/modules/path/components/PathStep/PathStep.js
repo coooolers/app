@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
-
 import styles from "./styles";
+import {REWARD_TYPES, STEP_TYPES} from "../../constants";
 
 export default class PathStep extends React.Component {
     static propTypes = {
@@ -14,20 +14,20 @@ export default class PathStep extends React.Component {
     };
 
     renderStepTypeIcon = (step) => {
-        if (step.type === "audio") {
+        if (step.type === STEP_TYPES.AUDIO) {
             return <FontAwesome style={styles.stepIcon}>{Icons.headphones}</FontAwesome>;
         }
     };
 
     renderReward = (reward, index) => {
-        if (reward.key === "xp") {
+        if (reward.key === REWARD_TYPES.XP) {
             return (
                 <View key={index} style={styles.stepReward}>
                     <FontAwesome>{Icons.trophy}</FontAwesome>
                     <Text>{reward.value}</Text>
                 </View>
             );
-        } else if (reward.key === "term") {
+        } else if (reward.key === REWARD_TYPES.TERM) {
             return (
                 <View key={index} style={styles.stepReward}>
                     <FontAwesome>{Icons.book}</FontAwesome>
@@ -55,7 +55,7 @@ export default class PathStep extends React.Component {
                     <View style={statusBottomStyles}/>
                 </View>
                 <TouchableOpacity style={styles.stepContentWrapper}
-                    onPress={() => this.props.onSelect(step)}>
+                                  onPress={() => this.props.onSelect(step)}>
                     <View style={styles.stepContentHeader}>
                         {this.renderStepTypeIcon(step)}
                         <Text style={styles.stepName}>{step.name}</Text>

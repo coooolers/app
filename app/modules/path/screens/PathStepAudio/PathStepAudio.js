@@ -2,12 +2,11 @@ import React from 'react';
 import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-
-
 import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
 import Button from "../../../../components/Button/Button";
 import {contentWidth} from "../../../../styles/theme";
+import {REWARD_TYPES} from "../../constants";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -60,10 +59,10 @@ class PathStepAudioScreen extends React.Component {
                         let iconStyles = null;
                         let textStyles = styles.rewardText;
 
-                        if (r.key === "xp") {
+                        if (r.key === REWARD_TYPES.XP) {
                             iconStyles = styles.trophyIcon;
                             icon = Icons.trophy;
-                        } else if (r.key === "term") {
+                        } else if (r.key === REWARD_TYPES.TERM) {
                             iconStyles = styles.bookIcon;
                             icon = Icons.book;
                         }

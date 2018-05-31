@@ -25,6 +25,7 @@ import PathScreen from "../../modules/path/screens/Path";
 import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
 
 import MainInitScreen from "./MainInitScreen";
+import {fetchUserPathProgress} from "../../modules/userPathProgress/actions";
 
 function getTabIconStyle(tintColor) {
     return StyleSheet.flatten([tabIconStyle, {color: tintColor}]);
@@ -102,7 +103,10 @@ class MainRouter extends React.Component {
     };
 
     componentWillMount() {
-        this.props.dispatch(fetchMyCharacter(this.props.user)).then(() => {
+        Promise.all([
+            this.props.dispatch(fetchMyCharacter(this.props.user)),
+            this.props.dispatch(fetchUserPathProgress(this.props.user))
+        ]).then(() => {
             this.setState({isReady: true});
         });
     }

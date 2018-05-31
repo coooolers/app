@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import styles from "./styles";
 import PathStep from "../../components/PathStep/PathStep";
 import CharacterPanel from "../../components/CharacterPanel/CharacterPanel";
+import {STEP_TYPES} from "../../constants";
 
 class PathScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -20,7 +21,7 @@ class PathScreen extends React.Component {
 
     goToStep = (step) => {
         const {path} = this.props.navigation.state.params;
-        if (step.type === "audio") {
+        if (step.type === STEP_TYPES.AUDIO) {
             this.props.navigation.push("PathStepAudio", {
                 step,
                 path,
@@ -61,7 +62,8 @@ function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
         character: state.characterReducer.character,
-        levelConfig: state.levelConfigReducer.levelConfig
+        levelConfig: state.levelConfigReducer.levelConfig,
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
     };
 }
 

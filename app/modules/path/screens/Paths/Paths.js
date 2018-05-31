@@ -58,7 +58,8 @@ function mapStateToProps(state) {
         user: state.authReducer.user,
         character: state.characterReducer.character,
         levelConfig: state.levelConfigReducer.levelConfig,
-        paths: state.pathsReducer.paths
+        paths: state.pathsReducer.paths,
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
     };
 }
 
