@@ -87,9 +87,10 @@ const styles = StyleSheet.create({
 
     rewardedIcon: {
         color: '#1b998b',
-        fontSize: 70,
+        fontSize: 20,
         position: 'absolute',
-        top: -10
+        left: -5,
+        bottom: -5
     }
 });
 

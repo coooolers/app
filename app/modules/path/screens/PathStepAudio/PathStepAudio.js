@@ -40,7 +40,8 @@ class PathStepAudioScreen extends React.Component {
     onAudioComplete = () => {
         this.setState({
             hasCompleted: true,
-            didEarnRewards: this.state.hasCompleted === false // offer rewards the first time a user completes this
+            // offer rewards the first time a user completes this
+            didEarnRewards: this.state.hasCompleted === false
         });
     };
 
@@ -76,10 +77,10 @@ class PathStepAudioScreen extends React.Component {
                             <View key={i} style={styles.reward}>
                                 <FontAwesome style={iconStyles}>{icon}</FontAwesome>
                                 <Text style={textStyles}>{r.value}</Text>
+                                {rewardedIcon}
                             </View>
                         );
                     })}
-                    {rewardedIcon}
                 </View>
             </View>
         );
