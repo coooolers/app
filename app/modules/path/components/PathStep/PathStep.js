@@ -1,10 +1,11 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
 import {REWARD_TYPES, STEP_TYPES} from "../../constants";
 import RewardIcon from "../RewardIcon/RewardIcon";
+import {color} from "../../../../styles/theme";
 
 export default class PathStep extends React.Component {
     static propTypes = {
@@ -18,47 +19,61 @@ export default class PathStep extends React.Component {
 
     renderStepTypeIcon = (step) => {
         if (step.type === STEP_TYPES.AUDIO) {
-            return <FontAwesome style={styles.stepIcon}>{Icons.headphones}</FontAwesome>;
+            return <FontAwesome style={styles.icon}>{Icons.headphones}</FontAwesome>;
         }
     };
 
     renderStatusIcon = () => {
-        const {isCompleted, isLocked} = this.props;
+        const {isCompleted} = this.props;
 
         if (isCompleted) {
-            return <FontAwesome style={styles.stepStatusIcon}>{Icons.check}</FontAwesome>
-        } else if (isLocked) {
-            return <FontAwesome style={styles.stepStatusIcon}>{Icons.lock}</FontAwesome>
+            return <FontAwesome style={
+                StyleSheet.flatten([styles.statusIcon, {color: color.white}])
+            }>{Icons.check}</FontAwesome>
+        } else {
+            return <FontAwesome style={styles.statusIcon}>{Icons.lock}</FontAwesome>;
         }
     };
 
-    render = () => {
-        const {step, showTopStatusBorder, showBottomStatusBorder, isCompleted} = this.props;
-        const statusTopStyles = showTopStatusBorder === true ? styles.stepStatusTop : null;
-        const statusBottomStyles = showBottomStatusBorder === true ? styles.stepStatusBottom : null;
+    renderStatus = () => {
+        const {step, showTopStatusBorder, showBottomStatusBorder, isCompleted, isLocked} = this.props;
+        const statusTopStyles = showTopStatusBorder ? styles.statusTop : null;
+        const statusBottomStyles = showBottomStatusBorder ? styles.statusBottom : null;
+        const statusIndicatorStyles = isCompleted ?
+            StyleSheet.flatten([styles.statusIndicator, {backgroundColor: color.brandSuccess}]) :
+            styles.statusIndicator;
 
         return (
-            <View key={step.uuid} style={styles.stepWrapper}>
-                <View style={styles.stepStatus}>
-                    <View style={statusTopStyles}/>
-                    <View style={styles.stepStatusMiddle}>
-                        <View style={styles.stepStatusIndicator}>
-                            {this.renderStatusIcon()}
-                        </View>
-                        <View style={styles.stepStatusLineRight}/>
-                    </View>
-                    <View style={statusBottomStyles}/>
+            <View style={styles.status}>
+                <View style={statusTopStyles}/>
+                <View style={styles.statusMiddle}>
+                    <View style={statusIndicatorStyles}>{this.renderStatusIcon()}</View>
+                    <View style={styles.statusLineRight}/>
                 </View>
-                <TouchableOpacity style={styles.stepContentWrapper}
+                <View style={statusBottomStyles}/>
+            </View>
+        );
+    };
+
+    render = () => {
+        const {step, isCompleted} = this.props;
+        const contentWrapperStyles = isCompleted ?
+            StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandSuccess}]) :
+            StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandDark}]);
+
+        return (
+            <View key={step.uuid} style={styles.container}>
+                {this.renderStatus()}
+                <TouchableOpacity style={contentWrapperStyles}
                                   onPress={() => this.props.onSelect(step)}>
-                    <View style={styles.stepContentHeader}>
+                    <View style={styles.contentHeader}>
                         {this.renderStepTypeIcon(step)}
-                        <Text style={styles.stepName}>{step.name}</Text>
+                        <Text style={styles.name}>{step.name}</Text>
                     </View>
-                    <View style={styles.stepContentBody}>
-                        <Text style={styles.stepDescription}>{step.description}</Text>
+                    <View style={styles.contentBody}>
+                        <Text style={styles.description}>{step.description}</Text>
                     </View>
-                    <View style={styles.stepContentFooter}>
+                    <View style={styles.contentFooter}>
                         {
                             step.rewards.map((r, i) => {
                                 return <RewardIcon

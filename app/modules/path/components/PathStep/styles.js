@@ -7,27 +7,23 @@ const defaultBorderWidth = 1;
 const statusVRuleOffset = round(statusCircleSize / 2);
 const statusHRuleOffset = round(statusCircleSize / 2);
 const defaultPadding = 6;
-const defaultColor = color.black;
+const defaultColor = color.brandDark;
 
 const styles = StyleSheet.create({
     container: {
-        padding: contentPadding,
-        paddingTop: contentPadding * 3
-    },
-
-    step: {},
-
-    stepWrapper: {
         flexDirection: "row",
         alignItems: 'flex-start'
     },
 
-    stepStatus: {
+    /*
+     * STATUS
+     */
+    status: {
         width: statusCircleSize + 20,
         height: '100%',
     },
 
-    stepStatusIndicator: {
+    statusIndicator: {
         width: statusCircleSize,
         height: statusCircleSize,
         borderRadius: statusCircleSize / PixelRatio.get(),
@@ -37,66 +33,59 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    stepStatusIcon: {
-        fontSize: statusCircleSize - 5
+    statusIcon: {
+        fontSize: statusCircleSize - 10
     },
 
-    stepStatusTop: {
+    statusTop: {
         borderLeftColor: defaultColor,
         borderLeftWidth: defaultBorderWidth,
         height: 15,
         marginLeft: statusVRuleOffset
     },
 
-    stepStatusBottom: {
+    statusBottom: {
         borderLeftColor: defaultColor,
         borderLeftWidth: 1,
         flex: 1,
         marginLeft: statusVRuleOffset
     },
 
-    stepReward: {
-        flexDirection: 'row',
-        marginRight: 10
-    },
-
-    stepIcon: {
-        fontSize: fontSize.regular,
-        marginRight: 5,
-        marginTop: 5
-    },
-
-    stepStatusMiddle: {
+    statusMiddle: {
         flexDirection: 'row'
     },
 
-    stepStatusLineRight: {
+    statusLineRight: {
         borderTopColor: defaultColor,
         borderTopWidth: defaultBorderWidth,
         marginTop: statusHRuleOffset,
         flex: 1,
     },
 
-    stepContentWrapper: {
+    /*
+     * CONTENT
+     */
+    contentContainer: {
         flex: 1,
+        backgroundColor: color.brandLight,
         borderColor: defaultColor,
         borderWidth: defaultBorderWidth,
-        borderRadius: 5,
+        borderTopWidth: 8,
         marginBottom: 30
     },
 
-    stepContentHeader: {
+    contentHeader: {
         flexDirection: 'row',
         paddingTop: defaultPadding,
         paddingLeft: defaultPadding,
         paddingRight: defaultPadding,
     },
 
-    stepContentBody: {
+    contentBody: {
         padding: defaultPadding,
     },
 
-    stepContentFooter: {
+    contentFooter: {
         padding: defaultPadding,
         borderTopColor: defaultColor,
         borderTopWidth: 1,
@@ -105,11 +94,17 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
 
-    stepName: {
+    icon: {
+        fontSize: fontSize.regular,
+        marginRight: 5,
+        marginTop: 5
+    },
+
+    name: {
         fontSize: fontSize.large - 2
     },
 
-    stepDescription: {
+    description: {
         fontSize: fontSize.small,
         marginTop: 5,
         marginBottom: 5
