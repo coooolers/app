@@ -8,6 +8,7 @@ import {REWARD_TYPES, STEP_TYPES} from "../../constants";
 import {updateUserPathProgress} from "../../../userPathProgress/actions";
 import {Character} from "../../../characters/models";
 import {updateCharacter} from "../../../characters/actions";
+import _ from 'lodash';
 
 class PathScreen extends React.Component {
     state = {};
@@ -45,7 +46,7 @@ class PathScreen extends React.Component {
             completed: new Date().toISOString()
         };
 
-        const xpReward = step.rewards.find(r => r.key === REWARD_TYPES.XP);
+        const xpReward = _(step.rewards).reject(_.isNil).find({key: REWARD_TYPES.XP});
 
         if (xpReward) {
             const characterWithNewXp = Character.addXp(character, xpReward.value, levelConfig);
