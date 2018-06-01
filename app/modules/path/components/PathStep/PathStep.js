@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
-import {REWARD_TYPES, STEP_TYPES} from "../../constants";
+import {STEP_TYPES} from "../../constants";
 import RewardIcon from "../RewardIcon/RewardIcon";
 import {color} from "../../../../styles/theme";
 
@@ -24,19 +24,21 @@ export default class PathStep extends React.Component {
     };
 
     renderStatusIcon = () => {
-        const {isCompleted} = this.props;
+        const {isCompleted, isLocked} = this.props;
 
         if (isCompleted) {
             return <FontAwesome style={
                 StyleSheet.flatten([styles.statusIcon, {color: color.white}])
             }>{Icons.check}</FontAwesome>
-        } else {
+        } else if (isLocked) {
             return <FontAwesome style={styles.statusIcon}>{Icons.lock}</FontAwesome>;
+        } else {
+            return null;
         }
     };
 
     renderStatus = () => {
-        const {step, showTopStatusBorder, showBottomStatusBorder, isCompleted, isLocked} = this.props;
+        const {step, showTopStatusBorder, showBottomStatusBorder, isCompleted} = this.props;
         const statusTopStyles = showTopStatusBorder ? styles.statusTop : null;
         const statusBottomStyles = showBottomStatusBorder ? styles.statusBottom : null;
         const statusIndicatorStyles = isCompleted ?
@@ -56,10 +58,17 @@ export default class PathStep extends React.Component {
     };
 
     render = () => {
-        const {step, isCompleted} = this.props;
-        const contentWrapperStyles = isCompleted ?
-            StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandSuccess}]) :
-            StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandDark}]);
+        const {step, isCompleted, isLocked} = this.props;
+        let contentWrapperStyles = null;
+
+        if (isCompleted) {
+            contentWrapperStyles = StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandSuccess}]);
+        } else if (isLocked) {
+            contentWrapperStyles = StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandDark}]);
+        } else {
+            contentWrapperStyles = StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandPrimary}]);
+        }
+
 
         return (
             <View key={step.uuid} style={styles.container}>

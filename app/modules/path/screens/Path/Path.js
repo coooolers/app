@@ -59,14 +59,31 @@ class PathScreen extends React.Component {
         });
     };
 
-    goToStep = (step) => {
+    goToStep = (step, index) => {
         const {path} = this.props.navigation.state.params;
+
+        if (this.isStepLocked(step,index)) return;
+
         if (step.type === STEP_TYPES.AUDIO) {
             this.props.navigation.push("PathStepAudio", {
                 step,
                 path,
                 onEarnedRewards: this.onEarnedRewards.bind(this)
             });
+        }
+    };
+
+    isStepLocked = (step, index) => {
+        const {navigation, pathProgress} = this.props;
+        const {path} = navigation.state.params;
+        const {stepsOrder} = path;
+        const previousStepUid = stepsOrder[index - 1];
+
+        if (previousStepUid) {
+            const previousStepProgress = pathProgress && pathProgress[path.uid] && pathProgress[path.uid][previousStepUid];
+            return !previousStepProgress;
+        } else {
+            return false;
         }
     };
 
@@ -84,9 +101,9 @@ class PathScreen extends React.Component {
                 step={step}
                 showTopStatusBorder={index > 1}
                 showBottomStatusBorder={index < path.stepsOrder.length - 1}
-                onSelect={this.goToStep}
+                onSelect={(step) => this.goToStep(step, index)}
                 isCompleted={isCompleted}
-                isLocked={false}
+                isLocked={this.isStepLocked(step, index)}
             />
         );
     };
