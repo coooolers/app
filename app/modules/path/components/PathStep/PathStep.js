@@ -20,6 +20,8 @@ export default class PathStep extends React.Component {
     renderStepTypeIcon = (step) => {
         if (step.type === STEP_TYPES.AUDIO) {
             return <FontAwesome style={styles.icon}>{Icons.headphones}</FontAwesome>;
+        } else if (step.type === STEP_TYPES.WORKOUT) {
+            return <FontAwesome style={styles.icon}>{Icons.handRockO}</FontAwesome>;
         }
     };
 

@@ -1,5 +1,6 @@
 export const STEP_TYPES = {
-    AUDIO: 'audio'
+    AUDIO: 'audio',
+    WORKOUT: 'workout'
 };
 
 export const REWARD_TYPES = {
