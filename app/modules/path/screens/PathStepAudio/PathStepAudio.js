@@ -10,8 +10,10 @@ import RewardIcon from "../../components/RewardIcon/RewardIcon";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
+        const {step} = navigation.state.params;
+
         return {
-            header: null
+            headerTitle: step.name
         }
     };
 

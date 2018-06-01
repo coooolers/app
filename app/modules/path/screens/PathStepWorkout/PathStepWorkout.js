@@ -8,11 +8,13 @@ import {contentWidth} from "../../../../styles/theme";
 import RewardIcon from "../../components/RewardIcon/RewardIcon";
 
 class PathStepWorkoutScreen extends React.Component {
-    // static navigationOptions = ({navigation}) => {
-    //     return {
-    //         header: null
-    //     }
-    // };
+    static navigationOptions = ({navigation}) => {
+        const {step} = navigation.state.params;
+
+        return {
+            headerTitle: step.name
+        }
+    };
 
     constructor(props) {
         super(props);
