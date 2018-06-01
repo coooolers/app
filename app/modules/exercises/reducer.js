@@ -1,13 +1,16 @@
 import * as t from './actionTypes';
 
 let initialState = {
-    exercises: []
+    byId: [],
+    allIds: []
 };
 
 const workoutsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case t.WORKOUTS_LOADED:
-            return Object.assign({}, state, {workouts: action.workouts});
+        case t.EXERCISES_LOADED:
+            state.byId = action.exercises;
+            state.allIds = Object.keys(action.exercises);
+            return Object.assign({}, state);
         default:
             return state;
     }
