@@ -30,3 +30,6 @@ export const secondsToMMSS = (seconds) => {
     }
     return minutes + ':' + seconds;
 };
+
+export const noop = () => {
+};
