@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, View, Button} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
 import PathStep from "../../components/PathStep";
@@ -17,6 +17,10 @@ class PathScreen extends React.Component {
         const {path} = navigation.state.params;
 
         return {
+            headerLeft: <Button
+                onPress={() => navigation.navigate('Paths')}
+                title="Paths"
+            />,
             title: path.name
         };
     };
@@ -67,6 +71,12 @@ class PathScreen extends React.Component {
 
         if (step.type === STEP_TYPES.AUDIO) {
             this.props.navigation.push("PathStepAudio", {
+                step,
+                path,
+                onEarnedRewards: this.onEarnedRewards.bind(this)
+            });
+        } else if (step.type === STEP_TYPES.WORKOUT) {
+            this.props.navigation.push("PathStepWorkout", {
                 step,
                 path,
                 onEarnedRewards: this.onEarnedRewards.bind(this)

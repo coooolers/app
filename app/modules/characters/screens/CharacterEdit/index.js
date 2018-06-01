@@ -1,3 +1,2 @@
-import Home from "./CharacterEdit"
-
-export default Home;
+import CharacterEdit from "./CharacterEdit";
+export default CharacterEdit;

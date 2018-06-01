@@ -1,37 +1,49 @@
 import React from 'react';
-import {View} from 'react-native';
-import {FormLabel, FormInput, Button} from 'react-native-elements';
+import {View, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
-
 import styles from "./styles";
 import {updateCharacter} from "../../actions";
 import CharacterImageScrollView from "../../components/CharacterImageScrollView";
+import FormLabel from "../../../../components/FormLabel/FormLabel";
+import FormInput from "../../../../components/FormInput/FormInput";
+import {noop} from "../../../../components/Util";
 
 class CharacterEdit extends React.Component {
     static navigationOptions = ({navigation}) => {
+        const params = navigation.state.params || {cancel: noop, save: noop};
+
         return {
-            title: "Character"
+            headerTitle: "Character",
+            headerLeft: <RNButton onPress={params.cancel} title="Cancel"/>,
+            headerRight: <RNButton onPress={params.save} title="Done"/>
         }
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            isFetching: false,
             character: props.character
         };
     }
 
+    componentWillMount() {
+        this.props.navigation.setParams({
+            cancel: this.goToHome.bind(this),
+            save: this.onSubmit.bind(this)
+        });
+    }
+
+    goToHome = () => {
+        this.props.navigation.navigate('Home');
+    };
+
     onSubmit = () => {
         const {character} = this.state;
-        this.setState({isFetching: true});
 
         this.props.dispatch(updateCharacter(character)).then(() => {
-            this.setState({isFetching: false});
-            this.props.navigation.goBack();
+            this.goToHome();
         }, () => {
-            this.setState({isFetching: false});
             this.dropdown.alertWithType('error', 'Oops! Something got messed up', "");
         });
     };
@@ -48,7 +60,7 @@ class CharacterEdit extends React.Component {
     };
 
     render() {
-        const {character, isFetching} = this.state;
+        const {character} = this.state;
 
         return (
             <View style={styles.container}>
@@ -66,15 +78,6 @@ class CharacterEdit extends React.Component {
                 <FormLabel>Image</FormLabel>
                 <CharacterImageScrollView character={character}
                                           onSelect={this.onCharacterImagePress}/>
-                <Button
-                    raised
-                    title="SAVE"
-                    disabled={isFetching}
-                    borderRadius={4}
-                    containerViewStyle={styles.containerView}
-                    buttonStyle={styles.button}
-                    textStyle={styles.buttonText}
-                    onPress={this.onSubmit}/>
             </View>
         );
     }

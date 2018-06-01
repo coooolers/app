@@ -1,7 +1,8 @@
 import {StyleSheet} from 'react-native';
 import {theme} from "../../index"
+import {contentPadding} from "../../../../styles/theme";
 
-const {padding, color, fontSize, fontFamily, windowWidth, normalize} = theme;
+const {color, fontSize, fontFamily, normalize} = theme;
 
 const styles = StyleSheet.create({
     imageBackground: {
@@ -9,11 +10,10 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     container: {
-        flex: 1
-    },
-    containerView: {
-        marginVertical: padding * 3,
-        width: windowWidth - 40
+        flex: 1,
+        padding: contentPadding,
+        paddingTop: contentPadding * 3,
+        backgroundColor: color.white
     },
     button: {
         backgroundColor: color.brandPrimary,

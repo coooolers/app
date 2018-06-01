@@ -23,6 +23,7 @@ import ProfileScreen from "../../modules/profile/screens/Profile";
 import PathsScreen from "../../modules/path/screens/Paths";
 import PathScreen from "../../modules/path/screens/Path";
 import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
+import PathStepWorkoutScreen from "../../modules/path/screens/PathStepWorkout";
 
 import MainInitScreen from "./MainInitScreen";
 import {fetchUserPathProgress} from "../../modules/userPathProgress/actions";
@@ -30,6 +31,16 @@ import {fetchUserPathProgress} from "../../modules/userPathProgress/actions";
 function getTabIconStyle(tintColor) {
     return StyleSheet.flatten([tabIconStyle, {color: tintColor}]);
 }
+
+
+const PathStack = StackNavigator({
+    PathStepAudio: {screen: PathStepAudioScreen},
+    PathStepWorkout: {screen: PathStepWorkoutScreen},
+    Path: {screen: PathScreen},
+}, {
+    initialRouteName: 'Path'
+});
+
 
 const MainRouterStack = StackNavigator({
     Initial: {
@@ -43,10 +54,18 @@ const MainRouterStack = StackNavigator({
     }, {
         initialRouteName: 'OnboardingWelcome',
     }),
+
+    Path: PathStack,
+
+    CharacterEdit: StackNavigator({
+        CharacterEdit: {screen: CharacterEditScreen}
+    }, {
+        initialRouteName: 'CharacterEdit'
+    }),
+
     Main: TabNavigator({
         Home: StackNavigator({
-            Home: {screen: HomeScreen,},
-            CharacterEdit: {screen: CharacterEditScreen}
+            Home: {screen: HomeScreen}
         }, {
             initialRouteName: 'Home',
             navigationOptions: ({navigation}) => ({
@@ -54,17 +73,13 @@ const MainRouterStack = StackNavigator({
                     style={getTabIconStyle(tintColor)}>{Icons.home}</FontAwesome>
             })
         }),
-        Paths: StackNavigator({
-            Paths: {screen: PathsScreen},
-            Path: {screen: PathScreen},
-            PathStepAudio: {screen: PathStepAudioScreen}
-        }, {
-            initialRouteName: 'Paths',
+        Paths: {
+            screen: PathsScreen,
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({tintColor}) => <FontAwesome
                     style={getTabIconStyle(tintColor)}>{Icons.graduationCap}</FontAwesome>
             })
-        }),
+        },
         Profile: StackNavigator({
             Profile: {screen: ProfileScreen}
         }, {
@@ -81,13 +96,6 @@ const MainRouterStack = StackNavigator({
             activeTintColor: color.brandPrimary,
             inactiveTintColor: color.grey
         },
-        navigationOptions: ({navigation}) => ({
-            tabBarOnPress: ({previousScene, scene, jumpToIndex}) => {
-                // don't leave views hanging around in memory
-                navigation.popToTop();
-                jumpToIndex(scene.index);
-            }
-        }),
         animationEnabled: true,
         swipeEnabled: false,
         initialRouteName: 'Paths',

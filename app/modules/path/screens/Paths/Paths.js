@@ -23,7 +23,7 @@ class PathsScreen extends React.Component {
     }
 
     goToPath = (path) => {
-        this.props.navigation.push("Path", {path});
+        this.props.navigation.navigate("Path", {path});
     };
 
     render() {
