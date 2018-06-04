@@ -10,6 +10,7 @@ import {fetchMyCharacter, updateCharacter} from "../../../characters/actions";
 import {createWorkoutHistory} from "../../../workouts/actions";
 import {Character} from "../../../characters/models";
 import Reporting from "../../../reporting";
+import LevelConfig from "../../../levelConfig/utils/LevelConfig";
 
 class WorkoutReward extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -32,7 +33,7 @@ class WorkoutReward extends React.Component {
     }
 
     componentWillMount() {
-        const {user, levelConfig, character} = this.props;
+        const {user, character} = this.props;
         const {workout} = this.props.navigation.state.params;
 
         Reporting.track("workout__end", {
@@ -41,7 +42,7 @@ class WorkoutReward extends React.Component {
             gradePercent: workout.gradePercent,
         });
 
-        const characterWithNewXp = Character.addXp(character, workout.xpEarned, levelConfig);
+        const characterWithNewXp = Character.addXp(character, workout.xpEarned);
 
         this.props.dispatch(updateCharacter(characterWithNewXp));
         this.props.dispatch(createWorkoutHistory(user, workout));
@@ -58,8 +59,7 @@ class WorkoutReward extends React.Component {
             return null;
         }
 
-        const {levelConfig} = this.props;
-        const xpProgress = Character.percentOfLevelComplete(character, levelConfig);
+        const xpProgress = Character.percentOfLevelComplete(character);
 
         return (
             <ScrollView style={styles.container}>
@@ -93,7 +93,7 @@ class WorkoutReward extends React.Component {
                         />
                         <View style={styles.xpTextContainer}>
                             <Text style={styles.level}>{character.level}</Text>
-                            <Text>{character.xp} / {levelConfig[character.level].xpNeeded}</Text>
+                            <Text>{character.xp} / {LevelConfig.getForLevel(character.level).xpNeeded}</Text>
                         </View>
                     </View>
                 </View>
@@ -105,8 +105,7 @@ class WorkoutReward extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        character: state.characterReducer.character,
-        levelConfig: state.levelConfigReducer.levelConfig
+        character: state.characterReducer.character
     }
 }
 

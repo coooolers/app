@@ -1,0 +1,41 @@
+export default [null, {
+    "xpNeeded": 200
+}, {
+    "xpNeeded": 300
+}, {
+    "xpNeeded": 400
+}, {
+    "xpNeeded": 550
+}, {
+    "xpNeeded": 750
+}, {
+    "xpNeeded": 1000
+}, {
+    "xpNeeded": 1250
+}, {
+    "xpNeeded": 1500
+}, {
+    "xpNeeded": 1750
+}, {
+    "xpNeeded": 2000
+}, {
+    "xpNeeded": 2500
+}, {
+    "xpNeeded": 3000
+}, {
+    "xpNeeded": 3750
+}, {
+    "xpNeeded": 5000
+}, {
+    "xpNeeded": 6000
+}, {
+    "xpNeeded": 7500
+}, {
+    "xpNeeded": 9500
+}, {
+    "xpNeeded": 12000
+}, {
+    "xpNeeded": 14000
+}, {
+    "xpNeeded": 20000
+}];

@@ -6,6 +6,7 @@ import {REWARD_TYPES} from "../../constants";
 import PropTypes from "prop-types";
 import RewardIcon from "../RewardIcon/RewardIcon";
 import _ from 'lodash';
+import {getRewardsForPath} from "../../../../components/Util";
 
 export default class PathItem extends Component {
     static propTypes = {
@@ -27,12 +28,10 @@ export default class PathItem extends Component {
     };
 
     renderRewards = () => {
-        const {path} = this.props;
-        const steps = _(path["stepsOrder"]).compact().map(s => path["steps"][s]).value();
-        const rewards = _(steps).map(s => s["rewards"]).flatten().compact().value();
-        const rewardsByKey = _(rewards).groupBy("key").value();
-        let content = [];
+        const rewardsByKey = getRewardsForPath(this.props.path);
         const defaultProps = {hasEarned: false, size: 16, containerStyles: {marginLeft: 10}};
+        let content = [];
+
 
         if (rewardsByKey[REWARD_TYPES.XP]) {
             content.push(

@@ -13,6 +13,7 @@ class PathsScreen extends React.Component {
 
     static navigationOptions = ({navigation}) => {
         return {
+            headerLeft: null,
             title: "Paths"
         }
     };
@@ -29,7 +30,7 @@ class PathsScreen extends React.Component {
 
     render() {
         const {isReady} = this.state;
-        const {paths, character, levelConfig, pathProgress} = this.props;
+        const {paths, character, pathProgress} = this.props;
 
         if (!isReady) return null;
 
@@ -48,7 +49,7 @@ class PathsScreen extends React.Component {
                         })
                     }
                 </ScrollView>
-                <CharacterPanel character={character} levelConfig={levelConfig}/>
+                <CharacterPanel character={character}/>
             </View>
         );
     }
@@ -58,7 +59,6 @@ function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
         character: state.characterReducer.character,
-        levelConfig: state.levelConfigReducer.levelConfig,
         paths: state.pathsReducer.paths,
         pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
     };

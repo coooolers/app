@@ -19,6 +19,9 @@ import CharacterEditScreen from "../../modules/characters/screens/CharacterEdit"
 // Profile
 import ProfileScreen from "../../modules/profile/screens/Profile";
 
+// Exercise
+import ExerciseInfo from "../../modules/exercises/screens/ExerciseInfo";
+
 // Paths
 import PathsScreen from "../../modules/path/screens/Paths";
 import PathScreen from "../../modules/path/screens/Path";
@@ -36,6 +39,7 @@ function getTabIconStyle(tintColor) {
 const PathStack = StackNavigator({
     PathStepAudio: {screen: PathStepAudioScreen},
     PathStepWorkout: {screen: PathStepWorkoutScreen},
+    ExerciseInfo: {screen: ExerciseInfo},
     Path: {screen: PathScreen},
 }, {
     initialRouteName: 'Path'
@@ -73,13 +77,15 @@ const MainRouterStack = StackNavigator({
                     style={getTabIconStyle(tintColor)}>{Icons.home}</FontAwesome>
             })
         }),
-        Paths: {
-            screen: PathsScreen,
+        Paths: StackNavigator({
+            Paths: {screen: PathsScreen}
+        }, {
+            initialRouteName: 'Paths',
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({tintColor}) => <FontAwesome
                     style={getTabIconStyle(tintColor)}>{Icons.graduationCap}</FontAwesome>
             })
-        },
+        }),
         Profile: StackNavigator({
             Profile: {screen: ProfileScreen}
         }, {

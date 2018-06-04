@@ -2,30 +2,29 @@ import React from 'react';
 import {ScrollView, View, Button} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
-import PathStep from "../../components/PathStep";
+import PathStepItem from "../../components/PathStepItem";
 import CharacterPanel from "../../components/CharacterPanel";
 import {REWARD_TYPES, STEP_TYPES} from "../../constants";
 import {updateUserPathProgress} from "../../../userPathProgress/actions";
 import {Character} from "../../../characters/models";
 import {updateCharacter} from "../../../characters/actions";
 import _ from 'lodash';
+import {goToMainTabRoute} from "../../../../components/Util";
 
 class PathScreen extends React.Component {
     state = {};
 
     static navigationOptions = ({navigation}) => {
-        const {path} = navigation.state.params;
+        const {path} = navigation.state.params || {};
 
         return {
-            headerLeft: <Button
-                onPress={() => navigation.navigate('Paths')}
-                title="Paths"
-            />,
+            headerLeft: <Button onPress={() => goToMainTabRoute(navigation, "Paths")} title="Paths"/>,
             title: path.name
         };
     };
 
     componentDidMount() {
+
         // setTimeout(() => {
         //     this.onEarnedRewards({
         //         "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
@@ -43,17 +42,17 @@ class PathScreen extends React.Component {
 
     onEarnedRewards = (step) => {
         const {path} = this.props.navigation.state.params;
-        const {user, pathProgress, character, levelConfig} = this.props;
+        const {user, pathProgress, character} = this.props;
 
         pathProgress[path.uid] = pathProgress[path.uid] || {};
         pathProgress[path.uid][step.uid] = {
             completed: new Date().toISOString()
         };
 
-        const xpReward = _(step.rewards).reject(_.isNil).find({key: REWARD_TYPES.XP});
+        const xpReward = _(step.rewards).compact().find({key: REWARD_TYPES.XP});
 
         if (xpReward) {
-            const characterWithNewXp = Character.addXp(character, xpReward.value, levelConfig);
+            const characterWithNewXp = Character.addXp(character, xpReward.value);
             this.props.dispatch(updateCharacter(characterWithNewXp)).then(() => {
                 this.setState({...this.state});
             });
@@ -67,7 +66,7 @@ class PathScreen extends React.Component {
     goToStep = (step, index) => {
         const {path} = this.props.navigation.state.params;
 
-        if (this.isStepLocked(step,index)) return;
+        if (this.isStepLocked(step, index)) return;
 
         if (step.type === STEP_TYPES.AUDIO) {
             this.props.navigation.push("PathStepAudio", {
@@ -107,7 +106,7 @@ class PathScreen extends React.Component {
         const isCompleted = !!stepProgress;
 
         return (
-            <PathStep
+            <PathStepItem
                 key={step.uid}
                 step={step}
                 showTopStatusBorder={index > 1}
@@ -120,7 +119,7 @@ class PathScreen extends React.Component {
     };
 
     render() {
-        const {character, levelConfig, navigation} = this.props;
+        const {character, navigation} = this.props;
         const {path} = navigation.state.params;
 
         return (
@@ -128,7 +127,7 @@ class PathScreen extends React.Component {
                 <ScrollView style={styles.content}>
                     {path.stepsOrder.map(this.renderPathStep)}
                 </ScrollView>
-                <CharacterPanel character={character} levelConfig={levelConfig}/>
+                <CharacterPanel character={character}/>
             </View>
         );
     }
@@ -138,7 +137,6 @@ function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
         character: state.characterReducer.character,
-        levelConfig: state.levelConfigReducer.levelConfig,
         pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
     };
 }

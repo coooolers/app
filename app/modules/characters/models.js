@@ -1,4 +1,5 @@
 import {round} from "../../components/Util";
+import LevelConfig from "../levelConfig/utils/LevelConfig";
 
 export class Character {
     constructor(uid, user, name="My Character", imageUrl) {
@@ -12,9 +13,9 @@ export class Character {
         this.created = new Date().toISOString();
     }
 
-    static addXp(character, xpToAdded, LEVEL_CONFIG) {
-        const levelConfig = LEVEL_CONFIG[character.level];
-        const isMaxLevel = !LEVEL_CONFIG[character.level + 1];
+    static addXp(character, xpToAdded) {
+        const levelConfig = LevelConfig.getForLevel(character.level);
+        const isMaxLevel = !LevelConfig.getForLevel(character.level + 1);
 
         if (isMaxLevel) {
             return character;
@@ -35,8 +36,8 @@ export class Character {
         }
     }
 
-    static percentOfLevelComplete(character, LEVEL_CONFIG) {
-        const levelConfig = LEVEL_CONFIG[character.level];
+    static percentOfLevelComplete(character) {
+        const levelConfig = LevelConfig.getForLevel(character.level);
         const xpNeededToLevelUp = levelConfig.xpNeeded;
         return round(character.xp / xpNeededToLevelUp, 2);
     }

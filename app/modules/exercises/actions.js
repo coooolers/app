@@ -1,10 +1,11 @@
 import * as api from './api';
-import * as t from "./actionTypes";
+import ExerciseConfig from "./utils/ExerciseConfig";
 
 export function fetchExercises() {
     return (dispatch) => {
         return api.fetchExercises().then(exercises => {
-            dispatch({type: t.EXERCISES_LOADED, exercises});
+            // @TODO: move this back to redux, but testing is an issue
+            ExerciseConfig.load(exercises);
         });
     };
 }

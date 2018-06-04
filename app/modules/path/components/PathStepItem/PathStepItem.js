@@ -7,7 +7,7 @@ import {STEP_TYPES} from "../../constants";
 import RewardIcon from "../RewardIcon/RewardIcon";
 import {color} from "../../../../styles/theme";
 
-export default class PathStep extends React.Component {
+export default class PathStepItem extends React.Component {
     static propTypes = {
         showTopStatusBorder: PropTypes.bool.isRequired,
         showBottomStatusBorder: PropTypes.bool.isRequired,

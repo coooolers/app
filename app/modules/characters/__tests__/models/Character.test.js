@@ -1,11 +1,10 @@
 import React from 'react';
 import {Character} from "../../models";
+import LevelConfig from "../../../levelConfig/utils/LevelConfig";
 
 const user = {
     uid: "s8iwMDpipGMqRnFfn9HJgAHPoLT2"
 };
-
-const LEVEL_CONFIG = [null, {xpNeeded: 200}, {xpNeeded: 300}, {xpNeeded: 450}];
 
 it('create character', () => {
     const character = new Character("m7iwMDmgmGMqRnFfn9HJgAHPoLL*", user, "Jimbo", "imageUrl");
@@ -39,13 +38,13 @@ it('get percent level complete xp', () => {
     const character = new Character("m7iwMDmgmGMqRnFfn9HJgAHPoLL*", user, "Jimbo", "imageUrl");
     character.xp = 50;
 
-    expect(Character.percentOfLevelComplete(character, LEVEL_CONFIG)).toEqual(0.25);
+    expect(Character.percentOfLevelComplete(character)).toEqual(0.25);
 });
 
 it('add xp to character', () => {
     const character = new Character("m7iwMDmgmGM" +
         "qRnFfn9HJgAHPoLL*", user, "Jimbo", "imageUrl");
-    Character.addXp(character, 100, LEVEL_CONFIG);
+    Character.addXp(character, 100);
 
     expect(character.xp).toBe(100);
     expect(character.xpTotal).toBe(100);
@@ -54,13 +53,13 @@ it('add xp to character', () => {
 
 it('add xp to character and level up', () => {
     const character = new Character("m7iwMDmgmGMqRnFfn9HJgAHPoLL*", user, "Jimbo", "imageUrl");
-    Character.addXp(character, 100, LEVEL_CONFIG);
+    Character.addXp(character, 100);
 
     expect(character.xp).toBe(100);
     expect(character.xpTotal).toBe(100);
     expect(character.level).toBe(1);
 
-    Character.addXp(character, 100, LEVEL_CONFIG);
+    Character.addXp(character, 100);
 
     expect(character.xp).toBe(0);
     expect(character.xpTotal).toBe(200);
@@ -69,7 +68,7 @@ it('add xp to character and level up', () => {
 
 it("do not add xp to max level character", () => {
     const character = new Character("m7iwMDmgmGMqRnFfn9HJgAHPoLL*", user, "Jimbo", "imageUrl");
-    const maxLevel = Math.max.apply(null, Object.keys(LEVEL_CONFIG));
+    const maxLevel = Math.max.apply(null, Object.keys(LevelConfig.num()));
 
     expect(character.xp).toBe(0);
     expect(character.xpTotal).toBe(0);
@@ -77,7 +76,7 @@ it("do not add xp to max level character", () => {
 
     character.level = maxLevel;
 
-    Character.addXp(character, 100, LEVEL_CONFIG);
+    Character.addXp(character, 100);
 
     expect(character.xp).toBe(0);
     expect(character.xpTotal).toBe(0);

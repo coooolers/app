@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text, ImageBackground, Image, ScrollView} from 'react-native';
+import {View, Text, ImageBackground, Image, ScrollView, TouchableOpacity, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import Button from "../../../../components/Button/Button";
 import {contentWidth} from "../../../../styles/theme";
 import RewardIcon from "../../components/RewardIcon/RewardIcon";
+import ExerciseConfig from "../../../exercises/utils/ExerciseConfig";
 
 class PathStepWorkoutScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -33,19 +34,18 @@ class PathStepWorkoutScreen extends React.Component {
     startWorkout = () => {
         const {step, onEarnedRewards} = this.props.navigation.state.params;
 
-        // if (this.state.didEarnRewards) {
-        //     setTimeout(() => {
-        //         onEarnedRewards(step)
-        //     }, 500);
-        // }
+        Alert.alert("Start Workout");
+    };
+
+    goToExerciseInfo = (exercise) => {
+      this.props.navigation.push("ExerciseInfo", {exercise});
     };
 
     renderExercises = () => {
         const {step} = this.props.navigation.state.params;
-        const {exercises} = this.props;
 
         return step.workoutRoutine.map((r, i) => {
-            const exercise = exercises.byId[r.key];
+            const exercise = ExerciseConfig.getByKey(r.key);
             return (
                 <View key={i} style={styles.exerciseContainer}>
                     <Image source={{uri: exercise.imageUrl}} style={styles.exerciseImage}/>
@@ -54,7 +54,9 @@ class PathStepWorkoutScreen extends React.Component {
                         <Text>{r.quantity}</Text>
                         <Text>{r.duration}</Text>
                     </View>
-                    <FontAwesome>{Icons.infoCircle}</FontAwesome>
+                    <TouchableOpacity onPress={() => this.goToExerciseInfo(exercise)}>
+                        <FontAwesome>{Icons.infoCircle}</FontAwesome>
+                    </TouchableOpacity>
                 </View>
             );
         });
@@ -127,8 +129,7 @@ class PathStepWorkoutScreen extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid],
-        exercises: state.exerciseReducer
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
     };
 }
 

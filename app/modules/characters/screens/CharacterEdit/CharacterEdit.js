@@ -7,16 +7,15 @@ import {updateCharacter} from "../../actions";
 import CharacterImageScrollView from "../../components/CharacterImageScrollView";
 import FormLabel from "../../../../components/FormLabel/FormLabel";
 import FormInput from "../../../../components/FormInput/FormInput";
-import {noop} from "../../../../components/Util";
 
 class CharacterEdit extends React.Component {
     static navigationOptions = ({navigation}) => {
-        const params = navigation.state.params || {cancel: noop, save: noop};
+        const {cancel, save} = navigation.state.params || {};
 
         return {
             headerTitle: "Character",
-            headerLeft: <RNButton onPress={params.cancel} title="Cancel"/>,
-            headerRight: <RNButton onPress={params.save} title="Done"/>
+            headerLeft: <RNButton onPress={() => cancel()} title="Cancel"/>,
+            headerRight: <RNButton onPress={() => save()} title="Done"/>
         }
     };
 
