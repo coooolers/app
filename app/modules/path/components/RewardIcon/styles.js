@@ -20,6 +20,18 @@ const styles = StyleSheet.create({
         marginRight: 5
     },
 
+    exerciseIcon: {
+        color: '#333333',
+        fontSize: 25,
+        marginRight: 5
+    },
+
+    workoutIcon: {
+        color: color.brandDark,
+        fontSize: 25,
+        marginRight: 5
+    },
+
     earnedIcon: {
         color: color.brandSuccess,
         fontSize: 20,

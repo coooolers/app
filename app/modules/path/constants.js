@@ -5,5 +5,7 @@ export const STEP_TYPES = {
 
 export const REWARD_TYPES = {
     XP: "xp",
-    TERM: "term"
+    TERM: "term",
+    EXERCISE: "exercise",
+    WORKOUT: "workout"
 };

@@ -15,7 +15,7 @@ export default class RewardIcon extends Component {
     };
 
     renderIcon = () => {
-        const {type, hasEarned} = this.props;
+        const {type, hasEarned, size} = this.props;
         let iconStyles = null;
         let icon = null;
 
@@ -25,10 +25,20 @@ export default class RewardIcon extends Component {
         } else if (type === REWARD_TYPES.TERM) {
             iconStyles = styles.termIcon;
             icon = Icons.book;
+        } else if (type === REWARD_TYPES.EXERCISE) {
+            iconStyles = styles.exerciseIcon;
+            icon = Icons.bicycle;
+        } else if (type === REWARD_TYPES.WORKOUT) {
+            iconStyles = styles.workoutIcon;
+            icon = Icons.clockO;
         }
 
         if (hasEarned) {
             iconStyles = StyleSheet.flatten([iconStyles, {color: '#999999'}]);
+        }
+
+        if (size) {
+            iconStyles = StyleSheet.flatten([iconStyles, {fontSize: size}]);
         }
 
         return <FontAwesome style={iconStyles}>{icon}</FontAwesome>;

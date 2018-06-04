@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import styles from "./styles";
 import CharacterPanel from "../../components/CharacterPanel/CharacterPanel";
 import {fetchPaths} from "../../actions";
+import PathItem from "../../components/PathItem/PathItem";
 
 class PathsScreen extends React.Component {
     state = {
@@ -28,7 +29,7 @@ class PathsScreen extends React.Component {
 
     render() {
         const {isReady} = this.state;
-        const {paths, character, levelConfig} = this.props;
+        const {paths, character, levelConfig, pathProgress} = this.props;
 
         if (!isReady) return null;
 
@@ -38,11 +39,11 @@ class PathsScreen extends React.Component {
                     {
                         paths.map((path, index) => {
                             return (
-                                <View key={index}>
-                                    <TouchableOpacity onPress={() => this.goToPath(path)}>
-                                        <Text>{path.name}</Text>
-                                    </TouchableOpacity>
-                                </View>
+                                <PathItem
+                                    key={path.uid}
+                                    onPress={this.goToPath}
+                                    path={path}
+                                    pathProgress={pathProgress}/>
                             );
                         })
                     }

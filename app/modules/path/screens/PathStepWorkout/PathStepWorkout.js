@@ -97,7 +97,7 @@ class PathStepWorkoutScreen extends React.Component {
                 <ScrollView>
                     <View style={styles.panel}>
                         <View style={styles.headerIconContainer}>
-                            <FontAwesome style={styles.headerIcon}>{Icons.handRockO}</FontAwesome>
+                            <FontAwesome style={styles.headerIcon}>{Icons.clockO}</FontAwesome>
                         </View>
                         <Text style={styles.title}>{step.name}</Text>
                         <Text style={styles.subTitle}>
