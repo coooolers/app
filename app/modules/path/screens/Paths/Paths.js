@@ -21,9 +21,6 @@ class PathsScreen extends React.Component {
     componentWillMount() {
         this.props.dispatch(fetchPaths()).then(() => {
             this.setState({isReady: true});
-
-            //TODO: remove
-            this.goToPath(this.props.paths[0]);
         });
     }
 

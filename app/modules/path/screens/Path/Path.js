@@ -8,7 +8,6 @@ import {REWARD_TYPES, STEP_TYPES} from "../../constants";
 import {updateUserPathProgress} from "../../../userPathProgress/actions";
 import {Character} from "../../../characters/models";
 import {updateCharacter} from "../../../characters/actions";
-import _ from 'lodash';
 import {getRewardsForStep, goToMainTabRoute} from "../../../../components/Util";
 import {Workout} from "../../../workouts/models";
 
@@ -23,26 +22,6 @@ class PathScreen extends React.Component {
             title: path.name
         };
     };
-
-    componentDidMount() {
-
-        //TODO: remove
-        const {path} = this.props.navigation.state.params;
-        this.goToStep(path.steps["exercise-practice"], 4);
-        // setTimeout(() => {
-        //     this.onEarnedRewards({
-        //         "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
-        //         "description": "Welcome to the introduction to the beginner bodyweight path! Take a moment to listen and learn what you should expect.",
-        //         "name": "Introduction",
-        //         "rewards": [{
-        //             "key": "xp",
-        //             "value": 20
-        //         }],
-        //         "type": "audio",
-        //         "uid": "introduction"
-        //     });
-        // }, 500);
-    }
 
     onEarnedRewards = (step) => {
         const {path} = this.props.navigation.state.params;
