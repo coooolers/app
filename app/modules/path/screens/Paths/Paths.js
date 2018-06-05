@@ -5,6 +5,7 @@ import styles from "./styles";
 import CharacterPanel from "../../components/CharacterPanel/CharacterPanel";
 import {fetchPaths} from "../../actions";
 import PathItem from "../../components/PathItem/PathItem";
+import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 
 class PathsScreen extends React.Component {
     state = {
@@ -36,6 +37,7 @@ class PathsScreen extends React.Component {
 
         return (
             <View style={styles.container}>
+                <BackgroundImage color={"green"}/>
                 <ScrollView style={styles.content}>
                     {
                         paths.map((path, index) => {

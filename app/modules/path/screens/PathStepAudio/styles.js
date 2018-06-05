@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: color.black,
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: contentPadding
+        justifyContent: 'center'
     },
 
     panel: {

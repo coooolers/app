@@ -10,6 +10,7 @@ import {Character} from "../../../characters/models";
 import {updateCharacter} from "../../../characters/actions";
 import {getRewardsForStep, goToMainTabRoute} from "../../../../components/Util";
 import {Workout} from "../../../workouts/models";
+import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 
 class PathScreen extends React.Component {
     state = {};
@@ -107,6 +108,7 @@ class PathScreen extends React.Component {
 
         return (
             <View style={styles.container}>
+                <BackgroundImage color={"purple"}/>
                 <ScrollView style={styles.content}>
                     {path.stepsOrder.map(this.renderPathStep)}
                 </ScrollView>

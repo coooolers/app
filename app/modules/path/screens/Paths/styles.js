@@ -1,5 +1,5 @@
 import {StyleSheet, PixelRatio} from 'react-native';
-import {color, contentPadding, contentWidth, fontSize} from "../../../../styles/theme";
+import {color, contentPadding, fontSize} from "../../../../styles/theme";
 import {round} from "../../../../components/Util";
 
 const statusCircleSize = 35;

@@ -1,13 +1,13 @@
 import {StyleSheet, PixelRatio} from 'react-native';
-import {color, contentPadding, contentWidth, fontSize} from "../../../../styles/theme";
+import {color, fontSize} from "../../../../styles/theme";
 import {round} from "../../../../components/Util";
 
 const statusCircleSize = 35;
 const defaultBorderWidth = 1;
+const defaultBorderColor = color.black;
 const statusVRuleOffset = round(statusCircleSize / 2);
 const statusHRuleOffset = round(statusCircleSize / 2);
 const defaultPadding = 6;
-const defaultColor = color.brandDark;
 
 const styles = StyleSheet.create({
     container: {
@@ -26,8 +26,9 @@ const styles = StyleSheet.create({
     statusIndicator: {
         width: statusCircleSize,
         height: statusCircleSize,
+        backgroundColor: color.white,
         borderRadius: statusCircleSize / PixelRatio.get(),
-        borderColor: defaultColor,
+        borderColor: defaultBorderColor,
         borderWidth: defaultBorderWidth,
         alignItems: 'center',
         justifyContent: 'center'
@@ -38,15 +39,15 @@ const styles = StyleSheet.create({
     },
 
     statusTop: {
-        borderLeftColor: defaultColor,
+        borderLeftColor: defaultBorderColor,
         borderLeftWidth: defaultBorderWidth,
         height: 15,
         marginLeft: statusVRuleOffset
     },
 
     statusBottom: {
-        borderLeftColor: defaultColor,
-        borderLeftWidth: 1,
+        borderLeftColor: defaultBorderColor,
+        borderLeftWidth: defaultBorderWidth,
         flex: 1,
         marginLeft: statusVRuleOffset
     },
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     },
 
     statusLineRight: {
-        borderTopColor: defaultColor,
+        borderTopColor: defaultBorderColor,
         borderTopWidth: defaultBorderWidth,
         marginTop: statusHRuleOffset,
         flex: 1,
@@ -68,9 +69,9 @@ const styles = StyleSheet.create({
     contentContainer: {
         flex: 1,
         backgroundColor: color.brandLight,
-        borderColor: defaultColor,
+        borderColor: defaultBorderColor,
         borderWidth: defaultBorderWidth,
-        borderTopWidth: 8,
+        borderTopWidth: 3,
         marginBottom: 30
     },
 
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
 
     contentFooter: {
         padding: defaultPadding,
-        borderTopColor: defaultColor,
+        borderTopColor: defaultBorderColor,
         borderTopWidth: 1,
         flexDirection: 'row',
         alignItems: 'flex-end',

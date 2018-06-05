@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ImageBackground, Image, ScrollView, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
@@ -8,6 +8,7 @@ import {contentWidth} from "../../../../styles/theme";
 import RewardList from "../../../../components/RewardList/RewardList";
 import {getRewardsForStep} from "../../../../components/Util";
 import ExerciseList from "../../components/ExerciseList/ExerciseList";
+import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 
 class PathStepWorkoutScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -56,11 +57,9 @@ class PathStepWorkoutScreen extends React.Component {
         const {step, path, workout} = this.props.navigation.state.params;
 
         return (
-            <ImageBackground
-                style={styles.container}
-                source={{uri: path.imageUrl}}>
-
-                <ScrollView>
+            <View style={styles.container}>
+                <BackgroundImage color={"blue"}/>
+                <ScrollView style={styles.content}>
                     <View style={styles.panel}>
                         <View style={styles.headerIconContainer}>
                             <FontAwesome style={styles.headerIcon}>{Icons.clockO}</FontAwesome>
@@ -90,7 +89,7 @@ class PathStepWorkoutScreen extends React.Component {
                             }}
                             onPress={this.startWorkout}/>
                 </ScrollView>
-            </ImageBackground>
+            </View>
         );
     }
 }

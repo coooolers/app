@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ImageBackground} from 'react-native';
+import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
@@ -8,6 +8,7 @@ import Button from "../../../../components/Button/Button";
 import {contentWidth} from "../../../../styles/theme";
 import RewardList from "../../../../components/RewardList/RewardList";
 import {getRewardsForStep} from "../../../../components/Util";
+import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -70,10 +71,8 @@ class PathStepAudioScreen extends React.Component {
         const {step, path} = this.props.navigation.state.params;
 
         return (
-            <ImageBackground
-                style={styles.container}
-                source={{uri: path.imageUrl}}>
-
+            <View style={styles.container}>
+                <BackgroundImage color={"blue"}/>
                 <View style={styles.panel}>
                     <View style={styles.headerIconContainer}>
                         <FontAwesome style={styles.headerIcon}>{Icons.headphones}</FontAwesome>
@@ -99,7 +98,7 @@ class PathStepAudioScreen extends React.Component {
                             height: 45
                         }}
                         onPress={this.goBack}/>
-            </ImageBackground>
+            </View>
         );
     }
 }

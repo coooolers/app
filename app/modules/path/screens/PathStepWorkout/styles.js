@@ -9,7 +9,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: color.black,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
+    },
+
+    content: {
         padding: contentPadding
     },
 
