@@ -6,7 +6,8 @@ import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
 import Button from "../../../../components/Button/Button";
 import {contentWidth} from "../../../../styles/theme";
-import RewardIcon from "../../components/RewardIcon/RewardIcon";
+import RewardList from "../../../../components/RewardList/RewardList";
+import {getRewardsForStep} from "../../../../components/Util";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -59,19 +60,7 @@ class PathStepAudioScreen extends React.Component {
             <View style={styles.rewardsContainer}>
                 <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
                 <View style={{flexDirection: 'row'}}>
-                    {
-                        step.rewards.map((r, i) => {
-                            return <RewardIcon
-                                key={i}
-                                type={r.key}
-                                value={r.value}
-                                hasEarned={hasCompleted}
-                                containerStyles={{
-                                    marginRight: 10
-                                }}
-                            />
-                        })
-                    }
+                    <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
                 </View>
             </View>
         );

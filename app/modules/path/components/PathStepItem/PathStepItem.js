@@ -3,10 +3,10 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
-import {REWARD_TYPES, STEP_TYPES} from "../../constants";
-import RewardIcon from "../RewardIcon/RewardIcon";
+import {STEP_TYPES} from "../../constants";
 import {color} from "../../../../styles/theme";
 import {getRewardsForStep} from "../../../../components/Util";
+import RewardList from "../../../../components/RewardList/RewardList";
 
 export default class PathStepItem extends React.Component {
     static propTypes = {
@@ -41,7 +41,7 @@ export default class PathStepItem extends React.Component {
     };
 
     renderStatus = () => {
-        const {step, showTopStatusBorder, showBottomStatusBorder, isCompleted} = this.props;
+        const {showTopStatusBorder, showBottomStatusBorder, isCompleted} = this.props;
         const statusTopStyles = showTopStatusBorder ? styles.statusTop : null;
         const statusBottomStyles = showBottomStatusBorder ? styles.statusBottom : null;
         const statusIndicatorStyles = isCompleted ?
@@ -58,63 +58,6 @@ export default class PathStepItem extends React.Component {
                 <View style={statusBottomStyles}/>
             </View>
         );
-    };
-
-    renderRewards = () => {
-        const rewardsByKey = getRewardsForStep(this.props.step);
-        const defaultProps = {
-            hasEarned: this.props.isCompleted,
-            containerStyles: {
-                marginRight: 10
-            }
-        };
-        let content = [];
-
-        if (rewardsByKey[REWARD_TYPES.WORKOUT]) {
-            content.push(
-                <RewardIcon
-                    key={REWARD_TYPES.WORKOUT}
-                    type={REWARD_TYPES.WORKOUT}
-                    value={rewardsByKey[REWARD_TYPES.WORKOUT]}
-                    {...defaultProps}
-                />
-            );
-        }
-
-        if (rewardsByKey[REWARD_TYPES.EXERCISE]) {
-            content.push(
-                <RewardIcon
-                    key={REWARD_TYPES.EXERCISE}
-                    type={REWARD_TYPES.EXERCISE}
-                    value={rewardsByKey[REWARD_TYPES.EXERCISE]}
-                    {...defaultProps}
-                />
-            );
-        }
-
-        if (rewardsByKey[REWARD_TYPES.TERM]) {
-            content.push(
-                <RewardIcon
-                    key={REWARD_TYPES.TERM}
-                    type={REWARD_TYPES.TERM}
-                    value={rewardsByKey[REWARD_TYPES.TERM]}
-                    {...defaultProps}
-                />
-            );
-        }
-
-        if (rewardsByKey[REWARD_TYPES.XP]) {
-            content.push(
-                <RewardIcon
-                    key={REWARD_TYPES.XP}
-                    type={REWARD_TYPES.XP}
-                    value={rewardsByKey[REWARD_TYPES.XP]}
-                    {...defaultProps}
-                />
-            );
-        }
-
-        return content.map(c => c);
     };
 
     render = () => {
@@ -143,7 +86,7 @@ export default class PathStepItem extends React.Component {
                         <Text style={styles.description}>{step.description}</Text>
                     </View>
                     <View style={styles.contentFooter}>
-                        {this.renderRewards()}
+                        <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={isCompleted}/>
                     </View>
                 </TouchableOpacity>
             </View>

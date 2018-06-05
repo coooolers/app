@@ -5,8 +5,9 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import Button from "../../../../components/Button/Button";
 import {contentWidth} from "../../../../styles/theme";
-import RewardIcon from "../../components/RewardIcon/RewardIcon";
 import ExerciseConfig from "../../../exercises/utils/ExerciseConfig";
+import RewardList from "../../../../components/RewardList/RewardList";
+import {getRewardsForStep} from "../../../../components/Util";
 
 class PathStepWorkoutScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -70,19 +71,7 @@ class PathStepWorkoutScreen extends React.Component {
             <View style={styles.rewardsContainer}>
                 <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
                 <View style={{flexDirection: 'row'}}>
-                    {
-                        step.rewards.map((r, i) => {
-                            return <RewardIcon
-                                key={i}
-                                type={r.key}
-                                value={r.value}
-                                hasEarned={hasCompleted}
-                                containerStyles={{
-                                    marginRight: 10
-                                }}
-                            />
-                        })
-                    }
+                    <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
                 </View>
             </View>
         );

@@ -2,11 +2,9 @@ import React, {Component} from 'react';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import {TouchableOpacity, View, Text} from "react-native";
 import styles from "./styles";
-import {REWARD_TYPES} from "../../constants";
 import PropTypes from "prop-types";
-import RewardIcon from "../RewardIcon/RewardIcon";
-import _ from 'lodash';
 import {getRewardsForPath} from "../../../../components/Util";
+import RewardList from "../../../../components/RewardList";
 
 export default class PathItem extends Component {
     static propTypes = {
@@ -20,63 +18,11 @@ export default class PathItem extends Component {
 
         if (path.difficulty === 1) {
             return "Beginner";
-        } else if (path.difficulty === 1) {
+        } else if (path.difficulty === 2) {
             return "Intermediate";
-        } else if (path.difficulty === 1) {
+        } else if (path.difficulty === 3) {
             return "Advanced";
         }
-    };
-
-    renderRewards = () => {
-        const rewardsByKey = getRewardsForPath(this.props.path);
-        const defaultProps = {hasEarned: false, size: 16, containerStyles: {marginLeft: 10}};
-        let content = [];
-
-        if (rewardsByKey[REWARD_TYPES.WORKOUT]) {
-            content.push(
-                <RewardIcon
-                    key={REWARD_TYPES.WORKOUT}
-                    type={REWARD_TYPES.WORKOUT}
-                    value={rewardsByKey[REWARD_TYPES.WORKOUT]}
-                    {...defaultProps}
-                />
-            );
-        }
-
-        if (rewardsByKey[REWARD_TYPES.EXERCISE]) {
-            content.push(
-                <RewardIcon
-                    key={REWARD_TYPES.EXERCISE}
-                    type={REWARD_TYPES.EXERCISE}
-                    value={rewardsByKey[REWARD_TYPES.EXERCISE]}
-                    {...defaultProps}
-                />
-            );
-        }
-
-        if (rewardsByKey[REWARD_TYPES.TERM]) {
-            content.push(
-                <RewardIcon
-                    key={REWARD_TYPES.TERM}
-                    type={REWARD_TYPES.TERM}
-                    value={rewardsByKey[REWARD_TYPES.TERM]}
-                    {...defaultProps}
-                />
-            );
-        }
-
-        if (rewardsByKey[REWARD_TYPES.XP]) {
-            content.push(
-                <RewardIcon
-                    key={REWARD_TYPES.XP}
-                    type={REWARD_TYPES.XP}
-                    value={rewardsByKey[REWARD_TYPES.XP]}
-                    {...defaultProps}
-                />
-            );
-        }
-
-        return content.map(c => c);
     };
 
     renderPathProgress = () => {
@@ -108,7 +54,7 @@ export default class PathItem extends Component {
                         {this.renderPathProgress()}
                     </View>
                     <View style={styles.progressBottom}>
-                        {this.renderRewards()}
+                        <RewardList rewardConfig={getRewardsForPath(path)} hasEarned={false} size={16}/>
                     </View>
                 </TouchableOpacity>
             </View>
