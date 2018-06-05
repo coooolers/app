@@ -6,7 +6,6 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Moment from 'moment';
 
 import styles from "./styles";
-import {getMyWorkoutHistory} from "../../../workouts/actions";
 import MountainsBackground from '../../../../assets/images/mountains.png';
 import {Character} from "../../../characters/models";
 import XpLabel from "../../../../components/XpLabel";
@@ -31,67 +30,8 @@ class Home extends React.Component {
     };
 
     componentWillMount() {
-        Promise.all([
-            this.props.dispatch(getMyWorkoutHistory(this.props.user))
-        ]).then(() => {
-            this.setState({isReady: true});
-        });
+        this.setState({isReady: true});
     }
-
-    renderWorkoutHistoryItem = (item) => {
-        return (
-            <View key={item.uid} style={styles.workout}>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Image style={styles.workoutImage} source={{uri: item.imageUrl}}/>
-                    <View style={{flex: 1, flexDirection: "column"}}>
-                        <Text style={styles.workoutName}>{item.name}</Text>
-                        <View style={{flex: 1, flexDirection: "row"}}>
-                            <View style={{flexDirection: "row", marginRight: 20, marginTop: 8}}>
-                                <FontAwesome style={{marginRight: 8}}>{Icons.calendar}</FontAwesome>
-                                <Text>{Moment(item.created).format('d MMM')}</Text>
-                            </View>
-                            <View style={{flexDirection: "row", marginRight: 20, marginTop: 8}}>
-                                <FontAwesome style={{marginRight: 8}}>{Icons.star}</FontAwesome>
-                                <Text>{item.grade}</Text>
-                            </View>
-                            <XpLabel xp={item.xpEarned}/>
-                        </View>
-                    </View>
-                </View>
-            </View>
-        )
-    };
-
-    renderWorkoutHistory = () => {
-        const {workoutHistory} = this.props;
-
-        if (workoutHistory.length) {
-            return (
-                <View style={styles.recentWorkoutsContainer}>
-                    <Text style={styles.recentWorkoutsTitle}>Recent Workouts</Text>
-                    {
-                        workoutHistory.map(this.renderWorkoutHistoryItem)
-                    }
-                </View>
-            );
-        } else {
-            return (
-                <View style={styles.emptyWorkoutsContainer}>
-                    <Text style={styles.emptyWorkoutsContainerTitle}>
-                        <FontAwesome>{Icons.heartbeat}</FontAwesome> No Workout History
-                    </Text>
-                    <Text style={styles.emptyWorkoutsContainerText}>
-                        When you complete a workout it will show up in this box as a reminder for you.
-                    </Text>
-                    <Text style={styles.emptyWorkoutsContainerText}>
-                        Tap 'workouts' below to get started with your first workout.
-                    </Text>
-                </View>
-            )
-        }
-
-
-    };
 
     render() {
         if (!this.state.isReady) {
@@ -125,7 +65,6 @@ class Home extends React.Component {
                             <Text>{character.xp} / {LevelConfig.getForLevel(character.level).xpNeeded}</Text>
                         </View>
                     </View>
-                    {this.renderWorkoutHistory()}
                 </ScrollView>
             </ImageBackground>
         );
@@ -135,8 +74,7 @@ class Home extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        character: state.characterReducer.character,
-        workoutHistory: state.workoutReducer.workoutHistory
+        character: state.characterReducer.character
     }
 }
 

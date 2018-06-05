@@ -1,13 +1,14 @@
 import {stringifyXp, round} from "../../components/Util";
 import _ from 'lodash';
+import ExerciseConfig from "../exercises/utils/ExerciseConfig";
 
 export class Workout {
-    constructor(workout, exercises) {
+    constructor(workout) {
         workout.exercises = [];
         workout.xp = 0;
 
         workout.exerciseRoutineConfig.map(exerciseRoutine => {
-            const exercise = exercises[exerciseRoutine.key];
+            const exercise = ExerciseConfig.getByKey(exerciseRoutine.key);
             const workoutExercise = new WorkoutExercise(exercise, exerciseRoutine.quantity, exerciseRoutine.duration);
             workout.exercises.push(workoutExercise);
             workout.xp += workoutExercise.xp
@@ -92,32 +93,6 @@ export class WorkoutExercise {
             return workoutExercise;
         } else {
             throw new Error("workout exercise complete must have a quantityComplete or durationComplete value");
-        }
-    };
-}
-
-export class WorkoutHistory {
-    constructor(user, workout) {
-        this.name = workout.name;
-        this.imageUrl = workout.imageUrl;
-        this.xpEarned = workout.xpEarned;
-        this.xpEarnedLabel = workout.xpEarnedLabel;
-        this.addedByUser = user.uid;
-        this.created = new Date().toISOString();
-        this.grade = workout.grade;
-        this.gradePercent = workout.gradePercent;
-    }
-
-    toJSON = () => {
-        return {
-            name: this.name,
-            imageUrl: this.imageUrl,
-            xpEarned: this.xpEarned,
-            xpEarnedLabel: this.xpEarnedLabel,
-            addedByUser: this.addedByUser,
-            created: this.created,
-            grade: this.grade,
-            gradePercent: this.gradePercent
         }
     };
 }

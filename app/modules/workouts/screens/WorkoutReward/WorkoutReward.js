@@ -6,8 +6,7 @@ import * as Progress from 'react-native-progress';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 
 import styles from "./styles";
-import {fetchMyCharacter, updateCharacter} from "../../../characters/actions";
-import {createWorkoutHistory} from "../../../workouts/actions";
+import {updateCharacter} from "../../../characters/actions";
 import {Character} from "../../../characters/models";
 import Reporting from "../../../reporting";
 import LevelConfig from "../../../levelConfig/utils/LevelConfig";
@@ -45,7 +44,6 @@ class WorkoutReward extends React.Component {
         const characterWithNewXp = Character.addXp(character, workout.xpEarned);
 
         this.props.dispatch(updateCharacter(characterWithNewXp));
-        this.props.dispatch(createWorkoutHistory(user, workout));
 
         setTimeout(() => {
             this.setState({character: characterWithNewXp});
