@@ -27,6 +27,7 @@ import PathsScreen from "../../modules/path/screens/Paths";
 import PathScreen from "../../modules/path/screens/Path";
 import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
 import PathStepWorkoutScreen from "../../modules/path/screens/PathStepWorkout";
+import PathStepWorkoutRoutineScreen from "../../modules/path/screens/PathStepWorkoutRoutine";
 
 import MainInitScreen from "./MainInitScreen";
 import {fetchUserPathProgress} from "../../modules/userPathProgress/actions";
@@ -39,6 +40,7 @@ function getTabIconStyle(tintColor) {
 const PathStack = StackNavigator({
     PathStepAudio: {screen: PathStepAudioScreen},
     PathStepWorkout: {screen: PathStepWorkoutScreen},
+    PathStepWorkoutRoutine: {screen: PathStepWorkoutRoutineScreen},
     ExerciseInfo: {screen: ExerciseInfo},
     Path: {screen: PathScreen},
 }, {

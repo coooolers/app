@@ -7,7 +7,7 @@ export const fetchUserPathProgress = (user) => {
             dispatch({
                 type: t.PATH_PROGRESS_LOADED,
                 user,
-                pathProgress
+                pathProgress: pathProgress
             });
         });
     };
@@ -19,7 +19,7 @@ export const updateUserPathProgress = (user, pathProgress) => {
             dispatch({
                 type: t.PATH_PROGRESS_LOADED,
                 user,
-                pathProgress
+                pathProgress: pathProgress
             });
         });
     };

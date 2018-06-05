@@ -28,7 +28,7 @@ export default class PathItem extends Component {
     renderPathProgress = () => {
         const {path, pathProgress} = this.props;
         const numSteps = path["stepsOrder"].length;
-        const numStepsCompleted = Object.keys(pathProgress[path.uid]).length;
+        const numStepsCompleted = pathProgress[path.uid] ? Object.keys(pathProgress[path.uid]).length : 0;
 
         return (
             <View style={{flexDirection: 'row'}}>

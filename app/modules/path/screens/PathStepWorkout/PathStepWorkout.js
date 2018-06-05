@@ -33,9 +33,15 @@ class PathStepWorkoutScreen extends React.Component {
     }
 
     startWorkout = () => {
-        const {step, onEarnedRewards} = this.props.navigation.state.params;
+        const {step, path, workout, onEarnedRewards} = this.props.navigation.state.params;
 
-        Alert.alert("Start Workout");
+        this.props.navigation.push("PathStepWorkoutRoutine", {
+            path,
+            step,
+            workout,
+            exerciseIndex: 0,
+            onEarnedRewards
+        })
     };
 
     goToExerciseInfo = (exercise) => {
@@ -45,21 +51,8 @@ class PathStepWorkoutScreen extends React.Component {
     };
 
 
-    renderRewards = () => {
-        const {step} = this.props.navigation.state.params;
-        const {hasCompleted} = this.state;
-
-        return (
-            <View style={styles.rewardsContainer}>
-                <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
-                <View style={{flexDirection: 'row'}}>
-                    <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
-                </View>
-            </View>
-        );
-    };
-
     render() {
+        const {hasCompleted} = this.state;
         const {step, path, workout} = this.props.navigation.state.params;
 
         return (
@@ -80,7 +73,12 @@ class PathStepWorkoutScreen extends React.Component {
                             <ExerciseList workout={workout} onPress={this.goToExerciseInfo}/>
                         </View>
                     </View>
-                    {this.renderRewards()}
+                    <View style={styles.rewardsContainer}>
+                        <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
+                        <View style={{flexDirection: 'row'}}>
+                            <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
+                        </View>
+                    </View>
                     <Button title={"START WORKOUT"}
                             containerViewStyle={{
                                 marginTop: 10,

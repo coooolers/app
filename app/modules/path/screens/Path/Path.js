@@ -9,7 +9,7 @@ import {updateUserPathProgress} from "../../../userPathProgress/actions";
 import {Character} from "../../../characters/models";
 import {updateCharacter} from "../../../characters/actions";
 import _ from 'lodash';
-import {goToMainTabRoute} from "../../../../components/Util";
+import {getRewardsForStep, goToMainTabRoute} from "../../../../components/Util";
 import {Workout} from "../../../workouts/models";
 
 class PathScreen extends React.Component {
@@ -47,16 +47,15 @@ class PathScreen extends React.Component {
     onEarnedRewards = (step) => {
         const {path} = this.props.navigation.state.params;
         const {user, pathProgress, character} = this.props;
+        const rewards = getRewardsForStep(step);
 
         pathProgress[path.uid] = pathProgress[path.uid] || {};
         pathProgress[path.uid][step.uid] = {
             completed: new Date().toISOString()
         };
 
-        const xpReward = _(step.rewards).compact().find({key: REWARD_TYPES.XP});
-
-        if (xpReward) {
-            const characterWithNewXp = Character.addXp(character, xpReward.value);
+        if (rewards[REWARD_TYPES.XP]) {
+            const characterWithNewXp = Character.addXp(character, rewards[REWARD_TYPES.XP]);
             this.props.dispatch(updateCharacter(characterWithNewXp)).then(() => {
                 this.setState({...this.state});
             });

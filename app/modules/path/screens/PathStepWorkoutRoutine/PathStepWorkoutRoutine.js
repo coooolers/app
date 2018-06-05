@@ -1,20 +1,18 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-import {Workout, WorkoutRoutineExercise} from "../../models";
 
 import QuantityExercise from "../../components/QuantityExercise";
 import DurationExercise from "../../components/DurationExercise";
 
-class WorkoutRoutine extends React.Component {
+class PathStepWorkoutRoutine extends React.Component {
     static navigationOptions = ({navigation}) => {
         const params = navigation.state.params || {};
 
         return {
             headerRight: (
-                <TouchableOpacity
-                    onPress={params.goToExerciseHelp}>
+                <TouchableOpacity onPress={params.goToExerciseHelp}>
                     <FontAwesome
                         style={{
                             color: '#007AFF',
@@ -29,55 +27,57 @@ class WorkoutRoutine extends React.Component {
     constructor(props) {
         super(props);
 
-        const {workout, workoutExerciseIndex} = props.navigation.state.params;
-
-        this.state = {
-            workoutExerciseIndex,
-            workout
-        };
+        const {path, step, workout, exerciseIndex, onEarnedRewards} = props.navigation.state.params;
+        this.state = {path, step, workout, exerciseIndex, onEarnedRewards};
     }
 
     componentWillMount() {
-        this.props.navigation.setParams({ goToExerciseHelp: this.goToExerciseHelp.bind(this) });
+        this.props.navigation.setParams({goToExerciseHelp: this.goToExerciseHelp.bind(this)});
     }
 
     onQuantityExerciseDone = (workoutExercise, quantityCompleted) => {
-        WorkoutRoutineExercise.complete(workoutExercise, quantityCompleted, undefined);
+        workoutExercise.completeWithQuantity(quantityCompleted);
         this.goToNextExercise();
     };
 
     onDurationExerciseDone = (workoutExercise, durationCompleted) => {
-        WorkoutRoutineExercise.complete(workoutExercise, undefined, durationCompleted);
+        workoutExercise.completeWithDuration(durationCompleted);
         this.goToNextExercise();
     };
 
     goToExerciseHelp = () => {
-        const {workout, workoutExerciseIndex} = this.state;
-        const exercise = workout.exercises[workoutExerciseIndex].exercise;
+        const {workout, exerciseIndex} = this.state;
+        const workoutExercise = workout.routine[exerciseIndex];
 
-        this.props.navigation.navigate('ExerciseInfo', {exercise});
+        this.props.navigation.push('ExerciseInfo', {
+            exercise: workoutExercise.getExercise()
+        });
     };
 
     goToNextExercise = () => {
-        const {workout, workoutExerciseIndex} = this.state;
-        const nextWorkoutExercise = workout.exercises[workoutExerciseIndex + 1];
-
+        const {path, step, workout, exerciseIndex, onEarnedRewards} = this.state;
+        const nextWorkoutExercise = workout.routine[exerciseIndex + 1];
 
         if (nextWorkoutExercise) {
-            return this.props.navigation.navigate("WorkoutRoutine", {
-                workoutExerciseIndex: workoutExerciseIndex + 1,
-                workout
+            return this.props.navigation.navigate("PathStepWorkoutRoutine", {
+                path,
+                step,
+                workout,
+                exerciseIndex: exerciseIndex + 1,
+                onEarnedRewards
             });
         } else {
-            return this.props.navigation.navigate("WorkoutReward", {
-                workout: Workout.complete(workout)
-            });
+            this.props.navigation.popToTop();
+
+            setTimeout(() => {
+                onEarnedRewards(step)
+            }, 500);
         }
     };
 
     render() {
-        const {workout, workoutExerciseIndex} = this.state;
-        const workoutExercise = workout.exercises[workoutExerciseIndex];
+        const {workout, exerciseIndex} = this.state;
+        const workoutExercise = workout.routine[exerciseIndex];
 
         if (workoutExercise.isQuantity) {
             return <QuantityExercise
@@ -98,9 +98,7 @@ class WorkoutRoutine extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        user: state.authReducer.user
-    }
+    return {}
 }
 
-export default connect(mapStateToProps)(WorkoutRoutine);
+export default connect(mapStateToProps)(PathStepWorkoutRoutine);
