@@ -15,9 +15,7 @@ const styles = StyleSheet.create({
     },
 
     content: {
-        flex: 1,
-        padding: contentPadding,
-        paddingTop: contentPadding * 3
+        padding: contentPadding
     },
 
     step: {},
