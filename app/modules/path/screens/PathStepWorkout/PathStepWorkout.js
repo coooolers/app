@@ -5,9 +5,9 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import Button from "../../../../components/Button/Button";
 import {contentWidth} from "../../../../styles/theme";
-import ExerciseConfig from "../../../exercises/utils/ExerciseConfig";
 import RewardList from "../../../../components/RewardList/RewardList";
 import {getRewardsForStep} from "../../../../components/Util";
+import ExerciseList from "../../components/ExerciseList/ExerciseList";
 
 class PathStepWorkoutScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -39,29 +39,11 @@ class PathStepWorkoutScreen extends React.Component {
     };
 
     goToExerciseInfo = (exercise) => {
-      this.props.navigation.push("ExerciseInfo", {exercise});
-    };
-
-    renderExercises = () => {
-        const {step} = this.props.navigation.state.params;
-
-        return step.workoutRoutine.map((r, i) => {
-            const exercise = ExerciseConfig.getByKey(r.key);
-            return (
-                <View key={i} style={styles.exerciseContainer}>
-                    <Image source={{uri: exercise.imageUrl}} style={styles.exerciseImage}/>
-                    <View style={styles.exerciseContent}>
-                        <Text>{exercise.name}</Text>
-                        <Text>{r.quantity}</Text>
-                        <Text>{r.duration}</Text>
-                    </View>
-                    <TouchableOpacity onPress={() => this.goToExerciseInfo(exercise)}>
-                        <FontAwesome>{Icons.infoCircle}</FontAwesome>
-                    </TouchableOpacity>
-                </View>
-            );
+        this.props.navigation.push("ExerciseInfo", {
+            exercise: exercise.getExercise()
         });
     };
+
 
     renderRewards = () => {
         const {step} = this.props.navigation.state.params;
@@ -78,7 +60,7 @@ class PathStepWorkoutScreen extends React.Component {
     };
 
     render() {
-        const {step, path} = this.props.navigation.state.params;
+        const {step, path, workout} = this.props.navigation.state.params;
 
         return (
             <ImageBackground
@@ -94,8 +76,8 @@ class PathStepWorkoutScreen extends React.Component {
                         <Text style={styles.subTitle}>
                             <FontAwesome>{Icons.graduationCap}</FontAwesome> {path.name}
                         </Text>
-                        <View style={styles.exerciseList}>
-                            {this.renderExercises()}
+                        <View style={styles.exerciseContainer}>
+                            <ExerciseList workout={workout} onPress={this.goToExerciseInfo}/>
                         </View>
                     </View>
                     {this.renderRewards()}

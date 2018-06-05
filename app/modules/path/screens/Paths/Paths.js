@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, TouchableOpacity, Text} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
 import CharacterPanel from "../../components/CharacterPanel/CharacterPanel";
@@ -21,6 +21,9 @@ class PathsScreen extends React.Component {
     componentWillMount() {
         this.props.dispatch(fetchPaths()).then(() => {
             this.setState({isReady: true});
+
+            //TODO: remove
+            this.goToPath(this.props.paths[0]);
         });
     }
 

@@ -2,6 +2,7 @@ import {StyleSheet, PixelRatio} from 'react-native';
 import {color, contentPadding, contentWidth, fontSize} from "../../../../styles/theme";
 
 const headerIconSize = 36;
+const headerIconSpacing = (headerIconSize / 2);
 
 const styles = StyleSheet.create({
     container: {
@@ -18,7 +19,8 @@ const styles = StyleSheet.create({
         padding: contentPadding,
         alignItems: 'center',
         borderTopColor: color.brandPrimary,
-        borderTopWidth: 10
+        borderTopWidth: 10,
+        marginTop: headerIconSpacing - 5
     },
 
     headerIconContainer: {
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
         width: headerIconSize,
         height: headerIconSize,
         borderRadius: headerIconSize / PixelRatio.get(),
-        top: -(headerIconSize / 2) - 5,
+        top: -headerIconSpacing - 5,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -48,32 +50,9 @@ const styles = StyleSheet.create({
         fontSize: fontSize.regular - 2
     },
 
-    exerciseList: {
-        width: '100%',
-    },
-
     exerciseContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 10,
-        marginBottom: 10,
-        borderColor: color.brandDark,
-        borderWidth: 1,
-        backgroundColor: 'red',
-        paddingRight: 5,
-        height: 50,
-    },
-
-    exerciseImage: {
-        width: 50,
-        height: 50,
-        resizeMode: 'contain'
-    },
-
-    exerciseContent: {
-        flex: 1,
-        padding: 5,
+        width: '100%',
+        marginTop: 10
     },
 
     rewardsContainer: {

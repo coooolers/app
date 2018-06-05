@@ -10,6 +10,7 @@ import {Character} from "../../../characters/models";
 import {updateCharacter} from "../../../characters/actions";
 import _ from 'lodash';
 import {goToMainTabRoute} from "../../../../components/Util";
+import {Workout} from "../../../workouts/models";
 
 class PathScreen extends React.Component {
     state = {};
@@ -25,6 +26,9 @@ class PathScreen extends React.Component {
 
     componentDidMount() {
 
+        //TODO: remove
+        const {path} = this.props.navigation.state.params;
+        this.goToStep(path.steps["exercise-practice"], 4);
         // setTimeout(() => {
         //     this.onEarnedRewards({
         //         "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
@@ -78,6 +82,7 @@ class PathScreen extends React.Component {
             this.props.navigation.push("PathStepWorkout", {
                 step,
                 path,
+                workout: new Workout(step.name, step.workoutRoutine),
                 onEarnedRewards: this.onEarnedRewards.bind(this)
             });
         }

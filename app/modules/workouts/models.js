@@ -99,4 +99,8 @@ export class WorkoutRoutineExercise {
         this.durationCompletedLabel = `${durationCompleted}s`;
         return this;
     };
+
+    getExercise = () => {
+        return this._exercise;
+    }
 }
