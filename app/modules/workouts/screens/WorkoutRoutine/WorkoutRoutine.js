@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-import {Workout, WorkoutExercise} from "../../models";
+import {Workout, WorkoutRoutineExercise} from "../../models";
 
 import QuantityExercise from "../../components/QuantityExercise";
 import DurationExercise from "../../components/DurationExercise";
@@ -42,12 +42,12 @@ class WorkoutRoutine extends React.Component {
     }
 
     onQuantityExerciseDone = (workoutExercise, quantityCompleted) => {
-        WorkoutExercise.complete(workoutExercise, quantityCompleted, undefined);
+        WorkoutRoutineExercise.complete(workoutExercise, quantityCompleted, undefined);
         this.goToNextExercise();
     };
 
     onDurationExerciseDone = (workoutExercise, durationCompleted) => {
-        WorkoutExercise.complete(workoutExercise, undefined, durationCompleted);
+        WorkoutRoutineExercise.complete(workoutExercise, undefined, durationCompleted);
         this.goToNextExercise();
     };
 

@@ -1,54 +1,41 @@
-import {stringifyXp, round} from "../../components/Util";
+import {stringifyXp} from "../../components/Util";
 import _ from 'lodash';
 import ExerciseConfig from "../exercises/utils/ExerciseConfig";
 
 export class Workout {
-    constructor(workout) {
-        workout.exercises = [];
-        workout.xp = 0;
+    constructor(name, routine) {
+        this.name = name;
+        this.xp = 0;
+        this.routine = [];
 
-        workout.exerciseRoutineConfig.map(exerciseRoutine => {
-            const exercise = ExerciseConfig.getByKey(exerciseRoutine.key);
-            const workoutExercise = new WorkoutExercise(exercise, exerciseRoutine.quantity, exerciseRoutine.duration);
-            workout.exercises.push(workoutExercise);
-            workout.xp += workoutExercise.xp
+        _(routine).compact().forEach(r => {
+            const exercise = ExerciseConfig.getByKey(r.key);
+            const wre = r.quantity ?
+                WorkoutRoutineExercise.createFromQuantity(exercise, r.quantity) :
+                WorkoutRoutineExercise.createFromDuration(exercise, r.duration);
+            this.routine.push(wre);
+            this.xp += wre.xp;
         });
 
-        workout.xpLabel = stringifyXp(workout.xp);
+        this.xpLabel = stringifyXp(this.xp);
 
-        return workout;
+        return this;
     }
 
-    static complete = (workout) => {
-        workout.xpEarned = 0;
+    complete = () => {
+        this.xpEarned = 0;
 
-        workout.exercises.forEach(workoutExercise => {
-            workout.xpEarned += workoutExercise.xpEarned;
+        this.routine.forEach(wre => {
+            this.xpEarned += wre.xpEarned;
         });
 
-        workout.xpEarnedLabel = stringifyXp(workout.xpEarned);
+        this.xpEarnedLabel = stringifyXp(this.xpEarned);
 
-        workout.gradePercent = round((workout.xpEarned / workout.xp) * 100);
-
-        if (workout.gradePercent === 100) {
-            workout.grade = "S";
-        } else if (workout.gradePercent >= 90) {
-            workout.grade = "A";
-        } else if (workout.gradePercent >= 80) {
-            workout.grade = "B";
-        } else if (workout.gradePercent >= 70) {
-            workout.grade = "C";
-        } else if (workout.gradePercent >= 60) {
-            workout.grade = "D";
-        } else {
-            workout.grade = "F";
-        }
-
-        return workout;
+        return this;
     };
 }
 
-export class WorkoutExercise {
+export class WorkoutRoutineExercise {
     constructor(exercise, quantity, duration) {
         // base
         this.name = exercise.name;
@@ -70,43 +57,46 @@ export class WorkoutExercise {
         this.quantity = quantity;
         this.isQuantity = !!quantity;
 
-        // xp
-        this.xp = __calcWorkoutExerciseXp(exercise, quantity, duration);
-        this.xpLabel = stringifyXp(this.xp);
-        this.xpEarned = 0;
+        // private
+        this._exercise = exercise;
+
+        return this;
+    }
+
+    static createFromQuantity(exercise, quantity) {
+        const wre = new WorkoutRoutineExercise(exercise, quantity, null);
+
+        wre.xp = exercise.xp * quantity;
+        wre.xpLabel = stringifyXp(wre.xp);
+        wre.xpEarned = 0;
+        wre.xpEarnedLabel = stringifyXp(wre.xpEarned);
+        return wre;
+    }
+
+    static createFromDuration(exercise, duration) {
+        const wre = new WorkoutRoutineExercise(exercise, null, duration);
+
+        wre.xp = exercise.xp * duration;
+        wre.xpLabel = stringifyXp(wre.xp);
+        wre.xpEarned = 0;
+        wre.xpEarnedLabel = stringifyXp(wre.xpEarned);
+        return wre;
+    }
+
+    completeWithQuantity = (quantityCompleted) => {
+        this.xpEarned = this._exercise.xp * quantityCompleted;
+        this.xpEarnedLabel = stringifyXp(this.xpEarned);
+        this.quantityCompleted = quantityCompleted;
+        this.quantityCompletedLabel = `${quantityCompleted}`;
+        return this;
+    };
+
+    completeWithDuration = (durationCompleted) => {
+        this.xpEarned = this._exercise.xp * durationCompleted;
         this.xpEarnedLabel = stringifyXp(this.xpEarned);
 
-        this.exercise = exercise;
-    }
-
-    static complete = (workoutExercise, quantityCompleted, durationCompleted) => {
-        workoutExercise.xpEarned = __calcWorkoutExerciseXp(workoutExercise.exercise, quantityCompleted, durationCompleted);
-        workoutExercise.xpEarnedLabel = stringifyXp(workoutExercise.xpEarned);
-
-        if (_.isNumber(quantityCompleted) && quantityCompleted >= 0) {
-            workoutExercise.quantityCompleted = quantityCompleted;
-            workoutExercise.quantityCompletedLabel = `${quantityCompleted}`;
-            return workoutExercise;
-        } else if (_.isNumber(durationCompleted) && durationCompleted >= 0) {
-            workoutExercise.durationCompleted = durationCompleted;
-            workoutExercise.durationCompletedLabel = `${durationCompleted}s`;
-            return workoutExercise;
-        } else {
-            throw new Error("workout exercise complete must have a quantityComplete or durationComplete value");
-        }
+        this.durationCompleted = durationCompleted;
+        this.durationCompletedLabel = `${durationCompleted}s`;
+        return this;
     };
-}
-
-/*
- * PRIVATE API
- */
-
-function __calcWorkoutExerciseXp(exercise, quantity, duration) {
-    if (_.isNumber(quantity) && quantity >= 0) {
-        return exercise.xp * quantity;
-    } else if (_.isNumber(duration) && duration >= 0) {
-        return exercise.xp * duration;
-    } else {
-        throw new Error("workout exercise must have a quantity or duration value");
-    }
 }
