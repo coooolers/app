@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, Image, ImageBackground, Text, Animated} from 'react-native';
-import * as Progress from 'react-native-progress';
 import MountainImage from "../../../../assets/images/mountains.png";
 import styles from "./styles";
-import {Character} from "../../../characters/models";
 import LevelConfig from "../../../levelConfig/utils/LevelConfig";
-import RewardList from "../../../../components/RewardList/RewardList";
+import RewardList from "../../../../components/RewardList";
 import PropTypes from 'prop-types';
+import XpBar from "../../../../components/XpBar";
 
 export default class CharacterPanel extends React.Component {
     static propTypes = {
@@ -57,7 +56,6 @@ export default class CharacterPanel extends React.Component {
 
     render() {
         const {character} = this.props;
-        const xpProgress = Character.percentOfLevelComplete(character);
 
         return (
             <View style={styles.container}>
@@ -66,16 +64,7 @@ export default class CharacterPanel extends React.Component {
                     <Image style={styles.image} source={{uri: character.imageUrl}}/>
                     <View style={styles.xpContainer}>
                         <Text>{character.name} ({character.level})</Text>
-                        <Progress.Bar
-                            progress={xpProgress}
-                            width={null}
-                            height={12}
-                            borderRadius={0}
-                            borderColor={"#000000"}
-                            borderWidth={1}
-                            unfilledColor={"#ffffff"}
-                            color={"#674ea7"}
-                        />
+                        <XpBar character={character}/>
                         <View style={styles.xpTextContainer}>
                             <Text
                                 style={{fontSize: 10}}>{character.xp} / {LevelConfig.getForLevel(character.level).xpNeeded}</Text>
