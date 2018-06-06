@@ -13,10 +13,14 @@ export default class CharacterPanel extends React.Component {
         animateRewardConfig: PropTypes.object
     };
 
-    state = {
-        animatingReward: new Animated.Value(0), // bottom
-        rewardConfig: null
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            animatingReward: new Animated.Value(0), // bottom
+            rewardConfig: null
+        };
+    }
 
     componentWillReceiveProps(nextProps, prevProps) {
         if (nextProps.animateRewardConfig && prevProps.animateRewardConfig !== nextProps.animateRewardConfig) {
