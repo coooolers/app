@@ -10,8 +10,6 @@ const pathsReducer = (state = initialState, action) => {
         case t.PATH_PROGRESS_LOADED:
             state.byId[action.user.uid] = action.pathProgress || {};
             state.allIds = Object.keys(state.byId);
-
-            console.log(state);
             return Object.assign({}, state);
         default:
             return state;
