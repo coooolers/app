@@ -16,10 +16,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Lf7-eF-3wc">
-                    <rect key="frame" x="177.5" y="177.5" width="125" height="125"/>
+                    <rect key="frame" x="165" y="185.5" width="150" height="109"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.90980392156862744" green="0.38039215686274508" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Lf7-eF-3wc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="CEn-oz-1AM"/>
                 <constraint firstItem="Lf7-eF-3wc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HIA-NU-tjd"/>
@@ -30,6 +30,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo-icon" width="125" height="125"/>
+        <image name="logo-icon" width="150" height="109"/>
     </resources>
 </document>
