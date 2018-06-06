@@ -1,8 +1,7 @@
 import React from 'react';
 import {View, Image, ActivityIndicator} from 'react-native';
-import LogoIcon from "../../assets/images/white-logo-icon-transparent.png";
-
-import styles from './styles'
+import LogoIcon from "../../assets/images/logo-icon-red-small.png";
+import styles from './styles';
 
 export default class extends React.Component {
     render() {

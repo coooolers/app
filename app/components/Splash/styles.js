@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
-
-import { color, fontFamily, padding, fontSize } from "../../styles/theme";
+import { color, padding } from "../../styles/theme";
 
 const resizeMode = 'contain';
 
@@ -9,13 +8,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: color.brandPrimary
+        backgroundColor: 'rgb(222, 222, 222)'
     },
 
     image:{
         height: 125,
         width: 125,
-        backgroundColor: color.brandPrimary,
         marginBottom: padding,
         resizeMode
     },
