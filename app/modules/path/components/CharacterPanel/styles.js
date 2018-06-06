@@ -30,6 +30,27 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end'
+    },
+
+    rewardNotificationContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 0,
+        left: 20
+    },
+
+    rewardNotificationContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderColor: color.brandDark,
+        borderWidth: 2,
+        borderRadius: 20,
+        backgroundColor: color.brandLight
     }
 });
 

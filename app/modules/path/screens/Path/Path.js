@@ -13,7 +13,9 @@ import {Workout} from "../../../workouts/models";
 import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 
 class PathScreen extends React.Component {
-    state = {};
+    state = {
+        animateRewardConfig: null
+    };
 
     static navigationOptions = ({navigation}) => {
         const {path} = navigation.state.params || {};
@@ -33,6 +35,10 @@ class PathScreen extends React.Component {
         pathProgress[path.uid][step.uid] = {
             completed: new Date().toISOString()
         };
+
+        this.setState({
+            animateRewardConfig: rewards
+        }, () => this.setState({animateRewardConfig: null}));
 
         if (rewards[REWARD_TYPES.XP]) {
             const characterWithNewXp = Character.addXp(character, rewards[REWARD_TYPES.XP]);
@@ -103,6 +109,7 @@ class PathScreen extends React.Component {
     };
 
     render() {
+        const {animateRewardConfig} = this.state;
         const {character, navigation} = this.props;
         const {path} = navigation.state.params;
 
@@ -112,7 +119,7 @@ class PathScreen extends React.Component {
                 <ScrollView style={styles.content}>
                     {path.stepsOrder.map(this.renderPathStep)}
                 </ScrollView>
-                <CharacterPanel character={character}/>
+                <CharacterPanel character={character} animateRewardConfig={animateRewardConfig}/>
             </View>
         );
     }
