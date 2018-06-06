@@ -1,13 +1,13 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, Image} from 'react-native';
-import {Button, Divider, SocialIcon} from 'react-native-elements';
+import {View, Image} from 'react-native';
+import {SocialIcon} from 'react-native-elements';
 import {NavigationActions} from 'react-navigation';
 import {connect} from 'react-redux';
 import FBSDK from 'react-native-fbsdk';
-import Logo from "../../../../assets/images/white_logo_transparent.png";
-import {signInWithFacebook, signOut} from "../../actions";
-
+import Logo from "../../../../assets/images/logo-icon-red-small.png";
+import {signInWithFacebook} from "../../actions";
 import styles from "./styles";
+import BackgroundImage from "../../../../components/BackgroundImage";
 
 class Welcome extends React.Component {
     state = {};
@@ -47,24 +47,17 @@ class Welcome extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.topContainer}>
-                    <Image style={styles.image} source={Logo}/>
-                </View>
-
-                <View style={styles.bottomContainer}>
-                    <View style={[styles.buttonContainer]}>
-                        <SocialIcon
-                            raised
-                            button
-                            type='facebook'
-                            title='SIGN IN WITH FACEBOOK'
-                            iconSize={19}
-                            style={[styles.containerView, styles.socialButton]}
-                            fontStyle={styles.buttonText}
-                            onPress={this.onSignInWithFacebook}/>
-                    </View>
-                </View>
-
+                <BackgroundImage color={"blue"}/>
+                <Image style={styles.image} source={Logo}/>
+                <SocialIcon
+                    raised
+                    button
+                    type='facebook'
+                    title='SIGN IN WITH FACEBOOK'
+                    iconSize={19}
+                    style={[styles.containerView, styles.socialButton]}
+                    fontStyle={styles.buttonText}
+                    onPress={this.onSignInWithFacebook}/>
             </View>
         );
     }

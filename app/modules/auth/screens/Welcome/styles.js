@@ -1,60 +1,21 @@
 import {StyleSheet} from 'react-native';
-import {theme} from "../../index";
-import {contentPadding, contentWidth} from "../../../../styles/theme";
-
-const {padding, color, fontSize, fontFamily, windowWidth, normalize} = theme;
-
-const resizeMode = 'contain';
+import {color, fontSize, fontFamily, normalize, contentWidth} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: color.brandPrimary
-    },
-
-    topContainer: {
-        flex: 1,
-        paddingHorizontal: contentPadding,
-        paddingBottom: padding * 2,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: color.brandPrimary,
+        backgroundColor: color.white,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
     image: {
-        height: 300,
-        width: 300,
-        backgroundColor: color.brandPrimary,
-        marginBottom: padding,
-        resizeMode
-    },
-
-    subText: {
-        color: "#414141",
-        fontSize: fontSize.large,
-        lineHeight: fontSize.large + 10,
-        marginVertical: padding * 2
+        width: 150,
+        resizeMode: 'contain',
+        marginBottom: 50
     },
 
     //===============================
-
-    bottomContainer: {
-        flex: 1,
-        backgroundColor: "white",
-        paddingVertical: padding * 3,
-        shadowColor: "#000000",
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        shadowOffset: {
-            height: 1,
-            width: 0
-        }
-    },
-
-    buttonContainer: {
-        justifyContent: "center",
-        alignItems: "center"
-    },
 
     containerView: {
         width: contentWidth
@@ -75,49 +36,6 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: fontSize.regular + 2,
         fontFamily: fontFamily.medium
-    },
-
-    bottom: {
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: padding * 2
-    },
-
-    bottomText: {
-        fontSize: fontSize.regular,
-        fontFamily: fontFamily.medium,
-        marginRight: 5,
-        color: "#414141"
-    },
-
-    signInText: {
-        fontSize: fontSize.regular,
-        color: color.brandPrimary,
-        fontFamily: fontFamily.medium
-    },
-
-    orContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        height: 40,
-        width: windowWidth
-    },
-
-    divider: {
-        backgroundColor: '#D0D5DA',
-        position: "absolute",
-        top: 19,
-        left: 20,
-        right: 20
-    },
-
-    orText: {
-        backgroundColor: color.white,
-        fontSize: fontSize.regular,
-        fontFamily: fontFamily.medium,
-        color: "#414141",
-        paddingHorizontal: padding
     }
 });
 

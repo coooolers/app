@@ -12,8 +12,7 @@ const styles = StyleSheet.create({
     },
 
     image:{
-        height: 125,
-        width: 125,
+        width: 150,
         marginBottom: padding,
         resizeMode
     },
