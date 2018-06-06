@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -46,7 +45,7 @@
 		DB7395EF7DCF4F718962B29B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEEECECCB784BCAA65D8A47 /* Foundation.ttf */; };
 		E118947A20BDDFE300132603 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		E16C36EE20BDCC65002CE67C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E16C36C620BDCC65002CE67C /* GoogleService-Info.plist */; };
-		E194902220BE186C0012A41A /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F10F022097ACD100E503C0 /* libRNFirebase.a */; };
+		E17CDD5420C8697E005FB448 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F10F022097ACD100E503C0 /* libRNFirebase.a */; };
 		E194905820BE18980012A41A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		E1BD0CB120B7211300052B04 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0C8720B7210E00052B04 /* FBSDKLoginKit.framework */; };
 		E1BD0CB220B7211300052B04 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0CAE20B7211000052B04 /* Bolts.framework */; };
@@ -400,8 +399,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E17CDD5420C8697E005FB448 /* libRNFirebase.a in Frameworks */,
 				E194905820BE18980012A41A /* libReact.a in Frameworks */,
-				E194902220BE186C0012A41A /* libRNFirebase.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				E118947A20BDDFE300132603 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,

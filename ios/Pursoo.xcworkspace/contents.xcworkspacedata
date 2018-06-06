@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/johnrake/Development/pursoo/ios/Pursoo.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Pursoo.xcodeproj">
    </FileRef>
    <FileRef

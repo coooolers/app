@@ -15,7 +15,6 @@ target 'Pursoo' do
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
   pod 'RNSound', :path => '../node_modules/react-native-sound'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-  pod 'react-native-video', :path => '../node_modules/react-native-video'
 
 end
 

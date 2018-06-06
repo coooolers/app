@@ -28,8 +28,6 @@ PODS:
   - nanopb/encode (0.3.8)
   - React (0.54.4):
     - React/Core (= 0.54.4)
-  - react-native-video (2.1.1):
-    - React
   - React/Core (0.54.4):
     - yoga (= 0.54.4.React)
   - RNSound (0.10.9):
@@ -47,7 +45,6 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Core
   - React (from `../node_modules/react-native`)
-  - react-native-video (from `../node_modules/react-native-video`)
   - RNSound (from `../node_modules/react-native-sound`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -66,8 +63,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
-  react-native-video:
-    :path: "../node_modules/react-native-video"
   RNSound:
     :path: "../node_modules/react-native-sound"
   RNVectorIcons:
@@ -85,11 +80,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   React: c237e42de9c70e5cac6eeb52b4cfd3a0910c1f00
-  react-native-video: 6db316323366025251a815c49ca0e2edabe30a2a
   RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: 653397a11e4566c913cc910af61e846f53d4136b
+PODFILE CHECKSUM: 9e792714896c36d193440cfeca1596618c3a8c91
 
 COCOAPODS: 1.5.3
