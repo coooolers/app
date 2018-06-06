@@ -72,9 +72,8 @@ export default class PathStepItem extends React.Component {
             contentWrapperStyles = StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandPrimary}]);
         }
 
-
         return (
-            <View key={step.uuid} style={styles.container}>
+            <View key={step.uid} style={styles.container}>
                 {this.renderStatus()}
                 <TouchableOpacity style={contentWrapperStyles}
                                   onPress={() => this.props.onSelect(step)}>

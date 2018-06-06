@@ -40,7 +40,8 @@ class PathsScreen extends React.Component {
                 <BackgroundImage color={"green"}/>
                 <ScrollView style={styles.content}>
                     {
-                        paths.map((path, index) => {
+                        paths.order.map((pathUid) => {
+                            const path = paths.byId[pathUid];
                             return (
                                 <PathItem
                                     key={path.uid}
@@ -61,7 +62,7 @@ function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
         character: state.characterReducer.character,
-        paths: state.pathsReducer.paths,
+        paths: state.pathsReducer,
         pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
     };
 }
