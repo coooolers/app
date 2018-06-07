@@ -38,7 +38,7 @@ class PathsScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"green"}/>
-                <ScrollView style={styles.content}>
+                <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
                     {
                         paths.order.map((pathUid) => {
                             const path = paths.byId[pathUid];

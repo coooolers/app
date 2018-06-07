@@ -116,7 +116,7 @@ class PathScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"purple"}/>
-                <ScrollView style={styles.content}>
+                <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
                     {path.stepsOrder.map(this.renderPathStep)}
                 </ScrollView>
                 <CharacterPanel character={character} animateRewardConfig={animateRewardConfig}/>
