@@ -1,10 +1,8 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
-import Button from "../../../../components/Button/Button";
-import {contentWidth} from "../../../../styles/theme";
 import RewardList from "../../../../components/RewardList/RewardList";
 import {getRewardsForStep} from "../../../../components/Util";
 import ExerciseList from "../../components/ExerciseList/ExerciseList";
@@ -12,10 +10,11 @@ import BackgroundImage from "../../../../components/BackgroundImage/BackgroundIm
 
 class PathStepWorkoutScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
-        const {step} = navigation.state.params;
+        const {step, startWorkout} = navigation.state.params || {};
 
         return {
-            headerTitle: step.name
+            headerTitle: step.name,
+            headerRight: <RNButton onPress={() => startWorkout()} title={"Start"}/>
         }
     };
 
@@ -31,6 +30,12 @@ class PathStepWorkoutScreen extends React.Component {
             hasCompleted: !!stepProgress,
             didEarnRewards: false
         };
+    }
+
+    componentWillMount() {
+        this.props.navigation.setParams({
+            startWorkout: this.startWorkout.bind(this)
+        });
     }
 
     startWorkout = () => {
@@ -78,16 +83,6 @@ class PathStepWorkoutScreen extends React.Component {
                             <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
                         </View>
                     </View>
-                    <Button title={"START WORKOUT"}
-                            containerViewStyle={{
-                                marginTop: 10,
-                                width: contentWidth - 30
-                            }}
-                            buttonStyle={{
-                                borderRadius: 0,
-                                height: 45
-                            }}
-                            onPress={this.startWorkout}/>
                 </ScrollView>
             </View>
         );

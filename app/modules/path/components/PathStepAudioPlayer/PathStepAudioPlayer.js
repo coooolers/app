@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Alert, Slider} from 'react-native';
+import {View, Text, TouchableOpacity, Slider, ActivityIndicator} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
@@ -18,7 +18,8 @@ export default class PathStepAudioPlayer extends React.Component {
         isReady: false,
         isPlaying: false,
         timeListened: 0,
-        timeRemaining: 0
+        timeRemaining: 0,
+        audioDuration: 0
     };
 
     componentWillMount() {
@@ -30,6 +31,7 @@ export default class PathStepAudioPlayer extends React.Component {
             this.setState({
                 timeListened: 0,
                 timeRemaining: this.audio.getDuration(),
+                audioDuration: this.audio.getDuration(),
                 isReady: true
             });
 
@@ -97,9 +99,14 @@ export default class PathStepAudioPlayer extends React.Component {
     };
 
     renderPlayButton = () => {
-        const {isPlaying} = this.state;
+        const {isPlaying, isReady} = this.state;
 
-        if (isPlaying) {
+
+        if (!isReady) {
+            return (
+                <ActivityIndicator size={"large"}/>
+            );
+        } else if (isPlaying) {
             return (
                 <TouchableOpacity onPress={this.pause}>
                     <FontAwesome style={styles.play}>{Icons.pause}</FontAwesome>
@@ -115,9 +122,7 @@ export default class PathStepAudioPlayer extends React.Component {
     };
 
     render() {
-        const {isReady, timeListened, timeRemaining} = this.state;
-
-        if (!isReady) return null;
+        const {isReady, timeListened, timeRemaining, audioDuration} = this.state;
 
         return (
             <View style={styles.container}>
@@ -127,8 +132,8 @@ export default class PathStepAudioPlayer extends React.Component {
                         onValueChange={this.onSliderChange}
                         minimumValue={0}
                         minimumTrackTintColor={color.brandPrimary}
-                        maximumValue={this.audio.getDuration()}
-
+                        maximumValue={audioDuration}
+                        disabled={!isReady}
                 />
                 <View style={styles.timerContainer}>
                     <Text style={styles.timingText}>{secondsToMMSS(round(timeListened))}</Text>

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {normalize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
@@ -23,13 +24,11 @@ const styles = StyleSheet.create({
     },
 
     play: {
-        fontSize: 40,
-        marginLeft: 25,
-        marginRight: 25
+        fontSize: normalize(34)
     },
 
     timingText: {
-        fontSize: 12
+        fontSize: normalize(12)
     }
 });
 

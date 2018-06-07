@@ -88,16 +88,6 @@ class PathStepAudioScreen extends React.Component {
                     </View>
                     {this.renderRewards()}
                 </View>
-                <Button title={"CLOSE"}
-                        containerViewStyle={{
-                            marginTop: 10,
-                            width: contentWidth - 30
-                        }}
-                        buttonStyle={{
-                            borderRadius: 0,
-                            height: 45
-                        }}
-                        onPress={this.goBack}/>
             </View>
         );
     }
