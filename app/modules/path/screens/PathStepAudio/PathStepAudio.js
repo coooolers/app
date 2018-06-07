@@ -53,21 +53,8 @@ class PathStepAudioScreen extends React.Component {
         });
     };
 
-    renderRewards = () => {
-        const {step} = this.props.navigation.state.params;
-        const {hasCompleted} = this.state;
-
-        return (
-            <View style={styles.rewardsContainer}>
-                <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
-                <View style={{flexDirection: 'row'}}>
-                    <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
-                </View>
-            </View>
-        );
-    };
-
     render() {
+        const {hasCompleted} = this.state;
         const {step, path} = this.props.navigation.state.params;
 
         return (
@@ -86,7 +73,12 @@ class PathStepAudioScreen extends React.Component {
                             url={step.audioUrl}
                             onComplete={this.onAudioComplete}/>
                     </View>
-                    {this.renderRewards()}
+                    <View style={styles.rewardsContainer}>
+                        <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
+                        <View style={{flexDirection: 'row'}}>
+                            <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
+                        </View>
+                    </View>
                 </View>
             </View>
         );

@@ -58,16 +58,17 @@ const styles = StyleSheet.create({
     },
 
     rewardsContainer: {
-        width: contentWidth - 30,
+        width: '100%',
+        marginTop: 10,
         backgroundColor: color.white,
-        borderTopColor: color.black,
+        borderTopColor: color.grey,
         borderTopWidth: 1,
-        padding: 10,
+        padding: 5,
         paddingBottom: 0,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
-    }
+        justifyContent: 'center'
+    },
 });
 
 export default styles;
