@@ -17,7 +17,11 @@ const styles = StyleSheet.create({
         padding: contentPadding,
         alignItems: 'center',
         borderTopColor: color.brandPrimary,
-        borderTopWidth: 10
+        borderTopWidth: 10,
+        shadowColor: 'rgba(0,0,0, .4)',
+        shadowOffset: { height: 1, width: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1
     },
 
     headerIconContainer: {
@@ -59,9 +63,11 @@ const styles = StyleSheet.create({
         borderTopColor: color.black,
         borderTopWidth: 1,
         padding: 10,
+        paddingBottom: 0,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'},
+        justifyContent: 'space-between'
+    }
 });
 
 export default styles;

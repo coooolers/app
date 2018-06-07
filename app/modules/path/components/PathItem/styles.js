@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {color, contentPadding, normalize} from "../../../../styles/theme";
+import {color, contentPadding, fontSize, normalize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
@@ -7,7 +7,11 @@ const styles = StyleSheet.create({
         borderColor: color.brandDark,
         borderTopWidth: 8,
         backgroundColor: color.white,
-        padding: contentPadding
+        padding: contentPadding,
+        shadowColor: 'rgba(0,0,0, .4)',
+        shadowOffset: { height: 1, width: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1
     },
 
     name: {
@@ -17,12 +21,12 @@ const styles = StyleSheet.create({
     },
 
     difficulty: {
-        fontSize: normalize(13),
+        fontSize: fontSize.small,
         color: color.brandDark
     },
 
     description: {
-        fontSize: normalize(13),
+        fontSize: fontSize.small,
         color: color.dark_grey,
         marginTop: 10
     },

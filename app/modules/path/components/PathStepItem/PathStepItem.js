@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
@@ -30,23 +30,27 @@ export default class PathStepItem extends React.Component {
         const {isCompleted, isLocked} = this.props;
 
         if (isCompleted) {
-            return <FontAwesome style={
-                StyleSheet.flatten([styles.statusIcon, {color: color.white}])
-            }>{Icons.check}</FontAwesome>
+            return <FontAwesome style={[styles.statusIcon, {color: color.brandSuccess}]}>{Icons.check}</FontAwesome>
         } else if (isLocked) {
-            return <FontAwesome style={styles.statusIcon}>{Icons.lock}</FontAwesome>;
+            return <FontAwesome style={[styles.statusIcon, {color: color.brandDark}]}>{Icons.lock}</FontAwesome>;
         } else {
-            return null;
+            return <FontAwesome style={[styles.statusIcon, {color: color.brandPrimary}]}>{Icons.handORight}</FontAwesome>;
         }
     };
 
     renderStatus = () => {
-        const {showTopStatusBorder, showBottomStatusBorder, isCompleted} = this.props;
+        const {showTopStatusBorder, showBottomStatusBorder, isCompleted, isLocked} = this.props;
         const statusTopStyles = showTopStatusBorder ? styles.statusTop : null;
         const statusBottomStyles = showBottomStatusBorder ? styles.statusBottom : null;
-        const statusIndicatorStyles = isCompleted ?
-            StyleSheet.flatten([styles.statusIndicator, {backgroundColor: color.brandSuccess}]) :
-            styles.statusIndicator;
+        const statusIndicatorStyles = [styles.statusIndicator];
+
+        if (isCompleted) {
+            statusIndicatorStyles.push({borderColor: color.brandSuccess});
+        } else if (isLocked) {
+            statusIndicatorStyles.push({borderColor: color.brandDark});
+        } else {
+            statusIndicatorStyles.push({borderColor: color.brandPrimary});
+        }
 
         return (
             <View style={styles.status}>
@@ -62,14 +66,14 @@ export default class PathStepItem extends React.Component {
 
     render = () => {
         const {step, isCompleted, isLocked} = this.props;
-        let contentWrapperStyles = null;
+        let contentWrapperStyles = [styles.contentContainer];
 
         if (isCompleted) {
-            contentWrapperStyles = StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandSuccess}]);
+            contentWrapperStyles.push({borderTopColor: color.brandSuccess});
         } else if (isLocked) {
-            contentWrapperStyles = StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandDark}]);
+            contentWrapperStyles.push({borderTopColor: color.brandDark});
         } else {
-            contentWrapperStyles = StyleSheet.flatten([styles.contentContainer, {borderTopColor: color.brandPrimary}]);
+            contentWrapperStyles.push({borderTopColor: color.brandPrimary});
         }
 
         return (
@@ -85,7 +89,7 @@ export default class PathStepItem extends React.Component {
                         <Text style={styles.description}>{step.description}</Text>
                     </View>
                     <View style={styles.contentFooter}>
-                        <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={isCompleted}/>
+                        <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={isCompleted} size={16}/>
                     </View>
                 </TouchableOpacity>
             </View>

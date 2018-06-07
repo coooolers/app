@@ -86,8 +86,8 @@ class PathStepAudioScreen extends React.Component {
                             url={step.audioUrl}
                             onComplete={this.onAudioComplete}/>
                     </View>
+                    {this.renderRewards()}
                 </View>
-                {this.renderRewards()}
                 <Button title={"CLOSE"}
                         containerViewStyle={{
                             marginTop: 10,

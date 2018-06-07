@@ -1,8 +1,8 @@
 import {StyleSheet, PixelRatio} from 'react-native';
-import {color, fontSize} from "../../../../styles/theme";
+import {color, fontSize, normalize} from "../../../../styles/theme";
 import {round} from "../../../../components/Util";
 
-const statusCircleSize = 35;
+const statusCircleSize = 28;
 const defaultBorderWidth = 1;
 const defaultBorderColor = color.black;
 const statusVRuleOffset = round(statusCircleSize / 2);
@@ -31,7 +31,11 @@ const styles = StyleSheet.create({
         borderColor: defaultBorderColor,
         borderWidth: defaultBorderWidth,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        shadowColor: 'rgba(0,0,0, .4)',
+        shadowOffset: { height: 1, width: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1
     },
 
     statusIcon: {
@@ -71,8 +75,12 @@ const styles = StyleSheet.create({
         backgroundColor: color.brandLight,
         borderColor: defaultBorderColor,
         borderWidth: defaultBorderWidth,
-        borderTopWidth: 3,
-        marginBottom: 30
+        borderTopWidth: 5,
+        marginBottom: 20,
+        shadowColor: 'rgba(0,0,0, .4)',
+        shadowOffset: { height: 1, width: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1
     },
 
     contentHeader: {
@@ -107,8 +115,7 @@ const styles = StyleSheet.create({
 
     description: {
         fontSize: fontSize.small,
-        marginTop: 5,
-        marginBottom: 5
+        color: color.dark_grey
     }
 });
 

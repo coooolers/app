@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import FontAwesome, {Icons} from "react-native-fontawesome";
-import {StyleSheet, View, Text} from "react-native";
+import {View, Text} from "react-native";
 import styles from "./styles";
 import {REWARD_TYPES} from "../../constants";
 import PropTypes from "prop-types";
+import {normalize} from "../../../../styles/theme";
 
 export default class RewardIcon extends Component {
     static propTypes = {
@@ -16,29 +17,29 @@ export default class RewardIcon extends Component {
 
     renderIcon = () => {
         const {type, hasEarned, size} = this.props;
-        let iconStyles = null;
+        let iconStyles = [];
         let icon = null;
 
         if (type === REWARD_TYPES.XP) {
-            iconStyles = styles.xpIcon;
+            iconStyles.push(styles.xpIcon);
             icon = Icons.trophy;
         } else if (type === REWARD_TYPES.TERM) {
-            iconStyles = styles.termIcon;
+            iconStyles.push(styles.termIcon);
             icon = Icons.book;
         } else if (type === REWARD_TYPES.EXERCISE) {
-            iconStyles = styles.exerciseIcon;
+            iconStyles.push(styles.exerciseIcon);
             icon = Icons.bicycle;
         } else if (type === REWARD_TYPES.WORKOUT) {
-            iconStyles = styles.workoutIcon;
+            iconStyles.push(styles.workoutIcon);
             icon = Icons.clockO;
         }
 
         if (hasEarned) {
-            iconStyles = StyleSheet.flatten([iconStyles, {color: '#999999'}]);
+            iconStyles.push({color: '#999999'});
         }
 
         if (size) {
-            iconStyles = StyleSheet.flatten([iconStyles, {fontSize: size}]);
+            iconStyles.push({fontSize: normalize(size)});
         }
 
         return <FontAwesome style={iconStyles}>{icon}</FontAwesome>;
@@ -56,16 +57,21 @@ export default class RewardIcon extends Component {
     };
 
     renderEarnedIcon = () => {
-        const {hasEarned} = this.props;
+        const {hasEarned, size} = this.props;
+        const iconStyles = [styles.earnedIcon];
 
         if (hasEarned) {
-            return <FontAwesome style={styles.earnedIcon}>{Icons.checkCircleO}</FontAwesome>;
+            if (size) {
+                iconStyles.push({fontSize: normalize(size)});
+            }
+
+            return <FontAwesome style={iconStyles}>{Icons.checkCircleO}</FontAwesome>;
         }
     };
 
     render() {
         const containerStyles = this.props.containerStyles ?
-            StyleSheet.flatten([styles.container, this.props.containerStyles]) : styles.container;
+            [styles.container, this.props.containerStyles] : styles.container;
 
         return (
             <View style={containerStyles}>
