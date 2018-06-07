@@ -25,7 +25,6 @@ class PathStepWorkoutRoutine extends React.Component {
 
     constructor(props) {
         super(props);
-
         const {path, step, workout, exerciseIndex, onEarnedRewards} = props.navigation.state.params;
         this.state = {path, step, workout, exerciseIndex, onEarnedRewards};
     }
@@ -76,10 +75,16 @@ class PathStepWorkoutRoutine extends React.Component {
     };
 
     goToExercise = (exerciseIndex) => {
-        this.setState({exerciseIndex});
+        const {workout} = this.state;
+        const exercises = workout.routine.slice(0, exerciseIndex);
+        const allPreviousExercisesComplete = exercises.every(e => e.isComplete);
 
-        const xOffset = 70 * exerciseIndex;
-        this.exerciseScrollView.scrollTo({x: xOffset, y: 0, animated: true});
+        if (allPreviousExercisesComplete) {
+            this.setState({exerciseIndex});
+
+            const xOffset = 70 * exerciseIndex;
+            this.exerciseScrollView.scrollTo({x: xOffset, y: 0, animated: true});
+        }
     };
 
     goToNextExercise = () => {
