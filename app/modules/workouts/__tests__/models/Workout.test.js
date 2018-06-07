@@ -23,6 +23,7 @@ it('create workout', () => {
     expect(workout.xp).toEqual(44);
     expect(workout.xpLabel).toEqual("44xp");
     expect(workout.routine.length).toEqual(5);
+    expect(workout.isComplete).toEqual(false);
 });
 
 it('complete workout', () => {
@@ -46,6 +47,7 @@ it('complete workout', () => {
     expect(workout.xp).toEqual(44);
     expect(workout.xpLabel).toEqual("44xp");
     expect(workout.routine.length).toEqual(5);
+    expect(workout.isComplete).toEqual(false);
 
     workout.routine[0].completeWithQuantity(3);
     workout.routine[1].completeWithQuantity(3);
@@ -59,4 +61,5 @@ it('complete workout', () => {
     expect(workout.xpLabel).toEqual("44xp");
     expect(workout.xpEarned).toEqual(44);
     expect(workout.xpEarnedLabel).toEqual("44xp");
+    expect(workout.isComplete).toEqual(true);
 });

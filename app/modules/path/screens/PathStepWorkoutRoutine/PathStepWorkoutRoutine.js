@@ -77,6 +77,9 @@ class PathStepWorkoutRoutine extends React.Component {
 
     goToExercise = (exerciseIndex) => {
         this.setState({exerciseIndex});
+
+        const xOffset = 70 * exerciseIndex;
+        this.exerciseScrollView.scrollTo({x: xOffset, y: 0, animated: true});
     };
 
     goToNextExercise = () => {
@@ -99,14 +102,16 @@ class PathStepWorkoutRoutine extends React.Component {
         const isCurrentExercise = exerciseIndex === i;
         const itemStyles = isCurrentExercise ?
             [styles.navigationItem, styles.navigationItemActive] : styles.navigationItem;
+        const completedIcon = e.isComplete ?
+            <FontAwesome style={styles.navigationItemCompletedIcon}>{Icons.checkCircleO}</FontAwesome> :
+            null;
 
         return (
-            <View key={i} style={itemStyles}>
-                <TouchableOpacity onPress={() => this.goToExercise(i)}>
-                    <Image source={{uri: e.imageUrl}}
-                           style={styles.navigationImage}/>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity key={i} style={itemStyles} onPress={() => this.goToExercise(i)}>
+                <Image source={{uri: e.imageUrl}}
+                       style={styles.navigationImage}/>
+                {completedIcon}
+            </TouchableOpacity>
         )
     };
 
@@ -115,7 +120,8 @@ class PathStepWorkoutRoutine extends React.Component {
 
         return (
             <View style={styles.navigation}>
-                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}
+                            ref={(e) => this.exerciseScrollView = e}>
                     {workout.routine.map(this.renderExerciseNavigationItem)}
                 </ScrollView>
             </View>

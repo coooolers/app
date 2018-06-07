@@ -7,6 +7,7 @@ export class Workout {
         this.name = name;
         this.xp = 0;
         this.routine = [];
+        this.isComplete = false;
 
         _(routine).compact().forEach(r => {
             const exercise = ExerciseConfig.getByKey(r.key);
@@ -23,6 +24,7 @@ export class Workout {
     }
 
     complete = () => {
+        this.isComplete = true;
         this.xpEarned = 0;
 
         this.routine.forEach(wre => {
