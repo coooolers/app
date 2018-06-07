@@ -64,7 +64,7 @@ class PathStepWorkoutScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"blue"}/>
-                <ScrollView style={styles.content}>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.panel}>
                         <View style={styles.headerIconContainer}>
                             <FontAwesome style={styles.headerIcon}>{Icons.clockO}</FontAwesome>
@@ -76,11 +76,11 @@ class PathStepWorkoutScreen extends React.Component {
                         <View style={styles.exerciseContainer}>
                             <ExerciseList workout={workout} onPress={this.goToExerciseInfo}/>
                         </View>
-                    </View>
-                    <View style={styles.rewardsContainer}>
-                        <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
-                        <View style={{flexDirection: 'row'}}>
-                            <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
+                        <View style={styles.rewardsContainer}>
+                            <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
+                            <View style={{flexDirection: 'row'}}>
+                                <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
+                            </View>
                         </View>
                     </View>
                 </ScrollView>

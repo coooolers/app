@@ -12,10 +12,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    content: {
-        padding: contentPadding
-    },
-
     panel: {
         width: contentWidth - 30,
         backgroundColor: color.white,
@@ -23,7 +19,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderTopColor: color.brandPrimary,
         borderTopWidth: 10,
-        marginTop: headerIconSpacing - 5
+        marginTop: headerIconSpacing - 5,
+        shadowColor: 'rgba(0,0,0, .4)',
+        shadowOffset: { height: 1, width: 1 },
+        shadowOpacity: 1,
+        shadowRadius: 1
     },
 
     headerIconContainer: {
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
         borderTopColor: color.black,
         borderTopWidth: 1,
         padding: 10,
+        paddingBottom: 0,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
