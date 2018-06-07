@@ -1,14 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {connect} from 'react-redux';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
-import Button from "../../../../components/Button/Button";
-import {contentWidth} from "../../../../styles/theme";
-import RewardList from "../../../../components/RewardList/RewardList";
-import {getRewardsForStep} from "../../../../components/Util";
-import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
+import BackgroundImage from "../../../../components/BackgroundImage";
+import PathStepPanel from "../../components/PathStepPanel";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -60,26 +57,11 @@ class PathStepAudioScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"blue"}/>
-                <View style={styles.panel}>
-                    <View style={styles.headerIconContainer}>
-                        <FontAwesome style={styles.headerIcon}>{Icons.headphones}</FontAwesome>
-                    </View>
-                    <Text style={styles.title}>{step.name}</Text>
-                    <Text style={styles.subTitle}>
-                        <FontAwesome>{Icons.graduationCap}</FontAwesome> {path.name}
-                    </Text>
-                    <View style={styles.audioContainer}>
-                        <PathStepAudioPlayer
-                            url={step.audioUrl}
-                            onComplete={this.onAudioComplete}/>
-                    </View>
-                    <View style={styles.rewardsContainer}>
-                        <Text style={{fontWeight: 'bold'}}>REWARDS:</Text>
-                        <View style={{flexDirection: 'row'}}>
-                            <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={hasCompleted}/>
-                        </View>
-                    </View>
-                </View>
+                <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={Icons.headphones}>
+                    <PathStepAudioPlayer
+                        url={step.audioUrl}
+                        onComplete={this.onAudioComplete}/>
+                </PathStepPanel>
             </View>
         );
     }
