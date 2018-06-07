@@ -9,18 +9,22 @@ import styles from "./styles";
 export default class QuantityExercise extends React.Component {
     static propTypes = {
         workoutExercise: PropTypes.object.isRequired,
-        workout: PropTypes.object.isRequired,
         onDone: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            workoutExercise: props.workoutExercise,
-            workout: props.workout
-        };
+    componentWillMount() {
+        this.setup(this.props.workoutExercise);
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.workoutExercise) {
+            this.setup(nextProps.workoutExercise);
+        }
+    }
+
+    setup = (workoutExercise) => {
+        this.setState({workoutExercise});
+    };
 
     onDonePress = () => {
         const {workoutExercise} = this.state;
@@ -55,7 +59,7 @@ export default class QuantityExercise extends React.Component {
 
                 <Button
                     raised
-                    title={"DONE"}
+                    title={"Done"}
                     borderRadius={4}
                     style={styles.button}
                     containerViewStyle={styles.containerView}

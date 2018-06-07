@@ -1,24 +1,23 @@
 import React from 'react';
-import {TouchableOpacity, Alert} from 'react-native';
+import {TouchableOpacity, ScrollView, View, Alert, Image, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-
 import QuantityExercise from "../../components/QuantityExercise";
 import DurationExercise from "../../components/DurationExercise";
+import {color} from "../../../../styles/theme";
+import styles from "./styles";
 
 class PathStepWorkoutRoutine extends React.Component {
     static navigationOptions = ({navigation}) => {
-        const params = navigation.state.params || {};
+        const {goToExerciseHelp, cancelWorkout} = navigation.state.params || {};
 
         return {
+            headerLeft: <RNButton onPress={() => cancelWorkout()} title={"Cancel"}/>,
             headerRight: (
-                <TouchableOpacity onPress={params.goToExerciseHelp}>
-                    <FontAwesome
-                        style={{
-                            color: '#007AFF',
-                            fontSize: 22,
-                            marginRight: 10
-                        }}>{Icons.infoCircle}</FontAwesome>
+                <TouchableOpacity onPress={() => goToExerciseHelp()}>
+                    <FontAwesome style={{color: color.brandDark, fontSize: 22, marginRight: 10}}>
+                        {Icons.infoCircle}
+                    </FontAwesome>
                 </TouchableOpacity>
             )
         }
@@ -32,7 +31,10 @@ class PathStepWorkoutRoutine extends React.Component {
     }
 
     componentWillMount() {
-        this.props.navigation.setParams({goToExerciseHelp: this.goToExerciseHelp.bind(this)});
+        this.props.navigation.setParams({
+            goToExerciseHelp: this.goToExerciseHelp.bind(this),
+            cancelWorkout: this.cancelWorkout.bind(this)
+        });
     }
 
     onQuantityExerciseDone = (workoutExercise, quantityCompleted) => {
@@ -45,6 +47,25 @@ class PathStepWorkoutRoutine extends React.Component {
         this.goToNextExercise();
     };
 
+    cancelWorkout = () => {
+        Alert.alert(
+            'Cancel Workout?',
+            'Any rewards earned will not be saved.',
+            [
+                {
+                    text: 'No',
+                    onPress: () => {
+                    },
+                    style: 'cancel'
+                },
+                {
+                    text: 'Yes',
+                    onPress: () => this.props.navigation.popToTop(),
+                },
+            ]
+        );
+    };
+
     goToExerciseHelp = () => {
         const {workout, exerciseIndex} = this.state;
         const workoutExercise = workout.routine[exerciseIndex];
@@ -54,18 +75,16 @@ class PathStepWorkoutRoutine extends React.Component {
         });
     };
 
+    goToExercise = (exerciseIndex) => {
+        this.setState({exerciseIndex});
+    };
+
     goToNextExercise = () => {
-        const {path, step, workout, exerciseIndex, onEarnedRewards} = this.state;
+        const {workout, exerciseIndex, onEarnedRewards} = this.state;
         const nextWorkoutExercise = workout.routine[exerciseIndex + 1];
 
         if (nextWorkoutExercise) {
-            return this.props.navigation.navigate("PathStepWorkoutRoutine", {
-                path,
-                step,
-                workout,
-                exerciseIndex: exerciseIndex + 1,
-                onEarnedRewards
-            });
+            this.goToExercise(exerciseIndex + 1);
         } else {
             this.props.navigation.popToTop();
 
@@ -75,25 +94,56 @@ class PathStepWorkoutRoutine extends React.Component {
         }
     };
 
+    renderExerciseNavigationItem = (e, i) => {
+        const {exerciseIndex} = this.state;
+        const isCurrentExercise = exerciseIndex === i;
+        const itemStyles = isCurrentExercise ?
+            [styles.navigationItem, styles.navigationItemActive] : styles.navigationItem;
+
+        return (
+            <View key={i} style={itemStyles}>
+                <TouchableOpacity onPress={() => this.goToExercise(i)}>
+                    <Image source={{uri: e.imageUrl}}
+                           style={styles.navigationImage}/>
+                </TouchableOpacity>
+            </View>
+        )
+    };
+
+    renderExerciseNavigation = () => {
+        const {workout} = this.state;
+
+        return (
+            <View style={styles.navigation}>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
+                    {workout.routine.map(this.renderExerciseNavigationItem)}
+                </ScrollView>
+            </View>
+        )
+    };
+
     render() {
         const {workout, exerciseIndex} = this.state;
         const workoutExercise = workout.routine[exerciseIndex];
 
-        if (workoutExercise.isQuantity) {
-            return <QuantityExercise
+        const content = workoutExercise.isQuantity ?
+            <QuantityExercise
                 workoutExercise={workoutExercise}
                 workout={workout}
                 onDone={this.onQuantityExerciseDone}
-            />
-        } else if (workoutExercise.isDuration) {
-            return <DurationExercise
+            /> :
+            <DurationExercise
                 workoutExercise={workoutExercise}
                 workout={workout}
                 onDone={this.onDurationExerciseDone}
-            />
-        } else {
-            return null;
-        }
+            />;
+
+        return (
+            <View style={styles.container}>
+                {this.renderExerciseNavigation()}
+                <View style={styles.content}>{content}</View>
+            </View>
+        );
     }
 }
 

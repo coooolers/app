@@ -11,28 +11,40 @@ import {round} from "../../../../components/Util";
 export default class DurationExercise extends React.Component {
     static propTypes = {
         workoutExercise: PropTypes.object.isRequired,
-        workout: PropTypes.object.isRequired,
         onDone: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
+    componentWillMount() {
+        this.setup(this.props.workoutExercise);
+    }
 
-        this.state = {
-            workoutExercise: props.workoutExercise,
-            workout: props.workout,
-            buttonText: "Start",
-            progress: 1,
-            isRunning: false,
-            durationCompleted: 0
-        };
-
-        this.progressInterval = null;
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.workoutExercise) {
+            this.setup(nextProps.workoutExercise);
+        }
     }
 
     componentWillUnmount() {
         this.tearDown();
     }
+
+    setup = (workoutExercise) => {
+        if (this.progressInterval) clearInterval(progressInterval);
+
+        this.setState({
+            workoutExercise,
+            buttonText: "Start",
+            progress: 1,
+            isRunning: false,
+            durationCompleted: 0
+        });
+    };
+
+    tearDown = () => {
+        if (this.progressInterval) {
+            clearInterval(this.progressInterval);
+        }
+    };
 
     onDonePress = () => {
         const {workoutExercise, durationCompleted} = this.state;
@@ -63,12 +75,6 @@ export default class DurationExercise extends React.Component {
                 buttonText: `Done (${this.state.durationCompleted + 1}s)`,
                 progress: 1 - round(durationCompleted / workoutExercise.duration, 2)
             });
-        }
-    };
-
-    tearDown = () => {
-        if (this.progressInterval) {
-            clearInterval(this.progressInterval);
         }
     };
 
