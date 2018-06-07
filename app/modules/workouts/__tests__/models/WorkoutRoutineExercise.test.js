@@ -28,6 +28,7 @@ it('create exercise from quantity', () => {
     expect(wre.xpLabel).toEqual("20xp");
     expect(wre.xpEarned).toEqual(0);
     expect(wre.xpEarnedLabel).toEqual("0xp");
+    expect(wre.isComplete).toEqual(false);
 });
 
 it('create exercise from duration', () => {
@@ -50,6 +51,7 @@ it('create exercise from duration', () => {
     expect(wre.xpLabel).toEqual("60xp");
     expect(wre.xpEarned).toEqual(0);
     expect(wre.xpEarnedLabel).toEqual("0xp");
+    expect(wre.isComplete).toEqual(false);
 });
 
 it('create exercise from quantity and complete it', () => {
@@ -73,6 +75,7 @@ it('create exercise from quantity and complete it', () => {
     expect(wre.xpLabel).toEqual("20xp");
     expect(wre.xpEarned).toEqual(20);
     expect(wre.xpEarnedLabel).toEqual("20xp");
+    expect(wre.isComplete).toEqual(true);
 });
 
 it('create exercise from duration and complete it', () => {
@@ -96,4 +99,5 @@ it('create exercise from duration and complete it', () => {
     expect(wre.xpLabel).toEqual("60xp");
     expect(wre.xpEarned).toEqual(60);
     expect(wre.xpEarnedLabel).toEqual("60xp");
+    expect(wre.isComplete).toEqual(true);
 });

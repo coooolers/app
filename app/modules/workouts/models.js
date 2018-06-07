@@ -41,6 +41,7 @@ export class WorkoutRoutineExercise {
         this.name = exercise.name;
         this.pluralizedName = exercise.pluralizedName;
         this.imageUrl = exercise.imageUrl;
+        this.isComplete = false;
 
         // durations
         this.duration = duration;
@@ -84,6 +85,7 @@ export class WorkoutRoutineExercise {
     }
 
     completeWithQuantity = (quantityCompleted) => {
+        this.isComplete = true;
         this.xpEarned = this._exercise.xp * quantityCompleted;
         this.xpEarnedLabel = stringifyXp(this.xpEarned);
         this.quantityCompleted = quantityCompleted;
@@ -92,9 +94,9 @@ export class WorkoutRoutineExercise {
     };
 
     completeWithDuration = (durationCompleted) => {
+        this.isComplete = true;
         this.xpEarned = this._exercise.xp * durationCompleted;
         this.xpEarnedLabel = stringifyXp(this.xpEarned);
-
         this.durationCompleted = durationCompleted;
         this.durationCompletedLabel = `${durationCompleted}s`;
         return this;
