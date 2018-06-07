@@ -88,7 +88,7 @@ class PathStepWorkoutRoutine extends React.Component {
     };
 
     goToNextExercise = () => {
-        const {workout, exerciseIndex, onEarnedRewards} = this.state;
+        const {step, workout, exerciseIndex, onEarnedRewards} = this.state;
         const nextWorkoutExercise = workout.routine[exerciseIndex + 1];
 
         if (nextWorkoutExercise) {
