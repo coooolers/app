@@ -2,6 +2,7 @@ import {round, stringifyXp} from "../../../components/Util";
 import _ from 'lodash';
 import ExerciseConfig from "../../exercises/utils/ExerciseConfig";
 import {WorkoutExercise} from "../models";
+import {WORKOUT_GRADES} from "../constants";
 
 export default class Workout {
     constructor(name, routine) {
@@ -45,17 +46,17 @@ export default class Workout {
         this.gradePercent = round((this.xpEarned / this.xp) * 100);
 
         if (this.gradePercent === 100) {
-            this.grade = "S";
+            this.grade = WORKOUT_GRADES.S;
         } else if (this.gradePercent >= 90) {
-            this.grade = "A";
+            this.grade = WORKOUT_GRADES.A;
         } else if (this.gradePercent >= 80) {
-            this.grade = "B";
+            this.grade = WORKOUT_GRADES.B;
         } else if (this.gradePercent >= 70) {
-            this.grade = "C";
+            this.grade = WORKOUT_GRADES.C;
         } else if (this.gradePercent >= 60) {
-            this.grade = "D";
+            this.grade = WORKOUT_GRADES.D;
         } else {
-            this.grade = "F";
+            this.grade = WORKOUT_GRADES.F;
         }
     }
 }
