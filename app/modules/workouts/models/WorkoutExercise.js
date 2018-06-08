@@ -1,43 +1,6 @@
-import {stringifyXp} from "../../components/Util";
-import _ from 'lodash';
-import ExerciseConfig from "../exercises/utils/ExerciseConfig";
+import {stringifyXp} from "../../../components/Util";
 
-export class Workout {
-    constructor(name, routine) {
-        this.name = name;
-        this.xp = 0;
-        this.routine = [];
-        this.isComplete = false;
-
-        _(routine).compact().forEach(r => {
-            const exercise = ExerciseConfig.getByKey(r.key);
-            const wre = r.quantity ?
-                WorkoutRoutineExercise.createFromQuantity(exercise, r.quantity) :
-                WorkoutRoutineExercise.createFromDuration(exercise, r.duration);
-            this.routine.push(wre);
-            this.xp += wre.xp;
-        });
-
-        this.xpLabel = stringifyXp(this.xp);
-
-        return this;
-    }
-
-    complete = () => {
-        this.isComplete = true;
-        this.xpEarned = 0;
-
-        this.routine.forEach(wre => {
-            this.xpEarned += wre.xpEarned;
-        });
-
-        this.xpEarnedLabel = stringifyXp(this.xpEarned);
-
-        return this;
-    };
-}
-
-export class WorkoutRoutineExercise {
+export default class WorkoutExercise {
     constructor(exercise, quantity, duration) {
         // base
         this.name = exercise.name;
@@ -60,30 +23,30 @@ export class WorkoutRoutineExercise {
         this.quantity = quantity;
         this.isQuantity = !!quantity;
 
-        // private
+        // privateWorkoutRoutineExercise
         this._exercise = exercise;
 
         return this;
     }
 
     static createFromQuantity(exercise, quantity) {
-        const wre = new WorkoutRoutineExercise(exercise, quantity, null);
+        const workoutExercise = new WorkoutExercise(exercise, quantity, null);
 
-        wre.xp = exercise.xp * quantity;
-        wre.xpLabel = stringifyXp(wre.xp);
-        wre.xpEarned = 0;
-        wre.xpEarnedLabel = stringifyXp(wre.xpEarned);
-        return wre;
+        workoutExercise.xp = exercise.xp * quantity;
+        workoutExercise.xpLabel = stringifyXp(workoutExercise.xp);
+        workoutExercise.xpEarned = 0;
+        workoutExercise.xpEarnedLabel = stringifyXp(workoutExercise.xpEarned);
+        return workoutExercise;
     }
 
     static createFromDuration(exercise, duration) {
-        const wre = new WorkoutRoutineExercise(exercise, null, duration);
+        const workoutExercise = new WorkoutExercise(exercise, null, duration);
 
-        wre.xp = exercise.xp * duration;
-        wre.xpLabel = stringifyXp(wre.xp);
-        wre.xpEarned = 0;
-        wre.xpEarnedLabel = stringifyXp(wre.xpEarned);
-        return wre;
+        workoutExercise.xp = exercise.xp * duration;
+        workoutExercise.xpLabel = stringifyXp(workoutExercise.xp);
+        workoutExercise.xpEarned = 0;
+        workoutExercise.xpEarnedLabel = stringifyXp(workoutExercise.xpEarned);
+        return workoutExercise;
     }
 
     completeWithQuantity = (quantityCompleted) => {
