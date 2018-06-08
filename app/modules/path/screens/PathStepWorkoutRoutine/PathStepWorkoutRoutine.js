@@ -6,6 +6,7 @@ import QuantityExercise from "../../components/QuantityExercise";
 import DurationExercise from "../../components/DurationExercise";
 import {color} from "../../../../styles/theme";
 import styles from "./styles";
+import {WORKOUT_GRADES} from "../../../workouts/constants";
 
 class PathStepWorkoutRoutine extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -96,9 +97,11 @@ class PathStepWorkoutRoutine extends React.Component {
         } else {
             this.props.navigation.popToTop();
 
-            setTimeout(() => {
-                onEarnedRewards(step)
-            }, 500);
+            if (workout.grade === WORKOUT_GRADES.S) {
+                setTimeout(() => {
+                    onEarnedRewards(step)
+                }, 500);
+            }
         }
     };
 
