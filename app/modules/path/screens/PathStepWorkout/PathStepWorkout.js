@@ -26,8 +26,7 @@ class PathStepWorkoutScreen extends React.Component {
         const stepProgress = pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid];
 
         this.state = {
-            hasCompleted: !!stepProgress,
-            didEarnRewards: false
+            hasCompleted: !!stepProgress
         };
     }
 
@@ -39,11 +38,13 @@ class PathStepWorkoutScreen extends React.Component {
 
     startWorkout = () => {
         const {step, path, workout, onEarnedRewards} = this.props.navigation.state.params;
+        const {hasCompleted} = this.state;
 
         this.props.navigation.push("PathStepWorkoutRoutine", {
             path,
             step,
             workout,
+            hasCompleted,
             exerciseIndex: 0,
             onEarnedRewards
         })

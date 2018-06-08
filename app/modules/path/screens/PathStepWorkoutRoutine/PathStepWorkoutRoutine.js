@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import QuantityExercise from "../../components/QuantityExercise";
 import DurationExercise from "../../components/DurationExercise";
-import {color} from "../../../../styles/theme";
+import {color, windowWidth} from "../../../../styles/theme";
 import styles from "./styles";
 import {WORKOUT_GRADES} from "../../../workouts/constants";
 
@@ -26,8 +26,8 @@ class PathStepWorkoutRoutine extends React.Component {
 
     constructor(props) {
         super(props);
-        const {path, step, workout, exerciseIndex, onEarnedRewards} = props.navigation.state.params;
-        this.state = {path, step, workout, exerciseIndex, onEarnedRewards};
+        const {path, step, workout, exerciseIndex, onEarnedRewards, hasCompleted} = props.navigation.state.params;
+        this.state = {path, step, workout, exerciseIndex, onEarnedRewards, hasCompleted};
     }
 
     componentWillMount() {
@@ -35,6 +35,10 @@ class PathStepWorkoutRoutine extends React.Component {
             goToExerciseHelp: this.goToExerciseHelp.bind(this),
             cancelWorkout: this.cancelWorkout.bind(this)
         });
+    }
+
+    componentDidMount() {
+        this.centerExerciseNavigation();
     }
 
     onQuantityExerciseDone = (workoutExercise, quantityCompleted) => {
@@ -81,28 +85,37 @@ class PathStepWorkoutRoutine extends React.Component {
         const allPreviousExercisesComplete = exercises.every(e => e.isComplete);
 
         if (allPreviousExercisesComplete) {
-            this.setState({exerciseIndex});
-
-            const xOffset = 70 * exerciseIndex;
-            this.exerciseScrollView.scrollTo({x: xOffset, y: 0, animated: true});
+            this.setState({exerciseIndex}, () => this.centerExerciseNavigation());
         }
     };
 
     goToNextExercise = () => {
-        const {step, workout, exerciseIndex, onEarnedRewards} = this.state;
+        const {step, workout, exerciseIndex, hasCompleted, onEarnedRewards} = this.state;
         const nextWorkoutExercise = workout.routine[exerciseIndex + 1];
 
         if (nextWorkoutExercise) {
             this.goToExercise(exerciseIndex + 1);
         } else {
+            workout.complete();
+
             this.props.navigation.popToTop();
 
-            if (workout.grade === WORKOUT_GRADES.S) {
+            if (workout.grade === WORKOUT_GRADES.S && hasCompleted === false) {
                 setTimeout(() => {
                     onEarnedRewards(step)
                 }, 500);
             }
         }
+    };
+
+    centerExerciseNavigation = () => {
+        const {exerciseIndex} = this.state;
+
+        const itemWidth = 70;
+        const centerOffset = -(windowWidth / 2) + itemWidth;
+        const itemOffset = centerOffset + (itemWidth * exerciseIndex);
+
+        this.exerciseScrollView.scrollTo({x: itemOffset, y: 0, animated: true});
     };
 
     renderExerciseNavigationItem = (e, i) => {

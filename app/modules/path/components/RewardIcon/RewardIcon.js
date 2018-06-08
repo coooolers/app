@@ -62,7 +62,7 @@ export default class RewardIcon extends Component {
 
         if (hasEarned) {
             if (size) {
-                iconStyles.push({fontSize: normalize(size)});
+                iconStyles.push({fontSize: normalize(size - 2)});
             }
 
             return <FontAwesome style={iconStyles}>{Icons.checkCircleO}</FontAwesome>;

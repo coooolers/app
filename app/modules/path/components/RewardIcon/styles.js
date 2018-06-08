@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 
     earnedIcon: {
         color: color.brandSuccess,
-        fontSize: 20,
+        fontSize: 18,
         position: 'absolute',
         left: -5,
         bottom: -5
