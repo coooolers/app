@@ -7,13 +7,10 @@ export default {
         "exercise-practice": {
             "description": "TODO",
             "name": "Exercise Practice",
-            "rewards": [null, {
-                "key": "exercise",
-                "value": 5
-            }, {
-                "key": "xp",
-                "value": 0
-            }],
+            "rewards": {
+                "exercise": 5,
+                "xp": 0
+            },
             "type": "workout",
             "uid": "exercise-practice",
             "workoutRoutine": [null, {
@@ -37,10 +34,9 @@ export default {
             "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
             "description": "Welcome to the introduction to the beginner bodyweight path! Take a moment to listen and learn what you should expect.",
             "name": "Introduction",
-            "rewards": [null, {
-                "key": "xp",
-                "value": 20
-            }],
+            "rewards": {
+                "xp": 20
+            },
             "type": "audio",
             "uid": "introduction"
         },
@@ -48,10 +44,9 @@ export default {
             "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
             "description": "TODO",
             "name": "Muscle Fundamentals",
-            "rewards": [null, {
-                "key": "xp",
-                "value": 20
-            }],
+            "rewards": {
+                "xp": 20
+            },
             "type": "audio",
             "uid": "muscle-fundamentals"
         },
@@ -59,13 +54,10 @@ export default {
             "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
             "description": "Learn what \"Strength Training\" is and why it's so effective at keeping you strong and healthy.",
             "name": "Strength Training",
-            "rewards": [null, {
-                "key": "term",
-                "value": 1
-            }, {
-                "key": "xp",
-                "value": 20
-            }],
+            "rewards": {
+                "term": 1,
+                "xp": 20
+            },
             "type": "audio",
             "uid": "strength-training"
         },
@@ -73,13 +65,10 @@ export default {
             "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
             "description": "TODO",
             "name": "Warm Up",
-            "rewards": [null, {
-                "key": "term",
-                "value": 1
-            }, {
-                "key": "xp",
-                "value": 20
-            }],
+            "rewards": {
+                "term": 1,
+                "xp": 20
+            },
             "type": "audio",
             "uid": "warmup"
         },
@@ -87,10 +76,9 @@ export default {
             "audioUrl": "https://raw.githubusercontent.com/zmxv/react-native-sound-demo/master/advertising.mp3",
             "description": "TODO",
             "name": "When To Workout?",
-            "rewards": [null, {
-                "key": "xp",
-                "value": 50
-            }],
+            "rewards": {
+                "xp": 50
+            },
             "type": "audio",
             "uid": "when-to-workout"
         }

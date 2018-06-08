@@ -4,10 +4,9 @@ import {getRewardsForStep} from "../index";
 it('get single rewards for simple audio step', () => {
     const rewards = getRewardsForStep({
         name: "Introduction",
-        "rewards": [null, {
-            "key": "xp",
-            "value": 20
-        }],
+        "rewards": {
+            "xp": 20
+        },
         "type": "audio"
     }, global.exerciseConfig);
 
@@ -19,13 +18,10 @@ it('get single rewards for simple audio step', () => {
 it('get multiple rewards for simple audio step', () => {
     const rewards = getRewardsForStep({
         name: "Introduction",
-        "rewards": [null, {
-            "key": "term",
-            "value": 2
-        }, {
-            "key": "xp",
-            "value": 20
-        }],
+        "rewards": {
+            "term": 2,
+            "xp": 20
+        },
         "type": "audio"
     }, global.exerciseConfig);
 
@@ -37,13 +33,10 @@ it('get multiple rewards for simple audio step', () => {
 
 it('get rewards for workout step', () => {
     const rewards = getRewardsForStep({
-        "rewards": [null, {
-            "key": "exercise",
-            "value": 5
-        }, {
-            "key": "xp",
-            "value": 0
-        }],
+        "rewards": {
+            "exercise": 5,
+            "xp": 44
+        },
         "type": "workout",
         "workoutRoutine": [null, {
             "key": "squat-bodyweight",
@@ -64,7 +57,7 @@ it('get rewards for workout step', () => {
     }, global.exerciseConfig);
 
     expect(rewards).toEqual({
-        xp: 44,
-        exercise: 5
+        exercise: 5,
+        xp: 44
     });
 });

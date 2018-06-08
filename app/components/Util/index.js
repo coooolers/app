@@ -60,14 +60,14 @@ export const getRewardsForPath = (path) => {
 };
 
 export const getRewardsForStep = (step) => {
-    let result = {};
-    _(step.rewards).compact().forEach(r => result[r.key] = r.value);
+    let result = Object.assign({}, step.rewards);
 
     if (step.type === STEP_TYPES.AUDIO) {
         return result;
     } else if (step.type === STEP_TYPES.WORKOUT) {
         // calc dynamic exercise xp
         result[REWARD_TYPES.XP] = 0;
+
         _(step.workoutRoutine).compact().forEach(i => {
             const exercise = ExerciseConfig.getByKey(i.key);
             result[REWARD_TYPES.XP] += exercise.xp * (i.duration || i.quantity);
