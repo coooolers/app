@@ -119,12 +119,16 @@ class MainRouter extends React.Component {
     };
 
     componentWillMount() {
-        Promise.all([
-            this.props.dispatch(fetchMyCharacter(this.props.user)),
-            this.props.dispatch(fetchUserPathProgress(this.props.user))
-        ]).then(() => {
+        if (this.props.user.hasCompletedOnboarding) {
+            Promise.all([
+                this.props.dispatch(fetchMyCharacter(this.props.user)),
+                this.props.dispatch(fetchUserPathProgress(this.props.user))
+            ]).then(() => {
+                this.setState({isReady: true});
+            });
+        } else {
             this.setState({isReady: true});
-        });
+        }
     }
 
     render() {

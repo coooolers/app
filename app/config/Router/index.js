@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 //Splash Component
-import Splash from '../../components/Splash/Splash';
-import AuthRouter from './AuthRouter';
+import SplashScreen from '../../components/Splash';
+import UnauthenticatedRouter from './UnauthenticatedRouter';
 import MainRouter from './MainRouter';
 
 //Import Store, actions
@@ -35,10 +35,10 @@ class Router extends React.Component {
             if (this.props.isLoggedIn) {
                 return <MainRouter/>;
             } else {
-                return <AuthRouter/>;
+                return <UnauthenticatedRouter/>;
             }
         } else {
-            return <Splash/>;
+            return <SplashScreen/>;
         }
     }
 }
