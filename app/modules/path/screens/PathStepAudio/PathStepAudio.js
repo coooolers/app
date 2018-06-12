@@ -1,17 +1,20 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
 import {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
 import BackgroundImage from "../../../../components/BackgroundImage";
+import Collapsible from 'react-native-collapsible';
 import PathStepPanel from "../../components/PathStepPanel";
+import {color} from "../../../../styles/theme";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
-        const {step} = navigation.state.params;
+        const {step, goBack} = navigation.state.params;
 
         return {
+            headerLeft: <RNButton title={"Back"} onPress={() => goBack()}/>,
             headerTitle: step.name
         }
     };
@@ -26,8 +29,15 @@ class PathStepAudioScreen extends React.Component {
 
         this.state = {
             hasCompleted: !!stepProgress,
-            didEarnRewards: false
+            didEarnRewards: false,
+            transcriptIsOpen: false
         };
+    }
+
+    componentWillMount() {
+        this.props.navigation.setParams({
+            goBack: this.goBack.bind(this)
+        })
     }
 
     goBack = () => {
@@ -50,6 +60,33 @@ class PathStepAudioScreen extends React.Component {
         });
     };
 
+    renderTranscript = () => {
+        const {transcriptIsOpen} = this.state;
+        const {step} = this.props.navigation.state.params;
+
+        if (!step.transcript) return null;
+        
+        return (
+            <View>
+                <View style={{flexDirection: 'row'}}>
+                    <Text>Transcript - </Text>
+                    <TouchableOpacity onPress={() => this.setState({transcriptIsOpen: !transcriptIsOpen})}>
+                        <Text style={{color: color.brandInfo}}>{transcriptIsOpen ? "close" : "open"}</Text>
+                    </TouchableOpacity>
+                </View>
+                <Collapsible collapsed={!transcriptIsOpen}>
+                    <View>
+                        {
+                            step.transcript.map((t, i) => {
+                                return <Text key={i} style={styles.transcriptParagraph}>{t}</Text>
+                            })
+                        }
+                    </View>
+                </Collapsible>
+            </View>
+        );
+    };
+
     render() {
         const {hasCompleted} = this.state;
         const {step, path} = this.props.navigation.state.params;
@@ -57,11 +94,14 @@ class PathStepAudioScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"blue"}/>
-                <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={Icons.headphones}>
-                    <PathStepAudioPlayer
-                        url={step.audioUrl}
-                        onComplete={this.onAudioComplete}/>
-                </PathStepPanel>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={Icons.headphones}>
+                        <PathStepAudioPlayer
+                            url={step.audioUrl}
+                            onComplete={this.onAudioComplete}/>
+                        {this.renderTranscript()}
+                    </PathStepPanel>
+                </ScrollView>
             </View>
         );
     }

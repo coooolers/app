@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     },
 
     statusIcon: {
-        fontSize: statusCircleSize - 10
+        fontSize: statusCircleSize - 10,
+        marginLeft: 1
     },
 
     statusTop: {
