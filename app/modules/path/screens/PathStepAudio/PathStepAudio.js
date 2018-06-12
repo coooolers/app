@@ -65,16 +65,18 @@ class PathStepAudioScreen extends React.Component {
         const {step} = this.props.navigation.state.params;
 
         if (!step.transcript) return null;
-        
+
         return (
             <View>
                 <View style={{flexDirection: 'row'}}>
-                    <Text>Transcript - </Text>
+                    <Text style={{fontWeight: 'bold'}}>Transcript - </Text>
                     <TouchableOpacity onPress={() => this.setState({transcriptIsOpen: !transcriptIsOpen})}>
-                        <Text style={{color: color.brandInfo}}>{transcriptIsOpen ? "close" : "open"}</Text>
+                        <Text style={{color: color.brandInfo, fontWeight: 'bold'}}>
+                            {transcriptIsOpen ? "close" : "read more..."}
+                        </Text>
                     </TouchableOpacity>
                 </View>
-                <Collapsible collapsed={!transcriptIsOpen}>
+                <Collapsible collapsed={!transcriptIsOpen} collapsedHeight={30}>
                     <View>
                         {
                             step.transcript.map((t, i) => {
