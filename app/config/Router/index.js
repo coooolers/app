@@ -1,17 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
-//Splash Component
-import SplashScreen from '../../components/Splash';
-import UnauthenticatedRouter from './UnauthenticatedRouter';
-import MainRouter from './MainRouter';
-
-//Import Store, actions
 import store from '../../redux/store';
 import {checkLoginStatus} from "../../modules/auth/actions";
 import {fetchScreens} from "../../modules/screens/actions";
 import {fetchLevelConfig} from "../../modules/levelConfig/actions";
 import {fetchExercises} from "../../modules/exercises/actions";
+import SplashScreen from '../../components/Splash';
+import UnauthenticatedRouter from './UnauthenticatedRouter';
+import MainRouter from './MainRouter';
 
 class Router extends React.Component {
     state = {

@@ -6,11 +6,9 @@ import {StyleSheet} from "react-native";
 import {fetchMyCharacter} from "../../modules/characters/actions";
 import {connect} from "react-redux";
 
-// Onboarding
-import OnboardingWelcome from "../../modules/onboarding/screens/OnboardingWelcome";
-import OnboardingProfile from "../../modules/onboarding/screens/OnboardingProfile";
-import OnboardingCreateCharacter from "../../modules/onboarding/screens/OnboardingCreateCharacter";
-import OnboardingHowItWorks from "../../modules/onboarding/screens/OnboardingHowItWorks";
+// Paths
+import PathsScreen from "../../modules/path/screens/Paths";
+import PathRouter from "./PathsRouter";
 
 //Character Scenes
 import HomeScreen from '../../modules/home/screens/Home';
@@ -19,49 +17,19 @@ import CharacterEditScreen from "../../modules/characters/screens/CharacterEdit"
 // Profile
 import ProfileScreen from "../../modules/profile/screens/Profile";
 
-// Exercise
-import ExerciseInfo from "../../modules/exercises/screens/ExerciseInfo";
-
-// Paths
-import PathsScreen from "../../modules/path/screens/Paths";
-import PathScreen from "../../modules/path/screens/Path";
-import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
-import PathStepWorkoutScreen from "../../modules/path/screens/PathStepWorkout";
-import PathStepWorkoutRoutineScreen from "../../modules/path/screens/PathStepWorkoutRoutine";
-
-import MainInitScreen from "./MainInitScreen";
 import {fetchUserPathProgress} from "../../modules/userPathProgress/actions";
+import OnboardingRouter from "./OnboardingRouter";
+import MainInitScreen from "./MainInitScreen";
 
 function getTabIconStyle(tintColor) {
     return StyleSheet.flatten([tabIconStyle, {color: tintColor}]);
 }
 
 
-const PathStack = StackNavigator({
-    PathStepAudio: {screen: PathStepAudioScreen},
-    PathStepWorkout: {screen: PathStepWorkoutScreen},
-    PathStepWorkoutRoutine: {screen: PathStepWorkoutRoutineScreen},
-    ExerciseInfo: {screen: ExerciseInfo},
-    Path: {screen: PathScreen},
-}, {
-    initialRouteName: 'Path'
-});
-
-
 const MainRouterStack = StackNavigator({
-    Initial: {
-        screen: MainInitScreen
-    },
-    Onboarding: StackNavigator({
-        OnboardingWelcome: {screen: OnboardingWelcome},
-        OnboardingProfile: {screen: OnboardingProfile},
-        OnboardingCreateCharacter: {screen: OnboardingCreateCharacter},
-        OnboardingHowItWorks: {screen: OnboardingHowItWorks}
-    }, {
-        initialRouteName: 'OnboardingWelcome',
-    }),
-
-    Path: PathStack,
+    Initial: {screen: MainInitScreen},
+    Path: PathRouter,
+    Onboarding: OnboardingRouter,
 
     CharacterEdit: StackNavigator({
         CharacterEdit: {screen: CharacterEditScreen}

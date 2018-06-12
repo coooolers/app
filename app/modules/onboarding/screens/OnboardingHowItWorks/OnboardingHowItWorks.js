@@ -1,15 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView} from 'react-native';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 
 import styles from "./styles";
 import Button from "../../../../components/Button/Button";
 import PushupImage from "../../../../assets/images/pushup.png";
-import {NavigationActions} from "react-navigation";
 import Reporting from "../../../reporting";
 import {fetchMyCharacter} from "../../../characters/actions";
 import {updateUser} from "../../actions";
+import {goToMainTabRoute} from "../../../../components/Util";
 
 class OnboardingHowItWorks extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -33,22 +33,12 @@ class OnboardingHowItWorks extends React.Component {
         this.goToNext();
     };
 
-    onPressWorkoutLater = () => {
-        Reporting.track("onboarding__workout_later");
-        this.goToNext();
-    };
-
     goToNext = () => {
         const {user} = this.props;
         user.hasCompletedOnboarding = true;
 
         this.props.dispatch(updateUser(user)).then(() => {
-            const resetAction = NavigationActions.reset({
-                index: 0,
-                key: null,
-                actions: [NavigationActions.navigate({routeName: 'Main'})],
-            });
-            this.props.navigation.dispatch(resetAction);
+            goToMainTabRoute(this.props.navigation, 'Paths');
         });
     };
 
@@ -93,9 +83,6 @@ class OnboardingHowItWorks extends React.Component {
                 <Button title={screenConfig.buttonText}
                         icon={screenConfig.buttonIcon}
                         onPress={this.onPressStartWork}/>
-                <TouchableOpacity onPress={this.onPressWorkoutLater}>
-                    <Text style={styles.secondaryCTA}>{screenConfig.buttonAltText}</Text>
-                </TouchableOpacity>
             </View>
         );
     }

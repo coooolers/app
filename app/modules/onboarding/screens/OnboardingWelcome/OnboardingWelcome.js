@@ -15,7 +15,7 @@ class OnboardingWelcome extends React.Component {
     };
 
     goToNext = () => {
-        this.props.navigation.push('OnboardingProfile');
+        this.props.navigation.push('OnboardingCreateCharacter');
     };
 
     render() {
