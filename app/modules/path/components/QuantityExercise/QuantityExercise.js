@@ -12,19 +12,13 @@ export default class QuantityExercise extends React.Component {
         onDone: PropTypes.func.isRequired
     };
 
-    componentWillMount() {
-        this.setup(this.props.workoutExercise);
-    }
+    constructor(props) {
+        super(props);
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.workoutExercise) {
-            this.setup(nextProps.workoutExercise);
-        }
+        this.state = {
+            workoutExercise: props.workoutExercise
+        };
     }
-
-    setup = (workoutExercise) => {
-        this.setState({workoutExercise});
-    };
 
     onDonePress = () => {
         const {workoutExercise} = this.state;

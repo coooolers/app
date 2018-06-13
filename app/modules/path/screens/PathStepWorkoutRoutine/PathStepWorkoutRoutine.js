@@ -149,26 +149,37 @@ class PathStepWorkoutRoutine extends React.Component {
         )
     };
 
-    render() {
+    renderExercise = () => {
         const {workout, exerciseIndex} = this.state;
         const workoutExercise = workout.routine[exerciseIndex];
 
-        const content = workoutExercise.isQuantity ?
-            <QuantityExercise
-                workoutExercise={workoutExercise}
-                workout={workout}
-                onDone={this.onQuantityExerciseDone}
-            /> :
-            <DurationExercise
-                workoutExercise={workoutExercise}
-                workout={workout}
-                onDone={this.onDurationExerciseDone}
-            />;
+        if (workoutExercise.isQuantity) {
+            return (
+                <QuantityExercise key={exerciseIndex}
+                    workoutExercise={workoutExercise}
+                    workout={workout}
+                    onDone={this.onQuantityExerciseDone}
+                />
+            );
+        } else {
+            return (
+                <DurationExercise key={exerciseIndex}
+                    workoutExercise={workoutExercise}
+                    workout={workout}
+                    onDone={this.onDurationExerciseDone}
+                />
+            )
+        }
 
+    };
+
+    render() {
         return (
             <View style={styles.container}>
                 {this.renderExerciseNavigation()}
-                <View style={styles.content}>{content}</View>
+                <View style={styles.content}>
+                    {this.renderExercise()}
+                </View>
             </View>
         );
     }
