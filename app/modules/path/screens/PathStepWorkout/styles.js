@@ -8,6 +8,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingTop: contentPadding,
         paddingBottom: contentPadding
+    },
+
+    buttonContainer: {
+        paddingTop: contentPadding,
+        paddingLeft: contentPadding,
+        paddingRight: contentPadding
     }
 });
 

@@ -8,6 +8,7 @@ import BackgroundImage from "../../../../components/BackgroundImage";
 import Collapsible from 'react-native-collapsible';
 import PathStepPanel from "../../components/PathStepPanel";
 import {color} from "../../../../styles/theme";
+import Button from "../../../../components/Button/Button";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -104,6 +105,9 @@ class PathStepAudioScreen extends React.Component {
                         {this.renderTranscript()}
                     </PathStepPanel>
                 </ScrollView>
+                <View style={styles.buttonContainer}>
+                    <Button title={"BACK"} onPress={this.goBack}/>
+                </View>
             </View>
         );
     }

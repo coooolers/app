@@ -6,6 +6,7 @@ import styles from "./styles";
 import ExerciseList from "../../components/ExerciseList";
 import BackgroundImage from "../../../../components/BackgroundImage";
 import PathStepPanel from "../../components/PathStepPanel";
+import Button from "../../../../components/Button/Button";
 
 class PathStepWorkoutScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -69,6 +70,9 @@ class PathStepWorkoutScreen extends React.Component {
                         <ExerciseList workout={workout} onPress={this.goToExerciseInfo}/>
                     </PathStepPanel>
                 </ScrollView>
+                <View style={styles.buttonContainer}>
+                    <Button title={"START WORKOUT"} onPress={this.startWorkout}/>
+                </View>
             </View>
         );
     }

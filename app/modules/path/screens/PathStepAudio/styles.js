@@ -13,6 +13,12 @@ const styles = StyleSheet.create({
     transcriptParagraph: {
         marginTop: 5,
         marginBottom: 5
+    },
+
+    buttonContainer: {
+        paddingTop: contentPadding,
+        paddingLeft: contentPadding,
+        paddingRight: contentPadding
     }
 });
 
