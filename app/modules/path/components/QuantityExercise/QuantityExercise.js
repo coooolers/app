@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Text} from 'react-native-elements';
-import {View, Image, TextInput} from 'react-native';
+import {View, Image, TextInput, TouchableOpacity} from 'react-native';
 import PropTypes from "prop-types";
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import styles from "./styles";
@@ -15,10 +15,16 @@ export default class QuantityExercise extends React.Component {
     constructor(props) {
         super(props);
 
+        this.textInputRef = null;
+
         this.state = {
             workoutExercise: props.workoutExercise
         };
     }
+
+    focusInput = () => {
+        this.textInputRef && this.textInputRef.focus();
+    };
 
     onDonePress = () => {
         const {workoutExercise} = this.state;
@@ -59,8 +65,9 @@ export default class QuantityExercise extends React.Component {
             <View style={styles.container}>
                 <Image source={{uri: workoutExercise.imageUrl}} style={styles.image}/>
                 <Text style={styles.name}>{workoutExercise.name}</Text>
-                <View style={styles.inputSection}>
-                    <TextInput style={styles.quantity}
+                <TouchableOpacity style={styles.inputSection} onPress={this.focusInput}>
+                    <TextInput ref={(el) => this.textInputRef = el}
+                               style={styles.quantity}
                                autoCapitalize="none"
                                autoCorrect={false}
                                keyboardType="numeric"
@@ -69,7 +76,7 @@ export default class QuantityExercise extends React.Component {
                                value={workoutExercise.quantityLabel}
                                selectTextOnFocus={true}/>
                     <FontAwesome style={styles.icon}>{Icons.pencil}</FontAwesome>
-                </View>
+                </TouchableOpacity>
                 {this.renderCompletedText()}
 
                 <Button
