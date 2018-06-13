@@ -54,6 +54,12 @@ const styles = StyleSheet.create({
     icon: {
         fontSize: fontSize.large,
         marginBottom: 15
+    },
+
+    completedText: {
+        color: color.dark_grey,
+        fontSize: fontSize.regular,
+        textAlign: 'center'
     }
 });
 

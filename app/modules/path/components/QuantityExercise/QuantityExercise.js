@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button, Text} from 'react-native-elements';
-import {View, Image, TextInput, TouchableOpacity} from 'react-native';
+import {View, Image, TextInput} from 'react-native';
 import PropTypes from "prop-types";
 import FontAwesome, {Icons} from "react-native-fontawesome";
-
 import styles from "./styles";
+import {round} from "../../../../components/Util";
 
 export default class QuantityExercise extends React.Component {
     static propTypes = {
@@ -27,9 +27,29 @@ export default class QuantityExercise extends React.Component {
     };
 
     onChangeText = (text) => {
-        const quantityCompleted = parseInt(text, 10);
+        let quantityCompleted = parseInt(text, 10);
+
+        if (quantityCompleted > this.state.workoutExercise.quantity) {
+            quantityCompleted = this.state.workoutExercise.quantity;
+        }
+
         const workoutExercise = Object.assign({}, this.state.workoutExercise, {quantityCompleted});
         this.setState({workoutExercise});
+    };
+
+    renderCompletedText = () => {
+        const {workoutExercise} = this.state;
+        const {quantityCompleted, quantity} = workoutExercise;
+
+        if (workoutExercise.quantityCompleted) {
+            const percentComplete = round(quantityCompleted/quantity) * 100;
+
+            return (
+                <Text style={styles.completedText}>
+                    Completed: {quantityCompleted}/{quantity} {`${percentComplete}%`}
+                </Text>
+            );
+        }
     };
 
     render() {
@@ -50,6 +70,7 @@ export default class QuantityExercise extends React.Component {
                                selectTextOnFocus={true}/>
                     <FontAwesome style={styles.icon}>{Icons.pencil}</FontAwesome>
                 </View>
+                {this.renderCompletedText()}
 
                 <Button
                     raised
