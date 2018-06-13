@@ -123,9 +123,14 @@ class PathStepWorkoutRoutine extends React.Component {
         const isCurrentExercise = exerciseIndex === i;
         const itemStyles = isCurrentExercise ?
             [styles.navigationItem, styles.navigationItemActive] : styles.navigationItem;
-        const completedIcon = e.isComplete ?
-            <FontAwesome style={styles.navigationItemCompletedIcon}>{Icons.checkCircleO}</FontAwesome> :
-            null;
+        let completedIcon = null;
+
+
+        if (e.isComplete && e.completedStatus === "success") {
+            completedIcon = <FontAwesome style={styles.navigationItemCompletedIcon}>{Icons.checkCircleO}</FontAwesome>;
+        } else if (e.isComplete && e.completedStatus === "failed") {
+            completedIcon = <FontAwesome style={styles.navigationItemFailedIcon}>{Icons.close}</FontAwesome>;
+        }
 
         return (
             <TouchableOpacity key={i} style={itemStyles} onPress={() => this.goToExercise(i)}>
@@ -156,17 +161,17 @@ class PathStepWorkoutRoutine extends React.Component {
         if (workoutExercise.isQuantity) {
             return (
                 <QuantityExercise key={exerciseIndex}
-                    workoutExercise={workoutExercise}
-                    workout={workout}
-                    onDone={this.onQuantityExerciseDone}
+                                  workoutExercise={workoutExercise}
+                                  workout={workout}
+                                  onDone={this.onQuantityExerciseDone}
                 />
             );
         } else {
             return (
                 <DurationExercise key={exerciseIndex}
-                    workoutExercise={workoutExercise}
-                    workout={workout}
-                    onDone={this.onDurationExerciseDone}
+                                  workoutExercise={workoutExercise}
+                                  workout={workout}
+                                  onDone={this.onDurationExerciseDone}
                 />
             )
         }

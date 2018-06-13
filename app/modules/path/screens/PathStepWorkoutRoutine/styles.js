@@ -37,6 +37,15 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
 
+    navigationItemFailedIcon: {
+        position: 'absolute',
+        fontSize: normalize(20),
+        color: color.brandDanger,
+        bottom: 0,
+        left: 0,
+        zIndex: 1,
+    },
+
     navigationImage: {
         resizeMode: 'contain',
         width: 50,

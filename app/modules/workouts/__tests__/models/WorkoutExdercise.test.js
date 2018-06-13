@@ -29,6 +29,7 @@ it('create exercise from quantity', () => {
     expect(workoutExercise.xpEarned).toEqual(0);
     expect(workoutExercise.xpEarnedLabel).toEqual("0xp");
     expect(workoutExercise.isComplete).toEqual(false);
+    expect(workoutExercise.completedStatus).toEqual("failed");
 });
 
 it('create exercise from duration', () => {
@@ -52,9 +53,10 @@ it('create exercise from duration', () => {
     expect(workoutExercise.xpEarned).toEqual(0);
     expect(workoutExercise.xpEarnedLabel).toEqual("0xp");
     expect(workoutExercise.isComplete).toEqual(false);
+    expect(workoutExercise.completedStatus).toEqual("failed");
 });
 
-it('create exercise from quantity and complete it', () => {
+it('create exercise from quantity and fully complete it', () => {
     let workoutExercise = WorkoutExercise.createFromQuantity(exercise, 10);
     workoutExercise.completeWithQuantity(10);
 
@@ -76,6 +78,32 @@ it('create exercise from quantity and complete it', () => {
     expect(workoutExercise.xpEarned).toEqual(20);
     expect(workoutExercise.xpEarnedLabel).toEqual("20xp");
     expect(workoutExercise.isComplete).toEqual(true);
+    expect(workoutExercise.completedStatus).toEqual("success");
+});
+
+it('create exercise from quantity and do not fully complete it', () => {
+    let workoutExercise = WorkoutExercise.createFromQuantity(exercise, 10);
+    workoutExercise.completeWithQuantity(5);
+
+    expect(workoutExercise.name).toEqual(exercise.name);
+    expect(workoutExercise.pluralizedName).toEqual(exercise.pluralizedName);
+    expect(workoutExercise.imageUrl).toEqual(exercise.imageUrl);
+    expect(workoutExercise.duration).toEqual(null);
+    expect(workoutExercise.durationLabel).toEqual("");
+    expect(workoutExercise.durationCompleted).toEqual(0);
+    expect(workoutExercise.durationCompletedLabel).toEqual("0s");
+    expect(workoutExercise.isDuration).toEqual(false);
+    expect(workoutExercise.quantity).toEqual(10);
+    expect(workoutExercise.quantityLabel).toEqual("10");
+    expect(workoutExercise.quantityCompleted).toEqual(5);
+    expect(workoutExercise.quantityCompletedLabel).toEqual("5");
+    expect(workoutExercise.isQuantity).toEqual(true);
+    expect(workoutExercise.xp).toEqual(20);
+    expect(workoutExercise.xpLabel).toEqual("20xp");
+    expect(workoutExercise.xpEarned).toEqual(10);
+    expect(workoutExercise.xpEarnedLabel).toEqual("10xp");
+    expect(workoutExercise.isComplete).toEqual(true);
+    expect(workoutExercise.completedStatus).toEqual("failed");
 });
 
 it('create exercise from duration and complete it', () => {
@@ -100,4 +128,30 @@ it('create exercise from duration and complete it', () => {
     expect(workoutExercise.xpEarned).toEqual(60);
     expect(workoutExercise.xpEarnedLabel).toEqual("60xp");
     expect(workoutExercise.isComplete).toEqual(true);
+    expect(workoutExercise.completedStatus).toEqual("success");
+});
+
+it('create exercise from duration and do not fully complete it', () => {
+    let workoutExercise = WorkoutExercise.createFromDuration(exercise, 30);
+    workoutExercise.completeWithDuration(20);
+
+    expect(workoutExercise.name).toEqual(exercise.name);
+    expect(workoutExercise.pluralizedName).toEqual(exercise.pluralizedName);
+    expect(workoutExercise.imageUrl).toEqual(exercise.imageUrl);
+    expect(workoutExercise.duration).toEqual(30);
+    expect(workoutExercise.durationLabel).toEqual("30s");
+    expect(workoutExercise.durationCompleted).toEqual(20);
+    expect(workoutExercise.durationCompletedLabel).toEqual("20s");
+    expect(workoutExercise.isDuration).toEqual(true);
+    expect(workoutExercise.quantity).toEqual(null);
+    expect(workoutExercise.quantityLabel).toEqual("");
+    expect(workoutExercise.quantityCompleted).toEqual(0);
+    expect(workoutExercise.quantityCompletedLabel).toEqual("0");
+    expect(workoutExercise.isQuantity).toEqual(false);
+    expect(workoutExercise.xp).toEqual(60);
+    expect(workoutExercise.xpLabel).toEqual("60xp");
+    expect(workoutExercise.xpEarned).toEqual(40);
+    expect(workoutExercise.xpEarnedLabel).toEqual("40xp");
+    expect(workoutExercise.isComplete).toEqual(true);
+    expect(workoutExercise.completedStatus).toEqual("failed");
 });

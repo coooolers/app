@@ -7,6 +7,7 @@ export default class WorkoutExercise {
         this.pluralizedName = exercise.pluralizedName;
         this.imageUrl = exercise.imageUrl;
         this.isComplete = false;
+        this.completedStatus = "failed";
 
         // durations
         this.duration = duration;
@@ -55,6 +56,7 @@ export default class WorkoutExercise {
         this.xpEarnedLabel = stringifyXp(this.xpEarned);
         this.quantityCompleted = quantityCompleted;
         this.quantityCompletedLabel = `${quantityCompleted}`;
+        this.completedStatus = this.quantityCompleted >= this.quantity ? "success" : "failed";
         return this;
     };
 
@@ -64,6 +66,7 @@ export default class WorkoutExercise {
         this.xpEarnedLabel = stringifyXp(this.xpEarned);
         this.durationCompleted = durationCompleted;
         this.durationCompletedLabel = `${durationCompleted}s`;
+        this.completedStatus = this.durationCompleted >= this.duration ? "success" : "failed";
         return this;
     };
 

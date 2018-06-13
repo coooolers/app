@@ -48,7 +48,7 @@ export default class QuantityExercise extends React.Component {
         const {quantityCompleted, quantity} = workoutExercise;
 
         if (workoutExercise.quantityCompleted) {
-            const percentComplete = round(quantityCompleted/quantity) * 100;
+            const percentComplete = round(quantityCompleted/quantity * 100);
 
             return (
                 <Text style={styles.completedText}>
