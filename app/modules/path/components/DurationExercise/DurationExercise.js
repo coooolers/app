@@ -6,7 +6,7 @@ import * as Progress from 'react-native-progress';
 
 import styles from "./styles";
 import {color} from "../../../../styles/theme";
-import {round} from "../../../../components/Util";
+import {round, secondsToMMSS} from "../../../../components/Util";
 
 export default class DurationExercise extends React.Component {
     static propTypes = {
@@ -14,30 +14,18 @@ export default class DurationExercise extends React.Component {
         onDone: PropTypes.func.isRequired
     };
 
-    componentWillMount() {
-        this.setup(this.props.workoutExercise);
-    }
+    constructor(props) {
+        super(props);
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.workoutExercise) {
-            this.setup(nextProps.workoutExercise);
-        }
-    }
+        this.progressInterval = null;
 
-    componentWillUnmount() {
-        this.tearDown();
-    }
-
-    setup = (workoutExercise) => {
-        if (this.progressInterval) clearInterval(progressInterval);
-
-        this.setState({
-            workoutExercise,
+        this.state = {
+            workoutExercise: props.workoutExercise,
             buttonText: "Start",
             progress: 1,
             isRunning: false,
             durationCompleted: 0
-        });
+        };
     };
 
     tearDown = () => {
@@ -86,11 +74,13 @@ export default class DurationExercise extends React.Component {
             <View style={styles.container}>
                 <Image source={{uri: workoutExercise.imageUrl}} style={styles.image}/>
                 <Text style={styles.name}>{workoutExercise.name}</Text>
-                <Text style={styles.duration}>{workoutExercise.duration - durationCompleted}</Text>
+                <Text style={styles.duration}>
+                    {secondsToMMSS(workoutExercise.duration - durationCompleted)}
+                </Text>
                 <Progress.Bar
                     progress={progress}
                     width={250}
-                    height={15}
+                    height={10}
                     borderRadius={0}
                     borderColor={color.black}
                     color={color.brandPrimary}
