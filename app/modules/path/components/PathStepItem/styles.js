@@ -117,6 +117,33 @@ const styles = StyleSheet.create({
     description: {
         fontSize: fontSize.small,
         color: color.dark_grey
+    },
+
+    /*
+     * LOCKED OVERLAY
+     */
+
+    lockedOverlay: {
+        position: 'absolute',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        zIndex: 1
+    },
+
+    lockedIcon: {
+        color: color.brandLight,
+        fontSize: normalize(35)
+    },
+
+    lockedLabel: {
+        color: color.brandLight,
+        fontSize: fontSize.large
     }
 });
 

@@ -34,7 +34,8 @@ export default class PathStepItem extends React.Component {
         } else if (isLocked) {
             return <FontAwesome style={[styles.statusIcon, {color: color.brandDark}]}>{Icons.lock}</FontAwesome>;
         } else {
-            return <FontAwesome style={[styles.statusIcon, {color: color.brandPrimary}]}>{Icons.handORight}</FontAwesome>;
+            return <FontAwesome
+                style={[styles.statusIcon, {color: color.brandPrimary}]}>{Icons.handORight}</FontAwesome>;
         }
     };
 
@@ -64,6 +65,19 @@ export default class PathStepItem extends React.Component {
         );
     };
 
+    renderContentLockOverlay = () => {
+        const {isLocked} = this.props;
+
+        if (isLocked) {
+            return (
+                <View style={styles.lockedOverlay}>
+                    <FontAwesome style={styles.lockedIcon}>{Icons.lock}</FontAwesome>
+                    <Text style={styles.lockedLabel}>Locked</Text>
+                </View>
+            );
+        }
+    };
+
     render = () => {
         const {step, isCompleted, isLocked} = this.props;
         let contentWrapperStyles = [styles.contentContainer];
@@ -81,6 +95,7 @@ export default class PathStepItem extends React.Component {
                 {this.renderStatus()}
                 <TouchableOpacity style={contentWrapperStyles}
                                   onPress={() => this.props.onSelect(step)}>
+                    {this.renderContentLockOverlay()}
                     <View style={styles.contentHeader}>
                         {this.renderStepTypeIcon(step)}
                         <Text style={styles.name}>{step.name}</Text>
