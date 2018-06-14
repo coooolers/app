@@ -6,6 +6,7 @@ import CharacterPanel from "../../components/CharacterPanel/CharacterPanel";
 import {fetchPaths} from "../../actions";
 import PathItem from "../../components/PathItem/PathItem";
 import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
+import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
 
 class PathsScreen extends React.Component {
     state = {
@@ -31,13 +32,16 @@ class PathsScreen extends React.Component {
 
     render() {
         const {isReady} = this.state;
-        const {paths, character, pathProgress} = this.props;
+        const {paths, character, pathProgress, screenConfig} = this.props;
 
         if (!isReady) return null;
 
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"green"}/>
+                <ScreenInfoDrawer uid={"paths"}
+                                  title={screenConfig.infoDrawerTitle}
+                                  text={screenConfig.infoDrawerText}/>
                 <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
                     {
                         paths.order.map((pathUid) => {
@@ -63,7 +67,8 @@ function mapStateToProps(state) {
         user: state.authReducer.user,
         character: state.characterReducer.character,
         paths: state.pathsReducer,
-        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid],
+        screenConfig: state.screensReducer.screens.Paths
     };
 }
 

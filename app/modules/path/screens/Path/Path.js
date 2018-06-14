@@ -11,6 +11,7 @@ import {updateCharacter} from "../../../characters/actions";
 import {getRewardsForStep, goToMainTabRoute} from "../../../../components/Util";
 import {Workout} from "../../../workouts/models";
 import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
+import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
 
 class PathScreen extends React.Component {
     state = {
@@ -110,12 +111,15 @@ class PathScreen extends React.Component {
 
     render() {
         const {animateRewardConfig} = this.state;
-        const {character, navigation} = this.props;
+        const {character, navigation, screenConfig} = this.props;
         const {path} = navigation.state.params;
 
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"purple"}/>
+                <ScreenInfoDrawer uid={"path-step"}
+                                  title={screenConfig.infoDrawerTitle}
+                                  text={screenConfig.infoDrawerText}/>
                 <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
                     {path.stepsOrder.map(this.renderPathStep)}
                 </ScrollView>
@@ -129,7 +133,8 @@ function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
         character: state.characterReducer.character,
-        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid],
+        screenConfig: state.screensReducer.screens.PathStep
     };
 }
 
