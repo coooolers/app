@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     text: {
         color: color.brandDark,
         fontSize: fontSize.small,
-        width: 250,
+        width: 270,
         marginTop: 7,
         lineHeight: 18
     },

@@ -6,7 +6,7 @@ const headerIconSpacing = (headerIconSize / 2);
 
 const styles = StyleSheet.create({
     container: {
-        width: contentWidth - 30,
+        width: contentWidth,
         backgroundColor: color.white,
         padding: contentPadding,
         alignItems: 'center',
