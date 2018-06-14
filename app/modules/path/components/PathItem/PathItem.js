@@ -13,18 +13,6 @@ export default class PathItem extends Component {
         pathProgress: PropTypes.object.isRequired
     };
 
-    renderDifficulty = () => {
-        const {path} = this.props;
-
-        if (path.difficulty === 1) {
-            return "Beginner";
-        } else if (path.difficulty === 2) {
-            return "Intermediate";
-        } else if (path.difficulty === 3) {
-            return "Advanced";
-        }
-    };
-
     renderPathProgress = () => {
         const {path, pathProgress} = this.props;
         const numSteps = path["stepsOrder"].length;
@@ -46,7 +34,6 @@ export default class PathItem extends Component {
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => onPress(path)}>
                     <Text style={styles.name}>{path.name}</Text>
-                    <Text style={styles.difficulty}>{this.renderDifficulty()}</Text>
                     <Text style={styles.description}>{path.description}</Text>
                     <View style={styles.hrule}/>
                     <View style={styles.progressTop}>
