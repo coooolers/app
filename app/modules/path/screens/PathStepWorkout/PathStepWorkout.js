@@ -7,6 +7,7 @@ import ExerciseList from "../../components/ExerciseList";
 import BackgroundImage from "../../../../components/BackgroundImage";
 import PathStepPanel from "../../components/PathStepPanel";
 import Button from "../../../../components/Button/Button";
+import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
 
 class PathStepWorkoutScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -61,10 +62,14 @@ class PathStepWorkoutScreen extends React.Component {
     render() {
         const {hasCompleted} = this.state;
         const {step, path, workout} = this.props.navigation.state.params;
+        const {screenConfig} = this.props;
 
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"blue"}/>
+                <ScreenInfoDrawer uid={"path-step-workout"}
+                                  title={screenConfig.infoDrawerTitle}
+                                  text={screenConfig.infoDrawerText}/>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={Icons.clockO}>
                         <ExerciseList workout={workout} onPress={this.goToExerciseInfo}/>
@@ -81,7 +86,8 @@ class PathStepWorkoutScreen extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid],
+        screenConfig: state.screensReducer.screens.PathStepWorkout
     };
 }
 
