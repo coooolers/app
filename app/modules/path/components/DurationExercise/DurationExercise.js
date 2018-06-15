@@ -88,7 +88,6 @@ export default class DurationExercise extends React.Component {
                 <Button
                     raised
                     title={buttonText}
-                    borderRadius={4}
                     style={styles.button}
                     containerViewStyle={{
                         marginTop: 20,

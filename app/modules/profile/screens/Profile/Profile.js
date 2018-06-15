@@ -128,7 +128,6 @@ class Profile extends React.Component {
                       error={error}/>
                 <Button
                     raised
-                    borderRadius={4}
                     title={'LOG OUT'}
                     style={styles.signOutButton}
                     onPress={this.onSignOut}/>

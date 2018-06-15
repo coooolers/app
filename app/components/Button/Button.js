@@ -23,7 +23,6 @@ export default class Button extends Component {
         return (
             <ReactNativeButton
                 raised
-                borderRadius={4}
                 title={this.props.title}
                 icon={icon}
                 containerViewStyle={containerViewStyle}

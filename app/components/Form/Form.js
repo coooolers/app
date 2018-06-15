@@ -95,7 +95,6 @@ class Form extends React.Component {
                         raised
                         title={buttonTitle}
                         disabled={isFetching}
-                        borderRadius={4}
                         containerViewStyle={styles.containerView}
                         buttonStyle={styles.button}
                         textStyle={styles.buttonText}

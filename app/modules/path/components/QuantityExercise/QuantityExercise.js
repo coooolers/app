@@ -82,7 +82,6 @@ export default class QuantityExercise extends React.Component {
                 <Button
                     raised
                     title={"Done"}
-                    borderRadius={4}
                     style={styles.button}
                     containerViewStyle={styles.containerView}
                     buttonStyle={styles.button}
