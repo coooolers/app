@@ -9,6 +9,7 @@ import Collapsible from 'react-native-collapsible';
 import PathStepPanel from "../../components/PathStepPanel";
 import {color} from "../../../../styles/theme";
 import Button from "../../../../components/Button/Button";
+import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -93,10 +94,14 @@ class PathStepAudioScreen extends React.Component {
     render() {
         const {hasCompleted} = this.state;
         const {step, path} = this.props.navigation.state.params;
+        const {screenConfig} = this.props;
 
         return (
             <View style={styles.container}>
                 <BackgroundImage color={"blue"}/>
+                <ScreenInfoDrawer uid={"path-step-audio"}
+                                  title={screenConfig.infoDrawerTitle}
+                                  text={screenConfig.infoDrawerText}/>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={Icons.headphones}>
                         <PathStepAudioPlayer
@@ -116,7 +121,8 @@ class PathStepAudioScreen extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid]
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid],
+        screenConfig: state.screensReducer.screens.PathStepAudio
     };
 }
 
