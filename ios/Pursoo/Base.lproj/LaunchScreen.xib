@@ -19,7 +19,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Lf7-eF-3wc">
-                    <rect key="frame" x="165" y="185.5" width="150" height="109"/>
+                    <rect key="frame" x="165" y="165" width="150" height="150"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
@@ -38,6 +38,6 @@
     </objects>
     <resources>
         <image name="background-blue" width="1920" height="1080"/>
-        <image name="logo-icon" width="150" height="109"/>
+        <image name="logo-icon" width="150" height="150"/>
     </resources>
 </document>
