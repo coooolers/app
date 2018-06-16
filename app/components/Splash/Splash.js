@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Animated, ActivityIndicator} from 'react-native';
 import LogoIcon from "../../assets/images/logo-icon-red-small.png";
 import styles from './styles';
-import BackgroundImage from "../BackgroundImage/BackgroundImage";
+import BackgroundImage from "../BackgroundImage";
 
 export default class extends React.Component {
     state = {

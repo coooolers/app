@@ -1,8 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { color, padding } from "../../styles/theme";
 
-const resizeMode = 'contain';
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -14,7 +12,7 @@ const styles = StyleSheet.create({
     image:{
         width: 150,
         marginBottom: padding,
-        resizeMode
+        resizeMode: 'contain'
     },
 
     activityIndicatorContainer: {

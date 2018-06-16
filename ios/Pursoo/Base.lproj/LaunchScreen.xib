@@ -15,14 +15,21 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-blue" translatesAutoresizingMaskIntoConstraints="NO" id="ylI-zw-hbI">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Lf7-eF-3wc">
                     <rect key="frame" x="165" y="185.5" width="150" height="109"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="ylI-zw-hbI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2zP-VL-M5u"/>
+                <constraint firstAttribute="trailing" secondItem="ylI-zw-hbI" secondAttribute="trailing" id="7CK-wh-U3E"/>
                 <constraint firstItem="Lf7-eF-3wc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="CEn-oz-1AM"/>
                 <constraint firstItem="Lf7-eF-3wc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HIA-NU-tjd"/>
+                <constraint firstAttribute="bottom" secondItem="ylI-zw-hbI" secondAttribute="bottom" id="Jzb-R8-kCK"/>
+                <constraint firstItem="ylI-zw-hbI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vcv-gs-6J8"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -30,6 +37,7 @@
         </view>
     </objects>
     <resources>
+        <image name="background-blue" width="1920" height="1080"/>
         <image name="logo-icon" width="150" height="109"/>
     </resources>
 </document>
