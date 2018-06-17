@@ -74,7 +74,7 @@ class OnboardingHowItWorks extends React.Component {
         // user.hasCompletedOnboarding = true;
 
         this.props.dispatch(updateUser(user)).then(() => {
-            goToMainTabRoute(this.props.navigation, 'Paths');
+            this.props.navigation.navigate('Main');
         });
     };
 
@@ -103,10 +103,7 @@ class OnboardingHowItWorks extends React.Component {
                     </View>
                 </View>
                 <View style={[styles.slide, styles.slide2]}>
-                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                        <FontAwesome style={[styles.slideIcon, {marginRight: 30}]}>{Icons.headphones}</FontAwesome>
-                        <FontAwesome style={styles.slideIcon}>{Icons.heartbeat}</FontAwesome>
-                    </View>
+                    <FontAwesome style={styles.slideIcon}>{Icons.trophy}</FontAwesome>
                     <Text style={styles.slideTitle}>{screenConfig.slide2.title}</Text>
                     <Text style={styles.slideDescription}>{screenConfig.slide2.description}</Text>
                     <View style={styles.buttonContainer}>

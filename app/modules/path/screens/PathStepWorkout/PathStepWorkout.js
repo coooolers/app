@@ -86,7 +86,7 @@ class PathStepWorkoutScreen extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid],
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid] || {},
         screenConfig: state.screensReducer.screens.PathStepWorkout
     };
 }

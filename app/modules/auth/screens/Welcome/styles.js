@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
     socialButton: {
         height: normalize(55),
-        borderRadius: 4,
+        borderRadius: 0,
         marginTop: 0,
         marginBottom: 0
     },

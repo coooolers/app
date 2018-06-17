@@ -53,7 +53,7 @@ class Welcome extends React.Component {
                     raised
                     button
                     type='facebook'
-                    title='SIGN IN WITH FACEBOOK'
+                    title='CONTINUE WITH FACEBOOK'
                     iconSize={19}
                     style={[styles.containerView, styles.socialButton]}
                     fontStyle={styles.buttonText}
