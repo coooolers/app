@@ -8,5 +8,5 @@ export default StackNavigator({
     OnboardingCreateCharacter: {screen: CreateCharacterScreen},
     OnboardingHowItWorks: {screen: HowItWorksScreen}
 }, {
-    initialRouteName: 'OnboardingHowItWorks'
+    initialRouteName: 'OnboardingCreateCharacter'
 });

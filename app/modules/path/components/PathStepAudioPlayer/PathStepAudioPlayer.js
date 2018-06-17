@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Slider, ActivityIndicator} from 'react-native';
+import {View, Text, TouchableOpacity, Slider, ActivityIndicator, Alert} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";

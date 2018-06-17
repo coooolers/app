@@ -71,7 +71,7 @@ class OnboardingHowItWorks extends React.Component {
 
     goToNext = () => {
         const {user} = this.props;
-        // user.hasCompletedOnboarding = true;
+        user.hasCompletedOnboarding = true;
 
         this.props.dispatch(updateUser(user)).then(() => {
             this.props.navigation.navigate('Main');
