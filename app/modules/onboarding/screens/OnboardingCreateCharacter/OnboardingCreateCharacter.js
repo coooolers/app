@@ -12,8 +12,7 @@ import FormValidationMessage from "../../../../components/FormValidationMessage/
 class OnboardingCreateCharacter extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            headerBackTitle: 'Character',
-            title: "Step 2 of 3",
+            title: "My Character",
         }
     };
 
@@ -75,10 +74,8 @@ class OnboardingCreateCharacter extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.intro}>{this.props.user.name}, it's great to meet you! Take a moment to create your
-                    character below.</Text>
+                <Text style={styles.title}>Hi there! Create your character to get started.</Text>
                 <View style={{flex: 1}}>
-                    <Text style={styles.title}>{screenConfig.formLegend}</Text>
                     <FormLabel>{screenConfig.nameLabel}</FormLabel>
                     <FormValidationMessage>{this.state.errors.name}</FormValidationMessage>
                     <FormInput

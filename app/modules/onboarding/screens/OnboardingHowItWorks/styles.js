@@ -5,52 +5,58 @@ const {color} = theme;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: color.white,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: contentPadding
-    },
-
-    intro: {
-        textAlign: 'center',
-        fontSize: normalize(16)
-    },
-
-    secondaryCTA: {
-        textAlign: 'center',
-        marginTop: 10
     },
 
     slide: {
-        width: contentWidth,
-        marginTop: 20,
-        marginBottom: 20
-    },
-
-    slideTop: {
-        width: contentWidth,
-        height: 200,
-        marginTop: 10,
-        marginBottom: 10,
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        padding: contentPadding,
     },
 
-    slideImage: {
-        width: contentWidth,
-        height: 200,
-        resizeMode: 'contain',
+    slide1: {
+        backgroundColor: color.brandPrimary,
+    },
+
+    slide2: {
+        backgroundColor: color.brandInfo,
+    },
+
+    slide3: {
+        backgroundColor: color.brandSuccess,
+    },
+
+    text: {
+
+    },
+
+    slideIcon: {
+        fontSize: 100,
+        color: color.brandLight,
     },
 
     slideTitle: {
         textAlign: 'center',
-        fontSize: fontSize.large
+        fontSize: 30,
+        color: color.brandLight,
+        marginTop: 50,
     },
 
     slideDescription: {
+        fontSize: fontSize.regular,
         textAlign: 'center',
-        marginTop: 10
+        color: color.light_grey,
+        marginTop: 20
+    },
+
+    buttonContainer: {
+        borderWidth: 1,
+        borderColor: color.brandLight,
+        // paddingTop: 5,
+        // paddingBottom: 5,
+        paddingLeft: 30,
+        paddingRight: 30,
+        marginTop: 50
     }
 });
 

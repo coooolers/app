@@ -1,26 +1,35 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, Button as RNButton} from 'react-native';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-
 import styles from "./styles";
-import Button from "../../../../components/Button/Button";
-import PushupImage from "../../../../assets/images/pushup.png";
-import Reporting from "../../../reporting";
 import {fetchMyCharacter} from "../../../characters/actions";
 import {updateUser} from "../../actions";
 import {goToMainTabRoute} from "../../../../components/Util";
+import Swiper from 'react-native-swiper';
+import XpBar from "../../../../components/XpBar/XpBar";
+import {Character} from "../../../characters/models";
+import {color} from "../../../../styles/theme";
+
+const createCharacterPlaceholder = () => {
+    return new Character("1234", {}, "Vikeen", "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Fcharacters%2Fcharacter-elf-male-fighter.png?alt=media&token=4d0b605d-e314-4c52-a152-beb79dc922e8");
+};
 
 class OnboardingHowItWorks extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            title: "Step 3 of 3"
+            header: null,
         }
     };
 
-    state = {
-        isReady: false
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            character: createCharacterPlaceholder(),
+            isReady: false
+        }
+    }
 
     componentWillMount() {
         this.props.dispatch(fetchMyCharacter(this.props.user)).then(() => {
@@ -28,14 +37,41 @@ class OnboardingHowItWorks extends React.Component {
         })
     }
 
-    onPressStartWork = () => {
-        Reporting.track("onboarding__start_workout");
-        this.goToNext();
+    animateXpBar = () => {
+        const {character} = this.state;
+
+        this.setState({
+            character: Character.addXp(character, 40)
+        });
+    };
+
+    onSlideChange = (index) => {
+        if (index === 2) { // character slide
+            this.setState({
+                character: createCharacterPlaceholder()
+            });
+
+            setTimeout(() => {
+                this.animateXpBar();
+                setTimeout(() => {
+                    this.animateXpBar();
+                    setTimeout(() => {
+                        this.animateXpBar();
+                        setTimeout(() => {
+                            this.animateXpBar();
+                            setTimeout(() => {
+                                this.animateXpBar();
+                            }, 1000)
+                        }, 1000)
+                    }, 1000)
+                }, 1000)
+            }, 1500)
+        }
     };
 
     goToNext = () => {
         const {user} = this.props;
-        user.hasCompletedOnboarding = true;
+        // user.hasCompletedOnboarding = true;
 
         this.props.dispatch(updateUser(user)).then(() => {
             goToMainTabRoute(this.props.navigation, 'Paths');
@@ -43,47 +79,61 @@ class OnboardingHowItWorks extends React.Component {
     };
 
     render() {
+        const {character} = this.state;
         const {screenConfig} = this.props;
         if (!this.state.isReady) return null;
 
         return (
-            <View style={styles.container}>
-                <Text style={styles.intro}>{screenConfig.introText}</Text>
-                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <ScrollView
-                        horizontal={true}
-                        pagingEnabled={true}
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        <View style={styles.slide}>
-                            <View style={styles.slideTop}>
-                                <Image source={PushupImage} style={styles.slideImage}/>
-                            </View>
-                            <Text style={styles.slideTitle}>{screenConfig.slide1.title}</Text>
-                            <Text style={styles.slideDescription}>{screenConfig.slide1.description}</Text>
-                        </View>
-                        <View style={styles.slide}>
-                            <View style={styles.slideTop}>
-                                <FontAwesome style={{fontSize: 120, textAlign: 'center'}}>
-                                    {Icons.trophy}
-                                </FontAwesome>
-                            </View>
-                            <Text style={styles.slideTitle}>{screenConfig.slide2.title}</Text>
-                            <Text style={styles.slideDescription}>{screenConfig.slide2.description}</Text>
-                        </View>
-                        <View style={styles.slide}>
-                            <View style={styles.slideTop}>
-                                <Image source={{uri: this.props.character.imageUrl}} style={styles.slideImage}/>
-                            </View>
-                            <Text style={styles.slideTitle}>{screenConfig.slide3.title}</Text>
-                            <Text style={styles.slideDescription}>{screenConfig.slide3.description}</Text>
-                        </View>
-                    </ScrollView>
+            <Swiper style={styles.container}
+                    showsButtons={false}
+                    loop={false}
+                    activeDotColor={color.brandLight}
+                    ref={el => this.swiper = el}
+                    onIndexChanged={this.onSlideChange}>
+                <View style={[styles.slide, styles.slide1]}>
+                    <FontAwesome style={styles.slideIcon}>{Icons.map}</FontAwesome>
+                    <Text style={styles.slideTitle}>{screenConfig.slide1.title}</Text>
+                    <Text style={styles.slideDescription}>{screenConfig.slide1.description}</Text>
+                    <View style={styles.buttonContainer}>
+                        <RNButton
+                            color={color.brandLight}
+                            title={"Got it"}
+                            onPress={() => this.swiper.scrollBy(1)}
+                        />
+                    </View>
                 </View>
-                <Button title={screenConfig.buttonText}
-                        icon={screenConfig.buttonIcon}
-                        onPress={this.onPressStartWork}/>
-            </View>
+                <View style={[styles.slide, styles.slide2]}>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <FontAwesome style={[styles.slideIcon, {marginRight: 30}]}>{Icons.headphones}</FontAwesome>
+                        <FontAwesome style={styles.slideIcon}>{Icons.heartbeat}</FontAwesome>
+                    </View>
+                    <Text style={styles.slideTitle}>{screenConfig.slide2.title}</Text>
+                    <Text style={styles.slideDescription}>{screenConfig.slide2.description}</Text>
+                    <View style={styles.buttonContainer}>
+                        <RNButton
+                            color={color.brandLight}
+                            title={"Got it"}
+                            onPress={() => this.swiper.scrollBy(1)}
+                        />
+                    </View>
+                </View>
+                <View style={[styles.slide, styles.slide3]}>
+                    <Image source={{uri: character.imageUrl}}
+                           style={{width: 125, height: 125, resizeMode: 'contain', marginBottom: 10}}/>
+                    <View style={{width: 175}}>
+                        <XpBar character={character}/>
+                    </View>
+                    <Text style={styles.slideTitle}>{screenConfig.slide3.title}</Text>
+                    <Text style={styles.slideDescription}>{screenConfig.slide3.description}</Text>
+                    <View style={styles.buttonContainer}>
+                        <RNButton
+                            color={color.brandLight}
+                            title={"Got it"}
+                            onPress={this.goToNext}
+                        />
+                    </View>
+                </View>
+            </Swiper>
         );
     }
 }
