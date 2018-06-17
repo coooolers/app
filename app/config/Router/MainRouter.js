@@ -18,7 +18,7 @@ import CharacterEditScreen from "../../modules/characters/screens/CharacterEdit"
 import ProfileScreen from "../../modules/profile/screens/Profile";
 
 import {fetchUserPathProgress} from "../../modules/userPathProgress/actions";
-import OnboardingRouter from "./OnboardingRouter";
+import OnboardingRouter from "../../modules/onboarding/router";
 import MainInitScreen from "./MainInitScreen";
 
 function getTabIconStyle(tintColor) {
@@ -38,15 +38,15 @@ const MainRouterStack = StackNavigator({
     }),
 
     Main: TabNavigator({
-        Home: StackNavigator({
-            Home: {screen: HomeScreen}
-        }, {
-            initialRouteName: 'Home',
-            navigationOptions: ({navigation}) => ({
-                tabBarIcon: ({tintColor}) => <FontAwesome
-                    style={getTabIconStyle(tintColor)}>{Icons.home}</FontAwesome>
-            })
-        }),
+        // Home: StackNavigator({
+        //     Home: {screen: HomeScreen}
+        // }, {
+        //     initialRouteName: 'Home',
+        //     navigationOptions: ({navigation}) => ({
+        //         tabBarIcon: ({tintColor}) => <FontAwesome
+        //             style={getTabIconStyle(tintColor)}>{Icons.home}</FontAwesome>
+        //     })
+        // }),
         Paths: StackNavigator({
             Paths: {screen: PathsScreen}
         }, {
