@@ -2,7 +2,7 @@ import {Dimensions, Platform} from 'react-native';
 import {moderateScale as normalize} from 'react-native-size-matters';
 
 const color = {
-    brandPrimary: "rgb(218, 55, 92)",
+    brandPrimary: "#da375c",
     brandSuccess: "#1b998b",
     brandInfo: "#39a0ed",
     brandDanger: 'red',
