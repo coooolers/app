@@ -7,6 +7,9 @@ import {round, secondsToMMSS} from "../../../../components/Util";
 import Sound from "react-native-sound";
 import {color} from "../../../../styles/theme";
 
+// @INFO: audio will not workout without it
+Sound.setCategory('Playback');
+
 export default class PathStepAudioPlayer extends React.Component {
     static propTypes = {
         url: PropTypes.string.isRequired,
