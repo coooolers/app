@@ -15,6 +15,7 @@ export default class PathStepAudioPlayer extends React.Component {
         url: PropTypes.string.isRequired,
         onLoad: PropTypes.func,
         onComplete: PropTypes.func.isRequired,
+        onRelease: PropTypes.func.isRequired
     };
 
     state = {
@@ -22,7 +23,8 @@ export default class PathStepAudioPlayer extends React.Component {
         isPlaying: false,
         timeListened: 0,
         timeRemaining: 0,
-        audioDuration: 0
+        audioDuration: 0,
+        listenComplete: false
     };
 
     componentWillMount() {
@@ -43,13 +45,18 @@ export default class PathStepAudioPlayer extends React.Component {
     }
 
     componentWillUnmount() {
-        if (this.audio) this.audio.release();
+        const {timeListened, audioDuration, listenComplete} = this.state;
+        const totalSecondsListened = listenComplete ? audioDuration : timeListened;
+
+        if (this.audio) {
+            this.audio.release();
+            this.props.onRelease(round(totalSecondsListened), listenComplete);
+        }
         this.cancelTimingInterval();
     }
 
     play = () => {
         this.setState({isPlaying: true});
-
         this.timingInterval = setInterval(this.onTimeChange, 250);
 
         this.audio.play(this.onAudioComplete);
@@ -69,7 +76,8 @@ export default class PathStepAudioPlayer extends React.Component {
         this.setState({
             timeListened: 0,
             timeRemaining: this.audio.getDuration(),
-            isPlaying: false
+            isPlaying: false,
+            listenComplete: true
         });
 
         this.cancelTimingInterval();

@@ -12,6 +12,7 @@ import {getRewardsForStep, goToMainTabRoute} from "../../../../components/Util";
 import {Workout} from "../../../workouts/models";
 import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
+import Reporting from "../../../reporting";
 
 class PathScreen extends React.Component {
     state = {
@@ -31,6 +32,11 @@ class PathScreen extends React.Component {
         const {path} = this.props.navigation.state.params;
         const {user, pathProgress, character} = this.props;
         const rewards = getRewardsForStep(step);
+
+        Reporting.track("path_step_complete", {
+            pathUid: path.uid,
+            stepUid: step.uid
+        });
 
         pathProgress[path.uid] = pathProgress[path.uid] || {};
         pathProgress[path.uid][step.uid] = {

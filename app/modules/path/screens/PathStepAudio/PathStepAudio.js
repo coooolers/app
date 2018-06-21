@@ -10,6 +10,8 @@ import PathStepPanel from "../../components/PathStepPanel";
 import {color} from "../../../../styles/theme";
 import Button from "../../../../components/Button/Button";
 import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
+import Reporting from "../../../reporting";
+
 
 class PathStepAudioScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -106,7 +108,16 @@ class PathStepAudioScreen extends React.Component {
                     <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={Icons.headphones}>
                         <PathStepAudioPlayer
                             url={step.audioUrl}
-                            onComplete={this.onAudioComplete}/>
+                            onComplete={this.onAudioComplete}
+                            onRelease={(totalSecondsListened, listenComplete) => {
+                                Reporting.track("path_step_audio_listened", {
+                                    pathUid: path.uid,
+                                    stepUid: step.uid,
+                                    duration: totalSecondsListened,
+                                    complete: listenComplete
+                                });
+                            }}
+                        />
                         {this.renderTranscript()}
                     </PathStepPanel>
                 </ScrollView>
