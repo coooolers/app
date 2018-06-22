@@ -4,8 +4,9 @@ import {SocialIcon} from 'react-native-elements';
 import {NavigationActions} from 'react-navigation';
 import {connect} from 'react-redux';
 import FBSDK from 'react-native-fbsdk';
+import {GoogleSignin} from 'react-native-google-signin';
 import Logo from "../../../../assets/images/logo-icon-red-small.png";
-import {signInWithFacebook} from "../../actions";
+import {signInWithFacebook, signInWithGoogle} from "../../actions";
 import styles from "./styles";
 import BackgroundImage from "../../../../components/BackgroundImage";
 
@@ -40,6 +41,21 @@ class Welcome extends React.Component {
             }, this.onLoginError);
     };
 
+    onSignInWithGoogle = async () => {
+        try {
+            // Add any configuration settings here:
+            await GoogleSignin.configure({
+                iosClientId: '891410242074-cdl78f5q3s23t8v2ivjrh3t6mj7vu1lc.apps.googleusercontent.com'
+            });
+
+            const data = await GoogleSignin.signIn();
+
+            this.props.dispatch(signInWithGoogle(data));
+        } catch (e) {
+            this.onLoginError(e);
+        }
+    };
+
     onLoginError = (error) => {
         alert('Login fail with error: ' + error);
     };
@@ -54,10 +70,19 @@ class Welcome extends React.Component {
                     button
                     type='facebook'
                     title='CONTINUE WITH FACEBOOK'
-                    iconSize={19}
+                    iconSize={30}
                     style={[styles.containerView, styles.socialButton]}
                     fontStyle={styles.buttonText}
                     onPress={this.onSignInWithFacebook}/>
+                <SocialIcon
+                    raised
+                    button
+                    type='google-plus-official'
+                    title='CONTINUE WITH GOOGLE'
+                    iconSize={30}
+                    style={[styles.containerView, styles.socialButton, {marginTop: 10}]}
+                    fontStyle={styles.buttonText}
+                    onPress={this.onSignInWithGoogle}/>
             </View>
         );
     }

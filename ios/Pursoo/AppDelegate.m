@@ -8,6 +8,7 @@
  */
 
 #import "AppDelegate.h"
+#import <RNGoogleSignin/RNGoogleSignin.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -51,9 +52,13 @@
   BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
                                                                 openURL:url
                                                       sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-                  ];
-  // Add any custom logic here.
+                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]
+                 || [RNGoogleSignin application:application
+                                        openURL:url
+                              sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                     annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+  
+  
   return handled;
 }
 
@@ -64,13 +69,15 @@
          annotation:(id)annotation {
   
   BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                                openURL:url
-                                                      sourceApplication:sourceApplication
-                                                             annotation:annotation
-                  ];
-  // Add any custom logic here.
+                                                        openURL:url
+                                              sourceApplication:sourceApplication
+                                                     annotation:annotation]
+                 || [RNGoogleSignin application:application
+                                        openURL:url
+                              sourceApplication:sourceApplication
+                                     annotation:annotation];
+  
   return handled;
 }
-
 
 @end

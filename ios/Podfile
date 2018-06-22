@@ -10,6 +10,7 @@ target 'Pursoo' do
   pod 'Firebase/Core'
   pod 'Fabric', '~> 1.7.6'
   pod 'Crashlytics', '~> 3.10.1'
+  pod 'GoogleSignIn'
   
   pod 'React', :path => '../node_modules/react-native'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'

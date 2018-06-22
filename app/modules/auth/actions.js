@@ -94,3 +94,17 @@ export function signInWithFacebook(facebookToken) {
         });
     };
 }
+
+export const signInWithGoogle = (data) => {
+    return (dispatch) => {
+        return api.signInWithGoogle(data).then(data => {
+            if (data.exists) {
+                dispatch({type: t.LOGGED_IN, data: data.user});
+            } else {
+                api.createUser(data.user).then(user => {
+                    dispatch({type: t.LOGGED_IN, data: user});
+                });
+            }
+        });
+    };
+};

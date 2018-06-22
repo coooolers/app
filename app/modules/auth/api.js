@@ -1,4 +1,4 @@
-import {auth, database, FacebookAuthProvider} from "../../config/firebase";
+import {auth, database, FacebookAuthProvider, GoogleAuthProvider} from "../../config/firebase";
 
 export function register(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -10,7 +10,8 @@ export function createUser(user) {
         email: user.email || user.emailAddress,
         uid: user.uid,
         created: new Date().toISOString(),
-        hasCompletedOnboarding: false
+        hasCompletedOnboarding: false,
+        appPiecesLearned: []
     };
 
     return database.ref('users').child(user.uid).set(payload).then(() => {
@@ -57,4 +58,12 @@ export function signInWithFacebook(fbToken) {
 
     return auth.signInWithCredential(credential)
         .then((user) => getUser(user));
+}
+
+//Sign user in using google
+export function signInWithGoogle(data) {
+    const credential = GoogleAuthProvider.credential(data.idToken, data.accessToken);
+
+    return auth.signInAndRetrieveDataWithCredential(credential)
+        .then(data => getUser(data.user));
 }
