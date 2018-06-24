@@ -85,13 +85,8 @@ class PathScreen extends React.Component {
         const {path} = navigation.state.params;
         const {stepsOrder} = path;
         const previousStepUid = stepsOrder[index - 1];
-
-        if (previousStepUid) {
-            const previousStepProgress = pathProgress && pathProgress[path.uid] && pathProgress[path.uid][previousStepUid];
-            return !previousStepProgress;
-        } else {
-            return false;
-        }
+        const previousStep = path.steps[previousStepUid];
+        return previousStep ? !isPathStepComplete(path, previousStep, pathProgress) : false;
     };
 
     renderPathStep = (stepKey, index) => {
