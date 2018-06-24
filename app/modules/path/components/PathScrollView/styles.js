@@ -2,6 +2,10 @@ import {StyleSheet} from 'react-native';
 import {color, fontFamily, normalize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
+    container: {
+        width: '100%'
+    },
+
     pathBox: {
         width: 100,
         height: 125,

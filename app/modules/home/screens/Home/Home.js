@@ -74,9 +74,9 @@ class HomeScreen extends React.Component {
 
         return (
             <View style={styles.container}>
-                <RecentPathPanel path={latestPath} pathProgress={pathProgress}
-                                 onBeginPress={this.onRecentPathBeginPress}/>
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+                    <RecentPathPanel path={latestPath} pathProgress={pathProgress}
+                                     onBeginPress={this.onRecentPathBeginPress}/>
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>MY PATHS</Text>
                         <PathScrollView paths={paths.allIds.map(id => paths.byId[id])}

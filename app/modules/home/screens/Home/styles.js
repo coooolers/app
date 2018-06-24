@@ -7,11 +7,11 @@ const {color, fontFamily, normalize} = theme;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: color.brandLight
+        backgroundColor: color.light_grey
     },
 
     content: {
-        backgroundColor: color.brandLight
+        backgroundColor: color.light_grey
     },
 
     section: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
     sectionTitle: {
         color: color.brandDark,
-        fontFamily: fontFamily.medium,
+        fontFamily: fontFamily.bold,
         fontSize: normalize(10),
         marginBottom: 10
     }

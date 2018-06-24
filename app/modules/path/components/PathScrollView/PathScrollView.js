@@ -66,7 +66,8 @@ export default class PathScrollView extends React.Component {
 
         return (
             <ScrollView horizontal={true}
-                        showsHorizontalScrollIndicator={false}>
+                        showsHorizontalScrollIndicator={false}
+                        style={styles.container}>
                 {filteredPaths.map(this.renderPath)}
                 <TouchableWithoutFeedback onPress={this.onNewPathPress}>
                     <View style={[styles.pathBox, styles.newPathBox]}>
