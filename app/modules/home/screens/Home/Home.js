@@ -1,55 +1,92 @@
 import React from 'react';
-import {Text, ScrollView, View, ImageBackground, Image, Button} from 'react-native';
+import {Text, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
-import MountainsBackground from '../../../../assets/images/mountains.png';
-import LevelConfig from "../../../levelConfig/utils/LevelConfig";
-import XpBar from "../../../../components/XpBar/XpBar";
+import CharacterPanel from "../../../path/components/CharacterPanel/CharacterPanel";
+import {fetchPaths} from "../../../path/actions";
+import {getPathInProgress, goToMainTabRoute, goToPathStep, isPathIncomplete} from "../../../../components/Util";
+import PathScrollView from "../../../path/components/PathScrollView";
+import RecentPathPanel from "../../components/RecentPathPanel/RecentPathPanel";
 
-class Home extends React.Component {
+class HomeScreen extends React.Component {
     state = {
         isReady: false,
     };
 
     static navigationOptions = ({navigation}) => {
         return {
-            headerRight: (
-                <Button
-                    onPress={() => navigation.navigate('CharacterEdit')}
-                    title="Edit"
-                />
-            )
+            header: null
         }
     };
 
     componentWillMount() {
-        this.setState({isReady: true});
+        this.props.dispatch(fetchPaths()).then(() => {
+            this.setState({isReady: true});
+        });
     }
 
-    render() {
-        const {character} = this.props;
+    onPathStepPress = (path, step) => {
+        goToPathStep(this.props.navigation, {
+            step,
+            path,
+            onEarnedRewards: () => {
+            }
+        });
+    };
 
-        if (!this.state.isReady) {
+    goToPaths = () => {
+        goToMainTabRoute(this.props.navigation, "Paths");
+    };
+
+    getLatestPath = () => {
+        const {paths, pathProgress} = this.props;
+        const pathList = paths.allIds.map(id => paths.byId[id]);
+        const pathKeysInProgress = Object.keys(pathProgress);
+        const inCompletePaths = pathList.filter(p => isPathIncomplete(p, pathProgress));
+        const isWelcomeIncomplete = inCompletePaths.find(p => p.uid === "welcome");
+        const onlyStartedWelcomePath = pathKeysInProgress.length === 1 && pathKeysInProgress[0] === "welcome";
+
+        if (isWelcomeIncomplete) {
+            return paths.byId["welcome"];
+        } else if (onlyStartedWelcomePath) {
+            return inCompletePaths.length ? inCompletePaths[0] : null;
+        } else if (!onlyStartedWelcomePath) {
+            const pathsWithoutWelcome = pathList.filter(p => p.uid !== "welcome");
+            return getPathInProgress(pathsWithoutWelcome, pathProgress);
+        } else {
             return null;
         }
+    };
+
+    onRecentPathBeginPress = (path, step) => {
+        goToPathStep(this.props.navigation, {
+            step,
+            path,
+            onEarnedRewards: () => {
+            }
+        });
+    };
+
+    render() {
+        if (!this.state.isReady) return null;
+        const {character, paths, pathProgress} = this.props;
+        const latestPath = this.getLatestPath();
 
         return (
-            <ImageBackground source={MountainsBackground} style={styles.imageBackground}>
-                <ScrollView contentContainerStyle={styles.container}>
-                    <Image source={{uri: character.imageUrl}} style={styles.characterImage}/>
-                    <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
-                        {character.name}
-                    </Text>
-                    <Text style={styles.level}>Level {character.level}</Text>
-                    <View style={styles.xpContainer}>
-                        <XpBar character={character} height={20} borderWidth={2}/>
-                        <View style={styles.xpTextContainer}>
-                            <Text>Experience</Text>
-                            <Text>{character.xp} / {LevelConfig.getForLevel(character.level).xpNeeded}</Text>
-                        </View>
+            <View style={styles.container}>
+                <RecentPathPanel path={latestPath} pathProgress={pathProgress}
+                                 onBeginPress={this.onRecentPathBeginPress}/>
+                <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>MY PATHS</Text>
+                        <PathScrollView paths={paths.allIds.map(id => paths.byId[id])}
+                                        pathProgress={pathProgress}
+                                        onPathPress={this.onPathStepPress}
+                                        onNewPathPress={this.goToPaths}/>
                     </View>
                 </ScrollView>
-            </ImageBackground>
+                <CharacterPanel character={character}/>
+            </View>
         );
     }
 }
@@ -57,8 +94,10 @@ class Home extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
-        character: state.characterReducer.character
+        character: state.characterReducer.character,
+        paths: state.pathsReducer,
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid] || {},
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(HomeScreen);

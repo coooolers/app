@@ -11,6 +11,7 @@ import {color} from "../../../../styles/theme";
 import Button from "../../../../components/Button/Button";
 import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
 import Reporting from "../../../reporting";
+import {isPathStepComplete} from "../../../../components/Util";
 
 
 class PathStepAudioScreen extends React.Component {
@@ -29,10 +30,8 @@ class PathStepAudioScreen extends React.Component {
         const {pathProgress, navigation} = props;
         const {path, step} = navigation.state.params;
 
-        const stepProgress = pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid];
-
         this.state = {
-            hasCompleted: !!stepProgress,
+            hasCompleted: isPathStepComplete(path, step, pathProgress),
             didEarnRewards: false,
             transcriptIsOpen: false
         };

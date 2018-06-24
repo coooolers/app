@@ -8,6 +8,7 @@ import BackgroundImage from "../../../../components/BackgroundImage";
 import PathStepPanel from "../../components/PathStepPanel";
 import Button from "../../../../components/Button/Button";
 import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
+import {isPathStepComplete} from "../../../../components/Util";
 
 class PathStepWorkoutScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -25,10 +26,8 @@ class PathStepWorkoutScreen extends React.Component {
         const {pathProgress, navigation} = props;
         const {path, step} = navigation.state.params;
 
-        const stepProgress = pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid];
-
         this.state = {
-            hasCompleted: !!stepProgress
+            hasCompleted: isPathStepComplete(path, step, pathProgress)
         };
     }
 

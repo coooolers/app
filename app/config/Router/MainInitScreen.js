@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {goToMainTabRoute} from "../../components/Util";
 
 class InitialScreen extends React.Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class InitialScreen extends React.Component {
         const {user} = props;
 
         if (user.hasCompletedOnboarding) {
+            // TODO: user can swipe screen away and become stuck
             props.navigation.navigate('Main');
         } else {
             props.navigation.navigate('Onboarding');

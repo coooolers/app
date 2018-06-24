@@ -8,7 +8,7 @@ import {REWARD_TYPES, STEP_TYPES} from "../../constants";
 import {updateUserPathProgress} from "../../../userPathProgress/actions";
 import {Character} from "../../../characters/models";
 import {updateCharacter} from "../../../characters/actions";
-import {getRewardsForStep, goToMainTabRoute} from "../../../../components/Util";
+import {getRewardsForStep, goToMainTabRoute, isPathStepComplete} from "../../../../components/Util";
 import {Workout} from "../../../workouts/models";
 import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
@@ -99,9 +99,6 @@ class PathScreen extends React.Component {
         const {path} = navigation.state.params;
         const step = path.steps[stepKey];
 
-        const stepProgress = pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid];
-        const isCompleted = !!stepProgress;
-
         return (
             <PathStepItem
                 key={step.uid}
@@ -109,7 +106,7 @@ class PathScreen extends React.Component {
                 showTopStatusBorder={index > 1}
                 showBottomStatusBorder={index < path.stepsOrder.length - 1}
                 onSelect={(step) => this.goToStep(step, index)}
-                isCompleted={isCompleted}
+                isCompleted={isPathStepComplete(path, step, pathProgress)}
                 isLocked={this.isStepLocked(step, index)}
             />
         );

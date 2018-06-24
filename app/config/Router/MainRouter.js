@@ -38,15 +38,15 @@ const MainRouterStack = StackNavigator({
     }),
 
     Main: TabNavigator({
-        // Home: StackNavigator({
-        //     Home: {screen: HomeScreen}
-        // }, {
-        //     initialRouteName: 'Home',
-        //     navigationOptions: ({navigation}) => ({
-        //         tabBarIcon: ({tintColor}) => <FontAwesome
-        //             style={getTabIconStyle(tintColor)}>{Icons.home}</FontAwesome>
-        //     })
-        // }),
+        Home: StackNavigator({
+            Home: {screen: HomeScreen}
+        }, {
+            initialRouteName: 'Home',
+            navigationOptions: ({navigation}) => ({
+                tabBarIcon: ({tintColor}) => <FontAwesome
+                    style={getTabIconStyle(tintColor)}>{Icons.home}</FontAwesome>
+            })
+        }),
         Paths: StackNavigator({
             Paths: {screen: PathsScreen}
         }, {
@@ -74,7 +74,7 @@ const MainRouterStack = StackNavigator({
         },
         animationEnabled: true,
         swipeEnabled: false,
-        initialRouteName: 'Paths',
+        initialRouteName: 'Home',
     })
 }, {
     initialRouteName: 'Initial',
