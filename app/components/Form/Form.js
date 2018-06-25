@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-
 import {Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
-
 import {isEmpty, validate} from '../../modules/auth/utils/validate'
-
 import styles from "./styles"
-
 import AuthTextInput from "../../modules/auth/components/AuthTextInput/index"
 
 class Form extends React.Component {

@@ -7,7 +7,6 @@ const {color, padding, windowWidth, normalize, fontSize, fontFamily} = theme;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: color.white,
     },
 
     wrapper: {

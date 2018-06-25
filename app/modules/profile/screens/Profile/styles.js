@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {theme} from "../../index";
+import {color} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: color.brandLight
     },
 
     signOutButton: {

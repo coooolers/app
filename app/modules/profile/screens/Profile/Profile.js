@@ -1,9 +1,8 @@
 import React from 'react';
-import {ScrollView, Alert} from 'react-native';
-import {Button} from 'react-native-elements'
+import {ScrollView, Alert, View, Button as RNButton} from 'react-native';
+import {Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
-
 import styles from "./styles";
 import Form from "../../../../components/Form";
 import {getUser, signOut} from "../../../auth/actions";
@@ -111,7 +110,7 @@ class Profile extends React.Component {
     };
 
     render() {
-        const {isReady, isFetching, error } = this.state;
+        const {isReady, isFetching, error} = this.state;
 
         if (!isReady) {
             return null;
@@ -124,13 +123,9 @@ class Profile extends React.Component {
                       showLabel={true}
                       isFetching={isFetching}
                       onSubmit={this.onProfileSubmit}
-                      buttonTitle={"SAVE"}
+                      buttonTitle={"Save"}
                       error={error}/>
-                <Button
-                    raised
-                    title={'LOG OUT'}
-                    style={styles.signOutButton}
-                    onPress={this.onSignOut}/>
+                <RNButton title={"Log Out"} onPress={this.onSignOut}/>
             </ScrollView>
         );
     }
