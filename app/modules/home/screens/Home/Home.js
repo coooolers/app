@@ -7,6 +7,7 @@ import {fetchPaths} from "../../../path/actions";
 import {getPathInProgress, goToMainTabRoute, goToPathStep, isPathIncomplete} from "../../../../components/Util";
 import PathScrollView from "../../../path/components/PathScrollView";
 import RecentPathPanel from "../../components/RecentPathPanel/RecentPathPanel";
+import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
 
 class HomeScreen extends React.Component {
     state = {
@@ -69,11 +70,14 @@ class HomeScreen extends React.Component {
 
     render() {
         if (!this.state.isReady) return null;
-        const {character, paths, pathProgress} = this.props;
+        const {character, paths, pathProgress, screenConfig} = this.props;
         const latestPath = this.getLatestPath();
 
         return (
             <View style={styles.container}>
+                <ScreenInfoDrawer uid={"home"}
+                                  title={screenConfig.infoDrawerTitle}
+                                  text={screenConfig.infoDrawerText}/>
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
                     <RecentPathPanel path={latestPath} pathProgress={pathProgress}
                                      onBeginPress={this.onRecentPathBeginPress}/>
@@ -97,6 +101,7 @@ function mapStateToProps(state) {
         character: state.characterReducer.character,
         paths: state.pathsReducer,
         pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid] || {},
+        screenConfig: state.screensReducer.screens.Home
     }
 }
 

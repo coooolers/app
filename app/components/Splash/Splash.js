@@ -14,7 +14,7 @@ export default class extends React.Component {
     }
 
     animateIcon = (toValue) => {
-        const duration = 1000;
+        const duration = 500;
         Animated.timing(this.state.animateY, {toValue, duration}).start();
 
         setTimeout(() => {
