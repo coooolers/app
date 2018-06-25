@@ -3,7 +3,7 @@ import {Text, ScrollView, View, TouchableWithoutFeedback} from 'react-native';
 import styles from "./styles";
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import * as Progress from 'react-native-progress';
-import {getPathStepProgress, isPathComplete, isPathIncomplete} from "../../../../components/Util";
+import {getPathStepProgress, isPathIncomplete} from "../../../../components/Util";
 import PropTypes from 'prop-types';
 
 export default class PathScrollView extends React.Component {
@@ -45,14 +45,17 @@ export default class PathScrollView extends React.Component {
                 <View style={styles.pathBox}>
                     <View style={{flex: 1}}>
                         <Text style={styles.pathBoxTitle}>{path.name}</Text>
-                        <Text>Step {pathStepProgress.currentCompleted} of {pathStepProgress.total}</Text>
                     </View>
+                    <Text style={styles.pathBoxStatus}>
+                        {pathStepProgress.currentCompleted} of {pathStepProgress.total}
+                        </Text>
                     <Progress.Bar
                         progress={pathStepProgress.progress}
                         width={null}
                         height={3}
                         borderRadius={0}
-                        borderWidth={0}
+                        borderWidth={1}
+                        borderColor={'#999'}
                         unfilledColor={"rgba(255,255,255,0.5)"}
                         color={"#b82244"}
                     />

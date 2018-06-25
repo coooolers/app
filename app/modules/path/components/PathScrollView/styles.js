@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {color, fontFamily, normalize} from "../../../../styles/theme";
+import {color, fontFamily, fontSize, normalize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     pathBox: {
         width: 100,
         height: 125,
-        backgroundColor: color.brandLight,
+        backgroundColor: '#FCEFE7',
         borderWidth: 1,
-        borderColor: color.dark_grey,
+        borderColor: '#A1958E',
         padding: 10,
         shadowColor: 'rgba(50, 50, 50, 0.2)',
         shadowOffset: { height: 1, width: 1 },
@@ -23,6 +23,13 @@ const styles = StyleSheet.create({
     pathBoxTitle: {
         fontFamily: fontFamily.bold,
         fontSize: normalize(12)
+    },
+
+    pathBoxStatus: {
+        fontFamily: fontFamily.light,
+        fontSize: fontSize.small,
+        marginTop: 5,
+        marginBottom: 5
     },
 
     newPathBox: {

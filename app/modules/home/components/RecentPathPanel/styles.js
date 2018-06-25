@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     container: {
         height: 225,
         backgroundColor: color.brandPrimary,
-        marginBottom: 20,
         borderBottomWidth: 1,
         borderBottomColor: color.dark_grey
     },

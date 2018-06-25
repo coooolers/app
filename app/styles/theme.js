@@ -7,13 +7,13 @@ const color = {
     brandInfo: "#39a0ed",
     brandDanger: 'red',
     brandLight: "#fcfcfc",
-    brandDark: "#211a1e",
+    brandDark: "#071108",
     black: "#3B3031",
     light_black: "#414141",
     white: "#ffffff",
     light_grey: "#eaeaea",
     grey: "#ccc",
-    dark_grey: '#666666'
+    dark_grey: '#364652'
 };
 
 const fontSize = {

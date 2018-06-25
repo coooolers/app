@@ -7,16 +7,18 @@ const {color, fontFamily, normalize} = theme;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: color.light_grey
+        backgroundColor: color.brandLight
     },
 
     content: {
-        backgroundColor: color.light_grey
+        backgroundColor: color.brandLight
     },
 
     section: {
         width: '100%',
         padding: contentPadding,
+        paddingTop: 20,
+        paddingBottom: 20,
         alignItems: 'flex-start'
     },
 
