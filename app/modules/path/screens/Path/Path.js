@@ -28,6 +28,12 @@ class PathScreen extends React.Component {
         };
     };
 
+    componentWillReceiveProps(nextProps, prevProps) {
+        if (nextProps.pathStepToComplete && nextProps.pathStepToComplete !== prevProps.pathStepToComplete) {
+            this.onEarnedRewards(nextProps.pathStepToComplete.step);
+        }
+    }
+
     onEarnedRewards = (step) => {
         const {path} = this.props.navigation.state.params;
         const {user, pathProgress, character} = this.props;
@@ -57,6 +63,9 @@ class PathScreen extends React.Component {
         this.props.dispatch(updateUserPathProgress(user, pathProgress)).then(() => {
             this.setState({...this.state});
         });
+
+        // TODO: temporary until we create a normalized reward screen
+        this.props.dispatch({type: "PATH_STEP_TO_COMPLETE_COMPLETED"});
     };
 
     goToStep = (step, index) => {
@@ -67,15 +76,13 @@ class PathScreen extends React.Component {
         if (step.type === STEP_TYPES.AUDIO) {
             this.props.navigation.push("PathStepAudio", {
                 step,
-                path,
-                onEarnedRewards: this.onEarnedRewards.bind(this)
+                path
             });
         } else if (step.type === STEP_TYPES.WORKOUT) {
             this.props.navigation.push("PathStepWorkout", {
                 step,
                 path,
-                workout: new Workout(step.name, step.workoutRoutine),
-                onEarnedRewards: this.onEarnedRewards.bind(this)
+                workout: new Workout(step.name, step.workoutRoutine)
             });
         }
     };
@@ -132,6 +139,7 @@ function mapStateToProps(state) {
         user: state.authReducer.user,
         character: state.characterReducer.character,
         pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid] || {},
+        pathStepToComplete: state.pathStepToCompleteReducer.item,
         screenConfig: state.screensReducer.screens.PathStep
     };
 }

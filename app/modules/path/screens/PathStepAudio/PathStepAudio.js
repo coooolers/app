@@ -44,13 +44,18 @@ class PathStepAudioScreen extends React.Component {
     }
 
     goBack = () => {
-        const {step, onEarnedRewards} = this.props.navigation.state.params;
+        const {path, step} = this.props.navigation.state.params;
 
         this.props.navigation.goBack();
 
         if (this.state.didEarnRewards) {
             setTimeout(() => {
-                onEarnedRewards(step)
+                // TODO: temporary until we create a normalized reward screen
+                this.props.dispatch({
+                    type: "PATH_STEP_TO_COMPLETE",
+                    path,
+                    step,
+                });
             }, 500);
         }
     };

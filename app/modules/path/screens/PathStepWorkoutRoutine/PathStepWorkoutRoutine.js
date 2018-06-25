@@ -26,8 +26,8 @@ class PathStepWorkoutRoutine extends React.Component {
 
     constructor(props) {
         super(props);
-        const {path, step, workout, exerciseIndex, onEarnedRewards, hasCompleted} = props.navigation.state.params;
-        this.state = {path, step, workout, exerciseIndex, onEarnedRewards, hasCompleted};
+        const {path, step, workout, exerciseIndex, hasCompleted} = props.navigation.state.params;
+        this.state = {path, step, workout, exerciseIndex, hasCompleted};
     }
 
     componentWillMount() {
@@ -90,7 +90,7 @@ class PathStepWorkoutRoutine extends React.Component {
     };
 
     goToNextExercise = () => {
-        const {step, workout, exerciseIndex, hasCompleted, onEarnedRewards} = this.state;
+        const {path, step, workout, exerciseIndex, hasCompleted} = this.state;
         const nextWorkoutExercise = workout.routine[exerciseIndex + 1];
 
         if (nextWorkoutExercise) {
@@ -102,7 +102,12 @@ class PathStepWorkoutRoutine extends React.Component {
 
             if (workout.grade === WORKOUT_GRADES.S && hasCompleted === false) {
                 setTimeout(() => {
-                    onEarnedRewards(step)
+                    // TODO: temporary until we create a normalized reward screen
+                    this.props.dispatch({
+                        type: "PATH_STEP_TO_COMPLETE",
+                        path,
+                        step,
+                    });
                 }, 500);
             }
         }
