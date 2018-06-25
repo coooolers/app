@@ -104,7 +104,6 @@ export const getPathStepProgress = (path, pathProgress) => {
     return {
         total: path.stepsOrder.length,
         current: stepIndex + 1,
-        currentCompleted: stepIndex,
         step: path.steps[path.stepsOrder[stepIndex]],
         progress: round((stepIndex) / path.stepsOrder.length, 2)
     };

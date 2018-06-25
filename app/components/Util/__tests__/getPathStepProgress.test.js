@@ -18,7 +18,6 @@ it('get path step progress with no completion', () => {
     )).toEqual({
         total: 4,
         current: 1,
-        currentCompleted: 0,
         step: {uid: "introduction"},
         progress: 0
     });
@@ -45,7 +44,6 @@ it('get path step progress with some completion', () => {
     )).toEqual({
         total: 4,
         current: 3,
-        currentCompleted: 2,
         step: {uid: "topic2"},
         progress: 0.5
     });
@@ -74,7 +72,6 @@ it('get path step progress with entire completion', () => {
     )).toEqual({
         total: 4,
         current: 5,
-        currentCompleted: 4,
         step: undefined,
         progress: 1
     });
