@@ -22,7 +22,10 @@ export default class Button extends Component {
         if (_.isObject(icon)) {
             return Object.assign({type: 'font-awesome'}, icon);
         } else if (_.isString(icon)) {
-            return icon;
+            return {
+                type: 'font-awesome',
+                name: icon
+            };
         } else {
             return null;
         }
