@@ -98,18 +98,13 @@ class PathStepWorkoutRoutine extends React.Component {
         } else {
             workout.complete();
 
-            this.props.navigation.popToTop();
-
-            if (workout.grade === WORKOUT_GRADES.S && hasCompleted === false) {
-                setTimeout(() => {
-                    // TODO: temporary until we create a normalized reward screen
-                    this.props.dispatch({
-                        type: "PATH_STEP_TO_COMPLETE",
-                        path,
-                        step,
-                    });
-                }, 500);
-            }
+            // TODO: maybe reset nav stack here for memory management?
+            // TODO: add value to support success without earning rewards
+            this.props.navigation.navigate('PathStepReward', {
+                path,
+                step,
+                didEarnRewards: workout.grade === WORKOUT_GRADES.S && hasCompleted === false
+            });
         }
     };
 

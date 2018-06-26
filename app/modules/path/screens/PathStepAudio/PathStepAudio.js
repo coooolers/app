@@ -32,7 +32,6 @@ class PathStepAudioScreen extends React.Component {
 
         this.state = {
             hasCompleted: isPathStepComplete(path, step, pathProgress),
-            didEarnRewards: false,
             transcriptIsOpen: false
         };
     }
@@ -40,31 +39,30 @@ class PathStepAudioScreen extends React.Component {
     componentWillMount() {
         this.props.navigation.setParams({
             goBack: this.goBack.bind(this)
-        })
+        });
+
+        // TODO: remove done testing new scree
+        // const {path, step} = this.props.navigation.state.params;
+        // this.props.navigation.navigate('PathStepReward', {
+        //     path,
+        //     step,
+        //     didEarnRewards: this.state.hasCompleted === false
+        // });
     }
 
     goBack = () => {
-        const {path, step} = this.props.navigation.state.params;
-
         this.props.navigation.goBack();
-
-        if (this.state.didEarnRewards) {
-            setTimeout(() => {
-                // TODO: temporary until we create a normalized reward screen
-                this.props.dispatch({
-                    type: "PATH_STEP_TO_COMPLETE",
-                    path,
-                    step,
-                });
-            }, 500);
-        }
     };
 
     onAudioComplete = () => {
-        this.setState({
-            hasCompleted: true,
-            // offer rewards the first time a user completes this
-            didEarnRewards: this.state.hasCompleted === false
+        const {path, step} = this.props.navigation.state.params;
+        // offer rewards the first time a user completes the step
+        const didEarnRewards = this.state.hasCompleted === false;
+
+        this.props.navigation.navigate('PathStepReward', {
+            path,
+            step,
+            didEarnRewards
         });
     };
 
@@ -109,7 +107,9 @@ class PathStepAudioScreen extends React.Component {
                                   title={screenConfig.infoDrawerTitle}
                                   text={screenConfig.infoDrawerText}/>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={Icons.headphones}>
+                    <PathStepPanel step={step} path={path}
+                                   hasCompleted={hasCompleted}
+                                   icon={Icons.headphones}>
                         <PathStepAudioPlayer
                             url={step.audioUrl}
                             onComplete={this.onAudioComplete}
@@ -125,9 +125,6 @@ class PathStepAudioScreen extends React.Component {
                         {this.renderTranscript()}
                     </PathStepPanel>
                 </ScrollView>
-                <View style={styles.buttonContainer}>
-                    <Button title={"BACK"} onPress={this.goBack}/>
-                </View>
             </View>
         );
     }

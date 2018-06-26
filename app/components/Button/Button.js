@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
-import {Button as ReactNativeButton} from 'react-native-elements';
+import {Button as RNEButton} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import styles from "./styles";
+import _ from 'lodash';
 
 
 export default class Button extends Component {
@@ -10,21 +11,32 @@ export default class Button extends Component {
         title: PropTypes.string.isRequired,
         onPress: PropTypes.func.isRequired,
         isFetching: PropTypes.bool,
-        icon: PropTypes.string,
+        icon: PropTypes.any,
         containerViewStyle: PropTypes.object,
         buttonStyle: PropTypes.object,
+    };
+
+    getIcon = () => {
+        const {icon} = this.props;
+
+        if (_.isObject(icon)) {
+            return Object.assign({type: 'font-awesome'}, icon);
+        } else if (_.isString(icon)) {
+            return icon;
+        } else {
+            return null;
+        }
     };
 
     render() {
         const containerViewStyle = StyleSheet.flatten([styles.containerView, this.props.containerViewStyle || {}]);
         const buttonStyle = StyleSheet.flatten([styles.button, this.props.buttonStyle || {}]);
-        const icon = {name: this.props.icon, type: 'font-awesome'};
 
         return (
-            <ReactNativeButton
+            <RNEButton
                 raised
                 title={this.props.title}
-                icon={icon}
+                icon={this.getIcon()}
                 containerViewStyle={containerViewStyle}
                 buttonStyle={buttonStyle}
                 textStyle={styles.buttonText}

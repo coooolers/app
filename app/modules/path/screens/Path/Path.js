@@ -4,14 +4,10 @@ import {connect} from 'react-redux';
 import styles from "./styles";
 import PathStepItem from "../../components/PathStepItem";
 import CharacterPanel from "../../components/CharacterPanel";
-import {REWARD_TYPES, STEP_TYPES} from "../../constants";
-import {updateUserPathProgress} from "../../../userPathProgress/actions";
-import {Character} from "../../../characters/models";
-import {updateCharacter} from "../../../characters/actions";
-import {getRewardsForStep, goToMainTabRoute, isPathStepComplete} from "../../../../components/Util";
+import {STEP_TYPES} from "../../constants";
+import {goToMainTabRoute, isPathStepComplete} from "../../../../components/Util";
 import {Workout} from "../../../workouts/models";
 import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
-import Reporting from "../../../reporting";
 
 class PathScreen extends React.Component {
     state = {
@@ -25,46 +21,6 @@ class PathScreen extends React.Component {
             headerLeft: <Button onPress={() => goToMainTabRoute(navigation, "Paths")} title="Paths"/>,
             title: path.name
         };
-    };
-
-    componentWillReceiveProps(nextProps, prevProps) {
-        if (nextProps.pathStepToComplete && nextProps.pathStepToComplete !== prevProps.pathStepToComplete) {
-            this.onEarnedRewards(nextProps.pathStepToComplete.step);
-        }
-    }
-
-    onEarnedRewards = (step) => {
-        const {path} = this.props.navigation.state.params;
-        const {user, pathProgress, character} = this.props;
-        const rewards = getRewardsForStep(step);
-
-        Reporting.track("path_step_complete", {
-            pathUid: path.uid,
-            stepUid: step.uid
-        });
-
-        pathProgress[path.uid] = pathProgress[path.uid] || {};
-        pathProgress[path.uid][step.uid] = {
-            completed: new Date().toISOString()
-        };
-
-        this.setState({
-            animateRewardConfig: rewards
-        }, () => this.setState({animateRewardConfig: null}));
-
-        if (rewards[REWARD_TYPES.XP]) {
-            const characterWithNewXp = Character.addXp(character, rewards[REWARD_TYPES.XP]);
-            this.props.dispatch(updateCharacter(characterWithNewXp)).then(() => {
-                this.setState({...this.state});
-            });
-        }
-
-        this.props.dispatch(updateUserPathProgress(user, pathProgress)).then(() => {
-            this.setState({...this.state});
-        });
-
-        // TODO: temporary until we create a normalized reward screen
-        this.props.dispatch({type: "PATH_STEP_TO_COMPLETE_COMPLETED"});
     };
 
     goToStep = (step, index) => {
@@ -134,8 +90,7 @@ function mapStateToProps(state) {
     return {
         user: state.authReducer.user,
         character: state.characterReducer.character,
-        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid] || {},
-        pathStepToComplete: state.pathStepToCompleteReducer.item
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid] || {}
     };
 }
 

@@ -50,11 +50,11 @@ export const goToPathStep = (navigation, params = {}) => {
     let routeKey = null;
     let routeParams = Object.assign({}, params);
 
-    if (params.step.type === STEP_TYPES.AUDIO) {
+    if (routeParams.step.type === STEP_TYPES.AUDIO) {
         routeKey = "PathStepAudio";
-    } else if (params.step.type === STEP_TYPES.WORKOUT) {
+    } else if (routeParams.step.type === STEP_TYPES.WORKOUT) {
         routeKey = "PathStepWorkout";
-        routeParams.workout = new Workout(step.name, step.workoutRoutine);
+        routeParams.workout = new Workout(routeParams.step.name, routeParams.step.workoutRoutine);
     } else {
         throw new Error("Invalid path step type provided for transition");
     }
@@ -123,6 +123,12 @@ export const isPathStepComplete = (path, step, pathProgress) => {
     return !!(pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid]);
 };
 
+export const getPathStepCompletedDate = (path, step, pathProgress) => {
+  if (isPathStepComplete(path, step, pathProgress)) {
+      return pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid].completed;
+  }
+};
+
 export const getPathInProgress = (paths, pathProgress) => {
     const pathKeys = paths.map(p => p.uid);
     let latestTimestamp;
@@ -150,4 +156,16 @@ export const getPathInProgress = (paths, pathProgress) => {
     });
 
     return pathInProgress;
+};
+
+export const getNextStepInPath = (path, step) => {
+    const {stepsOrder, steps} = path;
+    const currentStepIndex = stepsOrder.indexOf(step.uid);
+    const nextStepUid = path.stepsOrder[currentStepIndex + 1];
+
+    if (nextStepUid) {
+        return steps[nextStepUid];
+    } else {
+        return null;
+    }
 };

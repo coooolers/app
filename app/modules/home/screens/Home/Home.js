@@ -27,12 +27,7 @@ class HomeScreen extends React.Component {
     }
 
     onPathStepPress = (path, step) => {
-        goToPathStep(this.props.navigation, {
-            step,
-            path,
-            onEarnedRewards: () => {
-            }
-        });
+        goToPathStep(this.props.navigation, {step, path});
     };
 
     goToPaths = () => {
@@ -60,12 +55,7 @@ class HomeScreen extends React.Component {
     };
 
     onRecentPathBeginPress = (path, step) => {
-        goToPathStep(this.props.navigation, {
-            step,
-            path,
-            onEarnedRewards: () => {
-            }
-        });
+        goToPathStep(this.props.navigation, {step, path});
     };
 
     render() {
