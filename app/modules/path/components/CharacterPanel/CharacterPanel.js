@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Image, Text, Animated} from 'react-native';
+import {View, Image, ImageBackground, Text, Animated} from 'react-native';
+import MountainImage from "../../../../assets/images/mountains.png";
 import styles from "./styles";
 import LevelConfig from "../../../levelConfig/utils/LevelConfig";
 import RewardList from "../../../../components/RewardList";
@@ -63,16 +64,17 @@ export default class CharacterPanel extends React.Component {
         return (
             <View style={styles.container}>
                 {this.renderRewardNotification()}
-                <View style={styles.content}>
+                <ImageBackground source={MountainImage} style={styles.background}>
                     <Image style={styles.image} source={{uri: character.imageUrl}}/>
                     <View style={styles.xpContainer}>
-                        <Text style={styles.nameText}>{character.name} ({character.level})</Text>
+                        <Text>{character.name} ({character.level})</Text>
                         <XpBar character={character}/>
                         <View style={styles.xpTextContainer}>
-                            <Text style={styles.xpText}>{character.xp} / {LevelConfig.getForLevel(character.level).xpNeeded}</Text>
+                            <Text
+                                style={{fontSize: 10}}>{character.xp} / {LevelConfig.getForLevel(character.level).xpNeeded}</Text>
                         </View>
                     </View>
-                </View>
+                </ImageBackground>
             </View>
         );
     }
