@@ -56,14 +56,7 @@ class PathStepAudioScreen extends React.Component {
 
     onAudioComplete = () => {
         const {path, step} = this.props.navigation.state.params;
-        // offer rewards the first time a user completes the step
-        const didEarnRewards = this.state.hasCompleted === false;
-
-        this.props.navigation.navigate('PathStepAudioReward', {
-            path,
-            step,
-            didEarnRewards
-        });
+        this.props.navigation.navigate('PathStepAudioReward', {path, step});
     };
 
     renderTranscript = () => {

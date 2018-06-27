@@ -13,7 +13,6 @@ import {
     isPathStepComplete
 } from "../../../../components/Util";
 import Reporting from "../../../reporting";
-import {REWARD_TYPES} from "../../constants";
 import {Character} from "../../../characters/models";
 import {updateUserPathProgress} from "../../../userPathProgress/actions";
 import {color} from "../../../../styles/theme";
@@ -34,28 +33,28 @@ class PathStepWorkoutRewardScreen extends React.Component {
         super(props);
 
         const {path, step, workout} = props.navigation.state.params;
-        const hasCompleted = isPathStepComplete(path, step, props.pathProgress);
+        const hasAlreadyCompleted = isPathStepComplete(path, step, props.pathProgress);
+        const didCompleteStep = workout.grade === WORKOUT_GRADES.S && hasAlreadyCompleted === false;
 
         this.state = ({
-            hasCompleted,
-            didCompleteStep: workout.grade === WORKOUT_GRADES.S && hasCompleted === false,
-            hasEarnedRewards: false,
-            showCompletedDate: hasCompleted
+            hasAlreadyCompleted, // the user completed this step in another session
+            didCompleteStep, // the user completed this step right now
+            showCongratulations: didCompleteStep || hasAlreadyCompleted, // the user fully completed the workout
+            hasEarnedRewards: false // the user has earned their rewards from this step
         });
     }
 
     componentDidMount() {
         const {path, step} = this.props.navigation.state.params;
-        const {didCompleteStep} = this.state;
 
         setTimeout(() => {
             this.earnRewards();
 
-            if (didCompleteStep) {
+            if (this.state.didCompleteStep) {
                 this.completeStep();
-                Reporting.track("path_step_workout_complete", {pathUid: path.uid, stepUid: step.uid});
+                Reporting.track("path_step_complete", {pathUid: path.uid, stepUid: step.uid, type: step.type});
             } else {
-                Reporting.track("path_step_workout_incomplete", {pathUid: path.uid, stepUid: step.uid});
+                Reporting.track("path_step_incomplete", {pathUid: path.uid, stepUid: step.uid, type: step.type});
             }
         }, 500);
     }
@@ -78,6 +77,7 @@ class PathStepWorkoutRewardScreen extends React.Component {
         }
     };
 
+    // TODO: move to action
     completeStep = () => {
         const {path, step} = this.props.navigation.state.params;
         const {user, pathProgress} = this.props;
@@ -91,21 +91,20 @@ class PathStepWorkoutRewardScreen extends React.Component {
     };
 
     renderButton = () => {
-        const {hasCompleted, didCompleteStep} = this.state;
         const {path, step} = this.props.navigation.state.params;
         const nextStep = getNextStepInPath(path, step);
         let text = null;
         let icon = null;
         let onPress = null;
 
-        if (didCompleteStep || hasCompleted) {
+        if (this.state.showCongratulations) {
             if (nextStep) {
                 text = nextStep.name;
                 icon = {name: 'play', color: color.brandLight};
                 onPress = () => goToPathStep(this.props.navigation, {step: nextStep, path})
             } else {
                 text = "Choose a new path";
-                icon = {name: 'play', color: color.brandLight};
+                icon = {name: 'graduation-cap', color: color.brandLight};
                 onPress = () => goToMainTabRoute(this.props.navigation, 'Paths');
             }
         } else {
@@ -127,10 +126,9 @@ class PathStepWorkoutRewardScreen extends React.Component {
 
     renderCompletedDate = () => {
         const {path, step} = this.props.navigation.state.params;
-        const {showCompletedDate} = this.state;
         const {pathProgress} = this.props;
 
-        if (showCompletedDate) {
+        if (this.state.hasAlreadyCompleted) {
             const date = moment(getPathStepCompletedDate(path, step, pathProgress)).format('MMM DD YYYY');
             return (
                 <Text style={styles.completedDate}>completed: {date}</Text>
@@ -176,11 +174,9 @@ class PathStepWorkoutRewardScreen extends React.Component {
     };
 
     renderMiddleContainer = () => {
-        const {hasCompleted, didCompleteStep} = this.state;
         const {path, step} = this.props.navigation.state.params;
-        const showCongratulations = hasCompleted || didCompleteStep;
         const stepRewards = getRewardsForStep(step);
-        const text = showCongratulations ? 'You finished' : 'Take some time to rest and heal your muscles. Try again later to earn all five stars and complete this level.';
+        const text = this.state.showCongratulations ? 'You finished' : 'Take some time to rest and heal your muscles. Try again later to earn all five stars and complete this level.';
 
         return (
             <View style={styles.middleContainer}>
