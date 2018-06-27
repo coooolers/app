@@ -45,15 +45,21 @@ class PathStepAudioRewardScreen extends React.Component {
 
     componentDidMount() {
         const {path, step} = this.props.navigation.state.params;
+        const trackingPayload = {
+            pathUid: path.uid,
+            stepUid: step.uid,
+            pathStepUid: `${path.uid}:${step.uid}`,
+            type: step.type
+        };
 
         setTimeout(() => {
             this.earnRewards();
 
             if (this.state.didCompleteStep) {
                 this.completeStep();
-                Reporting.track("path_step_complete", {pathUid: path.uid, stepUid: step.uid, type: step.type});
+                Reporting.track("path_step_complete", trackingPayload);
             } else {
-                Reporting.track("path_step_incomplete", {pathUid: path.uid, stepUid: step.uid, type: step.type});
+                Reporting.track("path_step_incomplete", trackingPayload);
             }
         }, 500);
     }
