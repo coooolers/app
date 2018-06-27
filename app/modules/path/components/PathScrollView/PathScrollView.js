@@ -47,7 +47,7 @@ export default class PathScrollView extends React.Component {
                         <Text style={styles.pathBoxTitle}>{path.name}</Text>
                     </View>
                     <Text style={styles.pathBoxStatus}>
-                        {pathStepProgress.current} of {pathStepProgress.total}
+                        {pathStepProgress.current - 1} of {pathStepProgress.total}
                         </Text>
                     <Progress.Bar
                         progress={pathStepProgress.progress}
