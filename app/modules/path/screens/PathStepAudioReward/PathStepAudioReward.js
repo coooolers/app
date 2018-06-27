@@ -65,6 +65,7 @@ class PathStepAudioRewardScreen extends React.Component {
     }
 
     earnRewards = () => {
+        const {step} = this.props.navigation.state.params;
         const {character} = this.props;
         const rewards = getRewardsForStep(step);
 
