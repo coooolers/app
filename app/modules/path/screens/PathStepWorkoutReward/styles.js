@@ -19,16 +19,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    statusIcon: {
-        marginBottom: 10,
-        fontSize: normalize(80),
-        color: color.brandLight
-    },
-
     congratulations: {
         color: color.brandLight,
         fontSize: fontSize.large + 5,
         fontFamily: fontFamily.regular,
+    },
+
+    starContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+
+    star: {
+        fontSize: normalize(50),
+        color: color.brandLight,
+        marginLeft: 5,
+        marginRight: 5
     },
 
     /*
@@ -45,7 +54,8 @@ const styles = StyleSheet.create({
         color: color.brandDark,
         fontFamily: fontFamily.light,
         marginTop: 10,
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        textAlign: 'center'
     },
 
     stepName: {

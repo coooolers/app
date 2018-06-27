@@ -26,8 +26,8 @@ class PathStepWorkoutRoutine extends React.Component {
 
     constructor(props) {
         super(props);
-        const {path, step, workout, exerciseIndex, hasCompleted} = props.navigation.state.params;
-        this.state = {path, step, workout, exerciseIndex, hasCompleted};
+        const {path, step, workout, exerciseIndex} = props.navigation.state.params;
+        this.state = {path, step, workout, exerciseIndex};
     }
 
     componentWillMount() {
@@ -90,7 +90,7 @@ class PathStepWorkoutRoutine extends React.Component {
     };
 
     goToNextExercise = () => {
-        const {path, step, workout, exerciseIndex, hasCompleted} = this.state;
+        const {path, step, workout, exerciseIndex} = this.state;
         const nextWorkoutExercise = workout.routine[exerciseIndex + 1];
 
         if (nextWorkoutExercise) {
@@ -100,10 +100,10 @@ class PathStepWorkoutRoutine extends React.Component {
 
             // TODO: maybe reset nav stack here for memory management?
             // TODO: add value to support success without earning rewards
-            this.props.navigation.navigate('PathStepAudioReward', {
+            this.props.navigation.navigate('PathStepWorkoutReward', {
                 path,
                 step,
-                didEarnRewards: workout.grade === WORKOUT_GRADES.S && hasCompleted === false
+                workout
             });
         }
     };

@@ -25,8 +25,7 @@ class PathStepAudioRewardScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
             headerLeft: <RNButton title={"Home"} onPress={() => goToMainTabRoute(navigation, "Home")}/>,
-            headerRight: null,
-            title: "Congratulations"
+            headerRight: null
         }
     };
 
@@ -165,8 +164,7 @@ function mapStateToProps(state) {
         user: state.authReducer.user,
         character: state.characterReducer.character,
         paths: state.pathsReducer,
-        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid] || {},
-        screenConfig: state.screensReducer.screens.Paths
+        pathProgress: state.userPathProgressReducer.byId[state.authReducer.user.uid] || {}
     };
 }
 

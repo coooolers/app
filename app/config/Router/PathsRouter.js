@@ -5,6 +5,7 @@ import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
 import PathStepWorkoutScreen from "../../modules/path/screens/PathStepWorkout";
 import PathStepWorkoutRoutineScreen from "../../modules/path/screens/PathStepWorkoutRoutine";
 import PathStepAudioRewardScreen from "../../modules/path/screens/PathStepAudioReward";
+import PathStepWorkoutRewardScreen from "../../modules/path/screens/PathStepWorkoutReward";
 import ExerciseInfo from "../../modules/exercises/screens/ExerciseInfo";
 
 
@@ -13,6 +14,7 @@ export default StackNavigator({
     PathStepWorkout: {screen: PathStepWorkoutScreen},
     PathStepWorkoutRoutine: {screen: PathStepWorkoutRoutineScreen},
     PathStepAudioReward: {screen: PathStepAudioRewardScreen},
+    PathStepWorkoutReward: {screen: PathStepWorkoutRewardScreen},
     ExerciseInfo: {screen: ExerciseInfo},
     Path: {screen: PathScreen},
 }, {
