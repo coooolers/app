@@ -43,7 +43,7 @@ class PathStepAudioScreen extends React.Component {
 
         // TODO: remove done testing new scree
         // const {path, step} = this.props.navigation.state.params;
-        // this.props.navigation.navigate('PathStepReward', {
+        // this.props.navigation.navigate('PathStepAudioReward', {
         //     path,
         //     step,
         //     didEarnRewards: this.state.hasCompleted === false
@@ -59,7 +59,7 @@ class PathStepAudioScreen extends React.Component {
         // offer rewards the first time a user completes the step
         const didEarnRewards = this.state.hasCompleted === false;
 
-        this.props.navigation.navigate('PathStepReward', {
+        this.props.navigation.navigate('PathStepAudioReward', {
             path,
             step,
             didEarnRewards

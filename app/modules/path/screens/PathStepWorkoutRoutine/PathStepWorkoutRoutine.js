@@ -100,7 +100,7 @@ class PathStepWorkoutRoutine extends React.Component {
 
             // TODO: maybe reset nav stack here for memory management?
             // TODO: add value to support success without earning rewards
-            this.props.navigation.navigate('PathStepReward', {
+            this.props.navigation.navigate('PathStepAudioReward', {
                 path,
                 step,
                 didEarnRewards: workout.grade === WORKOUT_GRADES.S && hasCompleted === false

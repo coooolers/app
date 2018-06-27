@@ -21,7 +21,7 @@ import RewardList from "../../../../components/RewardList/RewardList";
 import {updateCharacter} from "../../../characters/actions";
 import moment from 'moment';
 
-class PathStepRewardScreen extends React.Component {
+class PathStepAudioRewardScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
             headerLeft: <RNButton title={"Home"} onPress={() => goToMainTabRoute(navigation, "Home")}/>,
@@ -170,4 +170,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(PathStepRewardScreen);
+export default connect(mapStateToProps)(PathStepAudioRewardScreen);
