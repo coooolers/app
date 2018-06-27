@@ -1,26 +1,28 @@
 import {StyleSheet} from 'react-native';
-import {color, contentPadding} from "../../../../styles/theme";
+import {color, contentPadding, fontFamily, fontSize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%'
-    },
-
-    background: {
-        padding: contentPadding,
-        paddingBottom: 0,
-        height: 70,
         width: '100%',
-        flexDirection: 'row',
+        backgroundColor: '#daecff',
+        height: 70,
+        padding: contentPadding,
+        paddingTop: 10,
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        borderColor: color.light_black
+        borderColor: '#456f9c',
+    },
+
+    content: {
+        width: '100%',
+        flexDirection: 'row',
     },
 
     image: {
         width: 60,
         height: 60,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        marginRight: 10
     },
 
     xpContainer: {
@@ -31,6 +33,18 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end'
+    },
+
+    xpText: {
+        fontSize: fontSize.small,
+        fontFamily: fontFamily.light,
+        color: color.brandDark
+    },
+
+    nameText: {
+        fontSize: fontSize.regular,
+        fontFamily: fontFamily.regular,
+        color: color.brandDark
     },
 
     rewardNotificationContainer: {
