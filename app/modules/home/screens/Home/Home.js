@@ -4,10 +4,17 @@ import {connect} from 'react-redux';
 import styles from "./styles";
 import CharacterPanel from "../../../path/components/CharacterPanel/CharacterPanel";
 import {fetchPaths} from "../../../path/actions";
-import {getPathInProgress, goToMainTabRoute, goToPathStep, isPathIncomplete} from "../../../../components/Util";
+import {
+    getPathInProgress,
+    goToMainTabRoute,
+    goToPathStep,
+    isPathComplete,
+    isPathIncomplete
+} from "../../../../components/Util";
 import PathScrollView from "../../../path/components/PathScrollView";
 import RecentPathPanel from "../../components/RecentPathPanel/RecentPathPanel";
 import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
+import {color} from "../../../../styles/theme";
 
 class HomeScreen extends React.Component {
     state = {
@@ -37,20 +44,18 @@ class HomeScreen extends React.Component {
     getLatestPath = () => {
         const {paths, pathProgress} = this.props;
         const pathList = paths.allIds.map(id => paths.byId[id]);
-        const pathKeysInProgress = Object.keys(pathProgress);
         const inCompletePaths = pathList.filter(p => isPathIncomplete(p, pathProgress));
+        const allPathsComplete = pathList.every(p => isPathComplete(p, pathProgress));
         const isWelcomeIncomplete = inCompletePaths.find(p => p.uid === "welcome");
-        const onlyStartedWelcomePath = pathKeysInProgress.length === 1 && pathKeysInProgress[0] === "welcome";
 
-        if (isWelcomeIncomplete) {
+
+        if (allPathsComplete) {
+            return null;
+        } else if (isWelcomeIncomplete) {
             return paths.byId["welcome"];
-        } else if (onlyStartedWelcomePath) {
-            return inCompletePaths.length ? inCompletePaths[0] : null;
-        } else if (!onlyStartedWelcomePath) {
+        } else {
             const pathsWithoutWelcome = pathList.filter(p => p.uid !== "welcome");
             return getPathInProgress(pathsWithoutWelcome, pathProgress);
-        } else {
-            return null;
         }
     };
 
@@ -58,10 +63,32 @@ class HomeScreen extends React.Component {
         goToPathStep(this.props.navigation, {step, path});
     };
 
+    renderRecentPathPanel = () => {
+        const {pathProgress} = this.props;
+        const latestPath = this.getLatestPath();
+
+        if (latestPath) {
+            return (
+                <RecentPathPanel path={latestPath} pathProgress={pathProgress}
+                                 onBeginPress={this.onRecentPathBeginPress}/>
+            );
+        } else {
+            // TODO: add something here for users who really rocked the shit!
+            return (
+                <View style={{
+                    width: '100%',
+                    height: 200,
+                    marginBottom: 20,
+                    backgroundColor: color.brandPrimary
+                }}/>
+            )
+        }
+    };
+
     render() {
         if (!this.state.isReady) return null;
+
         const {character, paths, pathProgress, screenConfig} = this.props;
-        const latestPath = this.getLatestPath();
 
         return (
             <View style={styles.container}>
@@ -69,8 +96,7 @@ class HomeScreen extends React.Component {
                                   title={screenConfig.infoDrawerTitle}
                                   text={screenConfig.infoDrawerText}/>
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                    <RecentPathPanel path={latestPath} pathProgress={pathProgress}
-                                     onBeginPress={this.onRecentPathBeginPress}/>
+                    {this.renderRecentPathPanel()}
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>MY PATHS</Text>
                         <PathScrollView paths={paths.allIds.map(id => paths.byId[id])}

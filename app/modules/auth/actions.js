@@ -62,19 +62,10 @@ export function checkLoginStatus() {
                 let isLoggedIn = (user !== null);
 
                 if (isLoggedIn) {
-                    //get the user object from the Async storage
-                    AsyncStorage.getItem('user', (err, user) => {
-                        if (user === null) {
-                            isLoggedIn = false;
-                        } else {
-                            dispatch({type: t.LOGGED_IN, data: JSON.parse(user)})
-                        }
-
-                        resolve(isLoggedIn);
-                    });
+                    dispatch(getUser(user)).then(resolve).catch(reject);
                 } else {
                     dispatch({type: t.LOGGED_OUT});
-                    resolve(isLoggedIn);
+                    resolve(null);
                 }
             });
         });
