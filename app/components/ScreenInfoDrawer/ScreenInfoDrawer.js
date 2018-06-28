@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Modal} from 'react-native';
+import {View, Text, TouchableWithoutFeedback, Modal} from 'react-native';
 import PropTypes from 'prop-types';
 import styles from "./styles";
 import {connect} from "react-redux";
@@ -40,20 +40,16 @@ class ScreenInfoDrawer extends React.Component {
 
     render() {
         return (
-            <Modal
-                visible={this.state.isOpen}
-                transparent={true}
-                animationType={"none"}
-                >
+            <Modal visible={this.state.isOpen} transparent={true} animationType={"none"}>
                 <View style={styles.container}>
-                    <View style={styles.content}>
-                        <Text style={styles.title}>{this.props.title}</Text>
-                        <Text style={styles.text}>{this.props.text}</Text>
-                        <View style={styles.divider}/>
-                        <TouchableOpacity onPress={this.close}>
+                    <TouchableWithoutFeedback onPress={this.close}>
+                        <View style={styles.content}>
+                            <Text style={styles.title}>{this.props.title}</Text>
+                            <Text style={styles.text}>{this.props.text}</Text>
+                            <View style={styles.divider}/>
                             <Text style={styles.done}>GOT IT</Text>
-                        </TouchableOpacity>
-                    </View>
+                        </View>
+                    </TouchableWithoutFeedback>
                 </View>
             </Modal>
         )
