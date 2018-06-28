@@ -20,6 +20,7 @@ import RewardList from "../../../../components/RewardList/RewardList";
 import {updateCharacter} from "../../../characters/actions";
 import moment from 'moment';
 import {WORKOUT_GRADES} from "../../../workouts/constants";
+import {REWARD_TYPES} from "../../constants";
 
 class PathStepWorkoutRewardScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -180,9 +181,13 @@ class PathStepWorkoutRewardScreen extends React.Component {
     };
 
     renderMiddleContainer = () => {
-        const {path, step} = this.props.navigation.state.params;
+        const {path, step, workout} = this.props.navigation.state.params;
         const stepRewards = getRewardsForStep(step);
         const text = this.state.showCongratulations ? 'You finished' : 'Take some time to rest and heal your muscles. Try again later to earn all five stars and complete this level.';
+
+        if (workout.xpEarned < stepRewards[REWARD_TYPES.XP]) {
+            stepRewards[REWARD_TYPES.XP] = `${workout.xpEarned} / ${stepRewards[REWARD_TYPES.XP]}`;
+        }
 
         return (
             <View style={styles.middleContainer}>

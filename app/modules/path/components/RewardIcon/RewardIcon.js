@@ -9,7 +9,7 @@ import {normalize} from "../../../../styles/theme";
 export default class RewardIcon extends Component {
     static propTypes = {
         type: PropTypes.string.isRequired,
-        value: PropTypes.number.isRequired,
+        value: PropTypes.any.isRequired, // support 36 or '32 / 36'
         size: PropTypes.number,
         hasEarned: PropTypes.bool.isRequired,
         containerStyles: PropTypes.object
