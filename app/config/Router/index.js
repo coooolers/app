@@ -8,6 +8,8 @@ import {fetchExercises} from "../../modules/exercises/actions";
 import SplashScreen from '../../components/Splash';
 import UnauthenticatedRouter from './UnauthenticatedRouter';
 import MainRouter from './MainRouter';
+import Notifications from "../../modules/notifications";
+import {updateUser} from "../../modules/profile/actions";
 
 class Router extends React.Component {
     state = {
@@ -22,6 +24,23 @@ class Router extends React.Component {
             store.dispatch(fetchLevelConfig()),
             store.dispatch(fetchExercises())
         ]).then(() => {
+            const {user} = this.props;
+
+            Notifications.hasPermission().then((isEnabled) => {
+                if (isEnabled) {
+                    Notifications.send();
+                    Notifications.getToken().then((token) => {
+                        user.pushToken = token;
+                        console.log(token);
+                        store.dispatch(updateUser(user));
+                    });
+                } else {
+                    Notifications.requestPermission().then(() => {
+                        console.log('Success!!!');
+                    });
+                }
+            });
+
             this.setState({isReady: true});
         });
     }
