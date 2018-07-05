@@ -1,6 +1,5 @@
 import React from 'react';
-import {ScrollView, Alert, View, Button as RNButton} from 'react-native';
-import {Button} from 'react-native-elements';
+import {ScrollView, Alert, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import styles from "./styles";
@@ -15,10 +14,10 @@ const error = {
     phone: ""
 };
 
-class Profile extends React.Component {
+class Account extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            title: "Profile"
+            title: "Account"
         }
     };
     state = {
@@ -87,7 +86,7 @@ class Profile extends React.Component {
 
         this.props.dispatch(updateUser(user)).then(() => {
             this.setState({isFetching: false});
-            this.dropdown.alertWithType('success', 'Profile saved!', "");
+            this.dropdown.alertWithType('success', 'Account saved!', "");
         }, this.onProfileError);
     };
 
@@ -140,4 +139,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(Account);

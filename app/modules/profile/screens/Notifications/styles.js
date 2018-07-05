@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {color, contentPadding, fontFamily, fontSize, normalize} from "../../../../styles/theme";
+import {color, normalize, contentPadding, fontFamily, fontSize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
@@ -39,16 +39,28 @@ const styles = StyleSheet.create({
     },
 
     bottom: {
-        alignItems: 'center',
-        paddingBottom: 20
+        width: '100%',
+        padding: contentPadding,
+        paddingBottom: 20,
     },
 
-    notNowLabel: {
-        color: color.brandDark,
-        fontSize: fontSize.regular,
+    bottomContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+
+    remindMeLabel: {
+        fontSize: fontSize.large - 2,
+        fontFamily: fontFamily.regular,
+        color: color.brandDark
+    },
+
+    disabledText: {
+        color: color.brandDanger,
+        fontSize: fontSize.small,
         fontFamily: fontFamily.regular
     }
 });
-
 
 export default styles;

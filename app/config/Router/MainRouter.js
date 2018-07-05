@@ -14,8 +14,10 @@ import PathRouter from "./PathsRouter";
 import HomeScreen from '../../modules/home/screens/Home';
 import CharacterEditScreen from "../../modules/characters/screens/CharacterEdit";
 
-// Profile
-import ProfileScreen from "../../modules/profile/screens/Profile";
+// Profile Screens
+import ProfileNavigationScreen from "../../modules/profile/screens/ProfileNavigation";
+import ProfileAccountScreen from "../../modules/profile/screens/Account";
+import ProfileNotificationsScreen from "../../modules/profile/screens/Notifications";
 
 import {fetchUserPathProgress} from "../../modules/userPathProgress/actions";
 import OnboardingRouter from "../../modules/onboarding/router";
@@ -57,8 +59,11 @@ const MainRouterStack = StackNavigator({
             })
         }),
         Profile: StackNavigator({
-            Profile: {screen: ProfileScreen}
+            ProfileNavigation: {screen: ProfileNavigationScreen},
+            ProfileAccount: {screen: ProfileAccountScreen},
+            ProfileNotifications: {screen: ProfileNotificationsScreen}
         }, {
+            initialRouteName: 'ProfileNavigation',
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({tintColor}) => <FontAwesome
                     style={getTabIconStyle(tintColor)}>{Icons.userCircleO}</FontAwesome>

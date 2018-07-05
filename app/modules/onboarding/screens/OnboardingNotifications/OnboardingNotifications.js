@@ -1,32 +1,32 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, TouchableOpacity, DatePickerIOS, Modal} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import {updateUser} from "../../actions";
 import Notifications from "../../../../modules/notifications";
 import moment from 'moment';
 import Button from "../../../../components/Button/Button";
-import {color} from "../../../../styles/theme";
 import Reporting from "../../../reporting";
+import NotificationTimePicker from "../../../../components/NotificationTimePicker";
 
 class OnboardingNotifications extends React.Component {
-    defaultDate = moment().hour(18).minutes(0).seconds(0).toDate(); // 6:00 PM
-
-    state = {
-        notificationDate: this.defaultDate,
-        datePickerIsOpen: false,
-        minuteInterval: null,
-        notificationsEnabled: false
-    };
-
     static navigationOptions = ({navigation}) => {
         return {
             header: null,
         }
     };
 
-    onNotificationDateChange = (notificationDate) => {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            notificationDate: moment().hour(18).minutes(0).seconds(0).toDate(), // 6:00 PM,
+            notificationsEnabled: false
+        };
+    }
+
+    onNotificationDateSelect = (notificationDate) => {
         this.setState({notificationDate});
     };
 
@@ -44,14 +44,14 @@ class OnboardingNotifications extends React.Component {
     };
 
     onEnableNotificationsPress = async () => {
-        this.setState({notificationsEnabled: true});
-
         try {
             await Notifications.requestPermission();
+            this.setState({notificationsEnabled: true});
             Reporting.track("onboarding_notification_accepted");
             Notifications.scheduleDailyReminder(this.state.notificationDate);
             await this.finishOnboarding();
         } catch (error) {
+            this.setState({notificationsEnabled: false});
             Reporting.track("onboarding_notification_cancelled", {message: error.message});
             await this.finishOnboarding();
         }
@@ -62,19 +62,8 @@ class OnboardingNotifications extends React.Component {
         await this.finishOnboarding();
     };
 
-    onDateInputPress = () => {
-        this.setState({datePickerIsOpen: true});
-    };
-
     render() {
-        const {notificationDate, datePickerIsOpen} = this.state;
         const {screenConfig} = this.props;
-        const datePicker = datePickerIsOpen ? <DatePickerIOS
-            mode={"time"}
-            minuteInterval={this.state.minuteInterval}
-            date={this.state.notificationDate}
-            onDateChange={this.onNotificationDateChange}
-        /> : null;
 
         return (
             <View style={styles.container}>
@@ -83,12 +72,7 @@ class OnboardingNotifications extends React.Component {
                     <Text style={styles.title}>{screenConfig.title}</Text>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                         <Text style={styles.dailyAtLabel}>Remind me daily at </Text>
-                        <TouchableOpacity onPress={this.onDateInputPress}>
-                            <View style={styles.timeContainer}>
-                                <Text style={styles.timeLabel}>{moment(notificationDate).format('h:mm A')}</Text>
-                                <FontAwesome style={styles.timeLabelIcon}>{Icons.chevronDown}</FontAwesome>
-                            </View>
-                        </TouchableOpacity>
+                        <NotificationTimePicker onSelect={this.onNotificationDateSelect}/>
                     </View>
                     <Button title={screenConfig.buttonText}
                             onPress={this.onEnableNotificationsPress}
@@ -103,38 +87,6 @@ class OnboardingNotifications extends React.Component {
                         <Text style={styles.notNowLabel}>{screenConfig.setupLaterText}</Text>
                     </TouchableOpacity>
                 </View>
-                <Modal
-                    animationType={"none"}
-                    transparent={true}
-                    visible={datePickerIsOpen}
-                    onShow={() => this.setState({minuteInterval: 15})} // update interval after date picker has mounted
-                >
-                    <View style={{
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                        zIndex: 10,
-                        backgroundColor: 'rgba(0,0,0,0.4)'
-                    }}>
-                        <View style={{
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            backgroundColor: color.brandLight
-                        }}>
-                            <Button title={"CONFIRM"}
-                                    raised={false}
-                                    onPress={() => this.setState({datePickerIsOpen: false})}
-                                    containerViewStyle={{padding: 0, margin: 0, borderRadius: 0, width: '100%'}}
-                                    buttonStyle={{width: '100%', margin: 0, borderRadius: 0}}
-                            />
-                            {datePicker}
-                        </View>
-                    </View>
-                </Modal>
             </View>
         );
     }
