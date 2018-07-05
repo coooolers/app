@@ -1,9 +1,8 @@
 import React from 'react';
 import {ScrollView, Image, TouchableOpacity} from 'react-native';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-import firebase from 'firebase';
+import {database} from "../../../../config/firebase";
 import PropTypes from 'prop-types';
-
 import styles from "./styles";
 
 export default class CharacterImageScrollView extends React.Component {
@@ -19,7 +18,7 @@ export default class CharacterImageScrollView extends React.Component {
 
     componentWillMount() {
         return Promise.all([
-            firebase.database().ref('characterImages').once('value')
+            database.ref('characterImages').once('value')
         ]).then((response) => {
             this.setState({
                 isReady: true,
