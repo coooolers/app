@@ -1323,7 +1323,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pursoo.pursoo-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pursoo.pursoo;
 				PRODUCT_NAME = Pursoo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1359,7 +1359,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pursoo.pursoo-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pursoo.pursoo;
 				PRODUCT_NAME = Pursoo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
