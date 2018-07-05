@@ -20,7 +20,8 @@ class NotificationsScreen extends React.Component {
 
         this.state = {
             notificationDate: props.user.notificationDate || moment().hour(18).minutes(0).seconds(0).toDate(),
-            notificationsEnabled: props.user.notificationsEnabled
+            notificationsEnabled: props.user.notificationsEnabled,
+            displayAppSettingsError: false
         }
     }
 
@@ -40,38 +41,57 @@ class NotificationsScreen extends React.Component {
 
         this.setState({
             hasPermission,
-            notificationsEnabled: hasPermission && user.notificationsEnabled
+            notificationsEnabled: hasPermission && user.notificationsEnabled,
+            displayAppSettingsError: !hasPermission && user.notificationsEnabled
         });
     };
 
     onNotificationDateSelect = async (notificationDate) => {
         const {user} = this.props;
-        const {notificationsEnabled} = this.state;
         const hasPermission = await Notifications.hasPermission();
 
         if (hasPermission) {
-            user.notificationsEnabled = notificationsEnabled;
+            user.notificationDate = notificationDate;
         } else {
             try {
-                user.notificationsEnabled = await Notifications.requestPermission();
-                this.setState({notificationsEnabled: true});
+                await Notifications.requestPermission();
+                user.notificationsEnabled = true;
+                user.notificationDate = notificationDate;
             } catch (error) {
                 user.notificationsEnabled = false;
             }
         }
 
-        this.setState({notificationDate: notificationDate});
+        this.setState({
+            notificationsEnabled: hasPermission && user.notificationsEnabled,
+            notificationDate: user.notificationDate
+        });
+
         this.props.dispatch(updateUser(user));
     };
 
     onSwitchValueChange = async (value) => {
         const {user} = this.props;
         const hasPermission = await Notifications.hasPermission();
+        let displayAppSettingsError = false;
 
-        user.notificationsEnabled = value && hasPermission;
-
-        console.log(value, hasPermission, this.state.notificationDate);
-        user.notificationDate = user.notificationsEnabled ? this.state.notificationDate : null;
+        if (value === true && hasPermission) {
+            user.notificationsEnabled = true;
+            user.notificationDate = this.state.notificationDate;
+            user.pushToken = await Notifications.getToken();
+        } else if (value === true && !hasPermission) {
+            try {
+                await Notifications.requestPermission();
+                user.notificationsEnabled = true;
+                user.notificationDate = this.state.notificationDate;
+                user.pushToken = await Notifications.getToken();
+            } catch (error) {
+                user.notificationsEnabled = false;
+                displayAppSettingsError = true;
+            }
+        } else if (value === false) {
+            user.notificationsEnabled = false;
+        }
 
         if (user.notificationsEnabled) {
             Notifications.scheduleDailyReminder(user.notificationDate);
@@ -79,14 +99,17 @@ class NotificationsScreen extends React.Component {
             Notifications.cancelDailyReminder();
         }
 
-        this.setState({notificationsEnabled: user.notificationsEnabled});
+        this.setState({
+            notificationsEnabled: user.notificationsEnabled,
+            displayAppSettingsError
+        });
 
         this.props.dispatch(updateUser(user));
     };
 
     render() {
-        const disabledText = this.state.hasPermission ? null :
-            <Text style={styles.disabledText}>Enable notifications in your app settings</Text>;
+        const disabledText = this.state.displayAppSettingsError ?
+            <Text style={styles.disabledText}>Enable notifications in your app settings</Text> : null;
 
         return (
             <View style={styles.container}>
@@ -106,8 +129,7 @@ class NotificationsScreen extends React.Component {
                         <Text style={styles.remindMeLabel}>Remind me</Text>
                         <View>
                             <Switch value={this.state.notificationsEnabled}
-                                    onValueChange={this.onSwitchValueChange}
-                                    disabled={!this.state.hasPermission}/>
+                                    onValueChange={this.onSwitchValueChange}/>
                         </View>
                     </View>
                     {disabledText}
