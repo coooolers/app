@@ -4,36 +4,33 @@ import {View, Text, Image, Button as RNButton} from 'react-native';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import {fetchMyCharacter} from "../../../characters/actions";
-import {updateUser} from "../../actions";
-import {goToMainTabRoute} from "../../../../components/Util";
 import Swiper from 'react-native-swiper';
 import XpBar from "../../../../components/XpBar/XpBar";
 import {Character} from "../../../characters/models";
 import {color} from "../../../../styles/theme";
 
-const createCharacterPlaceholder = () => {
-    return new Character("1234", {}, "Vikeen", "https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Fcharacters%2Fcharacter-elf-male-fighter.png?alt=media&token=4d0b605d-e314-4c52-a152-beb79dc922e8");
+const createCharacterPlaceholder = (user, character) => {
+    return new Character(character.uid, user, character.nane, character.imageUrl);
 };
 
 class OnboardingHowItWorks extends React.Component {
+    state = {
+        character: null,
+        isReady: false
+    };
+
     static navigationOptions = ({navigation}) => {
         return {
             header: null,
         }
     };
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            character: createCharacterPlaceholder(),
-            isReady: false
-        }
-    }
-
     componentWillMount() {
         this.props.dispatch(fetchMyCharacter(this.props.user)).then(() => {
-            this.setState({isReady: true});
+            this.setState({
+                character: createCharacterPlaceholder(this.props.user, this.props.character),
+                isReady: true
+            })
         })
     }
 
@@ -48,7 +45,7 @@ class OnboardingHowItWorks extends React.Component {
     onSlideChange = (index) => {
         if (index === 2) { // character slide
             this.setState({
-                character: createCharacterPlaceholder()
+                character: createCharacterPlaceholder(this.props.user, this.props.character)
             });
 
             setTimeout(() => {
@@ -74,9 +71,10 @@ class OnboardingHowItWorks extends React.Component {
     };
 
     render() {
+        if (!this.state.isReady) return null;
+
         const {character} = this.state;
         const {screenConfig} = this.props;
-        if (!this.state.isReady) return null;
 
         return (
             <Swiper style={styles.container}
