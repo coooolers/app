@@ -8,6 +8,9 @@ target 'Pursoo' do
   # Pods for Pursoo
   pod 'Firebase'
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Database'
   pod 'Fabric', '~> 1.7.6'
   pod 'Crashlytics', '~> 3.10.1'
   pod 'GoogleSignIn'
