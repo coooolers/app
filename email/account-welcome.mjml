@@ -20,11 +20,9 @@
         </mj-text>
         <mj-text>If you have a question about safely performing an exercise, what types of foods to eat, or need a little inspiration boost <b><u>I’m here to help</u></b>.
         </mj-text>
-        <mj-spacer height="15" />
-        <mj-text font-family="Mr Dafoe" font-size="30px">John Rake</mj-text>
+        <mj-text font-family="Mr Dafoe" font-size="30px" padding-top="25px">John Rake</mj-text>
         <mj-text padding-top="0" padding-bottom="0">CEO | Founder</mj-text>
-        <mj-text padding-top="0" padding-bottom="0"><a href="mailto:john@pursoo.co">john@pursoo.co</a></mj-text>
-        <mj-spacer height="40" />
+        <mj-text padding-top="0" padding-bottom="40px"><a href="mailto:john@pursoo.co">john@pursoo.co</a></mj-text>
         <mj-text><b><u>P.S.</u></b> - I’d love to hear why you joined Pursoo and what you think of it so far. Respond to this email to get a conversation started.
         </mj-text>
       </mj-column>
