@@ -1,0 +1,24 @@
+<mj-section full-width="true">
+  <mj-column>
+    <mj-text align="center" font-size="14px" padding-bottom="0">
+      Follow us for the inspiration, advice, and motivation you need.
+    </mj-text>
+    <mj-social icon-size="40px">
+      <mj-social-element padding="20px"
+        href="https://www.instagram.com/PursooHealth"
+        src="https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Finstagram-icon.png?alt=media&token=e38e3417-1507-48fb-b367-f25c8d22382e"
+      />
+      <mj-social-element padding="20px"
+        href="https://www.facebook.com/Pursoo-240666436669434"
+        src="https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2Ffacebook-icon.png?alt=media&token=d6a6541c-0023-4b30-b565-abfa1b8ff99c"
+      />
+    </mj-social>
+  </mj-column>
+</mj-section>
+<mj-section full-width="true">
+  <mj-column>
+    <mj-text align="center">
+      <a href='[unsubscribe]'>Click Here to Unsubscribe</a>
+    </mj-text>
+  </mj-column>
+</mj-section>

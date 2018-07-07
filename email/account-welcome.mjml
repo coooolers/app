@@ -1,0 +1,34 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <mj-font name="Mr Dafoe" href="https://fonts.googleapis.com/css?family=Mr Dafoe" />
+    <mj-title>Welcome to Pursoo! How can we help you reach your goals?</mj-title>
+    <mj-attributes>
+      <mj-class name="title" font-size="34px" font-weight="bold" color="#364652" padding-bottom="30px" align="center" line-height="34px"/>
+      <mj-text color="#414141" font-size="14px" line-height="18px"></mj-text>
+      <mj-all font-family="Roboto, Arial" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#eaeaea">
+    <mj-include path="./header.mjml" />
+    <mj-section background-color="#fcfcfc" border="1px solid #ccc">
+      <mj-column>
+        <mj-text mj-class="title">Welcome to Pursoo!</mj-text>
+        <mj-text>It looks like you recently created an account with Pursoo - Awesome! My name is John. I’m the developer of Pursoo and a fitness enthusiast.
+        </mj-text>
+        <mj-text>I’m reaching out today to introduce myself personally. Sticking to a new goal is hard, but it’s easier with help from a new friend.
+        </mj-text>
+        <mj-text>If you have a question about safely performing an exercise, what types of foods to eat, or need a little inspiration boost <b><u>I’m here to help</u></b>.
+        </mj-text>
+        <mj-spacer height="15" />
+        <mj-text font-family="Mr Dafoe" font-size="30px">John Rake</mj-text>
+        <mj-text padding-top="0" padding-bottom="0">CEO | Founder</mj-text>
+        <mj-text padding-top="0" padding-bottom="0"><a href="mailto:john@pursoo.co">john@pursoo.co</a></mj-text>
+        <mj-spacer height="40" />
+        <mj-text><b><u>P.S.</u></b> - I’d love to hear why you joined Pursoo and what you think of it so far. Respond to this email to get a conversation started.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-include path="./footer.mjml" />
+  </mj-body>
+</mjml>
