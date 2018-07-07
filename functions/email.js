@@ -10,7 +10,7 @@ const TRANSACTIONAL_EMAIL_CONFIG = {
     }
 };
 
-function sendTransactionalEmail(to, from = "", subject, templateId, unsubscribeGroupId) {
+function sendTransactionalEmail(to, from, subject, templateId, unsubscribeGroupId) {
     const msg = {
         to,
         from,

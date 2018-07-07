@@ -19,7 +19,6 @@
   <mj-column>
     <mj-divider border-width="1px" border-color="#999"></mj-divider>
     <mj-text align="center">
-      <!-- always use single ticks ' for unsubscribe link. Sendgrid will mess up the formatting with double " -->
       These emails teach you how to use Pursoo, but you are free to <a href='<%asm_group_unsubscribe_url%>'>unsubscribe from this list.</a>
     </mj-text>
   </mj-column>
