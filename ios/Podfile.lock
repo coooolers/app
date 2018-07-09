@@ -15,6 +15,9 @@ PODS:
   - Firebase/Database (5.4.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (= 5.0.2)
+  - Firebase/DynamicLinks (5.4.0):
+    - Firebase/Core
+    - FirebaseDynamicLinks (= 3.0.1)
   - Firebase/Messaging (5.4.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (= 3.0.3)
@@ -31,6 +34,8 @@ PODS:
   - FirebaseDatabase (5.0.2):
     - FirebaseCore (~> 5.0)
     - leveldb-library (~> 1.18)
+  - FirebaseDynamicLinks (3.0.1):
+    - FirebaseAnalytics (~> 5.0)
   - FirebaseInstanceID (3.1.1):
     - FirebaseCore (~> 5.0)
   - FirebaseMessaging (3.0.3):
@@ -89,6 +94,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/DynamicLinks
   - Firebase/Messaging
   - GoogleSignIn
   - React (from `../node_modules/react-native`)
@@ -105,6 +111,7 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseCore
     - FirebaseDatabase
+    - FirebaseDynamicLinks
     - FirebaseInstanceID
     - FirebaseMessaging
     - GoogleSignIn
@@ -133,6 +140,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: 096e457cdd4274412a66c4a35874787e411f5a03
   FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
   FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
+  FirebaseDynamicLinks: d624a7adc81a8fd70d52be5a6a47a2bc0644b923
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FirebaseMessaging: f43eb0c0e1da096e659de6f713038e74862a62cd
   GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
@@ -147,6 +155,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: c5a2a53e8bcb0d8cd95944d1320c279955ce9d25
+PODFILE CHECKSUM: 6a929e06aecd4438104545280a6d94aa0af81355
 
 COCOAPODS: 1.5.3

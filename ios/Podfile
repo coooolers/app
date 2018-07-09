@@ -11,6 +11,7 @@ target 'Pursoo' do
   pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
   pod 'Firebase/Database'
+  pod 'Firebase/DynamicLinks'
   pod 'Fabric', '~> 1.7.6'
   pod 'Crashlytics', '~> 3.10.1'
   pod 'GoogleSignIn'

@@ -29,6 +29,8 @@ class Account extends React.Component {
     constructor(props) {
         super(props);
 
+        console.log(props);
+
         this.fields = [
             {
                 key: 'name',

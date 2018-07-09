@@ -15,6 +15,7 @@
 #import <Firebase.h>
 #import "RNFirebaseNotifications.h"
 #import "RNFirebaseMessaging.h"
+#import "RNFirebaseLinks.h"
 
 @implementation AppDelegate
   
@@ -27,6 +28,7 @@
                            didFinishLaunchingWithOptions:launchOptions];
   
   // setup firebase
+  [FIROptions defaultOptions].deepLinkURLScheme = @"com.pursoo.pursoo";
   [FIRApp configure];
   [RNFirebaseNotifications configure];
 
@@ -61,10 +63,17 @@
                  || [RNGoogleSignin application:application
                                         openURL:url
                               sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                     annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+                                     annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]
+                 || [[RNFirebaseLinks instance] application:application openURL:url options:options];
   
   
   return handled;
+}
+
+- (BOOL) application:(UIApplication *)application
+continueUserActivity:(NSUserActivity *)userActivity
+  restorationHandler:(void (^)(NSArray *))restorationHandler {
+  return [[RNFirebaseLinks instance] application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
 }
 
 // iOS < 10

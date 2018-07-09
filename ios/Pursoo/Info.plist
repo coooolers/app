@@ -23,6 +23,12 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string></string>
+			<key>CFBundleURLName</key>
+			<string>Facebook SDK</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb184641669032000</string>
@@ -45,6 +51,16 @@
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>com.pursoo.pursoo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.pursoo.pursoo</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Dynamic Links</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.pursoo.pursoo</string>

@@ -43,6 +43,7 @@ export const goToMainTabRoute = (navigation, key) => {
             NavigationActions.navigate({routeName: 'Main'})
         ],
     }));
+
     navigation.navigate(key);
 };
 
@@ -124,9 +125,9 @@ export const isPathStepComplete = (path, step, pathProgress) => {
 };
 
 export const getPathStepCompletedDate = (path, step, pathProgress) => {
-  if (isPathStepComplete(path, step, pathProgress)) {
-      return pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid].completed;
-  }
+    if (isPathStepComplete(path, step, pathProgress)) {
+        return pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid].completed;
+    }
 };
 
 export const getPathInProgress = (paths, pathProgress) => {
