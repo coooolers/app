@@ -1,0 +1,36 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+    <mj-title>4 tips that create lasting habits</mj-title>
+    <mj-attributes>
+      <mj-class name="title" font-size="34px" color="#364652" padding-bottom="30px" align="center" line-height="34px" />
+      <mj-class name="subtitle" font-size="26px" font-weight="bold" padding-bottom="10px" color="#364652" line-height="26px" />
+      <mj-class name="quote" font-size="20px" line-height="25px" align="center" font-style="italic" padding="20px" font-family="Helvetica, sans-serif" color="#666666"/>
+      <mj-text color="#414141" font-size="14px" line-height="18px"></mj-text>
+      <mj-all font-family="Roboto, Arial" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#eaeaea">
+    <mj-include path="./header.mjml" />
+    <mj-section background-color="#fcfcfc" border="1px solid #ccc">
+      <mj-column>
+        <mj-text mj-class="title">4 Great Habit Creating Tips</mj-text>
+        <mj-text><b>1. Be consistent.</b> Consistency is key to any habit or lifestyle change. Make the habit every day and as close to the same time as possible.</mj-text>
+        <mj-text><b>2. Stick to it for 30 days.</b> Habits are harder to build in the beginning because we’re fighting against existing habits. Sticking strong for the first 30 days will be the hardest, but </mj-text>
+        <mj-text><b>3. Hook into a current habit.</b> Use an existing habit as an anchor for a new habit your trying to create. The formula goes something like this, “When I ___, then I will ____.”</mj-text>
+        <mj-text padding-bottom="0px" padding-left="40px">“When I <u>get home from work</u>, then I will <u>go to the gym for a workout.</u>”</mj-text>
+        <mj-text padding-bottom="0px" padding-left="40px">“When I <u>get ready for bed</u>, then I will <u>listen to an episode of Pursoo.</u>”</mj-text>
+        <mj-text padding-left="40px">“When I <u>get a break at work</u>, then I will <u>walk with my coworkers.</u>”</mj-text>
+        
+        <mj-text><b>4. Create a daily reminder.</b>
+          You’re going to get busy some days. Luckily technology makes it easier than ever to keep focused when life throws everything it can at you. Create a reminder for yourself,
+          any reminder!</mj-text>
+        <!--<mj-divider border-width="1px" border-color="#eaeaea" padding-bottom="20px" />
+        <mj-text mj-class="subtitle">Set Your Daily Reminder With Pursoo</mj-text>
+        <mj-text>We have a daily notification feature that will help you stay on top of your new habit. If you haven’t already, you can enable it under your profile <i>(Profile > Notifications)</i>.</mj-text>
+        <mj-button href="https://pursoo.page.link/V9Hh" font-size="20px" background-color="#da375c">Create Daily Reminder</mj-button>-->
+      </mj-column>
+    </mj-section>
+    <mj-include path="./footer.mjml" />
+  </mj-body>
+</mjml>
