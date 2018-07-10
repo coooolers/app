@@ -29,7 +29,7 @@ class Router extends React.Component {
     render() {
         if (this.state.isReady) {
             if (this.props.isLoggedIn) {
-                return <MainRouter/>;
+                return <MainRouter user={this.props.user}/>;
             } else {
                 return <UnauthenticatedRouter/>;
             }

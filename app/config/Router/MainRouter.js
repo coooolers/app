@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import {StackNavigator, TabNavigator} from 'react-navigation';
 import {color, tabIconStyle} from "../../styles/theme";
@@ -53,7 +53,7 @@ const onTabBarPress = (navigation) => {
     }
 };
 
-class MainRouter extends React.Component {
+class MainRouter extends Component {
     state = {
         deepLinkUrl: null,
         isReady: false
@@ -112,7 +112,6 @@ class MainRouter extends React.Component {
                     PathStepAudioReward: {screen: PathStepAudioRewardScreen},
                     PathStepWorkoutReward: {screen: PathStepWorkoutRewardScreen},
                     ExerciseInfo: {screen: ExerciseInfo},
-
                     Path: {screen: PathScreen},
                 }, {
                     initialRouteName: 'Paths',
