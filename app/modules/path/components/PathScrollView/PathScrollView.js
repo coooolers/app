@@ -23,8 +23,10 @@ export default class PathScrollView extends React.Component {
     getFilteredPaths = () => {
         const {paths, pathProgress} = this.props;
 
-        const inCompletePaths = paths.filter(p => (isPathIncomplete(p, pathProgress)));
-        return inCompletePaths.filter(path => pathProgress[path.uid]);
+        const inCompletePaths = paths.filter(p => isPathIncomplete(p, pathProgress));
+        return inCompletePaths.filter(path => {
+            return path.uid === "welcome" || pathProgress[path.uid];
+        });
     };
 
     onPathPress = (path, step) => {
@@ -48,7 +50,7 @@ export default class PathScrollView extends React.Component {
                     </View>
                     <Text style={styles.pathBoxStatus}>
                         {pathStepProgress.current - 1} of {pathStepProgress.total}
-                        </Text>
+                    </Text>
                     <Progress.Bar
                         progress={pathStepProgress.progress}
                         width={null}
