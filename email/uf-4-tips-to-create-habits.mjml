@@ -29,6 +29,9 @@
         <mj-text mj-class="subtitle">Set Your Daily Reminder With Pursoo</mj-text>
         <mj-text>We have a daily notification feature that will help you stay on top of your new habit. If you haven’t already, you can enable it under your profile <i>(Profile > Notifications)</i>.</mj-text>
         <mj-button href="https://pursoo.page.link/V9Hh" font-size="20px" background-color="#da375c">Create Daily Reminder</mj-button>-->
+        <mj-divider border-width="1px" border-color="#eaeaea" padding-bottom="20px" />
+        <mj-text>And there you have them. Four powerful tips to help you create healthy habits on demand.</mj-text>
+          <mj-text>Stay tuned tomorrow for a dive into motivation and how you can find your inspiration!</mj-text>
       </mj-column>
     </mj-section>
     <mj-include path="./footer.mjml" />
