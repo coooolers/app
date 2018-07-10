@@ -25,8 +25,7 @@ import {REWARD_TYPES} from "../../constants";
 class PathStepWorkoutRewardScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            headerLeft: <RNButton title={"Home"} onPress={() => goToMainTabRoute(navigation, "Home")}/>,
-            headerRight: null
+            header: null
         }
     };
 

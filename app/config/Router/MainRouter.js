@@ -93,11 +93,6 @@ class MainRouter extends React.Component {
                 initialRouteName: 'CharacterEdit'
             }),
 
-            PathStepWorkoutRoutine: {screen: PathStepWorkoutRoutineScreen},
-            PathStepAudioReward: {screen: PathStepAudioRewardScreen},
-            PathStepWorkoutReward: {screen: PathStepWorkoutRewardScreen},
-            ExerciseInfo: {screen: ExerciseInfo},
-
             Main: TabNavigator({
                 Home: StackNavigator({
                     Home: {screen: HomeScreen}
@@ -113,6 +108,11 @@ class MainRouter extends React.Component {
                     Paths: {screen: PathsScreen},
                     PathStepAudio: {screen: PathStepAudioScreen},
                     PathStepWorkout: {screen: PathStepWorkoutScreen},
+                    PathStepWorkoutRoutine: {screen: PathStepWorkoutRoutineScreen},
+                    PathStepAudioReward: {screen: PathStepAudioRewardScreen},
+                    PathStepWorkoutReward: {screen: PathStepWorkoutRewardScreen},
+                    ExerciseInfo: {screen: ExerciseInfo},
+
                     Path: {screen: PathScreen},
                 }, {
                     initialRouteName: 'Paths',

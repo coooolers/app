@@ -24,8 +24,7 @@ import moment from 'moment';
 class PathStepAudioRewardScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-            headerLeft: <RNButton title={"Home"} onPress={() => goToMainTabRoute(navigation, "Home")}/>,
-            headerRight: null
+            header: null
         }
     };
 
