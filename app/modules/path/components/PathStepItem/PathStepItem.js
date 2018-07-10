@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableWithoutFeedback} from 'react-native';
 import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
@@ -93,20 +93,21 @@ export default class PathStepItem extends React.Component {
         return (
             <View key={step.uid} style={styles.container}>
                 {this.renderStatus()}
-                <TouchableOpacity style={contentWrapperStyles}
-                                  onPress={() => this.props.onSelect(step)}>
-                    {this.renderContentLockOverlay()}
-                    <View style={styles.contentHeader}>
-                        {this.renderStepTypeIcon(step)}
-                        <Text style={styles.name}>{step.name}</Text>
+                <TouchableWithoutFeedback onPress={() => this.props.onSelect(step)}>
+                    <View style={contentWrapperStyles}>
+                        {this.renderContentLockOverlay()}
+                        <View style={styles.contentHeader}>
+                            {this.renderStepTypeIcon(step)}
+                            <Text style={styles.name}>{step.name}</Text>
+                        </View>
+                        <View style={styles.contentBody}>
+                            <Text style={styles.description}>{step.description}</Text>
+                        </View>
+                        <View style={styles.contentFooter}>
+                            <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={isCompleted} size={16}/>
+                        </View>
                     </View>
-                    <View style={styles.contentBody}>
-                        <Text style={styles.description}>{step.description}</Text>
-                    </View>
-                    <View style={styles.contentFooter}>
-                        <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={isCompleted} size={16}/>
-                    </View>
-                </TouchableOpacity>
+                </TouchableWithoutFeedback>
             </View>
         );
     };

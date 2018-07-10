@@ -5,10 +5,17 @@ import {color, tabIconStyle} from "../../styles/theme";
 import {fetchMyCharacter} from "../../modules/characters/actions";
 import {connect} from "react-redux";
 import firebase from 'react-native-firebase';
+import {NavigationActions} from "react-navigation";
 
 // Paths
 import PathsScreen from "../../modules/path/screens/Paths";
-import PathRouter from "./PathsRouter";
+import PathStepWorkoutRoutineScreen from "../../modules/path/screens/PathStepWorkoutRoutine";
+import PathStepAudioRewardScreen from "../../modules/path/screens/PathStepAudioReward";
+import PathStepWorkoutScreen from "../../modules/path/screens/PathStepWorkout";
+import ExerciseInfo from "../../modules/exercises/screens/ExerciseInfo";
+import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
+import PathScreen from "../../modules/path/screens/Path";
+import PathStepWorkoutRewardScreen from "../../modules/path/screens/PathStepWorkoutReward";
 
 //Character Scenes
 import HomeScreen from '../../modules/home/screens/Home';
@@ -23,8 +30,27 @@ import {fetchUserPathProgress} from "../../modules/userPathProgress/actions";
 import OnboardingRouter from "../../modules/onboarding/router";
 import MainInitScreen from "./MainInitScreen";
 
-const getTabBarIcon = (tintColor, icon) => {
-    return <FontAwesome style={[tabIconStyle, {color: tintColor}]}>{icon}</FontAwesome>;
+const getTabBarIcon = (icon) => {
+    return ({tintColor}) => {
+        return (
+            <FontAwesome style={[tabIconStyle, {color: tintColor}]}>{icon}</FontAwesome>
+        );
+    };
+};
+
+const onTabBarPress = (navigation) => {
+    return ({previousScene, scene, jumpToIndex}) => {
+        if (!scene.focused) {
+            jumpToIndex(scene.index);
+        } else {
+            if (scene.route.routes.length > 1) {
+                for (let i = 0; i < scene.route.routes.length - 1; i += 1) {
+                    const backAction = NavigationActions.back();
+                    navigation.dispatch(backAction)
+                }
+            }
+        }
+    }
 };
 
 class MainRouter extends React.Component {
@@ -58,10 +84,7 @@ class MainRouter extends React.Component {
 
     getMainRouterStack = (deepLinkUrl) => {
         return StackNavigator({
-            Initial: {
-                screen: (props) => <MainInitScreen {...props} deepLinkUrl={deepLinkUrl}/>
-            },
-            Path: PathRouter,
+            Initial: {screen: (props) => <MainInitScreen {...props} deepLinkUrl={deepLinkUrl}/>},
             Onboarding: OnboardingRouter,
 
             CharacterEdit: StackNavigator({
@@ -70,18 +93,34 @@ class MainRouter extends React.Component {
                 initialRouteName: 'CharacterEdit'
             }),
 
+            PathStepWorkoutRoutine: {screen: PathStepWorkoutRoutineScreen},
+            PathStepAudioReward: {screen: PathStepAudioRewardScreen},
+            PathStepWorkoutReward: {screen: PathStepWorkoutRewardScreen},
+            ExerciseInfo: {screen: ExerciseInfo},
+
             Main: TabNavigator({
                 Home: StackNavigator({
                     Home: {screen: HomeScreen}
                 }, {
                     initialRouteName: 'Home',
-                    navigationOptions: ({navigation}) => ({tabBarIcon: ({tintColor}) => getTabBarIcon(tintColor, Icons.home)})
+                    navigationOptions: ({navigation}) => ({
+                        tabBarLabel: 'Home',
+                        tabBarIcon: getTabBarIcon(Icons.home),
+                        tabBarOnPress: onTabBarPress(navigation)
+                    })
                 }),
                 Paths: StackNavigator({
-                    Paths: {screen: PathsScreen}
+                    Paths: {screen: PathsScreen},
+                    PathStepAudio: {screen: PathStepAudioScreen},
+                    PathStepWorkout: {screen: PathStepWorkoutScreen},
+                    Path: {screen: PathScreen},
                 }, {
                     initialRouteName: 'Paths',
-                    navigationOptions: ({navigation}) => ({tabBarIcon: ({tintColor}) => getTabBarIcon(tintColor, Icons.graduationCap)})
+                    navigationOptions: ({navigation}) => ({
+                        tabBarLabel: 'Paths',
+                        tabBarIcon: getTabBarIcon(Icons.graduationCap),
+                        tabBarOnPress: onTabBarPress(navigation)
+                    })
                 }),
                 Profile: StackNavigator({
                     ProfileNavigation: {screen: ProfileNavigationScreen},
@@ -89,7 +128,11 @@ class MainRouter extends React.Component {
                     ProfileNotifications: {screen: ProfileNotificationsScreen}
                 }, {
                     initialRouteName: 'ProfileNavigation',
-                    navigationOptions: ({navigation}) => ({tabBarIcon: ({tintColor}) => getTabBarIcon(tintColor, Icons.userCircleO)})
+                    navigationOptions: ({navigation}) => ({
+                        tabBarLabel: 'Profile',
+                        tabBarIcon: getTabBarIcon(Icons.userCircleO),
+                        tabBarOnPress: onTabBarPress(navigation)
+                    })
                 }),
             }, {
                 tabBarOptions: {
