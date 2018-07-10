@@ -24,6 +24,10 @@ const TRANSACTIONAL_EMAIL_CONFIG = {
     YOUR_BIG_WHY: {
         TEMPLATE_ID: '2fabb70e-3c13-4bab-ba41-925fbac4f0fa',
         UNSUBSCRIBE_GROUP_ID: 6425
+    },
+    SETTING_GOALS: {
+        TEMPLATE_ID: '38b2610b-5f76-45b1-b9f6-abd9316c69e6',
+        UNSUBSCRIBE_GROUP_ID: 6425
     }
 };
 
@@ -105,6 +109,23 @@ exports.yourBigWhy = functions.database.ref('/users/{userId}').onCreate((snapsho
         email.setTemplateId(TRANSACTIONAL_EMAIL_CONFIG.YOUR_BIG_WHY.TEMPLATE_ID);
         email.setUnsubscribeGroupId(TRANSACTIONAL_EMAIL_CONFIG.YOUR_BIG_WHY.UNSUBSCRIBE_GROUP_ID);
         email.setSentAt(moment().hour(18).minute(0).second(0).add(4, 'days').unix());
+        return email.send();
+    } else {
+        console.warn(`${user.uid} has no email. Cannot send email. Terminating...`);
+        return Promise.reject("invalid email");
+    }
+});
+
+exports.settingGoals = functions.database.ref('/users/{userId}').onCreate((snapshot, context) => {
+    const user = snapshot.val();
+
+    if (user.email) {
+        const email = new Email();
+        email.setToEmail(user.email);
+        email.setSubject('When you set a goal, make it SMART');
+        email.setTemplateId(TRANSACTIONAL_EMAIL_CONFIG.SETTING_GOALS.TEMPLATE_ID);
+        email.setUnsubscribeGroupId(TRANSACTIONAL_EMAIL_CONFIG.SETTING_GOALS.UNSUBSCRIBE_GROUP_ID);
+        email.setSentAt(moment().hour(18).minute(0).second(0).add(5, 'days').unix());
         return email.send();
     } else {
         console.warn(`${user.uid} has no email. Cannot send email. Terminating...`);

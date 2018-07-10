@@ -32,6 +32,7 @@
         <mj-image src="https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2F5%20Whys.png?alt=media&token=3df3ef67-0fa4-49b1-9919-057ec33612ad"/>
         <mj-text>Blake wants to lose few extra pounds, but actually discovers his love of swimming and happiness are his true motivators. Indeed, a far more powerful inspiration for him!</mj-text>
         <mj-text>Take a few minutes today and give the five whys process a try. You may be surprised with what you find.</mj-text>
+        <mj-text>Tomorrow we'll take a look at setting goals for your motivations.</mj-text>
       </mj-column>
     </mj-section>
     <mj-include path="./footer.mjml" />
