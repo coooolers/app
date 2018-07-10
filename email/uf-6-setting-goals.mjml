@@ -1,0 +1,48 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+    <mj-title>When you set a goal, make it SMART</mj-title>
+    <mj-attributes>
+      <mj-class name="title" font-size="34px" color="#364652" padding-bottom="30px" align="center" line-height="34px" />
+      <mj-class name="subtitle" font-size="26px" padding-bottom="10px" color="#364652" line-height="26px" />
+      <mj-class name="quote" font-style="italic" font-family="Helvetica, sans-serif" />
+      <mj-text color="#414141" font-size="14px" line-height="18px"></mj-text>
+      <mj-all font-family="Roboto, Arial" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#eaeaea">
+    <mj-include path="./header.mjml" />
+    <mj-section background-color="#fcfcfc" border="1px solid #ccc">
+      <mj-column>
+        <mj-text mj-class="title">Create Goals That Work</mj-text>
+        <mj-text>Making a goal is paramount to being successful with fitness. You can’t be “successful” if you don’t have a goal after all. Setting a goal is similar to picking up a new quest in a game. Here’s a simple example:</mj-text>
+
+        <mj-text mj-class="quote">“I need to find three pieces of a legendary artifact before the villains complete their ritual in two weeks time.”</mj-text>
+        <mj-text>Let's break this quest down into a few key components:</mj-text>
+
+        <mj-text padding-bottom="0"><b>Specific.</b> You need to find pieces of an artifact.</mj-text>
+        <mj-text padding-bottom="0" padding-top="0"><b>Measurable.</b> You need precisely three pieces.</mj-text>
+        <mj-text padding-bottom="0" padding-top="0"><b>Achievable.</b> You just picked up this quest, so odds you can complete it.</mj-text>
+        <mj-text padding-bottom="0" padding-top="0"><b>Relevant.</b> It’s a legendary artifact. Seems relevant to me!</mj-text>
+        <mj-text padding-top="0"><b>Timebound.</b> You’ve got a two-week shot clock to stop the enemy.</mj-text>
+        <mj-text>Take the first letter of each of those categories, and we’ve got ourselves a formula for creating S.M.A.R.T. goals. The same method that game creators often use to engage us on an adventurous quest we will use in our fitness journey.</mj-text>
+        <mj-divider border-width="1px" border-color="#eaeaea" padding-bottom="20px" />
+        <mj-text mj-class="subtitle">Creating A SMART Fitness Goal</mj-text>
+        <mj-text>For the vast majority of people their fitness goal is something like the following:</mj-text>
+        <mj-text>“I want to lose weight” or “I want to be healthier.”</mj-text>
+        <mj-text>First, congratulate these people for taking a brave step forward. A lot of people don’t get that far. After patting your new friend on the back ask them what that means.</mj-text>
+        <mj-text>How much weight do you want to lose? To be healthier does that mean walking more? How about cutting back on soda? etc….</mj-text>
+        <mj-text>You can see how the ambiguity of the original goal is no beginning to show. To remedy haziness, we’ll start walking through our S.M.A.R.T. mythology.</mj-text>
+        <mj-text><b>Specific.</b> How much weight do we want to lose? 5lbs, 10lbs, 20lbs, etc.? When in doubt don't make common goals, such as "I want to lose weight."</mj-text>
+        <mj-text><b>Measurable.</b> Attach numbers to the goal. Now ask yourself, "how will I track this?" If you can't track the target, then it won't be measurable. If a goal isn't measurable then you can't, by definition, be successful.</mj-text>
+        <mj-text><b>Attainable.</b> Do a little research and find out if your goal is realistic. For example, wanting to 50lbs is realistic, but not if you weigh 200lbs. That would be 25% of your body weight and far above the recommended 5-10% weight loss goal
+          amount.</mj-text>
+        <mj-text><b>Relevant.</b> A good goal is one that is impactful to your life right now. Some people can feel pressured to set goals because of influence from their peers. When you're coming up with a goal, it's important to make sure that YOU want it.</mj-text>
+        <mj-text><b>Timebound.</b> Give your goal a deadline. By placing a ceiling, or endpoint, on the goal we now have a definite time when we should measure success. A time-bound goal also doubles as a reliable way to measure progress over that time as well.
+          A goal to lose 30lbs in 3months now has a natural monthly metric to track; 10lbs a month.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-include path="./footer.mjml" />
+  </mj-body>
+</mjml>

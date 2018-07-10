@@ -4,7 +4,7 @@
     <mj-font name="Mr Dafoe" href="https://fonts.googleapis.com/css?family=Mr Dafoe" />
     <mj-title>Welcome to Pursoo! How can we help you reach your goals?</mj-title>
     <mj-attributes>
-      <mj-class name="title" font-size="34px" font-weight="bold" color="#364652" padding-bottom="30px" align="center" line-height="34px"/>
+      <mj-class name="title" font-size="34px" color="#364652" padding-bottom="30px" align="center" line-height="34px"/>
       <mj-text color="#414141" font-size="14px" line-height="18px"></mj-text>
       <mj-all font-family="Roboto, Arial" />
     </mj-attributes>
@@ -14,7 +14,7 @@
     <mj-section background-color="#fcfcfc" border="1px solid #ccc">
       <mj-column>
         <mj-text mj-class="title">Welcome to Pursoo!</mj-text>
-        <mj-text>It looks like you recently created an account with Pursoo - Awesome! My name is John. I’m the developer of Pursoo and a fitness enthusiast.
+        <mj-text>It looks like you recently created an account with Pursoo - Awesome! My name is John. I’m the developer of Pursoo, a fitness enthusiast, and a lifelong gamer.
         </mj-text>
         <mj-text>I’m reaching out today to introduce myself personally. Sticking to a new goal is hard, but it’s easier with help from a new friend.
         </mj-text>
@@ -24,6 +24,8 @@
         <mj-text padding-top="0" padding-bottom="0">CEO | Founder</mj-text>
         <mj-text padding-top="0" padding-bottom="40px"><a href="mailto:john@pursoo.co">john@pursoo.co</a></mj-text>
         <mj-text><b><u>P.S.</u></b> - I’d love to hear why you joined Pursoo and what you think of it so far. Respond to this email to get a conversation started.
+        </mj-text>
+        <mj-text><b><u>P.P.S.</u></b> - I'll be sending you a few emails over the next days that contain powerful fitness knowledge. Make sure they don't get lost in a spam folder!
         </mj-text>
       </mj-column>
     </mj-section>

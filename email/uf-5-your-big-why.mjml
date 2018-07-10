@@ -1,0 +1,40 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+    <mj-title>What Japanese car manufactures can teach you about fitness</mj-title>
+    <mj-attributes>
+      <mj-class name="title" font-size="34px" color="#364652" padding-bottom="30px" align="center" line-height="34px" />
+      <mj-class name="subtitle" font-size="26px" padding-bottom="10px" color="#364652" line-height="26px" />
+      <mj-class name="quote" font-style="italic" font-family="Helvetica, sans-serif"/>
+      <mj-text color="#414141" font-size="14px" line-height="18px"></mj-text>
+      <mj-all font-family="Roboto, Arial" />
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#eaeaea">
+    <mj-include path="./header.mjml" />
+    <mj-section background-color="#fcfcfc" border="1px solid #ccc">
+      <mj-column>
+        <mj-text mj-class="title">Ask Yourself "Why?"</mj-text>
+        <mj-text>Behind every goal lies a deeper emotional connection. A motivational engine if you will. And motivation is what drives us to continue working on a project day after day. Thus, it is crucial to determine "why" we want to do something.</mj-text>
+        <mj-text>Finding your "why" is the lesson of the day. And your teacher for the day? Well, none other than Taiichi Ohno, architect of the Toyota Production System.</mj-text>
+        <mj-text><b>*crickets*</b></mj-text>
+        <mj-text><b>You:</b> "A guy who helped Toyota make cars is going to help me stay motivated on fitness goals?"</mj-text>
+        <mj-text><b>Me:</b> "Yup, you got it!"</mj-text>
+        <mj-divider border-width="1px" border-color="#eaeaea" padding-bottom="20px" />
+        <mj-text mj-class="subtitle">Toyota's Secret Formula</mj-text>
+        <mj-text>In the 1950s Taiichi Ohno helped Toyota build a revolutionary car manufacturing system. This system, referred to as "lean manufacturing," is rooted in the process of asking "why?".</mj-text>
+        <mj-text>Mr. Ohno describes the method:</mj-text>
+        <mj-text mj-class="quote">“the basis of Toyota’s scientific approach . . . by repeating why five times, the nature of the problem as well as its solution becomes clear.”</mj-text>
+        <mj-text>When a problem would occur the Toyota team would examine it and ask "why" five times. By asking "why" five times once unknown core issues would be illuminated.</mj-text>
+        <mj-divider border-width="1px" border-color="#eaeaea" padding-bottom="20px" />
+        <mj-text mj-class="subtitle">Adapting the "Five Whys" to Fitness</mj-text>
+        <mj-text>The "Five Whys" methodology works exactly the same for fitness. Take this example from Blake.</mj-text>
+        <mj-image src="https://firebasestorage.googleapis.com/v0/b/pursoo-f1e1d.appspot.com/o/images%2F5%20Whys.png?alt=media&token=3df3ef67-0fa4-49b1-9919-057ec33612ad"/>
+        <mj-text>Blake wants to lose few extra pounds, but actually discovers his love of swimming and happiness are his true motivators. Indeed, a far more powerful inspiration for him!</mj-text>
+        <mj-text>Take a few minutes today and give the five whys process a try. You may be surprised with what you find.</mj-text>
+        <mj-text>Tomorrow we'll take a look at setting goals for your motivations.</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-include path="./footer.mjml" />
+  </mj-body>
+</mjml>
