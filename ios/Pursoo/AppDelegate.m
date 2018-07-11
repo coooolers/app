@@ -59,13 +59,20 @@
   BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
                                                                 openURL:url
                                                       sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]
-                 || [RNGoogleSignin application:application
-                                        openURL:url
-                              sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                     annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]
-                 || [[RNFirebaseLinks instance] application:application openURL:url options:options];
+                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
   
+  if (!handled) {
+    handled = [RNGoogleSignin application:application
+                                  openURL:url
+                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                               annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+  }
+  
+  if (!handled) {
+    [[RNFirebaseLinks instance] application:application
+                                    openURL:url
+                                    options:options];
+  }
   
   return handled;
 }
@@ -73,7 +80,9 @@
 - (BOOL) application:(UIApplication *)application
 continueUserActivity:(NSUserActivity *)userActivity
   restorationHandler:(void (^)(NSArray *))restorationHandler {
-  return [[RNFirebaseLinks instance] application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
+  return [[RNFirebaseLinks instance] application:application
+                            continueUserActivity:userActivity
+                              restorationHandler:restorationHandler];
 }
 
 // iOS < 10
@@ -83,13 +92,16 @@ continueUserActivity:(NSUserActivity *)userActivity
          annotation:(id)annotation {
   
   BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                        openURL:url
-                                              sourceApplication:sourceApplication
-                                                     annotation:annotation]
-                 || [RNGoogleSignin application:application
-                                        openURL:url
-                              sourceApplication:sourceApplication
-                                     annotation:annotation];
+                                                                openURL:url
+                                                      sourceApplication:sourceApplication
+                                                             annotation:annotation];
+  
+  if (!handled) {
+      handled = [RNGoogleSignin application:application
+                                    openURL:url
+                          sourceApplication:sourceApplication
+                                 annotation:annotation];
+  }
   
   return handled;
 }

@@ -20,6 +20,7 @@ export function getUser(user) {
         return api.getUser(user).then(response => {
             if (response.exists) {
                 dispatch({type: t.LOGGED_IN, data: response.user});
+                return response.user;
             }
         });
     }

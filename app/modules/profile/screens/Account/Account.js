@@ -69,11 +69,8 @@ class Account extends React.Component {
     }
 
     onSignOut = () => {
-        this.props.dispatch(signOut()).catch(this.onSignOutError);
-    };
-
-    onSignOutError = (error) => {
-        Alert.alert('Oops!', error.message);
+        this.props.navigation.navigate('Auth');
+        this.props.dispatch(signOut());
     };
 
     onProfileSubmit = (data) => {
