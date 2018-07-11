@@ -69,9 +69,9 @@
   }
   
   if (!handled) {
-    [[RNFirebaseLinks instance] application:application
-                                    openURL:url
-                                    options:options];
+    handled = [[RNFirebaseLinks instance] application:application
+                                              openURL:url
+                                              options:options];
   }
   
   return handled;

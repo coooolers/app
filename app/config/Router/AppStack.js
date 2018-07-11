@@ -79,13 +79,11 @@ export default createStackNavigator({
             tabBarOptions: {
                 style: {
                     backgroundColor: color.white,
-                }
-                ,
+                },
                 activeTintColor: color.brandPrimary,
                 inactiveTintColor:
                 color.grey
-            }
-            ,
+            },
             animationEnabled: true,
             swipeEnabled: false,
             initialRouteName: 'Home',
