@@ -80,7 +80,6 @@ class PathScreen extends React.Component {
                 <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
                     {path.stepsOrder.map(this.renderPathStep)}
                 </ScrollView>
-                <CharacterPanel character={character} animateRewardConfig={animateRewardConfig}/>
             </View>
         );
     }

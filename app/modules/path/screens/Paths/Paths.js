@@ -56,7 +56,6 @@ class PathsScreen extends React.Component {
                         })
                     }
                 </ScrollView>
-                <CharacterPanel character={character}/>
             </View>
         );
     }

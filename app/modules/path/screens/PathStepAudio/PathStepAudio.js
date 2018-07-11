@@ -8,7 +8,6 @@ import BackgroundImage from "../../../../components/BackgroundImage";
 import Collapsible from 'react-native-collapsible';
 import PathStepPanel from "../../components/PathStepPanel";
 import {color} from "../../../../styles/theme";
-import Button from "../../../../components/Button/Button";
 import ScreenInfoDrawer from "../../../../components/ScreenInfoDrawer";
 import Reporting from "../../../reporting";
 import {isPathStepComplete} from "../../../../components/Util";
@@ -40,14 +39,6 @@ class PathStepAudioScreen extends React.Component {
         this.props.navigation.setParams({
             goBack: this.goBack.bind(this)
         });
-
-        // TODO: remove done testing new scree
-        // const {path, step} = this.props.navigation.state.params;
-        // this.props.navigation.navigate('PathStepAudioReward', {
-        //     path,
-        //     step,
-        //     didEarnRewards: this.state.hasCompleted === false
-        // });
     }
 
     goBack = () => {

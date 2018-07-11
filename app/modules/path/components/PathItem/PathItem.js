@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FontAwesome, {Icons} from "react-native-fontawesome";
-import {TouchableOpacity, View, Text} from "react-native";
+import {TouchableWithoutFeedback, View, Text} from "react-native";
 import styles from "./styles";
 import PropTypes from "prop-types";
 import {getRewardsForPath} from "../../../../components/Util";
@@ -31,8 +31,8 @@ export default class PathItem extends Component {
         const {path, onPress} = this.props;
 
         return (
-            <View style={styles.container}>
-                <TouchableOpacity onPress={() => onPress(path)}>
+            <TouchableWithoutFeedback onPress={() => onPress(path)}>
+                <View style={styles.container}>
                     <Text style={styles.name}>{path.name}</Text>
                     <Text style={styles.description}>{path.description}</Text>
                     <View style={styles.hrule}/>
@@ -43,8 +43,8 @@ export default class PathItem extends Component {
                     <View style={styles.progressBottom}>
                         <RewardList rewardConfig={getRewardsForPath(path)} hasEarned={false} size={16}/>
                     </View>
-                </TouchableOpacity>
-            </View>
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 }

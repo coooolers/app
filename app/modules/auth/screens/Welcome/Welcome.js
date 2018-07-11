@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, Alert} from 'react-native';
 import {SocialIcon} from 'react-native-elements';
-import {NavigationActions} from 'react-navigation';
 import {connect} from 'react-redux';
 import FBSDK from 'react-native-fbsdk';
 import {GoogleSignin} from 'react-native-google-signin';
@@ -19,26 +18,18 @@ class Welcome extends React.Component {
         }
     };
 
-    componentWillMount() {
-        if (this.props.isLoggedIn) {
-            const resetAction = NavigationActions.reset({
-                index: 0,
-                key: null,
-                actions: [NavigationActions.navigate({routeName: 'Main'})],
-            });
-            this.props.navigation.dispatch(resetAction);
-        }
-    }
+    onSignInWithFacebook = async () => {
+        try {
+            const result = await FBSDK.LoginManager.logInWithReadPermissions(['public_profile', 'email']);
 
-    onSignInWithFacebook = () => {
-        FBSDK.LoginManager.logInWithReadPermissions(['public_profile', 'email'])
-            .then(result => {
-                if (!result.isCancelled) {
-                    FBSDK.AccessToken.getCurrentAccessToken().then(token => {
-                        this.props.dispatch(signInWithFacebook(token)).catch(this.onLoginError);
-                    }).catch(this.onLoginError);
-                }
-            }, this.onLoginError);
+            if (!result.isCancelled) {
+                const token = await FBSDK.AccessToken.getCurrentAccessToken();
+                await this.props.dispatch(signInWithFacebook(token));
+                this.props.navigation.navigate('AuthLoading');
+            }
+        } catch (e) {
+            this.onLoginError(e);
+        }
     };
 
     onSignInWithGoogle = async () => {
@@ -49,15 +40,15 @@ class Welcome extends React.Component {
             });
 
             const data = await GoogleSignin.signIn();
-
-            this.props.dispatch(signInWithGoogle(data));
+            await this.props.dispatch(signInWithGoogle(data));
+            this.props.navigation.navigate('AuthLoading');
         } catch (e) {
             this.onLoginError(e);
         }
     };
 
     onLoginError = (error) => {
-        alert('Login fail with error: ' + error);
+        Alert.alert('Login Error', error.message);
     };
 
     render() {

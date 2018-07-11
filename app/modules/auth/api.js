@@ -56,7 +56,7 @@ export function signOut() {
 export function signInWithFacebook(fbToken) {
     const credential = FacebookAuthProvider.credential(fbToken.accessToken);
 
-    return auth.signInWithCredential(credential)
+    return auth.signInAndRetrieveDataWithCredential(credential)
         .then((user) => getUser(user));
 }
 

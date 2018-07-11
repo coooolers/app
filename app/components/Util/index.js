@@ -1,4 +1,4 @@
-import {NavigationActions} from "react-navigation";
+import {StackActions, NavigationActions} from "react-navigation";
 import _ from "lodash";
 import moment from "moment";
 import {REWARD_TYPES, STEP_TYPES} from "../../modules/path/constants";
@@ -36,13 +36,14 @@ export const secondsToMMSS = (seconds) => {
 };
 
 export const goToMainTabRoute = (navigation, key) => {
-    navigation.dispatch(NavigationActions.reset({
+    navigation.dispatch(StackActions.reset({
         index: 0,
         key: null,
         actions: [
             NavigationActions.navigate({routeName: 'Main'})
         ],
     }));
+
     navigation.navigate(key);
 };
 
@@ -124,9 +125,9 @@ export const isPathStepComplete = (path, step, pathProgress) => {
 };
 
 export const getPathStepCompletedDate = (path, step, pathProgress) => {
-  if (isPathStepComplete(path, step, pathProgress)) {
-      return pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid].completed;
-  }
+    if (isPathStepComplete(path, step, pathProgress)) {
+        return pathProgress && pathProgress[path.uid] && pathProgress[path.uid][step.uid].completed;
+    }
 };
 
 export const getPathInProgress = (paths, pathProgress) => {

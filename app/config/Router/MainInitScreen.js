@@ -5,11 +5,10 @@ import {goToMainTabRoute} from "../../components/Util";
 class InitialScreen extends React.Component {
     constructor(props) {
         super(props);
-        const {user} = props;
 
-        if (user.hasCompletedOnboarding) {
+        if (props.user.hasCompletedOnboarding) {
             // TODO: user can swipe screen away and become stuck
-            props.navigation.navigate('Main');
+            goToMainTabRoute(props.navigation, 'Home');
         } else {
             props.navigation.navigate('Onboarding');
         }

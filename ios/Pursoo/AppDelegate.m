@@ -15,6 +15,7 @@
 #import <Firebase.h>
 #import "RNFirebaseNotifications.h"
 #import "RNFirebaseMessaging.h"
+#import "RNFirebaseLinks.h"
 
 @implementation AppDelegate
   
@@ -27,6 +28,7 @@
                            didFinishLaunchingWithOptions:launchOptions];
   
   // setup firebase
+  [FIROptions defaultOptions].deepLinkURLScheme = @"com.pursoo.pursoo";
   [FIRApp configure];
   [RNFirebaseNotifications configure];
 
@@ -57,14 +59,30 @@
   BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
                                                                 openURL:url
                                                       sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]
-                 || [RNGoogleSignin application:application
-                                        openURL:url
-                              sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                     annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
   
+  if (!handled) {
+    handled = [RNGoogleSignin application:application
+                                  openURL:url
+                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                               annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+  }
+  
+  if (!handled) {
+    handled = [[RNFirebaseLinks instance] application:application
+                                              openURL:url
+                                              options:options];
+  }
   
   return handled;
+}
+
+- (BOOL) application:(UIApplication *)application
+continueUserActivity:(NSUserActivity *)userActivity
+  restorationHandler:(void (^)(NSArray *))restorationHandler {
+  return [[RNFirebaseLinks instance] application:application
+                            continueUserActivity:userActivity
+                              restorationHandler:restorationHandler];
 }
 
 // iOS < 10
@@ -74,13 +92,16 @@
          annotation:(id)annotation {
   
   BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                        openURL:url
-                                              sourceApplication:sourceApplication
-                                                     annotation:annotation]
-                 || [RNGoogleSignin application:application
-                                        openURL:url
-                              sourceApplication:sourceApplication
-                                     annotation:annotation];
+                                                                openURL:url
+                                                      sourceApplication:sourceApplication
+                                                             annotation:annotation];
+  
+  if (!handled) {
+      handled = [RNGoogleSignin application:application
+                                    openURL:url
+                          sourceApplication:sourceApplication
+                                 annotation:annotation];
+  }
   
   return handled;
 }
