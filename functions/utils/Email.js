@@ -37,6 +37,10 @@ class Email {
         this.__sgConfig.sendAt = sendAt;
     };
 
+    setCategories(categories) {
+        this.__sgConfig.categories = categories;
+    }
+
     send() {
         return sgMail.send(this.__sgConfig)
             .catch(function(error) {

@@ -41,6 +41,7 @@ exports.accountWelcome = functions.database.ref('/users/{userId}/testEmail').onC
         email.setSubject('Welcome to Pursoo! Have any questions?');
         email.setTemplateId(TRANSACTIONAL_EMAIL_CONFIG.ACCOUNT_WELCOME.TEMPLATE_ID);
         email.setUnsubscribeGroupId(TRANSACTIONAL_EMAIL_CONFIG.ACCOUNT_WELCOME.UNSUBSCRIBE_GROUP_ID);
+        email.setCategories(["transactional", "user-onboarding-drip"]);
         return email.send();
     } else {
         console.warn(`${user.uid} has no email. Cannot send email. Terminating...`);
@@ -57,6 +58,7 @@ exports.choosingAFitnessPath = functions.database.ref('/users/{userId}').onCreat
         email.setSubject('Find your path to success');
         email.setTemplateId(TRANSACTIONAL_EMAIL_CONFIG.CHOOSING_A_FITNESS_PATH.TEMPLATE_ID);
         email.setUnsubscribeGroupId(TRANSACTIONAL_EMAIL_CONFIG.CHOOSING_A_FITNESS_PATH.UNSUBSCRIBE_GROUP_ID);
+        email.setCategories(["transactional", "user-onboarding-drip"]);
         email.setSentAt(moment().hour(18).minute(0).second(0).add(1, 'days').unix());
         return email.send();
     } else {
@@ -74,6 +76,7 @@ exports.powerOfHabit = functions.database.ref('/users/{userId}').onCreate((snaps
         email.setSubject('The science of habits');
         email.setTemplateId(TRANSACTIONAL_EMAIL_CONFIG.POWER_OF_HABIT.TEMPLATE_ID);
         email.setUnsubscribeGroupId(TRANSACTIONAL_EMAIL_CONFIG.POWER_OF_HABIT.UNSUBSCRIBE_GROUP_ID);
+        email.setCategories(["transactional", "user-onboarding-drip"]);
         email.setSentAt(moment().hour(18).minute(0).second(0).add(2, 'days').unix());
         return email.send();
     } else {
@@ -91,6 +94,7 @@ exports.habitCreatingTips = functions.database.ref('/users/{userId}').onCreate((
         email.setSubject('4 tips that create lasting habits');
         email.setTemplateId(TRANSACTIONAL_EMAIL_CONFIG.HABIT_CREATING_TIPS.TEMPLATE_ID);
         email.setUnsubscribeGroupId(TRANSACTIONAL_EMAIL_CONFIG.HABIT_CREATING_TIPS.UNSUBSCRIBE_GROUP_ID);
+        email.setCategories(["transactional", "user-onboarding-drip"]);
         email.setSentAt(moment().hour(18).minute(0).second(0).add(3, 'days').unix());
         return email.send();
     } else {
@@ -108,6 +112,7 @@ exports.yourBigWhy = functions.database.ref('/users/{userId}').onCreate((snapsho
         email.setSubject('What Japanese car manufactures can teach you about fitness');
         email.setTemplateId(TRANSACTIONAL_EMAIL_CONFIG.YOUR_BIG_WHY.TEMPLATE_ID);
         email.setUnsubscribeGroupId(TRANSACTIONAL_EMAIL_CONFIG.YOUR_BIG_WHY.UNSUBSCRIBE_GROUP_ID);
+        email.setCategories(["transactional", "user-onboarding-drip"]);
         email.setSentAt(moment().hour(18).minute(0).second(0).add(4, 'days').unix());
         return email.send();
     } else {
@@ -125,6 +130,7 @@ exports.settingGoals = functions.database.ref('/users/{userId}').onCreate((snaps
         email.setSubject('When you set a goal, make it SMART');
         email.setTemplateId(TRANSACTIONAL_EMAIL_CONFIG.SETTING_GOALS.TEMPLATE_ID);
         email.setUnsubscribeGroupId(TRANSACTIONAL_EMAIL_CONFIG.SETTING_GOALS.UNSUBSCRIBE_GROUP_ID);
+        email.setCategories(["transactional", "user-onboarding-drip"]);
         email.setSentAt(moment().hour(18).minute(0).second(0).add(5, 'days').unix());
         return email.send();
     } else {
