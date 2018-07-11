@@ -34,13 +34,18 @@ class AuthLoadingScreen extends Component {
     }
 
     _handleDynamicLink = (url) => {
-        console.log(url);
         if (url && this.props.user) {
             const parsedUrl = new URL(url);
             switch (parsedUrl.pathname) {
                 case '/profile/notifications':
                     goToMainTabRoute(this.props.navigation, 'Profile');
                     this.props.navigation.navigate('ProfileNotifications');
+                    break;
+                case '/home':
+                    goToMainTabRoute(this.props.navigation, 'Home');
+                    break;
+                default:
+                    this.props.navigation.navigate('App');
                     break;
             }
         }
@@ -59,7 +64,6 @@ class AuthLoadingScreen extends Component {
             const dynamicLink = response[4];
             let userDataPromises = [];
 
-
             if (user && user.hasCompletedOnboarding) {
                 userDataPromises.push(this.props.dispatch(fetchMyCharacter(this.props.user)));
                 userDataPromises.push(this.props.dispatch(fetchUserPathProgress(this.props.user)));
@@ -67,30 +71,14 @@ class AuthLoadingScreen extends Component {
 
             Promise.all(userDataPromises).then(() => {
                 if (user && dynamicLink) {
-                    console.log("GOING TO", dynamicLink);
                     return this._handleDynamicLink(dynamicLink);
                 } else if (user) {
-                    console.log("GOING TO APP???");
-                    return this.goToApp();
+                    return this.props.navigation.navigate('App');
                 } else {
-                    console.log("GOING TO AUTH???");
-                    return this.goToAuth();
+                    return this.props.navigation.navigate('Auth');
                 }
             });
         });
-    };
-
-    goToApp = async () => {
-        if (this.props.user.hasCompletedOnboarding) {
-            await this.props.dispatch(fetchMyCharacter(this.props.user));
-            await this.props.dispatch(fetchUserPathProgress(this.props.user));
-        }
-
-        this.props.navigation.navigate('App');
-    };
-
-    goToAuth = async () => {
-        this.props.navigation.navigate('Auth');
     };
 
     componentDidMount() {

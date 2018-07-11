@@ -1,2 +1,2 @@
-import Splash from './Splash'
-export default Splash;
+import AuthLoadingScreen from './AuthLoadingScreen';
+export default AuthLoadingScreen;
