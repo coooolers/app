@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View, Text, TouchableOpacity} from 'react-native';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "./styles";
 import {updateUser} from "../../actions";
 import Notifications from "../../../../modules/notifications";
@@ -68,7 +68,7 @@ class OnboardingNotifications extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <FontAwesome style={styles.icon}>{Icons.bellO}</FontAwesome>
+                    <MaterialCommunityIcon name="bell-ring-outline" style={styles.icon}/>
                     <Text style={styles.title}>{screenConfig.title}</Text>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                         <Text style={styles.dailyAtLabel}>Remind me daily at </Text>

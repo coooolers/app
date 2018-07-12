@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, ScrollView, View, TouchableWithoutFeedback} from 'react-native';
 import styles from "./styles";
-import FontAwesome, {Icons} from "react-native-fontawesome";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Progress from 'react-native-progress';
 import {getPathStepProgress, isPathIncomplete} from "../../../../components/Util";
 import PropTypes from 'prop-types';
@@ -77,7 +77,7 @@ export default class PathScrollView extends React.Component {
                 <TouchableWithoutFeedback onPress={this.onNewPathPress}>
                     <View style={[styles.pathBox, styles.newPathBox]}>
                         <Text style={styles.newPathBoxTitle}>Discover a new path</Text>
-                        <FontAwesome style={styles.newPathBoxIcon}>{Icons.plusCircle}</FontAwesome>
+                        <MaterialCommunityIcons name="plus-circle-outline" style={styles.newPathBoxIcon}/>
                     </View>
                 </TouchableWithoutFeedback>
             </ScrollView>

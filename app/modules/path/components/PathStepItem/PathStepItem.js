@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, TouchableWithoutFeedback} from 'react-native';
-import FontAwesome, {Icons} from "react-native-fontawesome";
 import PropTypes from 'prop-types';
 import styles from "./styles";
 import {STEP_TYPES} from "../../constants";
 import {color} from "../../../../styles/theme";
 import {getRewardsForStep} from "../../../../components/Util";
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import RewardList from "../../../../components/RewardList/RewardList";
 
 export default class PathStepItem extends React.Component {
@@ -20,9 +20,11 @@ export default class PathStepItem extends React.Component {
 
     renderStepTypeIcon = (step) => {
         if (step.type === STEP_TYPES.AUDIO) {
-            return <FontAwesome style={styles.icon}>{Icons.headphones}</FontAwesome>;
+            return <MaterialCommunityIcon name="headphones" style={styles.icon}/>;
         } else if (step.type === STEP_TYPES.WORKOUT) {
-            return <FontAwesome style={styles.icon}>{Icons.clockO}</FontAwesome>;
+            return <MaterialCommunityIcon name="dumbbell" style={styles.icon}/>;
+        } else if (step.type === STEP_TYPES.WALK) {
+            return <MaterialCommunityIcon name="walk" style={styles.icon}/>;
         }
     };
 
@@ -30,12 +32,11 @@ export default class PathStepItem extends React.Component {
         const {isCompleted, isLocked} = this.props;
 
         if (isCompleted) {
-            return <FontAwesome style={[styles.statusIcon, {color: color.brandSuccess}]}>{Icons.check}</FontAwesome>
+            return <MaterialCommunityIcon name={"check"} style={[styles.statusIcon, {color: color.brandSuccess}]}/>;
         } else if (isLocked) {
-            return <FontAwesome style={[styles.statusIcon, {color: color.brandDark}]}>{Icons.lock}</FontAwesome>;
+            return <MaterialCommunityIcon name="lock" style={[styles.statusIcon, {color: color.brandDark}]}/>;
         } else {
-            return <FontAwesome
-                style={[styles.statusIcon, {color: color.brandPrimary}]}>{Icons.handORight}</FontAwesome>;
+            return <MaterialCommunityIcon name="hand-pointing-right" style={[styles.statusIcon, {color: color.brandPrimary}]}/>;
         }
     };
 
@@ -71,7 +72,7 @@ export default class PathStepItem extends React.Component {
         if (isLocked) {
             return (
                 <View style={styles.lockedOverlay}>
-                    <FontAwesome style={styles.lockedIcon}>{Icons.lock}</FontAwesome>
+                    <MaterialCommunityIcon name="lock" style={styles.lockedIcon}/>
                     <Text style={styles.lockedLabel}>Locked</Text>
                 </View>
             );

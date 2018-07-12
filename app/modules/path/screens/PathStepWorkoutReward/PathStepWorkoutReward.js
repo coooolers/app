@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text, View, Button as RNButton} from 'react-native';
+import {Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
 import CharacterPanel from "../../components/CharacterPanel/CharacterPanel";
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Button from "../../../../components/Button/Button";
 import {
     getNextStepInPath, getPathStepCompletedDate,
@@ -106,16 +106,16 @@ class PathStepWorkoutRewardScreen extends React.Component {
         if (this.state.showCongratulations) {
             if (nextStep) {
                 text = nextStep.name;
-                icon = {name: 'play', color: color.brandLight};
+                icon = {name: 'play-arrow', color: color.brandLight, size: 25};
                 onPress = () => goToPathStep(this.props.navigation, {step: nextStep, path})
             } else {
                 text = "Choose a new path";
-                icon = {name: 'graduation-cap', color: color.brandLight};
+                icon = {name: 'school', color: color.brandLight, size: 25};
                 onPress = () => goToMainTabRoute(this.props.navigation, 'Paths');
             }
         } else {
             text = 'Home';
-            icon = {name: 'home', color: color.brandLight};
+            icon = {name: 'home', color: color.brandLight, size: 25};
             onPress = () => goToMainTabRoute(this.props.navigation, 'Home');
         }
 
@@ -145,7 +145,7 @@ class PathStepWorkoutRewardScreen extends React.Component {
     renderStars = () => {
         const {workout} = this.props.navigation.state.params;
         let numStars = 0;
-        let stars = [...Array(5)].map((_, i) => <FontAwesome style={styles.star} key={i}>{Icons.starO}</FontAwesome>);
+        let stars = [...Array(5)].map((_, i) => <MaterialCommunityIcon name="checkbox-blank-circle-outline" style={styles.star} key={i}/>);
 
         if (workout.grade === WORKOUT_GRADES.S) {
             numStars = 5;
@@ -162,7 +162,7 @@ class PathStepWorkoutRewardScreen extends React.Component {
         }
 
         for (let i = 0; i < numStars; i++) {
-            stars[i] = <FontAwesome style={styles.star} key={i}>{Icons.star}</FontAwesome>;
+            stars[i] = <MaterialCommunityIcon name="star-circle" style={styles.star} key={i}/>;
         }
 
         return stars;
@@ -193,7 +193,7 @@ class PathStepWorkoutRewardScreen extends React.Component {
                 <Text style={styles.youFinished}>{text}</Text>
                 <Text style={styles.stepName}>{step.name}</Text>
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <FontAwesome style={styles.pathNameIcon}>{Icons.graduationCap}</FontAwesome>
+                    <MaterialCommunityIcon name="school" style={styles.pathNameIcon}/>
                     <Text style={styles.pathName}>{path.name}</Text>
                 </View>
                 <View style={styles.rewardContainer}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "./styles";
 import PropTypes from 'prop-types';
 
@@ -24,7 +24,7 @@ export default class ExerciseList extends React.Component {
                     <Text style={styles.itemLabel}>{label}</Text>
                 </View>
                 <TouchableOpacity onPress={() => this.onItemPress(exercise)}>
-                    <FontAwesome style={styles.itemIcon}>{Icons.infoCircle}</FontAwesome>
+                    <MaterialCommunityIcon name="information-outline" style={styles.itemIcon}/>
                 </TouchableOpacity>
             </View>
         );

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, DatePickerIOS, Modal} from 'react-native';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "./styles";
 import moment from 'moment';
 import Button from "../../components/Button/Button";
@@ -50,7 +50,7 @@ export default class NotificationTimePicker extends React.Component {
                 <TouchableOpacity onPress={this.onDateInputPress}>
                     <View style={styles.timeContainer}>
                         <Text style={styles.timeLabel}>{moment(notificationDate).format('h:mm A')}</Text>
-                        <FontAwesome style={styles.timeLabelIcon}>{Icons.chevronDown}</FontAwesome>
+                        <MaterialCommunityIcon name="chevron-down" style={styles.timeLabelIcon}/>
                     </View>
                 </TouchableOpacity>
                 <Modal

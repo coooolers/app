@@ -3,7 +3,7 @@ import {Text, View, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
 import CharacterPanel from "../../components/CharacterPanel/CharacterPanel";
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import Button from "../../../../components/Button/Button";
 import {
     getNextStepInPath, getPathStepCompletedDate,
@@ -100,11 +100,11 @@ class PathStepAudioRewardScreen extends React.Component {
 
         if (nextStep) {
             text = nextStep.name;
-            icon = {name: 'play', color: color.brandLight};
+            icon = {name: 'play-arrow', color: color.brandLight, size: 25};
             onPress = () => goToPathStep(this.props.navigation, {step: nextStep, path})
         } else {
             text = "Choose a new path";
-            icon = {name: 'graduation-cap', color: color.brandLight};
+            icon = {name: 'school', color: color.brandLight, size: 25};
             onPress = () => goToMainTabRoute(this.props.navigation, 'Paths');
         }
 
@@ -134,7 +134,7 @@ class PathStepAudioRewardScreen extends React.Component {
     renderTopContainer = () => {
         return (
             <View style={styles.topContainer}>
-                <FontAwesome style={styles.statusIcon}>{Icons.checkCircleO}</FontAwesome>
+                <MaterialCommunityIcon name="check-circle" style={styles.statusIcon}/>
                 <Text style={styles.congratulations}>Congratulations</Text>
             </View>
         );
@@ -149,7 +149,7 @@ class PathStepAudioRewardScreen extends React.Component {
                 <Text style={styles.youFinished}>You finished</Text>
                 <Text style={styles.stepName}>{step.name}</Text>
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <FontAwesome style={styles.pathNameIcon}>{Icons.graduationCap}</FontAwesome>
+                    <MaterialCommunityIcon name="school" style={styles.pathNameIcon}/>
                     <Text style={styles.pathName}>{path.name}</Text>
                 </View>
                 <View style={styles.rewardContainer}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Slider, ActivityIndicator, Alert} from 'react-native';
-import FontAwesome, {Icons} from "react-native-fontawesome";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import PropTypes from 'prop-types';
 import styles from "./styles";
 import {round, secondsToMMSS} from "../../../../components/Util";
@@ -120,13 +120,13 @@ export default class PathStepAudioPlayer extends React.Component {
         } else if (isPlaying) {
             return (
                 <TouchableOpacity onPress={this.pause}>
-                    <FontAwesome style={styles.play}>{Icons.pause}</FontAwesome>
+                    <MaterialCommunityIcon name="pause-circle-outline" style={styles.play}/>
                 </TouchableOpacity>
             );
         } else {
             return (
                 <TouchableOpacity onPress={this.play}>
-                    <FontAwesome style={styles.play}>{Icons.play}</FontAwesome>
+                    <MaterialCommunityIcon name="play-circle-outline" style={styles.play}/>
                 </TouchableOpacity>
             );
         }

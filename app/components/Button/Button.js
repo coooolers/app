@@ -20,10 +20,10 @@ export default class Button extends Component {
         const {icon} = this.props;
 
         if (_.isObject(icon)) {
-            return Object.assign({type: 'font-awesome'}, icon);
+            return Object.assign({type: 'material-community-icons'}, icon);
         } else if (_.isString(icon)) {
             return {
-                type: 'font-awesome',
+                type: 'material-community-icons',
                 name: icon
             };
         } else {

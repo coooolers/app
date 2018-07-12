@@ -1,12 +1,11 @@
 import React from 'react';
 import {TouchableOpacity, ScrollView, View, Alert, Image, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import QuantityExercise from "../../components/QuantityExercise";
 import DurationExercise from "../../components/DurationExercise";
 import {color, windowWidth} from "../../../../styles/theme";
 import styles from "./styles";
-import {WORKOUT_GRADES} from "../../../workouts/constants";
 
 class PathStepWorkoutRoutine extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -16,9 +15,8 @@ class PathStepWorkoutRoutine extends React.Component {
             headerLeft: <RNButton onPress={() => cancelWorkout()} title={"Cancel"}/>,
             headerRight: (
                 <TouchableOpacity onPress={() => goToExerciseHelp()}>
-                    <FontAwesome style={{color: color.brandDark, fontSize: 22, marginRight: 10}}>
-                        {Icons.infoCircle}
-                    </FontAwesome>
+                    <MaterialCommunityIcon name="information-outline"
+                                           style={{color: color.brandDark, fontSize: 22, marginRight: 10}}/>
                 </TouchableOpacity>
             )
         }
@@ -127,9 +125,9 @@ class PathStepWorkoutRoutine extends React.Component {
 
 
         if (e.isComplete && e.completedStatus === "success") {
-            completedIcon = <FontAwesome style={styles.navigationItemCompletedIcon}>{Icons.checkCircleO}</FontAwesome>;
+            completedIcon = <MaterialCommunityIcon name="check-circle" style={styles.navigationItemCompletedIcon}/>;
         } else if (e.isComplete && e.completedStatus === "failed") {
-            completedIcon = <FontAwesome style={styles.navigationItemFailedIcon}>{Icons.close}</FontAwesome>;
+            completedIcon = <MaterialCommunityIcon name="close-circle" style={styles.navigationItemFailedIcon}/>;
         }
 
         return (

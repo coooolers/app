@@ -93,7 +93,6 @@ class OnboardingCreateCharacter extends React.Component {
                                               onSelect={this.onCharacterImagePress}/>
                 </View>
                 <Button title={screenConfig.buttonText}
-                        icon={screenConfig.buttonIcon}
                         onPress={this.onSubmit} isFetching={isFetching}/>
             </View>
         );

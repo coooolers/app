@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
-import {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import PathStepAudioPlayer from "../../components/PathStepAudioPlayer";
 import BackgroundImage from "../../../../components/BackgroundImage";
@@ -93,7 +92,7 @@ class PathStepAudioScreen extends React.Component {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <PathStepPanel step={step} path={path}
                                    hasCompleted={hasCompleted}
-                                   icon={Icons.headphones}>
+                                   icon={"headphones"}>
                         <PathStepAudioPlayer
                             url={step.audioUrl}
                             onComplete={this.onAudioComplete}

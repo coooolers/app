@@ -3,7 +3,7 @@ import {View, Text, Switch, AppState} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
 import {updateUser} from "../../actions";
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import NotificationTimePicker from "../../../../components/NotificationTimePicker";
 import Notifications from "../../../../modules/notifications";
 import moment from "moment/moment";
@@ -114,7 +114,7 @@ class NotificationsScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <FontAwesome style={styles.icon}>{Icons.bellO}</FontAwesome>
+                    <MaterialCommunityIcon name="bell-ring-outline" style={styles.icon}/>
                     <Text style={styles.title}>
                         We use notifications to send you reminders that help you build healthy habits.
                     </Text>

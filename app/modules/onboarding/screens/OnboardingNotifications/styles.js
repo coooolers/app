@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
     icon: {
         color: color.brandDark,
-        fontSize: normalize(60),
+        fontSize: normalize(80),
         marginBottom: 20
     },
 

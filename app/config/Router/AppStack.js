@@ -4,8 +4,9 @@ import {
     createBottomTabNavigator
 } from 'react-navigation';
 import {color, tabIconStyle} from "../../styles/theme";
-import FontAwesome, {Icons} from "react-native-fontawesome";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
+// Screens
 import PathStepAudioScreen from "../../modules/path/screens/PathStepAudio";
 import OnboardingRouter from "../../modules/onboarding/router";
 import PathStepWorkoutScreen from "../../modules/path/screens/PathStepWorkout";
@@ -63,17 +64,17 @@ export default createStackNavigator({
                 // TODO: convert to component
                 tabBarIcon: ({focused, tintColor}) => {
                     const {routeName} = navigation.state;
-                    let icon;
+                    let iconName;
 
                     if (routeName === 'Home') {
-                        icon = Icons.home;
+                        iconName = "home";
                     } else if (routeName === 'Paths') {
-                        icon = Icons.graduationCap;
+                        iconName = "school";
                     } else if (routeName === 'Profile') {
-                        icon = Icons.userCircleO;
+                        iconName = "account-circle";
                     }
 
-                    return <FontAwesome style={[tabIconStyle, {color: tintColor}]}>{icon}</FontAwesome>;
+                    return <MaterialCommunityIcon name={iconName} style={[tabIconStyle, {color: tintColor}]}/>;
                 }
             }),
             tabBarOptions: {

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
 
     rowIcon: {
-        fontSize: normalize(18),
+        fontSize: normalize(25),
         color: color.brandDark
     }
 });

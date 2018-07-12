@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import FontAwesome, {Icons} from "react-native-fontawesome";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {View, Text} from "react-native";
 import styles from "./styles";
 import {REWARD_TYPES} from "../../constants";
@@ -18,20 +18,20 @@ export default class RewardIcon extends Component {
     renderIcon = () => {
         const {type, hasEarned, size} = this.props;
         let iconStyles = [];
-        let icon = null;
+        let iconName = null;
 
         if (type === REWARD_TYPES.XP) {
             iconStyles.push(styles.xpIcon);
-            icon = Icons.trophy;
+            iconName = "trophy-variant";
         } else if (type === REWARD_TYPES.TERM) {
             iconStyles.push(styles.termIcon);
-            icon = Icons.book;
+            iconName = "book-plus";
         } else if (type === REWARD_TYPES.EXERCISE) {
             iconStyles.push(styles.exerciseIcon);
-            icon = Icons.bicycle;
+            iconName = "alarm-plus";
         } else if (type === REWARD_TYPES.WORKOUT) {
             iconStyles.push(styles.workoutIcon);
-            icon = Icons.clockO;
+            iconName = "dumbbell";
         }
 
         if (hasEarned) {
@@ -42,7 +42,7 @@ export default class RewardIcon extends Component {
             iconStyles.push({fontSize: normalize(size)});
         }
 
-        return <FontAwesome style={iconStyles}>{icon}</FontAwesome>;
+        return <MaterialCommunityIcons name={iconName} style={iconStyles}/>;
     };
 
     renderText = () => {
@@ -65,7 +65,7 @@ export default class RewardIcon extends Component {
                 iconStyles.push({fontSize: normalize(size - 2)});
             }
 
-            return <FontAwesome style={iconStyles}>{Icons.checkCircleO}</FontAwesome>;
+            return <MaterialCommunityIcons name="checkbox-marked-circle-outline" style={iconStyles}/>;
         }
     };
 

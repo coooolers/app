@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, ScrollView, Button as RNButton} from 'react-native';
 import {connect} from 'react-redux';
-import {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
 import ExerciseList from "../../components/ExerciseList";
 import BackgroundImage from "../../../../components/BackgroundImage";
@@ -69,7 +68,7 @@ class PathStepWorkoutScreen extends React.Component {
                                   title={screenConfig.infoDrawerTitle}
                                   text={screenConfig.infoDrawerText}/>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={Icons.clockO}>
+                    <PathStepPanel step={step} path={path} hasCompleted={hasCompleted} icon={"dumbbell"}>
                         <ExerciseList workout={workout} onPress={this.goToExerciseInfo}/>
                     </PathStepPanel>
                 </ScrollView>

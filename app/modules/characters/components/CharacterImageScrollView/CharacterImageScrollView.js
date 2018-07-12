@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Image, TouchableOpacity} from 'react-native';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import {database} from "../../../../config/firebase";
 import PropTypes from 'prop-types';
 import styles from "./styles";
@@ -30,7 +30,7 @@ export default class CharacterImageScrollView extends React.Component {
     renderImage = (url) => {
         const {character} = this.props;
         const checkMark = url === character.imageUrl ?
-            <FontAwesome style={styles.checkmark}>{Icons.checkCircleO}</FontAwesome> : null;
+            <MaterialCommunityIcon name="check-circle" style={styles.checkmark}/> : null;
 
         return <TouchableOpacity key={url} onPress={() => this.props.onSelect(url)}>
             <Image source={{uri: url}} style={styles.image}/>

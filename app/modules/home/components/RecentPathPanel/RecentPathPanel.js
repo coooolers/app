@@ -32,8 +32,9 @@ export default class RecentPathPanel extends React.Component {
                     <RNEButton
                         title={"Begin"}
                         icon={{
-                            type: 'font-awesome',
-                            name: 'play',
+                            type: 'material-community-icons',
+                            name: 'play-arrow',
+                            size: 20,
                             color: '#555'
                         }}
                         raised

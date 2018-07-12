@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Text} from 'react-native-elements';
 import {View, Image, TextInput, TouchableOpacity} from 'react-native';
 import PropTypes from "prop-types";
-import FontAwesome, {Icons} from "react-native-fontawesome";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "./styles";
 import {round} from "../../../../components/Util";
 
@@ -75,7 +75,7 @@ export default class QuantityExercise extends React.Component {
                                onChangeText={this.onChangeText}
                                value={workoutExercise.quantityLabel}
                                selectTextOnFocus={true}/>
-                    <FontAwesome style={styles.icon}>{Icons.pencil}</FontAwesome>
+                    <MaterialCommunityIcon name="pencil" style={styles.icon}/>
                 </TouchableOpacity>
                 {this.renderCompletedText()}
 

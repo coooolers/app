@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View, Text, Image, Button as RNButton} from 'react-native';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from "./styles";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import {fetchMyCharacter} from "../../../characters/actions";
 import Swiper from 'react-native-swiper';
 import XpBar from "../../../../components/XpBar/XpBar";
@@ -84,7 +84,7 @@ class OnboardingHowItWorks extends React.Component {
                     ref={el => this.swiper = el}
                     onIndexChanged={this.onSlideChange}>
                 <View style={[styles.slide, styles.slide1]}>
-                    <FontAwesome style={styles.slideIcon}>{Icons.map}</FontAwesome>
+                    <MaterialCommunityIcon name="map" style={styles.slideIcon}/>
                     <Text style={styles.slideTitle}>{screenConfig.slide1.title}</Text>
                     <Text style={styles.slideDescription}>{screenConfig.slide1.description}</Text>
                     <View style={styles.buttonContainer}>
@@ -96,7 +96,7 @@ class OnboardingHowItWorks extends React.Component {
                     </View>
                 </View>
                 <View style={[styles.slide, styles.slide2]}>
-                    <FontAwesome style={styles.slideIcon}>{Icons.trophy}</FontAwesome>
+                    <MaterialCommunityIcon name="trophy-variant" style={styles.slideIcon}/>
                     <Text style={styles.slideTitle}>{screenConfig.slide2.title}</Text>
                     <Text style={styles.slideDescription}>{screenConfig.slide2.description}</Text>
                     <View style={styles.buttonContainer}>

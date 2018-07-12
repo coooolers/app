@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
 
     play: {
-        fontSize: normalize(34)
+        fontSize: normalize(44)
     },
 
     timingText: {

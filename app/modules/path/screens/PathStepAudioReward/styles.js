@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
 
     pathNameIcon: {
-        fontSize: normalize(12)
+        fontSize: normalize(16)
     },
 
     rewardContainer: {

@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
 
     itemIcon: {
-        fontSize: normalize(16),
+        fontSize: normalize(23),
         color: color.dark_grey
     }
 });

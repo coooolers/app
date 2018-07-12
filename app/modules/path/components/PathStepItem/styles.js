@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
 
     statusIcon: {
-        fontSize: statusCircleSize - 10,
+        fontSize: statusCircleSize - 5,
         marginLeft: 1
     },
 
@@ -105,9 +105,8 @@ const styles = StyleSheet.create({
     },
 
     icon: {
-        fontSize: fontSize.regular,
-        marginRight: 5,
-        marginTop: 5
+        fontSize: normalize(25),
+        marginRight: 5
     },
 
     name: {

@@ -1,9 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import PropTypes from 'prop-types';
-
 import styles from './styles'
-import FontAwesome, {Icons} from "react-native-fontawesome";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import {padding, fontSize} from "../../styles/theme";
 
 export default class XpLabel extends React.Component {
@@ -20,7 +19,7 @@ export default class XpLabel extends React.Component {
 
         return (
             <View style={styles.meta}>
-                <FontAwesome style={trophyStyles}>{Icons.trophy}</FontAwesome>
+                <MaterialCommunityIcon name="trophy-variant" style={trophyStyles}/>
                 <Text>{this.props.xp}xp</Text>
             </View>
         );

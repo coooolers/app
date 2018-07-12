@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
 
     newPathBoxIcon: {
-        fontSize: 20
+        fontSize: 25
     }
 });
 

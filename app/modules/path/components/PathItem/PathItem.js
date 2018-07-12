@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import FontAwesome, {Icons} from "react-native-fontawesome";
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import {TouchableWithoutFeedback, View, Text} from "react-native";
 import styles from "./styles";
 import PropTypes from "prop-types";
@@ -20,9 +20,7 @@ export default class PathItem extends Component {
 
         return (
             <View style={{flexDirection: 'row'}}>
-                <FontAwesome style={{marginRight: 5, fontSize: 16}}>
-                    {Icons.graduationCap}
-                </FontAwesome> <Text>{numStepsCompleted} / {numSteps}</Text>
+                <MaterialCommunityIcon name="school" style={{marginRight: 5, fontSize: 22}}/> <Text>{numStepsCompleted} / {numSteps}</Text>
             </View>
         );
     };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import MaterialCommunityIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "./styles";
 import RewardList from "../../../../components/RewardList/RewardList";
 import {getRewardsForStep} from "../../../../components/Util";
@@ -20,12 +20,12 @@ export default class PathStepPanel extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.iconContainer}>
-                    <FontAwesome style={styles.icon}>{icon}</FontAwesome>
+                    <MaterialCommunityIcon name={icon} style={styles.icon}/>
                 </View>
                 <View style={styles.header}>
                     <Text style={styles.title}>{step.name}</Text>
                     <Text style={styles.subTitle}>
-                        <FontAwesome>{Icons.graduationCap}</FontAwesome> {path.name}
+                        <MaterialCommunityIcon name="school" size={16}/> {path.name}
                     </Text>
                 </View>
                 <View style={styles.body}>

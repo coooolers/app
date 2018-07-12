@@ -52,8 +52,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         borderWidth: 1,
         borderColor: color.brandLight,
-        // paddingTop: 5,
-        // paddingBottom: 5,
         paddingLeft: 30,
         paddingRight: 30,
         marginTop: 50

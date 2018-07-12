@@ -1,8 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {
-    color,
-    fontSize,
-    contentPadding, fontFamily, normalize
+import {color, fontSize, fontFamily, normalize
 } from "../../styles/theme";
 
 const styles = StyleSheet.create({
@@ -40,9 +37,8 @@ const styles = StyleSheet.create({
     },
 
     timeLabelIcon: {
-        fontSize: normalize(14),
+        fontSize: normalize(22),
         color: '#456f9c',
-        marginTop: 4
     },
 });
 
