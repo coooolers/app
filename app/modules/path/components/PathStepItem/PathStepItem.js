@@ -23,8 +23,6 @@ export default class PathStepItem extends React.Component {
             return <MaterialCommunityIcon name="headphones" style={styles.icon}/>;
         } else if (step.type === STEP_TYPES.WORKOUT) {
             return <MaterialCommunityIcon name="dumbbell" style={styles.icon}/>;
-        } else if (step.type === STEP_TYPES.WALK) {
-            return <MaterialCommunityIcon name="walk" style={styles.icon}/>;
         }
     };
 
