@@ -86,7 +86,7 @@ class AuthLoadingScreen extends Component {
     }
 
     animateIcon = (toValue) => {
-        const duration = 500;
+        const duration = 800;
         Animated.timing(this.state.animateY, {toValue, duration}).start();
 
         setTimeout(() => {
