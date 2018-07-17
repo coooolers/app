@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
 
     errorText: {
         color: color.brandDanger,
-        width: (windowWidth - 45),
+        width: '100%',
         marginTop: 20,
     },
 
     containerView: {
         marginVertical: padding * 3,
-        width: windowWidth - 40
+        width: '100%'
     },
 
     socialButton: {

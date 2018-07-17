@@ -1,31 +1,32 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import {View} from 'react-native';
 import Form from "../../../../components/Form";
 import {login} from "../../actions";
+import styles from "./styles";
 
 const fields = [
     {
         key: 'email',
-        label: "Email Address",
-        placeholder: "Email Address",
+        placeholder: "Email",
         autoFocus: false,
         secureTextEntry: false,
-        value: "",
+        autoCapitalize: 'none',
+        defaultValue: "",
         type: "email"
     },
     {
         key: 'password',
-        label: "Password",
         placeholder: "Password",
         autoFocus: false,
         secureTextEntry: true,
-        value: "",
+        autoCapitalize: 'none',
+        defaultValue: "",
         type: "password"
     }
 ];
 
-const error = {
+const DEFAULT_ERROR = {
     general: "",
     email: "",
     password: ""
@@ -33,7 +34,7 @@ const error = {
 
 class Login extends React.Component {
     state = {
-        error,
+        error: DEFAULT_ERROR,
         isFetching: false
     };
 
@@ -48,29 +49,22 @@ class Login extends React.Component {
     };
 
     onSubmit = (data) => {
-        this.setState({
-            error, //clear out error messages
-            isFetching: true
-        });
+        this.setState({error: DEFAULT_ERROR, isFetching: true});
 
         const {email, password} = data;
-
         this.props.dispatch(login(email, password)).then(() => {
             this.setState({isFetching: false});
-
         }, this.onError);
     };
 
     onError = (error) => {
-        let errObj = this.state.error;
+        let errObj = Object.assign({}, DEFAULT_ERROR);
 
         if (error.hasOwnProperty("message")) {
-            errObj['general'] = error.message;
+            errObj["general"] = error.message;
         } else {
             let keys = Object.keys(error);
-            keys.map((key, index) => {
-                errObj[key] = error[key];
-            })
+            keys.map((key) => errObj[key] = error[key]);
         }
 
         this.setState({
@@ -81,13 +75,14 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Form fields={fields}
-                  showLabel={false}
-                  onSubmit={this.onSubmit}
-                  buttonTitle={"LOG IN"}
-                  isFetching={this.state.isFetching}
-                  error={this.state.error}
-                  onForgotPassword={this.onForgotPassword}/>
+            <View style={styles.container}>
+                <Form fields={fields}
+                      onSubmit={this.onSubmit}
+                      buttonTitle={"LOG IN"}
+                      isFetching={this.state.isFetching}
+                      error={this.state.error}
+                      onForgotPassword={this.onForgotPassword}/>
+            </View>
         );
     }
 }

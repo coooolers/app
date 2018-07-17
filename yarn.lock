@@ -866,7 +866,7 @@ babel-core@^6.0.0, babel-core@^6.24.1, babel-core@^6.26.0, babel-core@^6.26.3, b
     babel-generator "^6.26.0"
     babel-helpers "^6.24.1"
     babel-messages "^6.23.0"
-    babel-register "^6.26.0"
+    babel-registerWithEmailAndPassword "^6.26.0"
     babel-runtime "^6.26.0"
     babel-template "^6.26.0"
     babel-traverse "^6.26.0"
@@ -1402,7 +1402,7 @@ babel-preset-react-native@^4.0.0:
 
 babel-register@^6.24.1, babel-register@^6.26.0:
   version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-register/-/babel-register-6.26.0.tgz#6ed021173e2fcb486d7acb45c6009a856f647071"
+  resolved "https://registry.yarnpkg.com/babel-registerWithEmailAndPassword/-/babel-registerWithEmailAndPassword-6.26.0.tgz#6ed021173e2fcb486d7acb45c6009a856f647071"
   dependencies:
     babel-core "^6.26.0"
     babel-runtime "^6.26.0"
@@ -4435,7 +4435,7 @@ metro@^0.28.0:
     babel-preset-es2015-node "^6.1.1"
     babel-preset-fbjs "^2.1.4"
     babel-preset-react-native "^4.0.0"
-    babel-register "^6.24.1"
+    babel-registerWithEmailAndPassword "^6.24.1"
     babylon "^6.18.0"
     chalk "^1.1.1"
     concat-stream "^1.6.0"
@@ -5818,7 +5818,7 @@ react-native@0.54.4:
     babel-plugin-transform-exponentiation-operator "^6.5.0"
     babel-plugin-transform-flow-strip-types "^6.21.0"
     babel-plugin-transform-object-rest-spread "^6.20.2"
-    babel-register "^6.24.1"
+    babel-registerWithEmailAndPassword "^6.24.1"
     babel-runtime "^6.23.0"
     base64-js "^1.1.2"
     chalk "^1.1.1"

@@ -1,7 +1,8 @@
 import {auth, database, FacebookAuthProvider, GoogleAuthProvider} from "../../config/firebase";
 
-export function register(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
+export function registerWithEmailAndPassword(email, password) {
+    return auth.createUserAndRetrieveDataWithEmailAndPassword(email, password)
+        .then((user) => getUser(user));
 }
 
 export function createUser(user) {
@@ -20,7 +21,7 @@ export function createUser(user) {
 }
 
 export function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password).then(getUser);
+    return auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(getUser);
 }
 
 export function getUser(user) {

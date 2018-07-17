@@ -1,18 +1,42 @@
 import {StyleSheet} from 'react-native';
-import {color, fontSize, fontFamily, normalize, contentWidth} from "../../../../styles/theme";
+import {color, fontSize, fontFamily, normalize, contentWidth, contentPadding} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: color.white,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
 
     image: {
-        width: 150,
+        width: 120,
         resizeMode: 'contain',
-        marginBottom: 50
+        marginBottom: 100
+    },
+
+    separatorContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 40,
+        marginBottom: 40,
+    },
+
+    separatorText: {
+        fontSize: 16,
+        fontFamily: fontFamily.medium,
+        color: color.brandLight,
+        marginLeft: 20,
+        marginRight: 20
+    },
+
+    separatorLine: {
+        width: 85,
+        borderColor: color.brandLight,
+        borderWidth: 1,
+        height: 2,
+        borderRadius: 5
     },
 
     //===============================
@@ -36,6 +60,14 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: fontSize.regular + 2,
         fontFamily: fontFamily.medium
+    },
+
+    forgotPasswordText: {
+        color: color.brandLight,
+        fontSize: 14,
+        fontFamily: fontFamily.regular,
+        textAlign: 'center',
+        marginTop: 15
     }
 });
 

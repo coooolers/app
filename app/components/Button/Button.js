@@ -14,6 +14,7 @@ export default class Button extends Component {
         icon: PropTypes.any,
         containerViewStyle: PropTypes.object,
         buttonStyle: PropTypes.object,
+        textStyle: PropTypes.object,
     };
 
     getIcon = () => {
@@ -32,8 +33,9 @@ export default class Button extends Component {
     };
 
     render() {
-        const containerViewStyle = StyleSheet.flatten([styles.containerView, this.props.containerViewStyle || {}]);
-        const buttonStyle = StyleSheet.flatten([styles.button, this.props.buttonStyle || {}]);
+        const containerViewStyle = [styles.containerView, this.props.containerViewStyle || {}];
+        const buttonStyle = [styles.button, this.props.buttonStyle || {}];
+        const textStyle = [styles.buttonText, this.props.textStyle || {}];
 
         return (
             <RNEButton
@@ -42,7 +44,7 @@ export default class Button extends Component {
                 icon={this.getIcon()}
                 containerViewStyle={containerViewStyle}
                 buttonStyle={buttonStyle}
-                textStyle={styles.buttonText}
+                textStyle={textStyle}
                 disabled={this.props.isFetching}
                 onPress={this.props.onPress}
             />
