@@ -4,10 +4,10 @@ import {auth} from "../../config/firebase";
 
 import {AsyncStorage} from 'react-native';
 
-export function register(email, password) {
+export function registerWithEmailAndPassword(email, password) {
     return (dispatch) => {
-        return api.register(email, password)
-            .then((user) => api.createUser(user))
+        return api.registerWithEmailAndPassword(email, password)
+            .then(({user}) => api.createUser(user))
             .then(() => api.login(email, password))
             .then(response => {
                 dispatch({type: t.LOGGED_IN, data: response.user})

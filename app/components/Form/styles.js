@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 import {theme} from "../../modules/auth/index"
+import {contentPadding} from "../../styles/theme";
 
 const {color, padding, windowWidth, normalize, fontSize, fontFamily} = theme;
 
@@ -14,15 +15,20 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
 
+    errorContainer: {
+        width: '100%',
+        backgroundColor: color.brandDanger,
+        padding: contentPadding
+    },
+
     errorText: {
-        color: color.brandDanger,
-        width: (windowWidth - 45),
-        marginTop: 20,
+        color: color.brandLight,
+        width: '100%',
     },
 
     containerView: {
         marginVertical: padding * 3,
-        width: windowWidth - 40
+        width: '100%'
     },
 
     socialButton: {
