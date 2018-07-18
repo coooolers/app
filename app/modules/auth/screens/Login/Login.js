@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import Form from "../../../../components/Form";
 import {login} from "../../actions";
 import styles from "./styles";
+import {AUTH_USER_NOT_FOUND_ERROR_CODE} from "../../constants";
 
 const fields = [
     {
@@ -54,13 +55,16 @@ class Login extends React.Component {
         const {email, password} = data;
         this.props.dispatch(login(email, password)).then(() => {
             this.setState({isFetching: false});
+            this.props.navigation.navigate("AuthLoading");
         }, this.onError);
     };
 
     onError = (error) => {
         let errObj = Object.assign({}, DEFAULT_ERROR);
 
-        if (error.hasOwnProperty("message")) {
+        if (error.code = AUTH_USER_NOT_FOUND_ERROR_CODE) {
+            errObj["general"] = "Sorry, we can't find a user with this information. Please double check that your information is correct and try again.";
+        } else if (error.hasOwnProperty("message")) {
             errObj["general"] = error.message;
         } else {
             let keys = Object.keys(error);

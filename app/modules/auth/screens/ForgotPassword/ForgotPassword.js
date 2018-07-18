@@ -4,6 +4,7 @@ import {View, Alert} from 'react-native';
 import Form from "../../../../components/Form";
 import {resetPassword} from "../../actions";
 import styles from "./styles";
+import {AUTH_USER_NOT_FOUND_ERROR_CODE} from "../../constants";
 
 const fields = [
     {
@@ -39,8 +40,8 @@ class ForgotPassword extends React.Component {
         this.props.resetPassword(data, () => {
             this.setState({isFetching: false});
             Alert.alert(
-                "Password Reminder Sent",
-                "Check your email for the link we sent you. Use that link reset your password."
+                "It's on the way!",
+                "We just sent you a password reset email. It should show up in your inbox any second now."
             );
             this.props.navigation.goBack();
         }, this.onError)
@@ -49,7 +50,9 @@ class ForgotPassword extends React.Component {
     onError = (error) => {
         let errObj = Object.assign({}, DEFAULT_ERROR);
 
-        if (error.hasOwnProperty("message")) {
+        if (error.code = AUTH_USER_NOT_FOUND_ERROR_CODE) {
+            errObj["general"] = "Sorry, we can't find a user with that email. Double check that your information is correct and please try again.";
+        } else if (error.hasOwnProperty("message")) {
             errObj["general"] = error.message;
         } else {
             let keys = Object.keys(error);

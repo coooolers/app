@@ -2,12 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import {Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {isEmpty, validate} from '../../modules/auth/utils/validate'
+import {isEmpty, validate} from '../../modules/auth/utils/validate';
 import styles from "./styles"
 import FormInput from "../FormInput/FormInput";
-import FormValidationMessage from "../FormValidationMessage/FormValidationMessage";
+import FormValidationMessage from "../FormValidationMessage";
 
 class Form extends React.Component {
+    static propTypes = {
+        buttonTitle: PropTypes.string,
+        onSubmit: PropTypes.func.isRequired,
+        error: PropTypes.object
+    };
+
+    static defaultProps = {
+        onForgotPassword: null,
+    };
+
     constructor(props) {
         super(props);
         const {fields, error} = props;
@@ -76,16 +86,23 @@ class Form extends React.Component {
         );
     };
 
+    renderGeneralErrorMessage = () => {
+        if (!isEmpty(this.state.error['general'])) {
+            return (
+                <View style={styles.errorContainer}>
+                    <Text style={styles.errorText}>{this.state.error['general']}</Text>
+                </View>
+            );
+        }
+    };
+
     render() {
         const {fields, buttonTitle, onForgotPassword, isFetching} = this.props;
 
         return (
             <View style={styles.container}>
                 <View style={styles.wrapper}>
-                    {
-                        (!isEmpty(this.state.error['general'])) &&
-                        <Text style={styles.errorText}>{this.state.error['general']}</Text>
-                    }
+                    {this.renderGeneralErrorMessage()}
                     {fields.map(this.renderField)}
 
 
@@ -108,18 +125,6 @@ class Form extends React.Component {
         );
     }
 }
-
-Form.propTypes = {
-    // fields: PropTypes.object,
-    buttonTitle: PropTypes.string,
-    onSubmit: PropTypes.func.isRequired,
-    error: PropTypes.object
-};
-
-
-Form.defaultProps = {
-    onForgotPassword: null,
-};
 
 
 export default Form;

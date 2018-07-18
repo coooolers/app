@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import Form from "../../../../components/Form";
 import {registerWithEmailAndPassword} from "../../actions";
 import styles from "./styles";
+import {AUTH_EMAIL_ALREADY_IN_USER_CODE} from "../../constants";
 
 const fields = [
     {
@@ -60,13 +61,16 @@ class Register extends React.Component {
         const {email, password} = data;
         this.props.dispatch(registerWithEmailAndPassword(email, password)).then(() => {
             this.setState({isFetching: false});
+            this.props.navigation.navigate("AuthLoading");
         }, this.onError);
     };
 
     onError = (error) => {
         let errObj = Object.assign({}, DEFAULT_ERROR);
 
-        if (error.hasOwnProperty("message")) {
+        if (error.code === AUTH_EMAIL_ALREADY_IN_USER_CODE) {
+            errObj["general"] = "Looks like someone is already using your email. Maybe an evil twin? Spooky.";
+        } else if (error.hasOwnProperty("message")) {
             errObj["general"] = error.message;
         } else {
             let keys = Object.keys(error);

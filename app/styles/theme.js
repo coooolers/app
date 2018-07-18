@@ -5,7 +5,7 @@ const color = {
     brandPrimary: "#da375c",
     brandSuccess: "#1b998b",
     brandInfo: "#39a0ed",
-    brandDanger: 'red',
+    brandDanger: '#da5d51',
     brandLight: "#fcfcfc",
     brandDark: "#071108",
     black: "#3B3031",
