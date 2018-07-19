@@ -7,8 +7,7 @@ class InitialScreen extends React.Component {
         super(props);
 
         if (props.user.hasCompletedOnboarding) {
-            // TODO: user can swipe screen away and become stuck
-            goToMainTabRoute(props.navigation, 'Home');
+            goToMainTabRoute(props.navigation, 'Paths');
         } else {
             props.navigation.navigate('Onboarding');
         }

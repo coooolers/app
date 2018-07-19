@@ -1,6 +1,6 @@
 import {database} from "../../config/firebase";
 
-export function fetchPaths() {
+export const fetchPaths = () => {
     return database.ref('paths').once("value")
         .then(snapshot => snapshot.val());
-}
+};
