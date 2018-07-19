@@ -10,6 +10,7 @@ import styles from "./styles";
 import BackgroundImage from "../../../../components/BackgroundImage";
 import Button from "../../../../components/Button/Button";
 import {color} from "../../../../styles/theme";
+import {GOOGLE_SIGN_IN_CANCELLED_ERROR_CODE} from "../../constants";
 
 class Welcome extends React.Component {
     state = {};
@@ -46,6 +47,7 @@ class Welcome extends React.Component {
             await this.props.dispatch(signInWithGoogle(data));
             this.props.navigation.navigate('AuthLoading');
         } catch (e) {
+            if (e.code === GOOGLE_SIGN_IN_CANCELLED_ERROR_CODE) return;
             this.onLoginError(e);
         }
     };

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {View} from 'react-native';
 import Form from "../../../../components/Form";
-import {login} from "../../actions";
+import {signInWithEmailAndPassword} from "../../actions";
 import styles from "./styles";
 import {AUTH_USER_NOT_FOUND_ERROR_CODE} from "../../constants";
 
@@ -53,7 +53,7 @@ class Login extends React.Component {
         this.setState({error: DEFAULT_ERROR, isFetching: true});
 
         const {email, password} = data;
-        this.props.dispatch(login(email, password)).then(() => {
+        this.props.dispatch(signInWithEmailAndPassword(email, password)).then(() => {
             this.setState({isFetching: false});
             this.props.navigation.navigate("AuthLoading");
         }, this.onError);

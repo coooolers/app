@@ -2,20 +2,15 @@ import * as t from './actionTypes';
 import * as api from './api';
 import {auth} from "../../config/firebase";
 
-import {AsyncStorage} from 'react-native';
-
-export function registerWithEmailAndPassword(email, password) {
+export const registerWithEmailAndPassword = (email, password) => {
     return (dispatch) => {
-        return api.registerWithEmailAndPassword(email, password)
-            .then(({user}) => api.createUser(user))
-            .then(() => api.login(email, password))
-            .then(response => {
-                dispatch({type: t.LOGGED_IN, data: response.user})
-            });
-    };
-}
+        return api.registerWithEmailAndPassword(email, password).then(user => {
+            dispatch({type: t.LOGGED_IN, data: user})
+        });
+    }
+};
 
-export function getUser(user) {
+export const getUser = (user) => {
     return (dispatch) => {
         return api.getUser(user).then(response => {
             if (response.exists) {
@@ -24,19 +19,9 @@ export function getUser(user) {
             }
         });
     }
-}
+};
 
-export function login(email, password) {
-    return (dispatch) => {
-        return api.login(email, password).then(response => {
-            if (response.exists) {
-                dispatch({type: t.LOGGED_IN, data: response.user});
-            }
-        });
-    };
-}
-
-export function resetPassword(data, successCB, errorCB) {
+export const resetPassword = (data, successCB, errorCB) => {
     return (dispatch) => {
         api.resetPassword(data, (success, data, error) => {
             if (success) {
@@ -46,17 +31,17 @@ export function resetPassword(data, successCB, errorCB) {
             }
         });
     };
-}
+};
 
-export function signOut() {
+export const signOut = () => {
     return (dispatch) => {
         return api.signOut().then(() => {
             dispatch({type: t.LOGGED_OUT});
         });
     };
-}
+};
 
-export function checkLoginStatus() {
+export const checkLoginStatus = () => {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
             auth.onAuthStateChanged((user) => {
@@ -71,32 +56,30 @@ export function checkLoginStatus() {
             });
         });
     };
-}
+};
 
-export function signInWithFacebook(facebookToken) {
+export const signInWithEmailAndPassword = (email, password) => {
     return (dispatch) => {
-        return api.signInWithFacebook(facebookToken).then(data => {
-            if (data.exists) {
-                dispatch({type: t.LOGGED_IN, data: data.user});
-            } else {
-                api.createUser(data.user).then(user => {
-                    dispatch({type: t.LOGGED_IN, data: user});
-                });
+        return api.signInWithEmailAndPassword(email, password).then(response => {
+            if (response.exists) {
+                dispatch({type: t.LOGGED_IN, data: response.user});
             }
         });
     };
-}
+};
+
+export const signInWithFacebook = (facebookToken) => {
+    return (dispatch) => {
+        return api.signInWithFacebook(facebookToken).then(user => {
+            dispatch({type: t.LOGGED_IN, data: user});
+        });
+    };
+};
 
 export const signInWithGoogle = (data) => {
     return (dispatch) => {
-        return api.signInWithGoogle(data).then(data => {
-            if (data.exists) {
-                dispatch({type: t.LOGGED_IN, data: data.user});
-            } else {
-                api.createUser(data.user).then(user => {
-                    dispatch({type: t.LOGGED_IN, data: user});
-                });
-            }
+        return api.signInWithGoogle(data).then(user => {
+            dispatch({type: t.LOGGED_IN, data: user});
         });
     };
 };
