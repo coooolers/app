@@ -6,9 +6,12 @@ import styles from "./styles";
 import {round, secondsToMMSS} from "../../../../components/Util";
 import Sound from "react-native-sound";
 import {color} from "../../../../styles/theme";
+import firebase, {RnError} from 'react-native-firebase';
 
 // @INFO: audio will not workout without it
 Sound.setCategory('Playback');
+
+const AUDIO_STORAGE_PATH = `${firebase.storage.Native.DOCUMENT_DIRECTORY_PATH}/audio`;
 
 export default class PathStepAudioPlayer extends React.Component {
     static propTypes = {
@@ -28,7 +31,46 @@ export default class PathStepAudioPlayer extends React.Component {
     };
 
     componentWillMount() {
-        this.audio = new Sound(this.props.url, null, (error) => {
+        this.downloadFileToDisk(this.props.url,
+            (snapshot) => {
+                const percentDownloaded = round(snapshot.bytesTransferred / snapshot.totalBytes, 2) * 100;
+                console.log(snapshot.state, percentDownloaded + '%');
+            },
+            () => {
+                this.loadFileFromDisk();
+            });
+    }
+
+    componentWillUnmount() {
+        const {timeListened, audioDuration, listenComplete} = this.state;
+        const totalSecondsListened = listenComplete ? audioDuration : timeListened;
+
+        if (this.audio) {
+            this.audio.release();
+            this.props.onRelease(round(totalSecondsListened), listenComplete);
+        }
+        this.cancelTimingInterval();
+    }
+
+    downloadFileToDisk = (fileUrl, onProgress, onComplete) => {
+        const ref = firebase.storage().refFromURL(fileUrl);
+
+        const path = `${firebase.storage.Native.DOCUMENT_DIRECTORY_PATH}/file.m4a`;
+        const unsubscribe = ref.downloadFile(path).on(
+            firebase.storage.TaskEvent.STATE_CHANGED,
+            onProgress,
+            (error) => {
+                unsubscribe();
+                Alert.alert("Error", error.message);
+            },
+            () => {
+                unsubscribe();
+                onComplete();
+            });
+    };
+
+    loadFileFromDisk = () => {
+        this.audio = new Sound('file.m4a', firebase.storage.Native.DOCUMENT_DIRECTORY_PATH, (error) => {
             if (error) {
                 Alert.alert("Error", error.message);
             }
@@ -42,18 +84,7 @@ export default class PathStepAudioPlayer extends React.Component {
 
             if (this.props.onLoad) this.props.onLoad();
         });
-    }
-
-    componentWillUnmount() {
-        const {timeListened, audioDuration, listenComplete} = this.state;
-        const totalSecondsListened = listenComplete ? audioDuration : timeListened;
-
-        if (this.audio) {
-            this.audio.release();
-            this.props.onRelease(round(totalSecondsListened), listenComplete);
-        }
-        this.cancelTimingInterval();
-    }
+    };
 
     play = () => {
         this.setState({isPlaying: true});
