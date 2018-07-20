@@ -52,11 +52,13 @@
 		E15293C020E69236009AFC69 /* libFirebaseMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E15293BF20E69236009AFC69 /* libFirebaseMessaging.a */; };
 		E17CDD5420C8697E005FB448 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F10F022097ACD100E503C0 /* libRNFirebase.a */; };
 		E194905820BE18980012A41A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		E1ABC1E620E6E60200F04CFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1ABC1BD20E6E60200F04CFD /* GoogleService-Info.plist */; };
 		E1BD0CB120B7211300052B04 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0C8720B7210E00052B04 /* FBSDKLoginKit.framework */; };
 		E1BD0CB220B7211300052B04 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0CAE20B7211000052B04 /* Bolts.framework */; };
 		E1BD0CB320B7211300052B04 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0CAF20B7211100052B04 /* FBSDKShareKit.framework */; };
 		E1BD0CB420B7211300052B04 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BD0CB020B7211300052B04 /* FBSDKCoreKit.framework */; };
+		E1E4379B21024AC1007EF828 /* GoogleService-Info.development.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1E437352102372B007EF828 /* GoogleService-Info.development.plist */; };
+		E1E4379C21024AC5007EF828 /* GoogleService-Info.production.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1ABC1BD20E6E60200F04CFD /* GoogleService-Info.production.plist */; };
+		E1E4379F21024C26007EF828 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1E4379E21024C26007EF828 /* GoogleService-Info.plist */; };
 		E937669F17674B04ADB681FC /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A881962EC1744B0A9F50DCF /* AddressBook.framework */; };
 		EA00D78704C443B18BCD0CBC /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E96AB4E96B5439A8018B80A /* Roboto-Regular.ttf */; };
 		ECA6CD0D24FA44719A47696B /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B9F34CAC2D14363976C77DC /* Feather.ttf */; };
@@ -404,11 +406,13 @@
 		E1556A3A20BDF23C00F7FFF2 /* RNSound.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RNSound.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1556AA920BDFA6600F7FFF2 /* react_native_video.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = react_native_video.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E172645920B5FD17001FD207 /* Pursoo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Pursoo.entitlements; path = Pursoo/Pursoo.entitlements; sourceTree = "<group>"; };
-		E1ABC1BD20E6E60200F04CFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E1ABC1BD20E6E60200F04CFD /* GoogleService-Info.production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.production.plist"; sourceTree = "<group>"; };
 		E1BD0C8720B7210E00052B04 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		E1BD0CAE20B7211000052B04 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		E1BD0CAF20B7211100052B04 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		E1BD0CB020B7211300052B04 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		E1E437352102372B007EF828 /* GoogleService-Info.development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.development.plist"; sourceTree = "<group>"; };
+		E1E4379E21024C26007EF828 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3B6EAF8195940E3868DBB34 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		E6CE5C355AF3B8F1CEA3B4EE /* Pods-Pursoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pursoo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pursoo/Pods-Pursoo.release.xcconfig"; sourceTree = "<group>"; };
 		EE167D8ABB6E4848A53D4E99 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -556,7 +560,8 @@
 		13B07FAE1A68108700A75B9A /* Pursoo */ = {
 			isa = PBXGroup;
 			children = (
-				E1ABC1BD20E6E60200F04CFD /* GoogleService-Info.plist */,
+				E1E437352102372B007EF828 /* GoogleService-Info.development.plist */,
+				E1ABC1BD20E6E60200F04CFD /* GoogleService-Info.production.plist */,
 				E172645920B5FD17001FD207 /* Pursoo.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -664,6 +669,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E1E4379E21024C26007EF828 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* Pursoo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -737,9 +743,11 @@
 				B143D049F21DCEF63754CE3B /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				E1E4375F210237BE007EF828 /* Select GoogleService-Info.plist */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
+				E1E437A021024C86007EF828 /* Clean GoogleService-Info.plist */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				E1F4D86A20A4E9950013F03F /* Run Script */,
+				E1F4D86A20A4E9950013F03F /* Fabric Run */,
 				6668B213B9FE5BEC61745EE8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -758,7 +766,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 930;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = Pursoo;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = YCZL2Y6CMX;
@@ -1147,6 +1155,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E4379F21024C26007EF828 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				37BFC746FDC943129A2A909C /* fontawesome-webfont.ttf in Resources */,
@@ -1158,7 +1167,6 @@
 				EF3878C9D2104D8B88812382 /* Roboto-Light.ttf in Resources */,
 				0D6F03148DD44EF5A89F3468 /* Roboto-LightItalic.ttf in Resources */,
 				645FC38428E14B35A1934895 /* Roboto-Medium.ttf in Resources */,
-				E1ABC1E620E6E60200F04CFD /* GoogleService-Info.plist in Resources */,
 				7FA650D5BC364BC4B4BA8EA1 /* Roboto-MediumItalic.ttf in Resources */,
 				EA00D78704C443B18BCD0CBC /* Roboto-Regular.ttf in Resources */,
 				6E5C022239404B8C8F259835 /* Roboto-Thin.ttf in Resources */,
@@ -1168,10 +1176,12 @@
 				ECA6CD0D24FA44719A47696B /* Feather.ttf in Resources */,
 				CF430C2046454B3392B6F453 /* FontAwesome.ttf in Resources */,
 				DB7395EF7DCF4F718962B29B /* Foundation.ttf in Resources */,
+				E1E4379B21024AC1007EF828 /* GoogleService-Info.development.plist in Resources */,
 				10B06BAE51B14599A693D587 /* Ionicons.ttf in Resources */,
 				87265C9B14A742A493C9C53A /* MaterialCommunityIcons.ttf in Resources */,
 				CC28EBB9A73245A989E4FB12 /* MaterialIcons.ttf in Resources */,
 				7545D59158A0408E85A4AEDF /* Octicons.ttf in Resources */,
+				E1E4379C21024AC5007EF828 /* GoogleService-Info.production.plist in Resources */,
 				7833FD5B8FE2400FA82D6F98 /* SimpleLineIcons.ttf in Resources */,
 				3B13165418F94ED795E4A3CE /* Zocial.ttf in Resources */,
 			);
@@ -1193,6 +1203,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			showEnvVarsInLog = 0;
 		};
 		6668B213B9FE5BEC61745EE8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1254,19 +1265,50 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E1F4D86A20A4E9950013F03F /* Run Script */ = {
+		E1E4375F210237BE007EF828 /* Select GoogleService-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Select GoogleService-Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# Select the firebase environment configuration\n#\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\n  echo \"Using GoogleService Configuration: Development\"\n  cp \"GoogleService-Info.development.plist\" \"GoogleService-Info.plist\"\nelif [ \"$CONFIGURATION\" == \"Release\" ]; then\n  echo \"Using GoogleService Configuration: Production\"\n  cp \"GoogleService-Info.production.plist\" \"GoogleService-Info.plist\"\nfi";
+			showEnvVarsInLog = 0;
+		};
+		E1E437A021024C86007EF828 /* Clean GoogleService-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Clean GoogleService-Info.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# Clean out dynmic GoogleService configuration\n#\nrm \"GoogleService-Info.plist\"";
+			showEnvVarsInLog = 0;
+		};
+		E1F4D86A20A4E9950013F03F /* Fabric Run */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fabric Run";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 

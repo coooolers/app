@@ -124,7 +124,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      customArchiveName = "Pursoo-1.0"
+      customArchiveName = "Pursoo"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

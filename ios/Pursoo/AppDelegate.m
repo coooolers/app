@@ -50,8 +50,15 @@
   
   UIView* launchScreenView = [[[NSBundle mainBundle] loadNibNamed:@"LaunchScreen" owner:self options:nil] objectAtIndex:0];
   launchScreenView.frame = self.window.bounds;
-  rootView.loadingView = launchScreenView;
+  UILabel *debugLabel = (UILabel *)[launchScreenView viewWithTag:1];
+  debugLabel.hidden = true;
   
+  #ifdef DEBUG
+    debugLabel.hidden = false;
+  #endif
+  
+  rootView.loadingView = launchScreenView;
+
   return YES;
 }
 
