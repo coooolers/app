@@ -4,7 +4,7 @@ import {color, contentPadding, fontFamily, fontSize, normalize} from "../../../.
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: color.brandLight
     },
 
     content: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
     categoryTitle: {
         fontSize: normalize(12),
-        fontFamily: fontFamily.regular,
+        fontFamily: fontFamily.bold,
         color: '#4A4A4A',
         marginBottom: 15
     },

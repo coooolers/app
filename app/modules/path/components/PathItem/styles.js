@@ -5,21 +5,16 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: color.brandLight,
         marginBottom: contentPadding,
-        width: normalize(185)
-    },
-
-    imageContainer: {
         width: normalize(185),
-        height: normalize(105),
-        shadowColor: 'rgba(0,0,0, .4)',
-        shadowOffset: {height: 2, width: 2},
-        shadowOpacity: 1,
-        shadowRadius: 1,
+        marginRight: 20,
     },
 
     image: {
         width: normalize(185),
         height: normalize(105),
+        borderColor: color.grey,
+        borderWidth: 1,
+        borderRadius: 5,
         resizeMode: 'cover'
     },
 

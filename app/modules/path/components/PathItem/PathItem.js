@@ -16,9 +16,7 @@ export default class PathItem extends Component {
         return (
             <TouchableWithoutFeedback onPress={() => onPress(path)}>
                 <View style={styles.container}>
-                    <View style={styles.imageContainer}>
-                        <Image style={styles.image} source={path.imageUrl}/>
-                    </View>
+                    <Image style={styles.image} source={{uri: path.imageUrl}}/>
                     <Text style={styles.title}>{path.name}</Text>
                     <Text style={styles.steps}>{path.stepsOrder.length} Lessons</Text>
                 </View>
