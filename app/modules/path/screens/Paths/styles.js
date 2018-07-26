@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     categoryTitle: {
         fontSize: normalize(12),
         fontFamily: fontFamily.bold,
-        color: '#4A4A4A',
+        color: '#6c6c6c',
         marginBottom: 15
     },
 
