@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: fontSize.large
+        fontSize: fontSize.large,
+        textAlign: 'center'
     },
 
     subTitle: {

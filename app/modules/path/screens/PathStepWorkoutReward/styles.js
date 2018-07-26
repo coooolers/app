@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
         fontSize: fontSize.large + 2,
         fontFamily: fontFamily.medium,
         marginTop: 15,
+        textAlign: 'center',
     },
 
     pathName: {

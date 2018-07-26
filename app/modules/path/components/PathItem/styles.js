@@ -1,52 +1,34 @@
 import {StyleSheet} from 'react-native';
-import {color, contentPadding, fontSize, normalize} from "../../../../styles/theme";
+import {color, contentPadding, fontFamily, fontSize, normalize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 1,
-        borderColor: color.dark_grey,
         backgroundColor: color.brandLight,
-        padding: contentPadding,
-        shadowColor: 'rgba(0,0,0, .4)',
-        shadowOffset: { height: 1, width: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 1,
-        marginBottom: contentPadding
+        marginBottom: contentPadding,
+        width: normalize(185),
+        marginRight: 20,
     },
 
-    name: {
-        fontSize: fontSize.large,
-        color: color.brandDark,
+    image: {
+        width: normalize(185),
+        height: normalize(105),
+        borderColor: color.grey,
+        borderWidth: 1,
+        borderRadius: 5,
+        resizeMode: 'cover'
     },
 
-    description: {
-        fontSize: fontSize.small,
-        color: color.dark_grey,
-        marginTop: normalize(5)
-    },
-
-    hrule: {
-        marginTop: normalize(20),
-        marginBottom: normalize(5),
-        borderTopWidth: 2,
-        borderTopColor: color.brandDark,
-        width: 40
-    },
-
-    progressLabel: {
-        fontSize: fontSize.regular + 2,
-        color: color.dark_grey
-    },
-
-    progressTop: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-
-    progressBottom: {
+    title: {
+        fontSize: normalize(16),
+        fontFamily: fontFamily.regular,
+        color: '#4A4A4A',
         marginTop: 10,
-        flexDirection: 'row',
-        justifyContent: 'flex-end'
+        marginBottom: 4
+    },
+
+    steps: {
+        fontSize: normalize(12),
+        fontFamily: fontFamily.light
     }
 });
 

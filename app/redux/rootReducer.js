@@ -4,6 +4,7 @@ import {reducer as authReducer} from "../modules/auth";
 import {reducer as characterReducer} from "../modules/characters";
 import {reducer as screensReducer} from "../modules/screens";
 import {reducer as pathsReducer} from "../modules/path";
+import {reducer as pathCategoriesReducer} from "../modules/pathCategories";
 import {reducer as userPathProgressReducer} from "../modules/userPathProgress";
 
 // Combine all the reducers
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     characterReducer,
     screensReducer,
     pathsReducer,
+    pathCategoriesReducer,
     userPathProgressReducer,
 });
 
