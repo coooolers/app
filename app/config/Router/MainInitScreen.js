@@ -7,7 +7,7 @@ class InitialScreen extends React.Component {
         super(props);
 
         if (props.user.hasCompletedOnboarding) {
-            goToMainTabRoute(props.navigation, 'Paths');
+            goToMainTabRoute(props.navigation, 'Home');
         } else {
             props.navigation.navigate('Onboarding');
         }
