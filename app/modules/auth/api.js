@@ -1,69 +1,83 @@
 import {auth, database, FacebookAuthProvider, GoogleAuthProvider} from "../../config/firebase";
 
-export function registerWithEmailAndPassword(email, password) {
-    return auth.createUserAndRetrieveDataWithEmailAndPassword(email, password);
-}
+export const registerWithEmailAndPassword = async (email, password) => {
+    const signInResult = await auth.createUserAndRetrieveDataWithEmailAndPassword(email, password);
+    const user = await createUser(signInResult.user);
+    await signInWithEmailAndPassword(email, password);
+    return user;
+};
 
-export function createUser(user) {
-    const payload = {
+export const createUser = async (user, extraProfileData) => {
+    const payload = Object.assign({
+        uid: user.uid,
         name: user.name || user.displayName,
         email: user.email || user.emailAddress,
-        uid: user.uid,
+        emailVerified: user.emailVerified,
+        phone: user.phone || user.phoneNumber,
         created: new Date().toISOString(),
+        photoURL: user.photoURL,
         hasCompletedOnboarding: false,
         appPiecesLearned: []
-    };
+    }, extraProfileData);
 
-    return database.ref('users').child(user.uid).set(payload).then(() => {
-        return payload;
-    });
-}
+    await database.ref('users').child(user.uid).set(payload);
+    return payload;
+};
 
-export function login(email, password) {
-    return auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(getUser);
-}
+export const getUser = async (user) => {
+    const snapshot = await database.ref('users').child(user.uid).once('value');
+    const exists = (snapshot.val() !== null);
 
-export function getUser(user) {
-    return new Promise((resolve, reject) => {
-        database.ref('users').child(user.uid).once('value')
-            .then(snapshot => {
-                const exists = (snapshot.val() !== null);
+    if (exists) {
+        user = snapshot.val();
+    }
 
-                // if the user exist in the DB, replace the user variable with the returned snapshot
-                if (exists) {
-                    user = snapshot.val();
-                }
+    return ({exists, user});
+};
 
-                resolve({exists, user});
-            })
-            .catch((error) => reject({message: error}));
-    });
-}
-
-//Send Password Reset Email
-export function resetPassword(data, callback) {
+export const resetPassword = (data, callback) => {
     const {email} = data;
     return auth.sendPasswordResetEmail(email)
         .then((user) => callback(true, null, null))
         .catch((error) => callback(false, null, error));
-}
+};
 
-export function signOut() {
-    return auth.signOut();
-}
+export const signOut = () => auth.signOut();
 
-//Sign user in using Facebook
-export function signInWithFacebook(fbToken) {
+export const signInWithEmailAndPassword = (email, password) => {
+    return auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(getUser);
+};
+
+export const signInWithFacebook = async (fbToken) => {
     const credential = FacebookAuthProvider.credential(fbToken.accessToken);
+    const signInResult = await auth.signInAndRetrieveDataWithCredential(credential);
+    const {exists, user} = await getUser(signInResult.user);
 
-    return auth.signInAndRetrieveDataWithCredential(credential)
-        .then((user) => getUser(user));
-}
+    if (exists) {
+        return user;
+    } else {
+        const {profile} = signInResult.additionalUserInfo;
+        return createUser(signInResult.user, {
+            familyName: profile.first_name,
+            givenName: profile.last_name,
+        });
+    }
+};
 
-//Sign user in using google
-export function signInWithGoogle(data) {
+export const signInWithGoogle = async (data) => {
     const credential = GoogleAuthProvider.credential(data.idToken, data.accessToken);
+    const signInResult = await auth.signInAndRetrieveDataWithCredential(credential);
+    const {exists, user} = await getUser(signInResult.user);
 
-    return auth.signInAndRetrieveDataWithCredential(credential)
-        .then(data => getUser(data.user));
-}
+    if (exists) {
+        return user;
+    } else {
+        const {profile} = signInResult.additionalUserInfo;
+        return createUser(signInResult.user, {
+            gender: profile.gender,
+            familyName: profile.family_name,
+            givenName: profile.given_name,
+            locale: profile.locale
+        });
+    }
+};

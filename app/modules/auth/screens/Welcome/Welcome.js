@@ -10,6 +10,7 @@ import styles from "./styles";
 import BackgroundImage from "../../../../components/BackgroundImage";
 import Button from "../../../../components/Button/Button";
 import {color} from "../../../../styles/theme";
+import {GOOGLE_SIGN_IN_CANCELLED_ERROR_CODE, GOOGLE_IOS_CLIENT_ID} from "../../constants";
 
 class Welcome extends React.Component {
     state = {};
@@ -37,15 +38,13 @@ class Welcome extends React.Component {
 
     onSignInWithGoogle = async () => {
         try {
-            // Add any configuration settings here:
-            await GoogleSignin.configure({
-                iosClientId: '891410242074-cdl78f5q3s23t8v2ivjrh3t6mj7vu1lc.apps.googleusercontent.com'
-            });
+            await GoogleSignin.configure({iosClientId: GOOGLE_IOS_CLIENT_ID});
 
             const data = await GoogleSignin.signIn();
             await this.props.dispatch(signInWithGoogle(data));
             this.props.navigation.navigate('AuthLoading');
         } catch (e) {
+            if (e.code === GOOGLE_SIGN_IN_CANCELLED_ERROR_CODE) return;
             this.onLoginError(e);
         }
     };

@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.0</string>
+	<string>3.0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -28,7 +28,7 @@
 			<key>CFBundleURLIconFile</key>
 			<string></string>
 			<key>CFBundleURLName</key>
-			<string>Facebook SDK</string>
+			<string>Facebook SDK - Production</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb184641669032000</string>
@@ -40,7 +40,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.googleusercontent.apps.891410242074-cdl78f5q3s23t8v2ivjrh3t6mj7vu1lc</string>
+			<string>RNGoogleSignin - Production </string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.891410242074-cdl78f5q3s23t8v2ivjrh3t6mj7vu1lc</string>
@@ -64,6 +64,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.pursoo.pursoo</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>RNGoogleSignin - Development</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.183083927281-m33g3ppe5qnc9n24jtobv4gb3vuhr9uv</string>
 			</array>
 		</dict>
 	</array>

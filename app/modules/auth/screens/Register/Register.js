@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import Form from "../../../../components/Form";
 import {registerWithEmailAndPassword} from "../../actions";
 import styles from "./styles";
-import {AUTH_EMAIL_ALREADY_IN_USER_CODE} from "../../constants";
+import {AUTH_EMAIL_ALREADY_IN_USE_ERROR_CODE} from "../../constants";
 
 const fields = [
     {
@@ -13,7 +13,6 @@ const fields = [
         autoFocus: false,
         secureTextEntry: false,
         autoCapitalize: 'none',
-        defaultValue: "",
         type: "email"
     },
     {
@@ -22,7 +21,6 @@ const fields = [
         autoFocus: false,
         secureTextEntry: true,
         autoCapitalize: 'none',
-        defaultValue: "",
         type: "password"
     },
     {
@@ -31,7 +29,6 @@ const fields = [
         autoCapitalize: 'none',
         autoFocus: false,
         secureTextEntry: true,
-        defaultValue: "",
         type: "confirm_password"
     }
 ];
@@ -68,7 +65,7 @@ class Register extends React.Component {
     onError = (error) => {
         let errObj = Object.assign({}, DEFAULT_ERROR);
 
-        if (error.code === AUTH_EMAIL_ALREADY_IN_USER_CODE) {
+        if (error.code === AUTH_EMAIL_ALREADY_IN_USE_ERROR_CODE) {
             errObj["general"] = "Looks like someone is already using your email. Maybe an evil twin? Spooky.";
         } else if (error.hasOwnProperty("message")) {
             errObj["general"] = error.message;
