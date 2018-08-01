@@ -1,20 +1,20 @@
 import {StyleSheet} from 'react-native';
-import {color, fontFamily} from "../../../../styles/theme";
+import {color, contentPadding, fontFamily, normalize} from "../../../../styles/theme";
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 6,
-        paddingBottom: 6,
+        paddingTop: 10,
+        paddingBottom: 10,
         borderBottomWidth: 1,
         borderBottomColor: color.light_grey
     },
 
     icon: {
-        fontSize: 18,
+        fontSize: normalize(18),
     },
 
     name: {
-        fontSize: 14,
+        fontSize: normalize(14),
         fontFamily: fontFamily.regular
     }
 });
