@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
     image: {
         width: normalize(185),
-        height: normalize(105),
+        height: normalize(139),
         borderColor: color.grey,
         borderWidth: 1,
         borderRadius: 5,
