@@ -1,13 +1,11 @@
 import React from 'react';
-import {ScrollView, View, Button} from 'react-native';
+import {ScrollView, View, Button as RNButton, Image, Text} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./styles";
 import PathStepItem from "../../components/PathStepItem";
-import CharacterPanel from "../../components/CharacterPanel";
 import {STEP_TYPES} from "../../constants";
 import {goToMainTabRoute, isPathStepComplete} from "../../../../components/Util";
 import {Workout} from "../../../workouts/models";
-import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 
 class PathScreen extends React.Component {
     state = {
@@ -15,11 +13,8 @@ class PathScreen extends React.Component {
     };
 
     static navigationOptions = ({navigation}) => {
-        const {path} = navigation.state.params || {};
-
         return {
-            headerLeft: <Button onPress={() => goToMainTabRoute(navigation, "Paths")} title="Paths"/>,
-            title: path.name
+            headerLeft: <RNButton onPress={() => goToMainTabRoute(navigation, "Paths")} title="Paths"/>
         };
     };
 
@@ -60,8 +55,7 @@ class PathScreen extends React.Component {
             <PathStepItem
                 key={step.uid}
                 step={step}
-                showTopStatusBorder={index > 1}
-                showBottomStatusBorder={index < path.stepsOrder.length - 1}
+                index={index}
                 onSelect={(step) => this.goToStep(step, index)}
                 isCompleted={isPathStepComplete(path, step, pathProgress)}
                 isLocked={this.isStepLocked(step, index)}
@@ -70,17 +64,20 @@ class PathScreen extends React.Component {
     };
 
     render() {
-        const {animateRewardConfig} = this.state;
-        const {character, navigation} = this.props;
-        const {path} = navigation.state.params;
+        const {path} = this.props.navigation.state.params;
 
         return (
-            <View style={styles.container}>
-                <BackgroundImage color={"purple"}/>
-                <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+                <Image source={{uri: path.imageUrl}} style={styles.image}/>
+                <View style={styles.content}>
+                    <Text style={styles.title}>{path.name}</Text>
+                    <Text style={styles.description}>{path.description}</Text>
+                    <View style={styles.stepsLabelContainer}>
+                        <Text style={styles.stepsLabel}>Steps</Text>
+                    </View>
                     {path.stepsOrder.map(this.renderPathStep)}
-                </ScrollView>
-            </View>
+                </View>
+            </ScrollView>
         );
     }
 }

@@ -1,112 +1,79 @@
 import React from 'react';
-import {View, Text, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, Animated, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import styles from "./styles";
-import {STEP_TYPES} from "../../constants";
 import {color} from "../../../../styles/theme";
-import {getRewardsForStep} from "../../../../components/Util";
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import RewardList from "../../../../components/RewardList/RewardList";
 
 export default class PathStepItem extends React.Component {
     static propTypes = {
-        showTopStatusBorder: PropTypes.bool.isRequired,
-        showBottomStatusBorder: PropTypes.bool.isRequired,
         step: PropTypes.object.isRequired,
         onSelect: PropTypes.func.isRequired,
         isCompleted: PropTypes.bool.isRequired,
         isLocked: PropTypes.bool.isRequired
     };
 
-    renderStepTypeIcon = (step) => {
-        if (step.type === STEP_TYPES.AUDIO) {
-            return <MaterialCommunityIcon name="headphones" style={styles.icon}/>;
-        } else if (step.type === STEP_TYPES.WORKOUT) {
-            return <MaterialCommunityIcon name="dumbbell" style={styles.icon}/>;
-        }
+    state = {
+        animateX: new Animated.Value(0)
     };
 
     renderStatusIcon = () => {
         const {isCompleted, isLocked} = this.props;
 
         if (isCompleted) {
-            return <MaterialCommunityIcon name={"check"} style={[styles.statusIcon, {color: color.brandSuccess}]}/>;
+            return <MaterialCommunityIcon name={"checkbox-marked"}
+                                          style={[styles.icon, {color: color.brandSuccess}]}/>;
         } else if (isLocked) {
-            return <MaterialCommunityIcon name="lock" style={[styles.statusIcon, {color: color.brandDark}]}/>;
+            return <MaterialCommunityIcon name="lock-outline"
+                                          style={[styles.icon, {color: color.brandDark}]}/>;
         } else {
-            return <MaterialCommunityIcon name="hand-pointing-right" style={[styles.statusIcon, {color: color.brandPrimary}]}/>;
+            return <MaterialCommunityIcon name="play-circle"
+                                          style={[styles.icon, {color: color.brandPrimary}]}/>;
         }
     };
 
-    renderStatus = () => {
-        const {showTopStatusBorder, showBottomStatusBorder, isCompleted, isLocked} = this.props;
-        const statusTopStyles = showTopStatusBorder ? styles.statusTop : null;
-        const statusBottomStyles = showBottomStatusBorder ? styles.statusBottom : null;
-        const statusIndicatorStyles = [styles.statusIndicator];
-
-        if (isCompleted) {
-            statusIndicatorStyles.push({borderColor: color.brandSuccess});
-        } else if (isLocked) {
-            statusIndicatorStyles.push({borderColor: color.brandDark});
-        } else {
-            statusIndicatorStyles.push({borderColor: color.brandPrimary});
-        }
-
-        return (
-            <View style={styles.status}>
-                <View style={statusTopStyles}/>
-                <View style={styles.statusMiddle}>
-                    <View style={statusIndicatorStyles}>{this.renderStatusIcon()}</View>
-                    <View style={styles.statusLineRight}/>
-                </View>
-                <View style={statusBottomStyles}/>
-            </View>
-        );
-    };
-
-    renderContentLockOverlay = () => {
-        const {isLocked} = this.props;
+    handlePress = () => {
+        const {step, isLocked} = this.props;
 
         if (isLocked) {
-            return (
-                <View style={styles.lockedOverlay}>
-                    <MaterialCommunityIcon name="lock" style={styles.lockedIcon}/>
-                    <Text style={styles.lockedLabel}>Locked</Text>
-                </View>
-            );
+            this.animateLockedIcon(2, 200);
+        } else {
+            this.props.onSelect(step);
         }
+    };
+
+    animateLockedIcon = (toValue, duration) => {
+        Animated.timing(this.state.animateX, {toValue, duration}).start();
+        setTimeout(() => {
+            Animated.timing(this.state.animateX, {toValue: -toValue, duration}).start();
+        }, duration);
+        setTimeout(() => {
+            Animated.timing(this.state.animateX, {toValue: 0, duration}).start();
+        }, duration * 2);
     };
 
     render = () => {
-        const {step, isCompleted, isLocked} = this.props;
-        let contentWrapperStyles = [styles.contentContainer];
+        const {step, isLocked, index} = this.props;
+        let textStyles = [styles.name];
 
-        if (isCompleted) {
-            contentWrapperStyles.push({borderTopColor: color.brandSuccess});
-        } else if (isLocked) {
-            contentWrapperStyles.push({borderTopColor: color.brandDark});
-        } else {
-            contentWrapperStyles.push({borderTopColor: color.brandPrimary});
+        if (isLocked) {
+            textStyles.push({color: "#9B9B9B"});
         }
 
         return (
             <View key={step.uid} style={styles.container}>
-                {this.renderStatus()}
-                <TouchableWithoutFeedback onPress={() => this.props.onSelect(step)}>
-                    <View style={contentWrapperStyles}>
-                        {this.renderContentLockOverlay()}
-                        <View style={styles.contentHeader}>
-                            {this.renderStepTypeIcon(step)}
-                            <Text style={styles.name}>{step.name}</Text>
-                        </View>
-                        <View style={styles.contentBody}>
-                            <Text style={styles.description}>{step.description}</Text>
-                        </View>
-                        <View style={styles.contentFooter}>
-                            <RewardList rewardConfig={getRewardsForStep(step)} hasEarned={isCompleted} size={16}/>
-                        </View>
+                <TouchableOpacity onPress={this.handlePress}>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
+                        <Text style={textStyles}>{index + 1}. {step.name}</Text>
+                        <Animated.View style={{
+                            transform: [{
+                                translateX: this.state.animateX
+                            }]
+                        }}>
+                            {this.renderStatusIcon()}
+                        </Animated.View>
                     </View>
-                </TouchableWithoutFeedback>
+                </TouchableOpacity>
             </View>
         );
     };
