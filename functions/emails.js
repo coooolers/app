@@ -32,7 +32,7 @@ const TRANSACTIONAL_EMAIL_CONFIG = {
 };
 
 
-exports.accountWelcome = functions.database.ref('/users/{userId}/testEmail').onCreate((snapshot, context) => {
+exports.accountWelcome = functions.database.ref('/users/{userId}').onCreate((snapshot, context) => {
     const user = snapshot.val();
 
     if (user.email) {
